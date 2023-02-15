@@ -1,0 +1,163 @@
+@{
+    var pageName = ViewData["PageName"]?.ToString().ToLower();
+}
+<ul id="js-nav-menu" class="nav-menu">
+
+
+
+    <li class="@(pageName.Contains("registro_obra") ? "active open" : "")">
+        <a href="TblObras/CreateExpediente" title="Obras" data-filter-tags="Obras">
+            <i class="fal fa-chart-pie"></i>
+            <span class="nav-link-text">Obras</span>
+
+        </a>
+    </li>
+
+    <li class="@(pageName.Contains("adquisicion") ? "active open" : "")">
+        <a href="TblObras/CreateExpediente" title="adquisicion" data-filter-tags="adquisicion">
+            <i class="fal fa-chart-pie"></i>
+            <span class="nav-link-text">Adquisiciones</span>
+
+        </a>
+    </li>
+
+    <li class="@(pageName.Contains("dashboard") ? "active open" : "")">
+        <a href="Intel/RecordsDashboard" title="expediente" data-filter-tags="expediente">
+            <i class="fal fa-chart-pie"></i>
+            <span class="nav-link-text">DashBoard</span>
+
+        </a>
+    </li>
+
+
+
+    @*<li class="nav-title">Tools &amp; Components</li>*@
+    <li class="@(pageName.Contains("catalogo") ? "active open" : "")">
+        <a title="Catalogos" data-filter-tags="Catalogos" aria-expanded="false" class=" waves-effect waves-themed">
+            <i class="fal fa-window"></i>
+            <span class="nav-link-text" data-i18n="nav.ui_components">Catalogos</span>            
+        </a>
+        <ul style="">
+
+            <li class="@(pageName.Contains("norma") ? "active open" : "")">
+                <a href="NormativaAplicable/Index" title="NormativaAplicable" data-filter-tags="NormativaAplicable">
+                    <i class="fal fa-book"></i>
+                    <span class="nav-link-text">Normativa Aplicable</span>
+                </a>
+            </li>
+
+            <li class="@(pageName.Contains("modalidad") ? "active open" : "")">
+                <a href="ModalidadEjecucion/Index" title="ModalidadEjecucion" data-filter-tags="ModalidadEjecucion">
+                    <i class="fal fa-book"></i>
+                    <span class="nav-link-text">Modalidad Ejecuci&oacuten</span>
+                </a>
+            </li>
+
+
+            <li class="@(pageName.Contains("contrata") ? "active open" : "")">
+                <a href="Contratacion/Index" title="Contratacion" data-filter-tags="Contratacion">
+                    <i class="fal fa-book"></i>
+                    <span class="nav-link-text">Contrataci&oacuten</span>
+                </a>
+            </li>
+
+
+            <li class="@(pageName.Contains("adjudicacion") ? "active open" : "")">
+                <a href="TipoAdjudicacion/Index" title="TipoAdjudicacion" data-filter-tags="TipoAdjudicacion">
+                    <i class="fal fa-book"></i>
+                    <span class="nav-link-text">Tipo Adjudicaci&oacuten</span>
+                </a>
+            </li>
+
+
+            <li class="@(pageName.Contains("catalogo_tipotrato") ? "active open" : "")">
+                <a href="TipoDeContrato/Index" title="TipoDeContrato" data-filter-tags="TipoDeContrato">
+                    <i class="fal fa-book"></i>
+                    <span class="nav-link-text">Tipo De Contrato</span>
+                </a>
+            </li>
+            <li class="@(pageName.Contains("catalogo_gradomarginal") ? "active open" : "")">
+                <a href="Gradomarginal/Index" title="Gradomarginal" data-filter-tags="Gradomarginal">
+                    <i class="fal fa-book"></i>
+                    <span class="nav-link-text">Grado Marginal</span>
+                </a>
+            </li>
+
+
+            <li class="@(pageName.Contains("catalogo_ejes") ? "active open" : "")">
+                <a href="CatEjes/Index" title="CatEjes" data-filter-tags="CatEjes">
+                    <i class="fal fa-book"></i>
+                    <span class="nav-link-text"> Ejes </span>
+                </a>
+            </li>
+
+            <li class="@(pageName.Contains("catalogo_estrategia") ? "active open" : "")">
+                <a href="CatEstrategias/Index" title="CatEstrategias" data-filter-tags="CatEstrategias">
+                    <i class="fal fa-book"></i>
+                    <span class="nav-link-text">Estrategia </span>
+                </a>
+            </li>
+
+            <li class="@(pageName.Contains("catalogo_lineaaccion") ? "active open" : "")">
+                <a href="CatLineaaccions/Index" title="CatLineaaccions" data-filter-tags="CatLineaaccions">
+                    <i class="fal fa-book"></i>
+                    <span class="nav-link-text">Linea Acci&oacuten </span>
+                </a>
+            </li>
+
+            <li class="@(pageName.Contains("catalogo_programa") ? "active open" : "")">
+                <a href="CatProgramas/Index" title="CatProgramas" data-filter-tags="CatProgramas">
+                    <i class="fal fa-book"></i>
+                    <span class="nav-link-text">Programas </span>
+                </a>
+            </li>
+
+            <li class="@(pageName.Contains("catalogo_subprograma") ? "active open" : "")">
+                <a href="CatSubprogramas/Index" title="CatSubprogramas" data-filter-tags="CatSubprogramas">
+                    <i class="fal fa-book"></i>
+                    <span class="nav-link-text">Sub Programas </span>
+                </a>
+            </li>
+
+            <li class="@(pageName.Contains("catalogo_fondos") ? "active open" : "")">
+                <a href="CatFondos/Index" title="CatFondos" data-filter-tags="CatFondos">
+                    <i class="fal fa-book"></i>
+                    <span class="nav-link-text">Fondos </span>
+                </a>
+            </li>
+
+
+
+            <li class="@(pageName.Contains("catalogo_ramos") ? "active open" : "")">
+                <a href="CatRamos/Index" title="CatRamos" data-filter-tags="CatRamos">
+                    <i class="fal fa-book"></i>
+                    <span class="nav-link-text"> Ramos </span>
+                </a>
+            </li>
+
+
+
+            <li class="@(pageName.Contains("catalogo_rubros") ? "active open" : "")">
+                <a href="CatRubros/Index" title="CatRubros" data-filter-tags="CatRubros">
+                    <i class="fal fa-book"></i>
+                    <span class="nav-link-text">Rubros </span>
+                </a>
+            </li>
+
+
+
+
+
+        </ul>
+    </li>
+
+    <li class="">
+        <a title="Otros" data-filter-tags="Otros" aria-expanded="true" class=" waves-effect waves-themed">
+            <i class="fal fa-window"></i>
+            <span class="nav-link-text" data-i18n="nav.ui_components">Otros</span>
+            @*<b class="collapse-sign"><em class="fal fa-angle-up"></em></b>*@
+        </a>
+        <ul style="">
+        </ul>
+    </li>
+</ul>

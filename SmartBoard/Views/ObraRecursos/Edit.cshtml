@@ -1,0 +1,87 @@
+﻿@model SmartBoard.Data.Models.SmartBoard.TblObraRecurso
+
+@{
+    ViewData["PageName"] = "registro_obra";
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>TblObraRecurso</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="IdTblobra" class="control-label"></label>
+                <select asp-for="IdTblobra" class="form-control" asp-items="ViewBag.IdTblobra"></select>
+                <span asp-validation-for="IdTblobra" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdRecurso" class="control-label"></label>
+                <select asp-for="IdRecurso" class="form-control" asp-items="ViewBag.IdRecurso"></select>
+                <span asp-validation-for="IdRecurso" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdEjercicio" class="control-label"></label>
+                <select asp-for="IdEjercicio" class="form-control" asp-items="ViewBag.IdEjercicio"></select>
+                <span asp-validation-for="IdEjercicio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdPrograma" class="control-label"></label>
+                <select asp-for="IdPrograma" class="form-control" asp-items="ViewBag.IdPrograma"></select>
+                <span asp-validation-for="IdPrograma" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdSubprograma" class="control-label"></label>
+                <select asp-for="IdSubprograma" class="form-control" asp-items="ViewBag.IdSubprograma"></select>
+                <span asp-validation-for="IdSubprograma" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Autorizados" class="control-label"></label>
+                <input asp-for="Autorizados" class="form-control" />
+                <span asp-validation-for="Autorizados" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImporteContratado" class="control-label"></label>
+                <input asp-for="ImporteContratado" class="form-control" />
+                <span asp-validation-for="ImporteContratado" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImporteModificado" class="control-label"></label>
+                <input asp-for="ImporteModificado" class="form-control" />
+                <span asp-validation-for="ImporteModificado" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImporteEjercido" class="control-label"></label>
+                <input asp-for="ImporteEjercido" class="form-control" />
+                <span asp-validation-for="ImporteEjercido" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImportePorEjercer" class="control-label"></label>
+                <input asp-for="ImportePorEjercer" class="form-control" />
+                <span asp-validation-for="ImportePorEjercer" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Activo" /> @Html.DisplayNameFor(model => model.Activo)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="Registro" class="control-label"></label>
+                <input asp-for="Registro" class="form-control" />
+                <span asp-validation-for="Registro" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

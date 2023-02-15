@@ -1,0 +1,132 @@
+﻿@model SmartBoard.Models.ExpedienteViewModalDetalle
+@{
+    Layout = null;
+}
+<div class="row">
+    <div class="form-group">
+        <a class="btn btn-danger" href="ObraEstimacion/Create?IdTblobra=@Model.Id" title="Obras" data-filter-tags="ObraEstimaciones">
+            <label>
+                Agregar Estimaciones
+            </label>
+        </a>
+    </div>
+</div>
+
+<div class="col-sm-12">
+
+
+    <table id="dt-obras-documentos3" class="table table-bordered table-hover table-striped w-100">
+        <thead class="bg-warning-200">
+            <tr>
+
+                <th>Num. Factura</th>
+                <th>Fecha F.</th>
+                <th>Fecha Estimación</th>
+                <th>Monto a Pagar S/IVA</th>
+                <th>Amortización S/IVA</th>
+                <th>SubTotal</th>
+                <th>SubTotal C/IVA</th>
+                <th>5 al millar S/IVA</th>
+
+                <th>Retención</th>
+                <th>Devolución</th>
+                <th>Monto neto a pagar</th>
+                <th>Avance Fisico Real</th>
+                <th>Avance Financiero</th>
+                <th>Fecha de Pago</th>
+                <th>Pagado</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.estimaciones)
+            {
+                <tr>
+
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NumFactura)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FechaFactura)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FechaEstimacion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MontoPagarSinIva)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AmortizadoSinIva)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Subtotal)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SubtotalConIva)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CincoMillarSinIva)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Retencion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Devolucion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MontoNetoPagar)
+                    </td>
+                    @*<td>
+                    @Html.DisplayFor(modelItem => item.AvenceFisicoProgramado)
+                </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AvanceFisicoReal)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AvanceFinancieron)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FechaPago)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Pagado)
+                    </td>
+                    @*<td>
+                    @Html.DisplayFor(modelItem => item.Activo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Registro)
+                </td>*@
+
+
+                </tr>
+            }
+            <tr style="font-weight:bold">
+                <td colspan="3" style="text-align:right"> SubTotal</td>
+                <td>@Model.estimaciones.Sum(a => a.MontoPagarSinIva).ToString("c2")</td>
+                <td>@Model.estimaciones.Sum(a => a.AmortizadoSinIva).ToString("c2")</td>
+                <td>@Model.estimaciones.Sum(a => a.Subtotal).ToString("c2")</td>
+                <td>@Model.estimaciones.Sum(a => a.SubtotalConIva).ToString("c2")</td>
+                <td>@Model.estimaciones.Sum(a => a.CincoMillarSinIva).ToString("c2")</td>
+                <td>@Model.estimaciones.Sum(a => a.Retencion).ToString("c2")</td>
+                <td>@Model.estimaciones.Sum(a => a.Devolucion).ToString("c2")</td>
+                <td>@Model.estimaciones.Sum(a => a.MontoPagarSinIva).ToString("c2")</td>
+                <td colspan="4"></td>
+            </tr>
+            <tr style="font-weight:bold">
+                <td colspan="3" style="text-align:right"> Iva</td>
+                <td>@((Model.estimaciones.Sum(a => a.MontoPagarSinIva) * 0.16m).ToString("c2"))</td>
+                <td colspan="12"></td>
+            </tr>
+            <tr style="font-weight:bold">
+                <td colspan="3" style="text-align:right"> Total</td>
+                <td>@((Model.estimaciones.Sum(a => a.MontoPagarSinIva) * 1.16m).ToString("c2"))</td>
+                <td colspan="12"></td>
+            </tr>
+        </tbody>
+    </table>
+
+
+</div>

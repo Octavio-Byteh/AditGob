@@ -1,0 +1,1204 @@
+@{ ViewData["Title"] = "Tablero de Expedientes";
+    //ViewData["PageName"] = "intel_records_dashboard";
+    ViewData["PageName"] = "dashboard";
+    ViewData["Category1"] = "Expedientes";
+    ViewData["Heading"] = "<i class='subheader-icon fal fa-chart-area'></i> Tablero de <span class='fw-300'>Expedientes</span>";
+
+    string year = @Settings.CurrentYear;
+    if (year == "0")
+    {
+        year = DateTime.Now.Year.ToString();
+    }
+
+    string apikeymaps = @Settings.api_key_maps;
+
+    string mapTheme = @Settings.maptheme;
+
+}
+@section HeadBlock {
+    <link rel="stylesheet" media="screen, print" href="~/css/datagrid/datatables/datatables.bundle.css">
+    <style>
+        .gm-style .gm-style-iw {
+            color: black !important;
+        }
+
+        .fileUpload {
+            position: relative;
+            overflow: hidden;
+            /*margin: 10px;*/
+        }
+
+            .fileUpload input.upload {
+                position: absolute;
+                top: 0;
+                right: 0;
+                margin: 0;
+                padding: 0;
+                font-size: 20px;
+                cursor: pointer;
+                opacity: 0;
+                filter: alpha(opacity=0);
+            }
+
+        #loader.hidden {
+            display: none;
+        }
+
+        #loader-1.hidden {
+            display: none;
+        }
+
+        #loader-2.hidden {
+            display: none;
+        }
+
+        #loader-3.hidden {
+            display: none;
+        }
+
+        #loader-4.hidden {
+            display: none;
+        }
+
+        .divcontenedor {
+            height: 20px;
+            overflow: hidden;
+        }
+
+        td {
+            padding: 0.15em !important;
+        }
+
+        .divbutton {
+            line-height: 0.7 !important;
+        }
+    </style>
+}
+@section SubheaderBlock {
+    <div class="subheader-block d-lg-flex align-items-center">
+        <div class="d-flex mr-4">
+            <div class="mr-2">
+                <span class="peity-donut" data-peity="{ &quot;fill&quot;: [&quot;#967bbd&quot;, &quot;#ccbfdf&quot;],  &quot;innerRadius&quot;: 14, &quot;radius&quot;: 20 }">7/10</span>
+            </div>
+            <div>
+                <label class="fs-sm mb-0 mt-2 mt-md-0">Nuevas Secciones</label>
+                <h4 class="font-weight-bold mb-0">70.60%</h4>
+            </div>
+        </div>
+        <div class="d-flex mr-0">
+            <div class="mr-2">
+                <span class="peity-donut" data-peity="{ &quot;fill&quot;: [&quot;#2196F3&quot;, &quot;#9acffa&quot;],  &quot;innerRadius&quot;: 14, &quot;radius&quot;: 20 }">3/10</span>
+            </div>
+            <div>
+                <label class="fs-sm mb-0 mt-2 mt-md-0">Pagina Vista </label>
+                <h4 class="font-weight-bold mb-0">14,134</h4>
+            </div>
+        </div>
+    </div>
+}
+
+<partial name="~/Views/Intel/_tablero.cshtml" />
+
+<div class="row">
+
+    <div class="col-sm-6">
+        <div id="panel-2" class="panel">
+            <div class="panel-hdr">
+                <h2>
+                    Listado <span class="fw-300"><i>Expediente</i></span>
+                </h2>
+                
+            </div>
+            <div class="panel-container show">
+                <div class="panel-content">
+                    <div id="loader" class="spinner-border" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                    <table id="dt-basic-obras" class="table table-bordered table-hover table-striped w-100">
+                        <thead class="bg-warning-200">
+                            <tr>
+                                <th>id</th>
+                                <th>Obra</th>
+                                <th>Municipio</th>
+                                <th>Nombre</th>
+                                <th>inversión</th>
+                                <th>Año</th>
+                                <th>Descripción</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6">
+        <div id="panel-3" class="panel">
+            <div class="panel-hdr">
+                <h2>
+                    Tarjeta de <span class="fw-300"><i>Información General</i></span>
+                </h2>
+            </div>
+            <div class="panel-container show">
+                <div class="panel-content">
+                    <div class="panel-tag">
+                        <b>Proyecto con estatus</b> <span class="fw-300"><i>Cerrado/Revisado OK</i></span>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6" id="DivDetalleObra">
+                            <div>
+                                <div class="panel-tag">
+                                    Da click sobre un expediente para ver mas detalles
+                                </div>
+                                <div class="spinner-grow" role="status">
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+
+                            <div class="row">
+                                <div id="update-chart-docs" class="d-flex flex-column align-items-center">
+
+
+                                    <div class="js-easy-pie-chart color-primary-300 position-relative d-inline-flex align-items-center justify-content-center" data-percent="50" data-piesize="95" data-linewidth="5" data-linecap="round" data-scalelength="7">
+                                        <div class="d-flex flex-column align-items-center justify-content-center position-absolute pos-left pos-right pos-top pos-bottom fw-300 fs-xl">
+                                            <span class="js-percent d-block text-dark"></span>
+                                            <div class="d-block fs-xs text-dark opacity-70">
+
+                                                <small>Docs</small>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="js-easy-pie-chart color-primary-300 position-relative d-inline-flex align-items-center justify-content-center" data-percent="86" data-piesize="95" data-linewidth="5" data-linecap="round" data-scalelength="7">
+                                    <div class="d-flex flex-column align-items-center justify-content-center position-absolute pos-left pos-right pos-top pos-bottom fw-300 fs-xl">
+                                        <span class="js-percent d-block text-dark"></span>
+                                        <div class="d-block fs-xs text-dark opacity-70">
+                                            <small>Avance</small>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="js-easy-pie-chart color-primary-300 position-relative d-inline-flex align-items-center justify-content-center" data-percent="93" data-piesize="95" data-linewidth="5" data-linecap="round" data-scalelength="7">
+                                    <div class="d-flex flex-column align-items-center justify-content-center position-absolute pos-left pos-right pos-top pos-bottom fw-300 fs-xl">
+                                        <span class="js-percent d-block text-dark"></span>
+                                        <div class="d-block fs-xs text-dark opacity-70">
+                                            <small>Pago</small>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                            <div class="row" id="DivDetalleObraBotonera">
+
+                                <div class="p-4 col-sm-4">
+                                    <span class="fa-2x d-inline l-h-n">
+                                        <i class="fal fa-file-contract"></i>
+                                    </span>
+                                </div>
+                                <div class="p-4 col-sm-4">
+                                    <span class="fa-2x d-inline l-h-n">
+                                        <i class="fal fa-clipboard-list-check"></i>
+                                    </span>
+                                </div>
+
+                                <div class="p-4 col-sm-4">
+                                    <span class="fa-2x d-inline l-h-n">
+                                        <i class="fal fa-money-check-edit-alt"></i>
+                                    </span>
+                                </div>
+
+                                <div class="p-4 col-sm-4">
+                                    <span class="fa-2x d-inline l-h-n">
+                                        <i class="fal fa-camera"></i>
+                                    </span>
+                                </div>
+
+
+                                <div class="p-4 col-sm-4">
+                                    <span class="fa-2x d-inline l-h-n">
+                                        <i class="fal fa-chart-bar"></i>
+                                    </span>
+                                </div>
+
+                                <div class="p-4 col-sm-4">
+                                    <span class="fa-2x d-inline l-h-n">
+                                        <i class="fal fa-map-marked-alt"></i>
+                                    </span>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-12">
+
+        <div id="panel-2" class="panel">
+            <div class="panel-hdr">
+                <h2>
+                    Geolocalización <span class="fw-300"><i>Expedientes</i></span>
+                </h2>
+            </div>
+            <div class="panel-container show">
+                <div class="panel-content">
+                   
+                    <div class="row h-50">
+                        <div class="col-sm-12" id="DivDetalleObraMapa">
+                            <div>
+                                <div id="dvMap" class="row fixed" style="width: 98%;  height: 500px;">
+
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+@section ScriptsBlock {
+
+
+    <script>
+
+        var puntos = '';
+        var puntosfinal = [];
+        let markers = [{ 'title': '', 'lat': '16.897564379807672', 'lng': '-99.97349078830298', 'id': '11', 'status': '1', 'description': 'No. obra:67727' }, { 'title': '', 'lat': '19.1848852', 'lng': '-98.2347203', 'id': '25694', 'status': '0', 'description': 'No. obra:28004' }];
+        function SubirArchivoFotos( noObra, idObra) {
+             var id = idObra;
+            var fileUpload = $("#files_"+id).get(0);
+            var files = fileUpload.files;
+            var fileData = new FormData();
+
+            // if there are multiple files , loop through each files
+            for (var i = 0; i < files.length; i++) {
+                fileData.append(files[i].name, files[i]);
+            }
+            fileData.append('IdDocObra', noObra);
+            fileData.append('IdObra', idObra);
+            fileData.append('IdDoc', id);
+
+
+
+
+            $.ajax({
+                url: '@Url.Action("UploadFilesFotos", "TblObras")?id='+id, //URL to upload files
+                type: "POST", //as we will be posting files and other method POST is used
+                processData: false, //remember to set processData and ContentType to false, otherwise you may get an error
+                contentType: false,
+                data: fileData,
+                success: function (result) {
+                    if (result == '1') {
+                        alert("Archivo cargado correctamente");
+                        showDetail(noObra);
+                        //location.reload(false)
+                    } else {
+                        alert('No se pudo cargar el documento ...');
+                    }
+                    /*alert(result);*/
+                },
+                error: function (err) {
+                    alert(err.statusText);
+                }
+            });
+        }
+
+
+        $(function () {
+            $(".panel-toolbar").replaceWith("");
+
+            $.ajax({
+                method: "GET",
+                url: '@Url.Content("~/Intel/ObtieneObrasPendientes")?year=@year',
+                datatype: 'json',
+                beforeSend: function () {
+                    $('#loader-1').removeClass('hidden')
+                },
+                success: function (data) {
+                    $("#idobrasabierto").text(data);
+                },
+                complete: function () {
+                    $('#loader-1').addClass('hidden')
+                },
+            });
+
+            $.ajax({
+                method: "GET",
+                url: '@Url.Content("~/Intel/ObtieneObrasTerminadas")?year=@year',
+                datatype: 'json',
+                beforeSend: function () {
+                    $('#loader-2').removeClass('hidden')
+                },
+                success: function (data) {
+                    $("#idobrascerrados").text(data);
+                },
+                complete: function () {
+                    $('#loader-2').addClass('hidden')
+                },
+            });
+
+            $.ajax({
+                method: "GET",
+                url: '@Url.Content("~/Intel/ObtieneObrasTotal")?year=@year',
+                datatype: 'json',
+                beforeSend: function () {
+                    $('#loader-3').removeClass('hidden')
+                },
+                success: function (data) {
+                    $("#idobrastotal").text(data);
+                },
+                complete: function () {
+                    $('#loader-3').addClass('hidden')
+                },
+            });
+
+            $.ajax({
+                method: "GET",
+                url: '@Url.Content("~/Intel/ObtieneObrasProgramados")?year=@year',
+                datatype: 'json',
+                beforeSend: function () {
+                    $('#loader-4').removeClass('hidden')
+                },
+                success: function (data) {
+                    $("#idobrasprogramadas").text(data);
+                },
+                complete: function () {
+                    $('#loader-4').addClass('hidden')
+                },
+            });
+
+            $.ajax({
+                "url": '@Url.Action("GetObrasByYear", "Obras")?year=@year',
+                "type": "GET",
+                "datatype": 'json',
+                beforeSend: function () {
+                    $('#loader').removeClass('hidden');
+                },
+                success: function (data) {
+                    LoadDataTable(data);
+
+                    data.forEach((object, index) => {
+
+
+                            var objecto = new Object();
+                            objecto.title = object.Descripcion;
+                            objecto.lat = object.coordenadax;
+                            objecto.lng = object.coordenaday;
+                            objecto.id = object.id;
+                            objecto.status = object.idestatusobra;
+                            objecto.description = object.Descripcion;
+
+
+                            puntosfinal.push(objecto);
+
+
+                    });
+
+
+
+                    markers = puntosfinal;
+                    CargarMarkersIGIFE('');
+
+
+                },
+                complete: function () { // Set our complete callback, adding the .hidden class and hiding the spinner.
+                    $('#loader').addClass('hidden');
+                },
+            });
+
+            function LoadDataTable(data) {
+                $('#dt-basic-obras').dataTable({
+                    data: data,
+                    columns: [
+                       
+                        {
+                            'data': 'id', render: function (data, type, full, meta) {
+                                return '<div class="divcontenedor">' + data + '</div>'
+                            }
+                        },
+                        {
+                            'data': function (row, type,set) {
+                                return '<button class="btn btn-default divbutton"  onClick="showDetail(' + row.id + '); showBotonera(' + row.id + '); CargarMarkers(' + row.coordenadax + ',' + row.coordenaday + ',' + row.Descripcion + ',' + row.Descripcion + ',' + row.idestatusobra + '); return false;">' + row.numeroDeObra + '</button>'
+                            }
+                        },
+                        {
+                            'data': 'municipio', render: function (data, type, full, meta) {
+                                return '<div class="divcontenedor">' + data + '</div>'
+                            }
+                        },
+                        {
+                            'data': 'nombreDeLaObra', render: function (data, type, full, meta) {
+                                return '<div class="divcontenedor">' + data + '</div>'
+                            }
+                        },
+                        { 'data': 'inversion' },
+                        { 'data': 'year' },
+                        {
+                            'data': 'descripcion', render: function (data, type, full, meta) {
+                                return '<div class="divcontenedor">' + data + '</div>'
+                            }
+                        },
+                    ],
+                    order: [[0, 'desc']],
+                    columnDefs: [
+                        { targets: 0, visible: false },
+                        { targets: 4, visible: false },
+                        { targets: 6, visible: false },
+                        { targets: '_all', visible: true }
+                    ],
+                    bProcessing: true,
+                    responsive: true,
+                    language: {
+                        searchPlaceholder: "Buscar",
+                        processing: "Consulta en curso...",
+                        lengthMenu: "Mostrando _MENU_ elementos",
+                        info: " _START_ a _END_ de _TOTAL_ elementos",
+                        infoEmpty: " 0 elementos",
+                        infoFiltered: "(Filtrando _MAX_ elementos del total)",
+                        infoPostFix: "",
+                        loadingRecords: "Cargando...",
+                        zeroRecords: "No hay registros disponibles",
+                        emptyTable: "No hay registros disponibles",
+
+                    },
+
+                    responsive: true,
+                    dom:
+                        "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'B>>" +
+                        "<'row'<'col-sm-12'tr>>" +
+                        "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                    buttons: [
+                        
+                        {
+                            extend: 'csvHtml5',
+                            text: 'CSV',
+                            titleAttr: 'Generate CSV',
+                            className: 'btn-outline-default'
+                        },
+                        
+                        {
+                            extend: 'print',
+                            text: '<i class="@(Settings.Theme.IconPrefix) fa-print"></i>',
+                            titleAttr: 'Inprimir',
+                            className: 'btn-outline-default'
+                        }
+                    ]
+                });
+
+
+
+            }
+
+        });
+    </script>
+
+    <script type="text/javascript">
+        $('#js-page-content').smartPanel();
+
+        var mapOptions;
+
+
+
+    </script>
+    <script src="~/js/statistics/peity/peity.bundle.js"></script>
+    <script src="~/js/statistics/flot/flot.bundle.js"></script>
+    <script src="~/js/statistics/easypiechart/easypiechart.bundle.js"></script>
+    <script src="~/js/datagrid/datatables/datatables.bundle.js"></script>
+      <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTYZxBuaaCVa5ExcFcCZAZA2uGmhjno0o"></script>
+
+
+<script>
+		/* defined datas */
+        function showDetail(id) {
+            console.log(id);
+   
+            $('#DivDetalleObra').load('@Url.Action("DetalleObraByExpediente", "Obras")?id=' + id + '&year=@year')
+
+            var chartDocs = window.chart = $('#update-chart-docs .js-easy-pie-chart').data('easyPieChart');
+            chartDocs.update(Math.random() * 200 - 100);
+        }
+
+          function showBotonera(id) {
+            console.log(id);
+              $('#DivDetalleObraBotonera').load('@Url.Action("DetalleObraByExpedienteBotonera", "Obras")?id=' + id + '&year=@year')
+        }
+
+		$(document).ready(function () {
+
+            /* update chart */
+            var chart = window.chart = $('#update-chart .js-easy-pie-chart').data('easyPieChart');
+            var chartDocs = window.chart = $('#update-chart-docs .js-easy-pie-chart').data('easyPieChart');
+            $('.js-update').on('click', function () {
+                chart.update(Math.random() * 200 - 100);
+                chartDocs.update(Math.random() * 200 - 100);
+            });
+
+    
+
+         $('.carousel').carousel({
+             interval: 5000
+         })
+
+
+
+		});
+</script>
+
+
+    <script type="text/javascript">
+
+
+    let markersGeneral = "";
+
+        let map;
+        var mapOptions;
+        mapOptions = {
+            center: new google.maps.LatLng(16.775, -98.7417),
+            zoom: 7,
+
+        };
+
+        var infoWindow = new google.maps.InfoWindow();
+        map = new google.maps.Map(document.getElementById("dvMap"), mapOptions);
+
+
+    let map2;
+    let markersMap = [];
+    let markersMap2 = [];
+
+    var poligono = [];
+
+ 
+        
+        //var srcEstado = 'http://drive.google.com/uc?id=1bA8ScMR8jZ_Ep0iX0WvmKJ4S-oMX889R';
+        var srcEstado = 'https://drive.google.com/uc?export=download&id=15ivWjzxhfyXi4tH6M9XluM5aM2voB6Gk';
+
+        var srcAcapulco = 'http://drive.google.com/uc?id=19zdPOdOquWhidX1yd9NB3uXhLscNrP6x';
+        var srcCostaChica = 'http://drive.google.com/uc?id=1pKcKM2gX5wlZap85rx7S4Fxul9ReAuh8';
+        var srcCentro = 'http://drive.google.com/uc?id=1N6ySLujwffpKXOcLy7c-b_Hjx2yF3Ctg';
+        var srcCostaGrande = 'http://drive.google.com/uc?id=1vaPJmB7qrHoeO9BIFcR8nWpmrrwvDvi8';
+        var srcMontana = 'http://drive.google.com/uc?id=1NbOud8ycKHafXJtugJktYffYo7AffJWX';
+        var srcNorte = 'http://drive.google.com/uc?id=1MaJk14Mg92B-ruHam75cG2VNLN_6dgkW';
+        var srcTierraCaliente = 'http://drive.google.com/uc?id=1L0J5iKs866iOiz6eeyQbFBohOM_JtYcQ';
+
+
+
+    var kmlLayer;
+
+
+    var kmlLayerEstado;
+    var kmlLayerAcapulco;
+    var kmlLayerCostaChica;
+    var kmlLayerCentro;
+    //var kmlLayerRegionMontana1;
+    var kmlLayerCostaGrande;
+    var kmlLayerMontana;
+    var kmlLayerNorte;
+    var kmlLayerTierraCaliente;
+    //var kmlLayerRegionGuerrero;
+
+
+
+        function addLayer(srcLayer,layerkml) {
+         layerkml = new google.maps.KmlLayer(srcLayer, {
+            suppressInfoWindows: true,
+            preserveViewport: false,
+            map: map
+        });
+
+        layerkml.addListener('click', function (event) {
+            map.setCenter(event.latLng);
+            map.setZoom(8)
+        });
+
+           kmlLayerEstado = new google.maps.KmlLayer(srcLayer, {
+            suppressInfoWindows: true,
+            preserveViewport: false,
+            map: map
+        });
+
+        kmlLayerEstado.addListener('click', function (event) {
+            map.setCenter(event.latLng);
+            map.setZoom(8)
+        });
+    }
+
+        function addLayerEstado() {
+
+            kmlLayerEstado = new google.maps.KmlLayer(srcEstado, {
+                suppressInfoWindows: true,
+                preserveViewport: false,
+                map: map
+            });
+
+            kmlLayerEstado.addListener('click', function (event) {
+                map.setCenter(event.latLng);
+                map.setZoom(7)
+            });
+        }
+
+        function addLayerAcapulco() {
+
+            kmlLayerAcapulco = new google.maps.KmlLayer(srcAcapulco, {
+                suppressInfoWindows: true,
+                preserveViewport: false,
+                map: map
+            });
+
+            kmlLayerAcapulco.addListener('click', function (event) {
+                map.setCenter(event.latLng);
+                map.setZoom(7)
+            });
+        }
+
+
+        function addLayerCostaChica() {
+
+            kmlLayerCostaChica = new google.maps.KmlLayer(srcCostaChica, {
+                suppressInfoWindows: true,
+                preserveViewport: false,
+                map: map
+            });
+
+            kmlLayerCostaChica.addListener('click', function (event) {
+                map.setCenter(event.latLng);
+                map.setZoom(7)
+            });
+        }
+
+         function addLayerCentro() {
+
+            kmlLayerCentro = new google.maps.KmlLayer(srcCentro, {
+                suppressInfoWindows: true,
+                preserveViewport: false,
+                map: map
+            });
+
+            kmlLayerCentro.addListener('click', function (event) {
+                map.setCenter(event.latLng);
+                map.setZoom(7)
+            });
+        }
+
+         function addLayerCostaGrande() {
+
+                kmlLayerCostaGrande = new google.maps.KmlLayer(srcCostaGrande, {
+                    suppressInfoWindows: true,
+                    preserveViewport: false,
+                    map: map
+                });
+
+                kmlLayerCostaGrande.addListener('click', function (event) {
+                    map.setCenter(event.latLng);
+                    map.setZoom(7)
+                });
+    }
+
+         function addLayerMontana() {
+
+                kmlLayerMontana = new google.maps.KmlLayer(srcMontana, {
+                    suppressInfoWindows: true,
+                    preserveViewport: false,
+                    map: map
+                });
+
+                kmlLayerMontana.addListener('click', function (event) {
+                    map.setCenter(event.latLng);
+                    map.setZoom(7)
+                });
+    }
+
+
+
+     function addLayerNorte() {
+
+                    kmlLayerNorte = new google.maps.KmlLayer(srcNorte, {
+                        suppressInfoWindows: true,
+                        preserveViewport: false,
+                        map: map
+                    });
+
+                    kmlLayerNorte.addListener('click', function (event) {
+                        map.setCenter(event.latLng);
+                        map.setZoom(8)
+                    });
+    }
+
+     function addLayerTierraCaliente() {
+
+                    kmlLayerTierraCaliente = new google.maps.KmlLayer(srcTierraCaliente, {
+                        suppressInfoWindows: true,
+                        preserveViewport: false,
+                        map: map
+                    });
+
+                    kmlLayerTierraCaliente.addListener('click', function (event) {
+                        map.setCenter(event.latLng);
+                        map.setZoom(8)
+                    });
+                }
+
+    function ClearLayer() {
+        //kmlLayer.setMap(null);
+
+        kmlLayerEstado.setMap(null);
+        kmlLayerAcapulco.setMap(null);
+        kmlLayerCostaChica.setMap(null);
+        kmlLayerCentro.setMap(null);
+        //kmlLayerRegionMontana1.setMap(null);
+        kmlLayerCostaGrande.setMap(null);
+        kmlLayerMontana.setMap(null);
+        kmlLayerNorte.setMap(null);
+        kmlLayerTierraCaliente.setMap(null);
+        //kmlLayerRegionGuerrero.setMap(null);
+    }
+
+
+    // Removes the markers from the map, but keeps them in the array.
+    function clearMarkers() {
+        setMapOnAll(null);
+           //setMapOnAll2(null);
+    }
+
+
+     function clearMarkersByRegion() {
+        setMapOnAll(null);
+    }
+
+
+    // Shows any markers currently in the array.
+    function showMarkers() {
+      setMapOnAll(map);
+    }
+
+
+
+
+
+    // Sets the map on all markers in the array.
+    function setMapOnAll(map) {
+
+        for (let i = 0; i < markersMap.length; i++) {
+            //alert(markersMap[i]);
+
+                markersMap[i].setMap(map);
+
+        }
+    }
+
+    // Sets the map on all markers in the array.
+    //function setMapOnAll2(map2) {
+
+    //    for (let i = 0; i < markersMap2.length; i++) {
+    //        //alert(markersMap[i]);
+
+    //            markersMap2[i].setMap(map2);
+
+    //    }
+    //}
+
+    function CargarMarkersIGIFE(dependencia) {
+
+        //if (dependencia == 'SDUOP') {
+        //    markersGeneral = markers2;
+        //} else if (dependencia == 'CAPASEG') {
+        //    markersGeneral = markers3;
+        //} else if (dependencia == 'CICAEG') {
+        //    markersGeneral = markers4;
+        //} else if (dependencia == 'IGIFE') {
+        //    markersGeneral = markers5;
+        //} else {
+        //    markersGeneral = markers;
+        //}
+
+
+
+        markersGeneral = markers;
+
+        setMapOnAll(null);
+
+
+
+
+
+            for (i = 0; i < markersGeneral.length; i++) {
+
+                var data = markersGeneral[i]
+                var label = "A";
+                var urlicon  = "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
+
+                if (data.status == 0) {
+                    label = "A";
+                } else if (data.status == 1) {
+                    label = "T";
+                    urlicon  = "http://maps.google.com/mapfiles/ms/icons/green-dot.png"
+                } else if (data.status == 2) {
+                    label = "P";
+                    urlicon  = "http://maps.google.com/mapfiles/ms/icons/yellow-dot.png"
+                } else if (data.status == 3 || data.status == 4) {
+                    label = "N";
+                    urlicon  = "http://maps.google.com/mapfiles/ms/icons/red-dot.png"
+                }
+
+
+
+                var myLatlng = new google.maps.LatLng(data.lat, data.lng);
+                var marker = new google.maps.Marker({
+                    position: myLatlng,
+                    map: map,
+                    title: data.title,
+
+                    icon: {url: urlicon}
+                });
+
+
+                //Para Pintar los poligonos
+                //poligono.push(myLatlng);
+
+                (function (marker, data) {
+
+                    google.maps.event.addListener(marker, "click", function (e) {
+
+
+                        //$("#DivDetalle").load("../Obras/DetailsToMap/"+data.id);
+                        //$("#DivDetalleModal").load("../Obras/DetailsToMap/" + data.id);
+                        //$("#modal-delete").modal('show');
+
+                        infoWindow.setContent(data.description);
+                        infoWindow.open(map, marker);
+                        if (marker.getAnimation() !== null) {
+                            marker.setAnimation(null);
+                        } else {
+                            marker.setAnimation(google.maps.Animation.BOUNCE);
+                        }
+                    });
+                })(marker, data);
+
+
+
+                markersMap.push(marker);
+                //map.setCenter(myLatlng);
+
+        }
+
+
+
+    }
+
+
+        function CargarMarkers(mlat,mlng,mtitle,mdesc,midestatus) {
+
+
+            puntosfinal = [];
+            var objecto = new Object();
+            objecto.title = mtitle;
+            objecto.lat = mlat;
+            objecto.lng = mlng;
+            objecto.id = 1;
+            objecto.status = midestatus;
+            objecto.description = mdesc;
+
+            //alert(objecto.lat);
+            //alert(objecto);
+
+            puntosfinal.push(objecto);
+
+            markers = puntosfinal;
+
+            markersGeneral = markers;
+
+            setMapOnAll(null);
+            map.setZoom(7);
+
+
+
+
+
+            for (i = 0; i < markersGeneral.length; i++) {
+
+                var data = markersGeneral[i]
+                var label = "A";
+                var urlicon = "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
+
+                if (data.status == 0) {
+                    label = "A";
+                } else if (data.status == 1) {
+                    label = "T";
+                    urlicon = "http://maps.google.com/mapfiles/ms/icons/green-dot.png"
+                } else if (data.status == 2) {
+                    label = "P";
+                    urlicon = "http://maps.google.com/mapfiles/ms/icons/yellow-dot.png"
+                } else if (data.status == 3 || data.status == 4) {
+                    label = "N";
+                    urlicon = "http://maps.google.com/mapfiles/ms/icons/red-dot.png"
+                }
+
+
+
+                var myLatlng = new google.maps.LatLng(data.lat, data.lng);
+                var marker = new google.maps.Marker({
+                    position: myLatlng,
+                    map: map,
+                    title: data.title,
+
+                    icon: { url: urlicon }
+                });
+
+
+                //Para Pintar los poligonos
+                //poligono.push(myLatlng);
+
+                (function (marker, data) {
+
+                    google.maps.event.addListener(marker, "click", function (e) {
+
+
+                        //$("#DivDetalle").load("../Obras/DetailsToMap/" + data.id);
+                        //$("#DivDetalleModal").load("../Obras/DetailsToMap/" + data.id);
+                        //$("#modal-delete").modal('show');
+
+                        infoWindow.setContent(data.description);
+                        infoWindow.open(map, marker);
+                        if (marker.getAnimation() !== null) {
+                            marker.setAnimation(null);
+                        } else {
+                            marker.setAnimation(google.maps.Animation.BOUNCE);
+                        }
+                    });
+                })(marker, data);
+
+
+
+                markersMap.push(marker);
+                //map.setCenter(myLatlng);
+
+            }
+
+
+
+        }
+
+
+
+
+
+    //alert(markers);
+
+   window.onload = function () {
+
+
+
+        //center: new google.maps.LatLng(markers[0].lat, markers[0].lng),
+
+        var mapOptions;
+        //= {
+        //        center: new google.maps.LatLng(16.775, -93.7417),
+        //        zoom: 7,
+
+        //    };
+            @if(mapTheme == "black")
+            {
+                <text>
+                mapOptions = {
+                center: new google.maps.LatLng(16.775, -93.7417),
+                zoom: 7,
+                styles: [
+                      { elementType: "geometry", stylers: [{ color: "#242f3e" }] },
+                      { elementType: "labels.text.stroke", stylers: [{ color: "#242f3e" }] },
+                      { elementType: "labels.text.fill", stylers: [{ color: "#746855" }] },
+                      {
+                        featureType: "administrative.locality",
+                        elementType: "labels.text.fill",
+                        stylers: [{ color: "#d59563" }],
+                      },
+                      {
+                        featureType: "poi",
+                        elementType: "labels.text.fill",
+                        stylers: [{ color: "#d59563" }],
+                      },
+                      {
+                        featureType: "poi.park",
+                        elementType: "geometry",
+                        stylers: [{ color: "#263c3f" }],
+                      },
+                      {
+                        featureType: "poi.park",
+                        elementType: "labels.text.fill",
+                        stylers: [{ color: "#6b9a76" }],
+                      },
+                      {
+                        featureType: "road",
+                        elementType: "geometry",
+                        stylers: [{ color: "#38414e" }],
+                      },
+                      {
+                        featureType: "road",
+                        elementType: "geometry.stroke",
+                        stylers: [{ color: "#212a37" }],
+                      },
+                      {
+                        featureType: "road",
+                        elementType: "labels.text.fill",
+                        stylers: [{ color: "#9ca5b3" }],
+                      },
+                      {
+                        featureType: "road.highway",
+                        elementType: "geometry",
+                        stylers: [{ color: "#746855" }],
+                      },
+                      {
+                        featureType: "road.highway",
+                        elementType: "geometry.stroke",
+                        stylers: [{ color: "#1f2835" }],
+                      },
+                      {
+                        featureType: "road.highway",
+                        elementType: "labels.text.fill",
+                        stylers: [{ color: "#f3d19c" }],
+                      },
+                      {
+                        featureType: "transit",
+                        elementType: "geometry",
+                        stylers: [{ color: "#2f3948" }],
+                      },
+                      {
+                        featureType: "transit.station",
+                        elementType: "labels.text.fill",
+                        stylers: [{ color: "#d59563" }],
+                      },
+                      {
+                        featureType: "water",
+                        elementType: "geometry",
+                        stylers: [{ color: "#17263c" }],
+                      },
+                      {
+                        featureType: "water",
+                        elementType: "labels.text.fill",
+                        stylers: [{ color: "#515c6d" }],
+                      },
+                      {
+                        featureType: "water",
+                        elementType: "labels.text.stroke",
+                        stylers: [{ color: "#17263c" }],
+                      },
+                    ]
+                };
+                </text>
+            }
+            else
+            {
+                <text>
+                mapOptions = {
+                center: new google.maps.LatLng(16.775, -93.7417),
+                zoom: 7,
+
+                };
+                </text>
+
+            }
+
+
+            var infoWindow = new google.maps.InfoWindow();
+            map = new google.maps.Map(document.getElementById("dvMap"), mapOptions);
+
+        addLayerEstado();
+        //addLayerAcapulco();
+        //addLayerCostaChica();
+        //addLayerCentro();
+        //addLayerCostaGrande();
+        //addLayerMontana();
+        //addLayerNorte();
+        //addLayerTierraCaliente();
+
+
+
+
+
+
+            for (i = 0; i < markers.length; i++) {
+
+                var data = markers[i]
+                var label = "A";
+                var urlicon  = "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
+
+                if (data.status == 0) {
+                    label = "A";
+                } else if (data.status == 1) {
+                    label = "T";
+                    urlicon  = "http://maps.google.com/mapfiles/ms/icons/green-dot.png"
+                } else if (data.status == 2) {
+                    label = "P";
+                    urlicon  = "http://maps.google.com/mapfiles/ms/icons/yellow-dot.png"
+                } else if (data.status == 3 || data.status == 4) {
+                    label = "N";
+                    urlicon  = "http://maps.google.com/mapfiles/ms/icons/red-dot.png"
+                }
+
+
+
+                var myLatlng = new google.maps.LatLng(data.lat, data.lng);
+                var marker = new google.maps.Marker({
+                    position: myLatlng,
+                    map: map,
+                    title: data.title,
+
+                    icon: {url: urlicon}
+                });
+
+//                poligono.push(myLatlng);
+
+                (function (marker, data) {
+
+                    google.maps.event.addListener(marker, "click", function (e) {
+
+
+                        //$("#DivDetalle").load("../Obras/DetailsToMap/"+data.id);
+                        //$("#DivDetalleModal").load("../Obras/DetailsToMap/" + data.id);
+                        //$("#modal-delete").modal('show');
+                        infoWindow.setContent(data.description);
+                        infoWindow.open(map, marker);
+                        if (marker.getAnimation() !== null) {
+                            marker.setAnimation(null);
+                        } else {
+                            marker.setAnimation(google.maps.Animation.BOUNCE);
+                        }
+                    });
+                })(marker, data);
+
+                    markersMap.push(marker);
+
+        }
+
+
+
+    }
+
+
+    </script>
+
+
+}

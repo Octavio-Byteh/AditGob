@@ -1,0 +1,119 @@
+﻿@model SmartBoard.Models.TblPoadetalleViewModal
+@{
+    ViewData["Title"] = "Nuevo de POA";
+    ViewData["PageName"] = "POA_Detalle_Nuevo";
+    ViewData["Category1"] = "";
+    ViewData["Heading"] = "<i class='subheader-icon fal fa-chart-area'></i> Alta de <span class='fw-300'>POA's</span>";
+
+    //Layout = null;
+}
+
+
+@section HeadBlock {
+    @*<link id="mytheme" rel="stylesheet" media="screen, print" href="~/css/themes/cust-theme-13.css">*@
+    <link rel="stylesheet" media="screen, print" href="~/css/fa-brands.css">
+    <link rel="stylesheet" media="screen, print" href="~/css/formplugins/select2/select2.bundle.css">
+    <style>
+
+        .clsObra {
+            border-color: #E5E5E5 !important;
+        }
+
+        .form-row {
+            padding-bottom: 0px;
+        }
+    </style>
+
+}
+
+
+<div class="row">
+    <div class="col-xl-12">
+        <form class="needs-validation" novalidate asp-action="CreatePartial" id="formpoadetalle">
+            <div class="panel-content">
+
+
+
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <input type="hidden" asp-for="IdProgramaoperativo" />
+                <input type="hidden" asp-for="Iddependencia" />
+                <input type="hidden" asp-for="Fecharegistro" />
+                <input type="hidden" asp-for="Activo" />
+                <input type="hidden" asp-for="Fechaactividad" />
+                <input type="hidden" asp-for="Year" />
+                @*<div class="form-group">
+                        <label asp-for="IdProgramaoperativo" class="control-label"></label>
+                        <select asp-for="IdProgramaoperativo" class="form-control" asp-items="ViewBag.IdProgramaoperativo"></select>
+                    </div>*@
+                <div class="form-row">
+                    <div class="col-md-2 mb-2">
+                        <label asp-for="Fechainicio" class="control-label"></label>
+                        <input asp-for="Fechainicio" class="form-control clsObra" required />
+                        <span asp-validation-for="Fechainicio" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-2 mb-2">
+                        <label asp-for="Fechatermino" class="control-label"></label>
+                        <input asp-for="Fechatermino" class="form-control clsObra" placeholder="Requerido*" required />
+                        <span asp-validation-for="Fechatermino" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-8 mb-2">
+                        <label asp-for="Nombre" class="control-label"></label>
+                        <input asp-for="Nombre" class="form-control clsObra" placeholder="Requerido*" required />
+                        <span asp-validation-for="Nombre" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="col-md-6 mb-2">
+                        <label asp-for="Objetivo" class="control-label"></label>
+                        <input asp-for="Objetivo" class="form-control clsObra" placeholder="Requerido*" required />
+                        <span asp-validation-for="Objetivo" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6 mb-2">
+                        <label asp-for="Actividades" class="control-label"></label>
+                        <input asp-for="Actividades" class="form-control clsObra" placeholder="Requerido*" required />
+                        <span asp-validation-for="Actividades" class="text-danger"></span>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary"> Continuar </button>
+
+                    @*<a asp-action="Index" asp-controller="Poa" class="btn btn-info">Regresa al listado POA</a>*@
+                    <a asp-action="Create" asp-controller="Poa" class="btn btn-info">Regresa al listado POA</a>
+
+
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section ScriptsBlock {
+    <script>
+
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function () {
+            'use strict';
+            window.addEventListener('load', function () {
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>
+
+
+}

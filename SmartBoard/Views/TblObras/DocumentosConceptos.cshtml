@@ -1,0 +1,80 @@
+﻿@model SmartBoard.Models.ExpedienteViewModalDetalle
+@{
+    Layout = null;
+    bool agregaAdicional = true;
+    bool agregaDeductiva = true;
+    if (Model.conceptos != null)
+    {
+        if(Model.conceptos.Where(a=>a.Tipo == 1).Count() > 0)
+        {
+            agregaAdicional = false;
+        }
+        if (Model.conceptos.Where(a => a.Tipo == 2).Count() > 0)
+        {
+            agregaDeductiva = false;
+        }
+    }
+}
+<div class="row">
+
+    <div class="form-group">
+        @if (agregaAdicional)
+        {
+            <a class="btn btn-danger" href="ObraConcepto/Create?IdTblobra=@Model.Id&tipo=1" title="Conceptos" data-filter-tags="ObraConcepto">
+                <label>
+                    Agregar Adicionales
+                </label>
+            </a>
+        }
+
+        @if (agregaDeductiva)
+        {
+            <a class="btn btn-danger" href="ObraConcepto/Create?IdTblobra=@Model.Id&tipo=2" title="Conceptos" data-filter-tags="ObraConcepto">
+                <label>
+                    Agregar Deductivas
+                </label>
+            </a>
+        }
+
+    </div>
+</div>
+
+<div class="col-sm-12">
+
+
+    <table id="dt-obras-documentos3" class="table table-bordered table-hover table-striped w-100">
+        <thead class="bg-warning-200">
+            <tr>
+                <th>Tipo</th>
+                <th>Cantidad</th>
+                <th>Importe</th>
+
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.conceptos)
+            {
+                <tr>
+
+                    <td>
+                        @(item.Tipo == 1 ? "Adicional" : "Deductiva")
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cantidad)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Importe)
+                    </td>
+
+
+
+                </tr>
+            }
+
+
+        </tbody>
+    </table>
+
+
+</div>

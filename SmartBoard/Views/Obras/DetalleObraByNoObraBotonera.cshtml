@@ -1,0 +1,82 @@
+﻿@model SmartBoard.Data.Models.SmartBoard.TblObra
+@using SmartBoard.Models;
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = null;
+
+}
+
+
+<div class="row">
+
+    <div class="p-4 col-sm-4">
+        <span class="fa-2x d-inline l-h-n">
+            <i class="fal fa-file-contract"></i>
+        </span>
+    </div>
+    <div class="p-4 col-sm-4">
+        <span class="fa-2x d-inline l-h-n">
+            <i class="fal fa-clipboard-list-check"></i>
+        </span>
+    </div>
+
+    <div class="p-4 col-sm-4">
+        <span class="fa-2x d-inline l-h-n">
+            <i class="fal fa-money-check-edit-alt"></i>
+        </span>
+    </div>
+
+    @*<div class="p-4 col-sm-4">
+            <span class="fa-2x d-inline l-h-n">
+                <i class="fal fa-camera"></i>
+            </span>
+        </div>*@
+
+    <div class="p-4 col-sm-4">
+        <form name="form_@Model.Id" method="post" enctype="multipart/form-data">
+            <input type="hidden" id="IdDocObra" name="IdDocObra" value="@Model.Numeroobraexterno" />
+            <input type="hidden" id="IdDoc" name="IdDoc" value="@Model.Id" />
+
+            <div class="fileUpload btn btn-outline-default">
+                <input type="file" id="files_@Model.Id" name="files_@Model.Id" class="upload" onchange="SubirArchivoFotos(@Model.Id,@Model.Id)" />
+                @*<input type="file" id="files_@Model.Id" name="files_@Model.Id" class="upload" onchange="SubirArchivoFotos(@Model.Numeroobraexterno,@Model.Id)" />*@
+
+                <span class="fa-2x d-inline l-h-n color-fusion-400"> <i class="fal fa-camera" style="color:white;"></i></span> <span></span>
+
+
+            </div>
+
+        </form>
+    </div>
+
+    <div class="p-4 col-sm-4">
+        <span class="fa-2x d-inline l-h-n">
+            <i class="fal fa-chart-bar"></i>
+        </span>
+    </div>
+
+    @*<div class="p-4 col-sm-4">
+        <span class="fa-2x d-inline l-h-n">
+            <i class="fal fa-map-marked-alt"></i>
+        </span>
+    </div>*@
+
+    <div class="p-4 col-sm-4">
+        <form name="form_@Model.Id" method="post" enctype="multipart/form-data">
+            <input type="hidden" id="IdDocObra" name="IdDocObra" value="@Model.Numeroobraexterno" />
+            <input type="hidden" id="IdDoc" name="IdDoc" value="@Model.Id" />
+
+            <div class="fileUpload btn btn-outline-default" onclick="CargarMarkers(@Model.Coordenadax,@Model.Coordenaday);">
+                @*<input type="file" id="files_@Model.Id" name="files_@Model.Id" class="upload" onchange="SubirArchivoFotos(@Model.Numeroobraexterno,@Model.Id)" />*@
+
+                <span class="fa-2x d-inline l-h-n color-fusion-400"> <i class="fal fa-map-marked-alt" style="color:white;"></i></span> <span></span>
+
+
+            </div>
+
+        </form>
+    </div>
+
+
+</div>

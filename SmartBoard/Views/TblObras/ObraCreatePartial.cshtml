@@ -1,0 +1,78 @@
+﻿@model SmartBoard.Models.ExpedienteViewModalDetalle
+
+@{
+    Layout = null;
+}
+
+
+<style>
+    .error {
+        color: red;
+    }
+</style>
+
+<div class="row">
+    <div class="col-md-8">
+        <form id="frmCampos" name="frmCampos" class="needs-validation" novalidate>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="recurso.IdTblobra" class="control-label"></label>
+                <select asp-for="recurso.IdTblobra" class="form-control" asp-items="ViewBag.IdTblobra"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="recurso.IdRecurso" class="control-label"></label>
+                <select asp-for="recurso.IdRecurso" class="form-control" asp-items="ViewBag.IdRecurso"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="recurso.IdEjercicio" class="control-label"></label>
+                <select asp-for="recurso.IdEjercicio" class="form-control" asp-items="ViewBag.IdEjercicio"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="recurso.IdPrograma" class="control-label"></label>
+                <select asp-for="recurso.IdPrograma" class="form-control" asp-items="ViewBag.IdPrograma"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="recurso.IdSubprograma" class="control-label"></label>
+                <select asp-for="recurso.IdSubprograma" class="form-control" asp-items="ViewBag.IdSubprograma"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="recurso.Autorizados" class="control-label"></label>
+                <input asp-for="recurso.Autorizados" class="form-control" />
+                <span asp-validation-for="recurso.Autorizados" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="recurso.ImporteContratado" class="control-label"></label>
+                <input asp-for="recurso.ImporteContratado" class="form-control" />
+                <span asp-validation-for="recurso.ImporteContratado" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="recurso.ImporteModificado" class="control-label"></label>
+                <input asp-for="recurso.ImporteModificado" class="form-control" />
+                <span asp-validation-for="recurso.ImporteModificado" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="recurso.ImporteEjercido" class="control-label"></label>
+                <input asp-for="recurso.ImporteEjercido" class="form-control" />
+                <span asp-validation-for="recurso.ImporteEjercido" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="recurso.ImportePorEjercer" class="control-label"></label>
+                <input asp-for="recurso.ImportePorEjercer" class="form-control" />
+                <span asp-validation-for="recurso.ImportePorEjercer" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="recurso.Activo" /> @Html.DisplayNameFor(model => model.recurso.Activo)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="recurso.Registro" class="control-label"></label>
+                <input asp-for="recurso.Registro" class="form-control" />
+                <span asp-validation-for="recurso.Registro" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>*@
+        </form>
+    </div>
+</div>

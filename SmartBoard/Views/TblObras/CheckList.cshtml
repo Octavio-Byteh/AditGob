@@ -1,0 +1,125 @@
+﻿@model SmartBoard.Models.ExpedienteViewModalDetalle
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+                        string boldLetra = "normal";
+                    string classNames = "classTD";
+                        int i = 1;
+
+    Layout = null;
+    int contador = 0;
+}
+<style>
+    .classTD {
+        font-weight: bolder !important;
+        border: solid 1px #000 !important;
+    }
+</style>
+
+<div class="col-sm-12">
+    <div class="panel-container show">
+        <div class="panel-content">
+            <table id="dt-obras-checklist" class="table table-bordered table-hover table-striped w-100">
+                <thead class="bg-warning-200">
+                    <tr>
+                        <th>#</th>
+                        <th>Documentación</th>
+                        <th>Activo</th>
+                       
+                    </tr>
+                </thead>
+                <tbody>
+
+
+                    @foreach (var item in Model.checklist.OrderBy(a => a.Numero).ToList())
+                    {
+
+                        if (item.Estitulo == true)
+                        {
+                            classNames = "classTD";
+                            boldLetra = "bolder";
+                            i--;
+                        }
+
+                    <tr class="@classNames">
+
+
+                        <td>
+                            <div class="divcontenedor">
+
+                                <input type="hidden" asp-for="@Model.checklist[contador].idObra" />
+                                <input type="hidden" asp-for="@Model.checklist[contador].id" />
+
+                                @if (item.Estitulo == false)
+                                    {
+                                <text>   @i </text>
+                                    }
+
+                            </div>
+                        </td>
+                        <td>
+                            <div class="divcontenedorlargo">
+                                @if (item.Estitulo == true)
+                                    {
+                                <label>
+
+                                    @Model.checklist[contador].Titulo
+                                    
+                                </label>
+                                    }
+                                    else
+                                    {
+                                <input type="hidden" asp-for="@Model.checklist[contador].nombre" />
+                                @*<label>
+
+                                    @Model.checklist[contador].nombre
+                                    <span class="tooltip">I'm a tooltip</span>
+                                </label>*@
+
+                                <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="@Model.checklist[contador].Norma">
+                                    @Model.checklist[contador].nombre
+                                </span>
+                                    }
+
+                            </div>
+                        </td>
+
+                        @if (item.Estitulo == true)
+                            {
+                        <td colspan="4">
+                            <div class="col-md-1 mb-3">
+                                <div class="custom-control custom-switch center">
+                                    <input asp-for="@Model.checklist[contador].activo" grupo="@Model.checklist[contador].TituloShort" type="checkbox">
+
+                                </div>
+                            </div>
+                        </td>
+                            }
+                            else
+                            {
+
+                        <td>
+                            <div class="col-md-1 mb-3">
+                                <div class="custom-control custom-switch">
+                                    <input asp-for="@Model.checklist[contador].activo" class="@Model.checklist[contador].TituloShort" type="checkbox">
+
+                                </div>
+                            </div>
+                        </td>
+
+                            }
+
+                    </tr>
+
+
+                     boldLetra = "normal";
+                        classNames = "";
+                    contador++;
+                    i++;
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

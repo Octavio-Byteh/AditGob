@@ -1,0 +1,102 @@
+﻿@model IEnumerable<SmartBoard.Data.Models.SmartBoard.TblObraRecurso>
+
+@{
+    ViewData["PageName"] = "registro_obra";
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Autorizados)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImporteContratado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImporteModificado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImporteEjercido)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImportePorEjercer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Activo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Registro)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdEjercicioNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdProgramaNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdRecursoNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdSubprogramaNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdTblobraNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Autorizados)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImporteContratado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImporteModificado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImporteEjercido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImportePorEjercer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Activo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Registro)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdEjercicioNavigation.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdProgramaNavigation.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdRecursoNavigation.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdSubprogramaNavigation.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdTblobraNavigation.Id)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

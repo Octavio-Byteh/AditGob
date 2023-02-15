@@ -1,0 +1,68 @@
+﻿@model SmartBoard.Data.Models.SmartBoard.TblPoadetalle
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>TblPoadetalle</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="IdProgramaoperativo" class="control-label"></label>
+                <select asp-for="IdProgramaoperativo" class ="form-control" asp-items="ViewBag.IdProgramaoperativo"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Fechainicio" class="control-label"></label>
+                <input asp-for="Fechainicio" class="form-control" />
+                <span asp-validation-for="Fechainicio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Fechatermino" class="control-label"></label>
+                <input asp-for="Fechatermino" class="form-control" />
+                <span asp-validation-for="Fechatermino" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Iddependencia" class="control-label"></label>
+                <select asp-for="Iddependencia" class ="form-control" asp-items="ViewBag.Iddependencia"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Objetivo" class="control-label"></label>
+                <input asp-for="Objetivo" class="form-control" />
+                <span asp-validation-for="Objetivo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Actividades" class="control-label"></label>
+                <input asp-for="Actividades" class="form-control" />
+                <span asp-validation-for="Actividades" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Fecharegistro" class="control-label"></label>
+                <input asp-for="Fecharegistro" class="form-control" />
+                <span asp-validation-for="Fecharegistro" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Activo" /> @Html.DisplayNameFor(model => model.Activo)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="Fechaactividad" class="control-label"></label>
+                <input asp-for="Fechaactividad" class="form-control" />
+                <span asp-validation-for="Fechaactividad" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

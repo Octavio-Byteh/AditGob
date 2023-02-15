@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<partial name="_CopyrightHeader" />
+<html lang="en">
+<head>
+    <partial name="_Head" />
+    @RenderSection("Header", required: false)
+<style>
+        body{
+            background: #000!important;
+        }
+        .page-wrapper {
+            background: #000!important;
+        }
+        .form-control {
+            background: #fff !important;
+            color: #000 !important;
+            border-radius: 20px!important;
+        }
+        .mod-skin-dark:not(.mod-skin-light) .panel, .mod-skin-dark:not(.mod-skin-light) .card
+        {
+            background: #000 !important;
+            color: #000 !important;
+        }
+       
+</style>
+</head>
+<body class="mod-skin-dark">
+    @*<partial name="_CookieConsentPartial" />*@
+    <!-- BEGIN Page Wrapper -->
+    <div class="page-wrapper">
+        @*bg-brand-gradient*@
+        <div class="page-inner">
+            <div class="page-content-wrapper bg-transparent m-0">
+                @*<partial name="_PageHeader" />*@
+                @*<div class="flex-1" style="background: url('/img/svg/pattern-1.svg') no-repeat center bottom fixed; background-size: cover;">*@
+                <div class="row " style="height:25px;"> </div>
+                <div class="row h-100">
+                    @RenderSection("PageHeading", required: false)
+                    @RenderBody()
+                </div>
+               
+            </div>
+        </div>
+    </div>
+    <!-- END Page Wrapper -->
+    @*<partial name="_GoogleAnalytics" />*@
+    <partial name="_ScriptsBasePlugins" />
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
+
+<script>
+    $(function () {
+        window.addEventListener("resize", function () {
+            if (window.matchMedia("(min-width: 500px)").matches) {
+                $("#milogo").show();
+                console.log("Screen width is at least 500px")
+            } else {
+                $("#milogo").hide();
+                console.log("Screen less than 500px")
+            }
+        });
+    })
+</script>

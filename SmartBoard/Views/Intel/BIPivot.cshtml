@@ -1,0 +1,440 @@
+@{ ViewData["Title"] = "Pivot";
+    ViewData["PageName"] = "Pivot Table";
+    ViewData["Category1"] = "BI";
+    ViewData["Heading"] = "<i class='subheader-icon fal fa-chart-area'></i> BI <span class='fw-300'>Pivot</span>";
+
+    string year = @Settings.CurrentYear;
+    if (year == "0")
+    {
+        year = DateTime.Now.Year.ToString();
+    } }
+@section HeadBlock {
+    <link rel="stylesheet" media="screen, print" href="~/css/miscellaneous/reactions/reactions.css">
+    <link rel="stylesheet" media="screen, print" href="~/css/miscellaneous/fullcalendar/fullcalendar.bundle.css">
+    <link rel="stylesheet" media="screen, print" href="~/css/miscellaneous/jqvmap/jqvmap.bundle.css">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.23.0/pivot.min.css'>
+
+    <link rel="stylesheet" media="screen, print" href="~/css/datagrid/datatables/datatables.bundle.css">
+
+
+}
+@section SubheaderBlock {
+    <div class="subheader-block d-lg-flex align-items-center">
+        <div class="d-inline-flex flex-column justify-content-center mr-3">
+            <span class="fw-300 fs-xs d-block opacity-50">
+                <small>Compras</small>
+            </span>
+            <span class="fw-500 fs-xl d-block color-primary-500">
+                $47,000
+            </span>
+        </div>
+        <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#886ab5" sparkHeight="32px" sparkBarWidth="5px" values="3,4,3,6,7,3,3,6,2,6,4"></span>
+    </div>
+    <div class="subheader-block d-lg-flex align-items-center border-faded border-right-0 border-top-0 border-bottom-0 ml-3 pl-3">
+        <div class="d-inline-flex flex-column justify-content-center mr-3">
+            <span class="fw-300 fs-xs d-block opacity-50">
+                <small>Pagos</small>
+            </span>
+            <span class="fw-500 fs-xl d-block color-danger-500">
+                $38,500
+            </span>
+        </div>
+        <span class="sparklines hidden-lg-down" sparkType="bar" sparkBarColor="#fe6bb0" sparkHeight="32px" sparkBarWidth="5px" values="1,4,3,6,5,3,9,6,5,9,7"></span>
+    </div>
+
+}
+<div class="row h-100">
+
+    <div class="col-md-12">
+        <div id="content_structure">
+            <table id="tblDataStructure" class="table table-bordered table-hover table-striped w-100">
+
+            </table>
+        </div>
+
+    </div>
+    <!--<div class="col-sm-12">
+        <div class="container">
+
+
+
+            <table class="drillDown table table-bordered table-hover table-striped w-100" border="1" align="center">
+
+                <colgroup>
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Subcategory</th>
+
+                    </tr>
+
+                </thead>
+                </colgroup>
+                <tbody>-->
+
+                    <!--PARENT ROW-->
+                    <!--<tr class="parent">
+                        <td>Category 1</td>
+                        <td colspan="2">$12,345.45</td>
+
+                    </tr>
+
+                    <tr class="parent2">
+                        <td>TBL 1</td>
+                        <td colspan="2">$10,345.45</td>
+                    </tr>
+
+                    <tr class="child2">
+                        <td>TBL 1 Hijo</td>
+                        <td colspan="2">$10,345.45</td>
+                    </tr>
+
+                    <tr class="child">
+                        <td>TBL 2</td>
+                        <td colspan="2">$2,000.0</td>
+                    </tr>-->
+
+                    <!--PARENT ROW-->
+                    <!--<tr class="parent">
+                        <td>Category 2</td>
+                        <td colspan="2">$135,754.99</td>
+                    </tr>
+                    <tr class="child">
+                        <td>&nbsp;</td>
+                        <td colspan="2">Subcategory_2 A</td>
+                    </tr>
+                    <tr class="child">
+                        <td>&nbsp;</td>
+                        <td colspan="2">Subcategory_2 B</td>
+                    </tr>
+                    <tr class="child">
+                        <td>&nbsp;</td>
+                        <td colspan="2">Subcategory_2 C</td>
+                    </tr>
+
+                    <tr class="parent">
+                        <td>Catgegory 3</td>
+                        <td colspan="2">$232,563.46</td>
+                    </tr>
+                    <tr class="child">
+                        <td>&nbsp;</td>
+                        <td colspan="2">Subcategory_3 A</td>
+                    </tr>
+                    <tr class="child">
+                        <td>&nbsp;</td>
+                        <td colspan="2">Subcategory_3 B</td>
+                    </tr>
+                    <tr class="child">
+                        <td>&nbsp;</td>
+                        <td colspan="2">Subcategory_3 C</td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+
+        </div>--> <!-- end container -->
+    <!--</div>-->
+
+    <div class="col-sm-12">
+        <div class="box-body box-solid" id="output">
+
+        </div>
+
+    </div>
+</div>
+
+@section ScriptsBlock {
+
+    <script type="text/javascript">
+        /* Activate smart panels */
+        $('#js-page-content').smartPanel();
+    </script>
+    @*<script src="~/js/dependency/moment/moment.js"></script>
+        <script src="~/js/miscellaneous/fullcalendar/fullcalendar.bundle.js"></script>
+        <script src="~/js/statistics/sparkline/sparkline.bundle.js"></script>
+        <script src="~/js/statistics/easypiechart/easypiechart.bundle.js"></script>
+        <script src="~/js/statistics/flot/flot.bundle.js"></script>
+        <script src="~/js/miscellaneous/jqvmap/jqvmap.bundle.js"></script>*@
+
+    @*<script src="~/js/obras/pivot.min.js"></script>*@
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.23.0/pivot.min.js'></script>
+    <script src='https://cdn.plot.ly/plotly-basic-latest.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.22.0/plotly_renderers.min.js'></script>
+
+    <script src="~/js/datagrid/datatables/datatables.bundle.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            var externaldata000 = [
+                { 'dash_uploaded_data_text1': 'Dept 1', 'dash_uploaded_data_numeric1': '3', 'dash_uploaded_data_numeric2': '11' },
+                { 'dash_uploaded_data_text1': 'Dept 4', 'dash_uploaded_data_numeric1': '4', 'dash_uploaded_data_numeric2': '8' },
+                { 'dash_uploaded_data_text2': 'Dept 1', 'dash_uploaded_data_numeric1': '3', 'dash_uploaded_data_numeric2': '11' },
+                { 'dash_uploaded_data_text2': 'Dept 4', 'dash_uploaded_data_numeric1': '4', 'dash_uploaded_data_numeric2': '8' },
+                { 'dash_uploaded_data_text3': 'Dept 1', 'dash_uploaded_data_numeric1': '3', 'dash_uploaded_data_numeric2': '11' },
+                { 'dash_uploaded_data_text3': 'Dept 4', 'dash_uploaded_data_numeric1': '4', 'dash_uploaded_data_numeric2': '8' }
+            ];
+
+            var externaldata = [{ "dash_uploaded_data_text3": "Dhaka", "dash_uploaded_data_numeric1": "70", "dash_uploaded_data_numeric2": "95" }, { "dash_uploaded_data_text3": "Gazipur", "dash_uploaded_data_numeric1": "70", "dash_uploaded_data_numeric2": "95" }, { "dash_uploaded_data_text3": "Manikganj", "dash_uploaded_data_numeric1": "30", "dash_uploaded_data_numeric2": "35" }, { "dash_uploaded_data_text3": "Rangpur", "dash_uploaded_data_numeric1": "90", "dash_uploaded_data_numeric2": "125" }]
+
+            var sessionID = 2
+
+
+            //Drill down order is determined in an array. You can add as many layers you want (the rsult will not be pretty, but it will work).
+            var fieldOrder = [
+                { "field": "dash_uploaded_data_text3", "dataField": "District" },
+                { "field": "dash_uploaded_data_text1", "dataField": "Dept" },
+                { "field": "dash_uploaded_data_text2", "dataField": "Staff" }
+            ];
+
+            //value fields
+
+            var valueFields = [
+                { "type": "uploaded", "field": "dash_uploaded_data_numeric1", "groupFunction": "sum", "dataField": "Sale1" },
+                { "type": "uploaded", "field": "dash_uploaded_data_numeric2", "groupFunction": "sum", "dataField": "Sale2" }
+            ]
+
+            ////Drill down order is determined in an array. You can add as many layers you want (the rsult will not be pretty, but it will work).
+            //var fieldOrder = [
+            //    { "field": "Year", "dataField": "District" },
+            //    { "field": "Region", "dataField": "Dept" },
+            //    { "field": "Municipio", "dataField": "Staff" }
+            //];
+
+            ////value fields
+
+            //var valueFields = [
+            //    { "type": "uploaded", "field": "totalInversion", "groupFunction": "sum", "dataField": "Sale1" },
+            //    { "type": "uploaded", "field": "totalInversionMunicipal", "groupFunction": "sum", "dataField": "Sale2" }
+            //]
+
+
+            var iTableCounter = 1;
+
+            $(function () {
+                dataStructure();
+            });
+            function dataStructure() {
+                $("#content_structure").html("<div id='content_structure_table' style='width:80%'></div>");
+                var groupBy = [fieldOrder[0].field];//level 1 order
+                var dtTextColumnIndex = [];
+                var dtNumColumnIndex = [];
+                var colCount = 1;
+                var valuefunction = null;//dataCreateValueFunctions();
+
+                tblFormatParam = formatTblDataStructure('tblDataStructure', 0, "1=1");
+                html = tblFormatParam[0];
+                tableDef = tblFormatParam[1];
+
+                $("#content_structure_table").html(html);
+                var table = $('#tblDataStructure').DataTable(tableDef);
+                //drill down event
+                $('#tblDataStructure tbody').on('click', 'td.details-control', function () {
+                    e = $(this);
+                    drillTblDataStructure(e, table, valuefunction);
+                });
+
+                $('#tblDataStructure').bind('xhr.dt', function () {
+                    var json = table.ajax.json();
+                    $('#tblDataStructure').unbind('xhr.dt');
+                    //structureChart(json.data);
+                });
+
+            }
+
+            function drillTblDataStructure(td, table, valuefunction) {
+                //console.log("td clicked -"+td.attr("datavalue"));
+                var tr = td.closest('tr');
+                var row = table.row(tr);
+                currentFieldOrder = parseInt(td.attr("fieldorder"));
+                //close all other open rows
+                tdDrillControls = document.querySelectorAll("td.details-control");
+                for (var i = 0; i < tdDrillControls.length; i++) {
+                    tdi = $(tdDrillControls[i]);
+                    tri = tdi.closest("tr");
+                    r = table.row(tri);
+                    if (r.child.isShown() && (tdi.attr("datavalue") != td.attr("datavalue"))) {//second condition is importatnt, otherwise the row will be keep on showing
+
+                        r.child.hide();
+                        tri.removeClass('shown');
+                        tdi.html('<span class="ui-icon ui-icon-plus"></span>')
+                    }
+                }
+                if (row.child.isShown()) {
+                    // This row is already open - close it
+                    row.child.hide();
+                    tr.removeClass('shown');
+                    td.html('<span class="ui-icon ui-icon-plus"></span>')
+                }
+                else {
+                    td.html('<span class="ui-icon ui-icon-minus"></span>')
+                    childFieldOrder = currentFieldOrder + 1;
+                    var whereClause = td.attr("whereClause") + " and " + td.attr("datacolumn") + " = '" + td.attr("datavalue") + "'";
+                    var childTableID = childFieldOrder * 10 + iTableCounter;
+                    tblFormatParam = formatTblDataStructure('tblDataStructure_' + childTableID, childFieldOrder, whereClause);
+                    html = tblFormatParam[0];
+                    tableDef = tblFormatParam[1];
+                    // Open this row
+                    row.child(html).show();
+                    tr.addClass('shown');
+                    var oInnerTable = $('#tblDataStructure_' + childTableID).DataTable(tableDef);
+                    $('#tblDataStructure_' + childTableID).bind('xhr.dt', function () {//table data is loaded via ajax
+                        var json = oInnerTable.ajax.json();
+                        $('#tblDataStructure_' + childTableID).unbind('xhr.dt');
+                    });
+                    $('#tblDataStructure_' + childTableID + ' tbody').on('click', 'td.details-control', function () {
+                        e = $(this);
+                        drillTblDataStructure(e, oInnerTable, valuefunction);
+                    });
+                    iTableCounter++;
+                }
+            }
+            function formatTblDataStructure(table_id, groupOrder, whereClause) {
+                var dtTextColumnIndex = [];
+                var dtNumColumnIndex = [];
+                var colCount = 1;
+                if (groupOrder < fieldOrder.length - 1) //it is not the last item in the order
+                    var tdColumns = [
+                        {
+                            className: 'details-control',
+                            orderable: false,
+                            data: null,
+                            defaultContent: '<span class="ui-icon ui-icon-plus style="cursor:pointer;"></span>'
+                        }
+                    ];
+                else
+                    var tdColumns = [
+                        {
+                            className: '',
+                            orderable: false,
+                            data: null,
+                            defaultContent: ''
+                        }
+                    ];
+                tdColumns.push({ data: fieldOrder[groupOrder].field });
+                html = "<table id='" + table_id + "' ><thead><tr><th></th>";
+                thtml = "<tr><td></td>";
+
+                html += "<th>" + fieldOrder[groupOrder]["dataField"] + "</th>";
+                thtml += "<td></td>"
+                dtTextColumnIndex.push(colCount);
+                colCount++;
+                var valuefunction = [];
+
+                for (f in valueFields) {//getting field names from json column names
+                    html += "<th>" + valueFields[f]["dataField"] + "</th>";
+                    thtml += "<td></td>"
+                    dtNumColumnIndex.push(colCount);
+                    colCount++;
+                    txt = valueFields[f].groupFunction + "(" + valueFields[f].field + ") as `" + valueFields[f].field + "`";
+                    valuefunction.push(txt);
+                    tdColumns.push({ data: valueFields[f].field });
+                }
+                html += "</tr></thead><tbody>" + thtml + "</tr></tbody></table>";
+                groupBy = [fieldOrder[groupOrder].field];
+
+                var tableDef = {
+                    "ajax": {
+                        @*url: '@Url.Action("GetObrasByYearToPivot", "Obras")?year=@year',
+                        type: 'GET',*@
+                        data: {
+                            request: 'dataStructure'
+                            , dbid: sessionID
+                            , group: JSON.stringify(groupBy)
+                            , where: whereClause
+                            , value: JSON.stringify(valuefunction)
+                            , dt: "assoc"
+                        }
+                    },
+                    createdRow: function (row, data, dataIndex) {
+                        $(row).find('td:eq(0)').attr(
+                            {
+                                'fieldOrder': groupOrder,
+                                'datavalue': data[fieldOrder[groupOrder].field],
+                                'datacolumn': fieldOrder[groupOrder].field,
+                                'whereClause': whereClause
+                            }
+                        );
+                    },
+                    data: externaldata,
+                    columns: tdColumns,
+                    columnDefs: [
+                        {
+                            targets: dtTextColumnIndex,
+                            className: 'dt-body-left dt-head-left'
+                        },
+                        {
+                            targets: dtNumColumnIndex,
+                            className: 'dt-body-right dt-head-right'
+                            //,"render": function ( data, type, row, meta ) {
+                            //	return infGroup.format(data);
+                            //}
+                        }
+                    ]
+                }
+                return [html, tableDef];
+            }
+
+
+            //$('table.drillDown').each(function () {
+
+            //    var $table = $(this);
+            //    $table.find('.parent').click(function () {
+            //        console.log("*****Click on Parent");
+            //        $(this).nextUntil('.parent').toggle();
+
+            //    });
+
+            //    var $childRows = $table.find('tbody tr').not('.parent').hide();
+            //    $table.find('button.hide').click(function () {
+            //        $childRows.hide();
+
+            //    });
+            //    $table.find('button.show').click(function () {
+            //        $childRows.filter('.child').show();
+            //    });
+            //    $table.find('tr.child').click(function () {
+            //        $(this).nextUntil('.child').show()
+            //    });
+
+
+
+            //});
+
+			   //$('#example').DataTable();
+           @*$.ajax({
+                "url": '@Url.Action("GetObrasByYearToPivot", "Obras")?year=@year',
+                "type": "GET",
+               "datatype": 'json',
+               beforeSend: function () {
+                   $('#loader').removeClass('hidden');
+               },
+				success: function (data) {
+                    LoadPivotTable(data);
+               },
+               complete: function () {
+                   $('#loader').addClass('hidden');
+
+
+               },
+           });*@
+
+            function LoadPivotTable(data) {
+                $("#output").pivotUI(
+                    data, {
+                    rows: ["Year"],
+                    cols: [],
+                    renderers: $.extend(
+                        $.pivotUtilities.renderers,
+                        $.pivotUtilities.plotly_renderers,
+
+                    )
+                });
+            }
+
+		});
+    </script>
+}

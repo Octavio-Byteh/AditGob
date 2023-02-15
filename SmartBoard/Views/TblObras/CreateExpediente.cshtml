@@ -1,0 +1,420 @@
+﻿@model SmartBoard.Models.ExpedienteViewModal
+
+@{
+    ViewData["Title"] = "Nuevo de Expedientes";
+    //ViewData["PageName"] = "intel_records_dashboard";
+    ViewData["PageName"] = "registro_obra";
+    ViewData["Category1"] = "Expedientes";
+    ViewData["Heading"] = "<i class='subheader-icon fal fa-chart-area'></i> Alta de <span class='fw-300'>Expedientes</span>";
+
+    //ViewData["Title"] = "Create";
+    //Layout = null;
+}
+
+@section HeadBlock {
+    @*<link id="mytheme" rel="stylesheet" media="screen, print" href="~/css/themes/cust-theme-13.css">*@
+    <link rel="stylesheet" media="screen, print" href="~/css/fa-brands.css">
+    <link rel="stylesheet" media="screen, print" href="~/css/formplugins/select2/select2.bundle.css">
+    <style>
+
+        .clsObra {
+            /*border-color: #E5E5E5 !important;*/
+            border-color: #000000 !important;
+        }
+    </style>
+
+}
+
+@section SubheaderBlock {
+    <div class="subheader-block d-lg-flex align-items-center">
+        <div class="d-flex mr-4">
+            <div class="mr-2">
+                <span class="peity-donut" data-peity="{ &quot;fill&quot;: [&quot;#967bbd&quot;, &quot;#ccbfdf&quot;],  &quot;innerRadius&quot;: 14, &quot;radius&quot;: 20 }">7/10</span>
+            </div>
+            <div>
+                <label class="fs-sm mb-0 mt-2 mt-md-0">Nuevas Secciones</label>
+                <h4 class="font-weight-bold mb-0">70.60%</h4>
+            </div>
+        </div>
+        <div class="d-flex mr-0">
+            <div class="mr-2">
+                <span class="peity-donut" data-peity="{ &quot;fill&quot;: [&quot;#2196F3&quot;, &quot;#9acffa&quot;],  &quot;innerRadius&quot;: 14, &quot;radius&quot;: 20 }">3/10</span>
+            </div>
+            <div>
+                <label class="fs-sm mb-0 mt-2 mt-md-0">Pagina Vista </label>
+                <h4 class="font-weight-bold mb-0">14,134</h4>
+            </div>
+        </div>
+    </div>
+}
+
+
+
+<div class="row">
+    <div class="col-xl-12">
+        <div id="panel-expediente" class="panel">
+            <div class="panel-hdr">
+                <h2>
+                    Nuevo <span class="fw-300"><i>Expediente</i></span>
+                </h2>
+            </div>
+            <div class="panel-container show">
+                <div class="panel-content">
+                    <div id="DivNuevoExpediente">
+
+                        <h5>Datos Generales</h5>
+
+                        @*<h4>TblObra</h4>*@
+                        @*<hr />*@
+                        <div class="row">
+                            <div class="col-md-12">
+                                <form class="needs-validation" novalidate asp-action="CreateExpediente" id="frmCreateObra">
+                                    <div class="panel-content">
+                                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                        <div class="form-row">
+                                            <div class="col-md-8 mb-3">
+                                                <label asp-for="Nombreobra" class="control-label">Nombre de Obra</label>
+                                                <input asp-for="Nombreobra" class="form-control clsObra" placeholder="Requerido*" required />
+                                                <span asp-validation-for="Nombreobra" class="text-danger"></span>
+                                            </div>
+                                            @*<div class="col-md-1 mb-3">
+            <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="customSwitch2radio" checked="" name="defaultSwitchRadioExample">
+                <label class="custom-control-label" for="customSwitch2radio">POA</label>
+            </div>
+
+        </div>*@
+                                            <div class="col-md-2 mb-2">
+                                                <label asp-for="Expediente" class="control-label"></label>
+                                                <input asp-for="Expediente" class="form-control clsObra" placeholder="Requerido*" required />
+                                                <span asp-validation-for="Expediente" class="text-danger"></span>
+
+                                            </div>
+                                            <div class="col-md-2 mb-2">
+                                                <label asp-for="folio" class="control-label"></label>
+                                                <input asp-for="folio" class="form-control clsObra" placeholder="Requerido*" required />
+                                                <span asp-validation-for="folio" class="text-danger"></span>
+
+                                            </div>
+                                        </div>
+                                        <div class="form-row form-group">
+                                            <div class="col-md-4 mb-4">
+                                                <label asp-for="BeneficiarioNombre" class="control-label"></label>
+                                                <input asp-for="BeneficiarioNombre" class="form-control clsObra" placeholder="Requerido*" required />
+                                                <span asp-validation-for="BeneficiarioNombre" class="text-danger"></span>
+                                            </div>
+
+                                            <div class="col-md-4 mb-4">
+                                                <label asp-for="EntidadEjecutora" class="control-label"></label>
+                                                <input asp-for="EntidadEjecutora" class="form-control clsObra" placeholder="Requerido*" required />
+                                                <span asp-validation-for="EntidadEjecutora" class="text-danger"></span>
+                                            </div>
+
+                                            <div class="col-md-4 mb-4">
+                                                <label asp-for="ContratistaNombre" class="control-label"></label>
+                                                <input asp-for="ContratistaNombre" class="form-control clsObra" placeholder="Requerido*" required />
+                                                <span asp-validation-for="ContratistaNombre" class="text-danger"></span>
+                                            </div>
+
+                                        </div>
+                                        <div class="form-row form-group">
+                                           
+                                            <div class="col-md-2 mb-2">
+                                                <span class="fa-2x d-inline l-h-n">
+                                                    @*<i class="fal fa-map-marked-alt"></i>*@
+                                                </span>
+                                                <label asp-for="Idregion" class="control-label"></label>
+                                                <select asp-for="Idregion" class="custom-select clsObra select2" required asp-items="ViewBag.Idregion" aria-label="Select your country"> Selecciona Region</select>
+                                            </div>
+                                            <div class="col-md-2 mb-2">
+                                                <span class="fa-2x d-inline l-h-n">
+                                                    @*<i class="fal fa-map-marked-alt"></i>*@
+                                                </span>
+                                                <label asp-for="Idmunicipio" class="control-label"></label>
+                                                <select asp-for="Idmunicipio" class="custom-select clsObra select2" required asp-items="ViewBag.Idmunicipio" aria-label="Select your country" Seleciona Municipio></select>
+                                            </div>
+                                          
+
+                                            <div class="col-md-2 mb-2">
+                                                <span class="fa-2x d-inline l-h-n">
+
+                                                </span>
+                                                <label asp-for="Localidad" class="control-label"></label>
+                                                <input asp-for="Localidad" class="form-control clsObra" placeholder="Requerido*" required />
+                                                <span asp-validation-for="Localidad" class="text-danger"></span>
+
+                                            </div>
+
+                                            <div class="col-md-2 mb-2">
+                                                <span class="fa-2x d-inline l-h-n">
+                                                    @*<i class="fal fa-map-marked-alt"></i>*@
+                                                </span>
+                                                <label asp-for="Idzap" class="control-label"></label>
+                                                <select asp-for="Idzap" class="custom-select clsObra select2" required asp-items="ViewBag.Idzap"></select>
+                                            </div>
+
+                                            <div class="col-md-2 mb-2">
+
+                                                <span class="fa-2x d-inline l-h-n color-fusion-400">
+                                                    <i class="fal fa-solid fa-map-marked-alt" id="getLocationGeo" style="color: black;"></i>
+                                                </span>
+                                                <label asp-for="Coordenadas" class="control-label">Ubicación</label>
+                                                <input asp-for="Coordenadas" class="form-control clsObra" required />
+                                                <span asp-validation-for="Coordenadas" class="text-danger"></span>
+
+                                                <input asp-for="Coordenadax" class="form-control clsObra" hidden />
+                                                <input asp-for="Coordenaday" class="form-control clsObra" hidden />
+
+                                            </div>
+
+                                            <div class="col-md-2 mb-3">
+                                                <span class="fa-2x d-inline l-h-n">
+                                                </span>
+                                                
+                                                    <label class="control-label"> Avance</label>
+                                                    <input asp-for="Porcentajeavance" class="form-control clsObra" required  pattern="^\d*(\.\d{0,2})?$"/> % Fisico
+                                                    <span asp-validation-for="Porcentajeavance" class="text-danger"></span>
+                                                    <input asp-for="AvanceFinanciero" class="form-control clsObra" required  pattern="^\d*(\.\d{0,2})?$"/> % Financiero
+                                                    <span asp-validation-for="AvanceFinanciero" class="text-danger"></span>
+                                                
+                                            </div>
+
+
+                                        </div>
+                                       
+
+                                            @*<div class="form-group">
+                <label asp-for="Idpoadetalle" class="control-label"></label>
+                <select asp-for="Idpoadetalle" class="form-control" asp-items="ViewBag.Idpoadetalle"></select>
+            </div>*@
+
+                                            <div class="form-row form-group">
+                                                <div class="col-md-2 mb-2">
+                                                    <span class="fa-2x d-inline l-h-n">
+                                                        @*<i class="fal fa-map-marked-alt"></i>*@
+                                                    </span>
+                                                    <label asp-for="Idgradomarginal" class="control-label"></label>
+                                                    <select asp-for="Idgradomarginal" class="custom-select clsObra select2" required asp-items="ViewBag.Idgradomarginal" aria-label="Select your country"> sleect algo</select>
+                                                </div>
+                                                <div class="col-md-2 mb-2">
+                                                    <span class="fa-2x d-inline l-h-n">
+                                                        @*<i class="fal fa-map-marked-alt"></i>*@
+                                                    </span>
+                                                    <label asp-for="IdnormativaAplicable" class="control-label"></label>
+                                                    <select asp-for="IdnormativaAplicable" class="custom-select clsObra select2" required asp-items="ViewBag.IdnormativaAplicable" aria-label="Select your country"> sleect algo</select>
+                                                </div>
+                                                <div class="col-md-2 mb-2">
+                                                    <span class="fa-2x d-inline l-h-n">
+                                                        @*<i class="fal fa-map-marked-alt"></i>*@
+                                                    </span>
+                                                    <label asp-for="IdmodalidadEjecicion" class="control-label"></label>
+                                                    <select asp-for="IdmodalidadEjecicion" class="custom-select clsObra select2" required asp-items="ViewBag.IdmodalidadEjecicion"></select>
+                                                </div>
+                                                <div class="col-md-2 mb-2">
+                                                    <span class="fa-2x d-inline l-h-n">
+                                                        @*<i class="fal fa-map-marked-alt"></i>*@
+                                                    </span>
+                                                    <label asp-for="Idcontratacion" class="control-label"></label>
+                                                    <select asp-for="Idcontratacion" class="custom-select clsObra select2" required asp-items="ViewBag.Idcontratacion"></select>
+                                                </div>
+                                                <div class="col-md-2 mb-2">
+                                                    <span class="fa-2x d-inline l-h-n">
+                                                        @*<i class="fal fa-map-marked-alt"></i>*@
+                                                    </span>
+                                                    <label asp-for="IdtipoAdjudicacion" class="control-label"></label>
+                                                    <select asp-for="IdtipoAdjudicacion" class="custom-select clsObra select2" required asp-items="ViewBag.IdtipoAdjudicacion"></select>
+                                                </div>
+
+
+                                                <div class="col-md-2 mb-2">
+                                                    <span class="fa-2x d-inline l-h-n">
+                                                        @*<i class="fal fa-map-marked-alt"></i>*@
+                                                    </span>
+                                                    <label asp-for="IdtipoContrato" class="control-label"></label>
+                                                    <select asp-for="IdtipoContrato" class="custom-select clsObra select2" required asp-items="ViewBag.IdtipoContrato"></select>
+                                                </div>
+
+
+                                            </div>
+
+
+
+
+
+                                            <div class="form-group">
+
+                                                <button class="btn btn-primary" type="submit">Continuar</button>
+                                            </div>
+                                        </div>
+</form>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+@*<div>
+        <a asp-action="Index">Back to List</a>
+    </div>*@
+
+
+@section ScriptsBlock {
+    <script src="~/js/statistics/peity/peity.bundle.js"></script>
+    <script src="~/js/statistics/flot/flot.bundle.js"></script>
+    <script src="~/js/statistics/easypiechart/easypiechart.bundle.js"></script>
+    <script src="~/js/datagrid/datatables/datatables.bundle.js"></script>
+    <script src="~/js/formplugins/select2/select2.bundle.js"></script>
+
+    <script type="text/javascript">
+
+        $("#getLocationGeo").click(function () {
+
+            getLocation();
+        });
+
+        function getLocation(){
+            
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+                $("#Coordenadas").val("Geolocation is not supported by this browser.");
+            }
+        }
+
+        function showPosition(position) {
+            //console.log(position);
+            $("#Coordenadas").val(position.coords.latitude + "," + position.coords.longitude);
+            $("#Coordenadax").val(position.coords.latitude);
+            $("#Coordenaday").val(position.coords.longitude);
+        }
+
+
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function () {
+            'use strict';
+            window.addEventListener('load', function () {
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>
+
+    <script>
+        $(function () {
+            //$('.select2').select2();
+
+            var urlCategoria = '@Url.Action("FetchCategoria", "TblObras")';
+            fillDDL(urlCategoria, "Idcategoria", "--- Selecciona Categoria ---");
+
+
+            var urlRegiones = '@Url.Action("FetchRegion", "TblObras")';
+            fillDDL(urlRegiones, "Idregion", "--- Selecciona Región ---");
+
+            var url = '@Url.Action("FetchMunucipios", "TblObras")?idregion=' + 0;
+            fillDDL(url, "Idmunicipio", "--- Selecciona Municipio ---");
+
+            var urllocalidad = '@Url.Action("FetchLocalidades", "TblObras")?urllocalidad=' + 0;
+            fillDDL(urllocalidad, "Idlocalidad", "--- Selecciona Localidad ---");
+
+
+
+              var urlMarginacion = '@Url.Action("FetchGradoMarginacion", "TblObras")' ;
+            fillDDL(urlMarginacion, "Idgradomarginal", "--- Selecciona Marginación ---");
+
+              var urlNormativa = '@Url.Action("FetchNormativaAplicable", "TblObras")' ;
+            fillDDL(urlNormativa, "IdnormativaAplicable", "--- Selecciona Normativa ---");
+
+                var urlModalidad = '@Url.Action("FetchModalidadEjecucion", "TblObras")' ;
+            fillDDL(urlModalidad, "IdmodalidadEjecicion", "--- Selecciona Modalidad ---");
+
+              var urlTipoAdjudicacion = '@Url.Action("FetchAdjudicacionByNormativa", "TblObras")?idnormativa=' + 0;
+            fillDDL(urlTipoAdjudicacion, "IdtipoAdjudicacion", "--- Selecciona Adjudicación ---");
+
+
+
+
+            $("#Idregion").change(function () {
+                var idregion = $("#Idregion option:selected").val();
+                var url = '@Url.Action("FetchMunucipios", "TblObras")?idregion=' + idregion;
+                fillDDL(url, "Idmunicipio", "--- Selecciona Municipio ---");
+
+            });
+
+            $("#Idmunicipio").change(function () {
+                var idmunicipio = $("#Idmunicipio option:selected").val();
+
+                var urllocalidad = '@Url.Action("FetchLocalidades", "TblObras")?urllocalidad=' + idmunicipio;
+                fillDDL(urllocalidad, "Idlocalidad", "--- Selecciona Localidad ---");
+
+
+            });
+
+            $("#IdnormativaAplicable").change(function () {
+                 var idnormativa = $("#IdnormativaAplicable option:selected").val();
+
+                 var urllocalidad = '@Url.Action("FetchAdjudicacionByNormativa", "TblObras")?idnormativa=' + idnormativa;
+                 fillDDL(urllocalidad, "IdtipoAdjudicacion", "--- Selecciona Adjudicación ---");
+
+
+            });
+
+            $("#IdmodalidadEjecicion").change(function () {
+
+                var IdmodalidadEjecicion = $("#IdmodalidadEjecicion option:selected").val();
+
+                //alert(IdmodalidadEjecicion);
+                if (IdmodalidadEjecicion == 2) {
+
+                    var urllocalidad = '@Url.Action("FetchAdjudicacionByNormativa", "TblObras")?idnormativa=' + 0;
+                    fillDDL(urllocalidad, "IdtipoAdjudicacion", "--- Selecciona Adjudicación ---");
+
+                    $('#IdtipoAdjudicacion').removeAttr('required');
+                } else {
+                    var idnormativa = $("#IdnormativaAplicable option:selected").val();
+                    var urllocalidad = '@Url.Action("FetchAdjudicacionByNormativa", "TblObras")?idnormativa=' + idnormativa;
+                    fillDDL(urllocalidad, "IdtipoAdjudicacion", "--- Selecciona Adjudicación ---");
+
+                    $('#IdtipoAdjudicacion').prop('required', true);
+                }
+                 @*var urllocalidad = '@Url.Action("FetchAdjudicacionByNormativa", "TblObras")?idnormativa=' + idnormativa;
+                 fillDDL(urllocalidad, "IdtipoAdjudicacion", "--- Selecciona Adjudicación ---");*@
+
+
+            });
+
+
+            function fillDDL(url, elementId, defaultText) {
+                $.getJSON(url, null, function (data) {
+                    var items = "<option value>" + defaultText + "</option>";
+                    $.each(data, function (i, item) {
+                        //console.log(item);
+                        items = items + "<option value='" + item.value + "'>" + item.text + "</option>";
+                    });
+                    $("#" + elementId).html(items);
+                })
+            }
+
+
+
+
+
+        })
+    </script>
+}

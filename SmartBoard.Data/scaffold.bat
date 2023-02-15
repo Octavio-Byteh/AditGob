@@ -1,0 +1,1 @@
+dotnet ef dbcontext scaffold "Server=DESKTOP-VATE5RE\SQLEXPRESS214;Database=SmartBoardStable;Persist Security Info=True;User ID=sa;password=devpc123456" Microsoft.EntityFrameworkCore.SqlServer -o Models/SmartBoard --project SmartBoard.Data.csproj -c SmartBoardContext --force

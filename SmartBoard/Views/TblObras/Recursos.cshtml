@@ -1,0 +1,132 @@
+﻿@model SmartBoard.Models.ExpedienteViewModalDetalle
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = null;
+    bool PermiteAgregar = false;
+}
+
+@{
+    if (Model.recursos != null)
+    {
+        if (Model.recursos.Count() > 0)
+        {
+            PermiteAgregar = false;
+        }
+        else
+        {
+            PermiteAgregar = true;
+        }
+    }
+    else
+    {
+        PermiteAgregar = true;
+    }
+}
+
+@if (PermiteAgregar == true)
+{
+
+    <div class="row">
+        <div class="form-group">
+            <a class="btn btn-danger" href="ObraRecursos/Create?IdTblobra=@Model.Id" title="Obras" data-filter-tags="ObraRecursos">
+                <label>
+                    Agregar Recursos
+                </label>
+            </a>
+        </div>
+    </div>
+
+}
+
+<div class="row">
+    <div class="col-sm-12 col-xl-12">
+
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Recursos</th>
+                    <th>Ejercicio</th>
+                    <th>Programa</th>
+                    <th>Sub Programa</th>
+                    <th>Autorizados</th>
+                    <th>Importe contratado</th>
+                    <th>Importe Modificado</th>
+                    <th>Importe Ejercido</th>
+                    <th>Importe Por Ejercer</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.recursos)
+                {
+                    <tr>
+                        <td>@item.Recurso</td>
+                        <td>@item.Ejercicio</td>
+                        <td>@item.Programa</td>
+                        <td>@item.Subprograma</td>
+                        <td>@item.Autorizados</td>
+
+                        <td>@Html.DisplayFor(modelItem => item.ImporteContratado)</td>
+                        <td>@Html.DisplayFor(modelItem => item.ImporteModificado)</td>
+                        <td>@Html.DisplayFor(modelItem => item.ImporteEjercido)</td>
+                        <td>@Html.DisplayFor(modelItem => item.ImportePorEjercer)</td>
+
+                    </tr>
+                }
+
+            </tbody>
+            <tfoot>
+                <tr style="font-weight:bold">
+                    <td colspan="5">Total</td>
+                    <td>@Model.recursos.Sum(a => a.ImporteContratado).ToString("C2")</td>
+                    <td>@Model.recursos.Sum(a => a.ImporteModificado).ToString("C2")</td>
+                    <td>@Model.recursos.Sum(a => a.ImporteEjercido).ToString("C2")</td>
+                    <td>@Model.recursos.Sum(a => a.ImportePorEjercer).ToString("C2")</td>
+
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+</div>
+
+
+
+<div class="modal fade custom-modal" id="modalCrearCampo" tabindex="-1" role="dialog" aria-labelledby="modalCrearCampo" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel2">Nuevo campo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="col-md-12">
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            <h3><i class="fa fa-check-square-o"></i> Campos</h3>
+                            A continuación ingresa la información para crear nuevos campos
+                        </div>
+
+                        <div class="card-body">
+                            @*@await Html.PartialAsync("~/Views/TblObras/ObraCreatePartial.cshtml")*@
+                            @*@await Html.PartialAsync("~/Views/TblObras/ObraCreatePartial.cshtml")*@
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" id="crearCampo" class="btn btn-primary">Crear campo</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

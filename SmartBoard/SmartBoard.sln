@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33403.182
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartBoard", "SmartBoard.csproj", "{67338A33-CFEC-4080-89E1-364A05DE0887}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartBoard.Data", "..\SmartBoard.Data\SmartBoard.Data.csproj", "{410B49AB-B60B-4DEC-95EC-421FBFB2F088}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{67338A33-CFEC-4080-89E1-364A05DE0887}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67338A33-CFEC-4080-89E1-364A05DE0887}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67338A33-CFEC-4080-89E1-364A05DE0887}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67338A33-CFEC-4080-89E1-364A05DE0887}.Release|Any CPU.Build.0 = Release|Any CPU
+		{410B49AB-B60B-4DEC-95EC-421FBFB2F088}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{410B49AB-B60B-4DEC-95EC-421FBFB2F088}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{410B49AB-B60B-4DEC-95EC-421FBFB2F088}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{410B49AB-B60B-4DEC-95EC-421FBFB2F088}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2C568792-ED1F-4FFD-A758-7728ED6FBF5B}
+	EndGlobalSection
+EndGlobal

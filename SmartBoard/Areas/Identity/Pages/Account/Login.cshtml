@@ -1,0 +1,114 @@
+﻿@page
+@model LoginModel
+@{
+    ViewData["PageName"] = "login";
+}
+
+<style>
+    #BIENVENIDO_A_SmartBoard {
+        left: 323px;
+        top: 334px;
+        /* position: absolute;
+        overflow: visible;*/
+        width: 317px;
+        white-space: nowrap;
+        text-align: center;
+        font-family: Avenir;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 43px;
+        color: rgba(112,112,112,1);
+    }
+</style>
+@section Header {
+    <link rel="stylesheet" media="screen, print" href="~/css/fa-brands.css">
+}
+@section PageHeading {
+    <div class="col-sm-1"> </div>
+    <div class="col-sm-4 text-center">
+        @*<div class="col-sm-12 col-md-6 col-lg-6 col-xl-4 ml-auto text-center">*@
+
+        <div class="mw-100 mh-100">
+            <img src="~/img/card-backgrounds/puebla.png" alt="cover" style="height: 30%; width: 70%">
+        </div>
+
+
+        <div class="row">
+            @*<div class="col-sm-12">
+                <div class="float-right">
+                    <label>LOGIN</label>
+                </div>
+            </div>*@
+
+        </div>
+        <div class="row">
+
+            <h2 class="fs-xxl fw-500 text-white text-center Avenir">
+                <label style="color: #707070; font-size: 2.15rem !important;">BIENVENIDO A</label><br /><label style="color: rgba(255,255,255,1); font-weight:bold; font-size: 2.15rem !important;">SmartBoard</label>
+                <small class="h3 fw-300 mt-3 mb-5 text-white opacity-60" style="font-size: 20px !important; color: #707070 ">
+                   @* Comisión de Infraestructura, Carretera y Aeroportuaria del Estado de Guerrero*@
+                    Control de Obras y Adquisiciones
+                </small>
+            </h2>
+        </div>
+        <div class="text-center">
+
+
+            <div class="card p-4 rounded-plus bg-faded">
+
+                <form id="js-login" method="post">
+                    <div asp-validation-summary="All" class="alert alert-primary text-dark"></div>
+                    <div class="form-group">
+                        @*<label class="form-label" asp-for="Input.Email">Username</label>*@
+                        <input type="email" asp-for="Input.Email" class="form-control" placeholder="usuario@dominio.com" required="required" />
+                        <span class="invalid-feedback" asp-validation-for="Input.Email">El correo el requerido </span>
+                        @*<div class="help-block">The email address you registered with</div>*@
+                    </div>
+                    <div class="form-group">
+                        @*<label class="form-label" asp-for="Input.Password">Password</label>*@
+                        <input type="password" asp-for="Input.Password" class="form-control" placeholder="PASSWORD" required="required" />
+                        <span class="invalid-feedback" asp-validation-for="Input.Password">El password es requerido</span>
+                        @*<div class="help-block">The password you specified during registration</div>*@
+                    </div>
+
+                    <div class="row no-gutters">
+
+                        <div class="col-lg-6 pl-lg-1 my-2 lg-right-end">
+                            <button id="js-login-btn" type="submit" class="btn btn-default btn-block btn-lg">ACCESO</button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-1"> </div>
+    <div class="col-md-6">
+        <img id="milogo" src="~/img/man-recording-studio.png" alt="man" aria-roledescription="logo" style="width:100%; height:100%;">
+
+
+    </div>
+}
+
+
+@*<div class="col col-md-6 col-lg-6  hidden-sm-down mod-skin-dark">*@
+
+@*<div class="col-sm-2"> </div>*@
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        $("#js-logsin-btn").click(function (event) {
+            // Fetch form to apply custom Bootstrap validation
+            var form = $("#js-login");
+
+            if (form[0].checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+
+            form.addClass('was-validated');
+            // Perform ajax submit here...
+        });
+    </script>
+}

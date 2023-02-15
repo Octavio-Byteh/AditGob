@@ -1,0 +1,246 @@
+﻿@model SmartBoard.Data.Models.SmartBoard.TblObraEstimacion
+
+@{
+    ViewData["PageName"] = "registro_obra";
+    ViewData["Title"] = "Create";
+    int idObra = ((int)ViewData["miIdObra"]);
+}
+
+<h1>Crear Estimación</h1>
+
+
+<div>
+    <a asp-action="EditExpediente" asp-controller="TblObras" asp-route-id="@idObra">Regresar a la obra</a>
+</div>
+
+
+<div class="row">
+    <div class="col-md-6">
+        <form class="needs-validation" novalidate asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="IdTblobra" value="@idObra" />
+            <input type="hidden" asp-for="IdFactura" value="@idObra" />
+            @*<div class="form-group">
+            <label asp-for="IdTblobra" class="control-label"></label>
+            <select asp-for="IdTblobra" class="form-control" asp-items="ViewBag.IdTblobra"></select>
+        </div>*@
+            @*<div class="form-group">
+            <label asp-for="IdFactura" class="control-label"></label>
+            <input asp-for="IdFactura" class="form-control" />
+            <span asp-validation-for="IdFactura" class="text-danger"></span>
+        </div>*@
+            <div class="form-group">
+                <label asp-for="Numero" class="control-label">Número</label>
+                <input asp-for="Numero" required class="form-control" />
+                <span asp-validation-for="Numero" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NumFactura" class="control-label">Número Factura</label>
+                <input asp-for="NumFactura" required class="form-control" />
+                <span asp-validation-for="NumFactura" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaFactura" class="control-label">Fecha Factura</label>
+                <input asp-for="FechaFactura" required type="date" data-date-format="DD/MM/YYY" class="form-control" />
+                <span asp-validation-for="FechaFactura" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaEstimacion" class="control-label">Fecha Estimación</label>
+                <input asp-for="FechaEstimacion" required type="date" data-date-format="DD/MM/YYY" class="form-control" />
+                <span asp-validation-for="FechaEstimacion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MontoPagarSinIva" class="control-label">Monto a Pagar Sin Iva</label>
+                <input asp-for="MontoPagarSinIva" required class="form-control" pattern="^\d*(\.\d{0,2})?$"  />
+                <span asp-validation-for="MontoPagarSinIva" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AmortizadoSinIva" class="control-label"> Amortizado Sin Iva</label>
+                <input asp-for="AmortizadoSinIva" required readonly class="form-control" />
+                <span asp-validation-for="AmortizadoSinIva" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Subtotal" class="control-label">Subtotal</label>
+                <input asp-for="Subtotal" required readonly class="form-control" />
+                <span asp-validation-for="Subtotal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SubtotalConIva" class="control-label">Subtotal Con Iva</label>
+                <input asp-for="SubtotalConIva" readonly required class="form-control" />
+                <span asp-validation-for="SubtotalConIva" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="CincoMillarSinIva" class="control-label">5 Al Millar Sin Iva</label>
+                <input asp-for="CincoMillarSinIva" required readonly class="form-control" />
+                <span asp-validation-for="CincoMillarSinIva" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Aplica5millar" /> @Html.DisplayNameFor(model => model.Aplica5millar)
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Retencion" class="control-label">Retención</label>
+                <input asp-for="Retencion" required class="form-control" pattern="^\d*(\.\d{0,2})?$" value="0"/>
+                <span asp-validation-for="Retencion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Devolucion" class="control-label">Devolución</label>
+                <input asp-for="Devolucion" required class="form-control" pattern="^\d*(\.\d{0,2})?$" value="0"  />
+                <span asp-validation-for="Devolucion" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="MontoNetoPagar" class="control-label">Monto Neto a Pagar</label>
+                <input asp-for="MontoNetoPagar" required readonly class="form-control" />
+                <span asp-validation-for="MontoNetoPagar" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="AvenceFisicoProgramado" class="control-label"> Avance Fisico Programado</label>
+                <input asp-for="AvenceFisicoProgramado" required class="form-control" />
+                <span asp-validation-for="AvenceFisicoProgramado" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AvanceFisicoReal" class="control-label"> Avance Fisico Real </label>
+                <input asp-for="AvanceFisicoReal" required class="form-control" />
+                <span asp-validation-for="AvanceFisicoReal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AvanceFinancieron" class="control-label">Avance Financiero</label>
+                <input asp-for="AvanceFinancieron" required class="form-control" />
+                <span asp-validation-for="AvanceFinancieron" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaPago" class="control-label"> Fecha de Pago</label>
+                <input asp-for="FechaPago" required type="date" data-date-format="DD/MM/YYY" class="form-control" />
+                <span asp-validation-for="FechaPago" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Pagado" class="control-label">Pagado</label>
+                <input asp-for="Pagado" required class="form-control" />
+                <span asp-validation-for="Pagado" class="text-danger"></span>
+            </div>
+            @*<div class="form-group form-check">
+            <label class="form-check-label">
+                <input class="form-check-input" asp-for="Activo" /> @Html.DisplayNameFor(model => model.Activo)
+            </label>
+        </div>
+        <div class="form-group">
+            <label asp-for="Registro" class="control-label"></label>
+            <input asp-for="Registro" class="form-control" />
+            <span asp-validation-for="Registro" class="text-danger"></span>
+        </div>*@
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@*<div>
+        <a asp-action="Index">Back to List</a>
+    </div>*@
+
+<div>
+    <a asp-action="EditExpediente" asp-controller="TblObras" asp-route-id="@idObra">Regresar a la obra</a>
+</div>
+
+@section ScriptsBlock {
+    <script type="text/javascript">
+        (function () {
+
+            'use strict';
+            window.addEventListener('load', function () {
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>
+    <script>
+        $(function () {
+
+            function calcula() {
+
+                var monto = 0.0;
+
+                if ($("#MontoPagarSinIva").val() == null) {
+                    alert("null");
+                    $("#MontoPagarSinIva").val(0);                    
+                } 
+                monto = parseFloat($("#MontoPagarSinIva").val());
+                
+                var montoAmortiza = (monto * 0.30).toFixed(2);
+               
+                var subTotal = (monto - montoAmortiza).toFixed(2);
+                var subTotalConIva = (subTotal * 1.16).toFixed(2);
+                var cincoMillar = 0.0;
+
+
+                
+                if ($("#Retencion").val() == null) {
+                    $("#Retencion").val(0);
+                }
+                var Retencion = parseFloat($("#Retencion").val());
+
+                if ($("#Devolucion").val() == null) {
+                    $("#Devolucion").val(0);
+                }
+                var Devolucion = parseFloat($("#Devolucion").val());
+
+
+                $("#AmortizadoSinIva").val(montoAmortiza);
+                $("#Subtotal").val(subTotal);
+                $("#SubtotalConIva").val(subTotalConIva);
+
+                if ($('#Aplica5millar').prop("checked")) {
+                    cincoMillar = (monto * 0.005).toFixed(2);
+                }
+                $("#CincoMillarSinIva").val(cincoMillar);
+
+                var montoPagar = parseFloat(subTotalConIva) - parseFloat(cincoMillar) - parseFloat(Retencion) + parseFloat(Devolucion);
+                $("#MontoNetoPagar").val(montoPagar);
+
+            }
+
+            $("#MontoPagarSinIva").change(function () {
+
+                calcula();
+              
+            });
+
+            $('#Aplica5millar').change(function () {
+                //$("#MontoPagarSinIva").change();
+                calcula();
+               
+            });
+
+            $('#Retencion').change(function () {
+                calcula();
+                //$("#MontoPagarSinIva").change();
+                
+            });
+
+            $('#Devolucion').change(function () {
+                calcula();
+                //$("#MontoPagarSinIva").change();
+     
+            });
+
+        });
+    </script>
+}

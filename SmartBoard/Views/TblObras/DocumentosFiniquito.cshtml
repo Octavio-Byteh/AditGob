@@ -1,0 +1,211 @@
+﻿@model SmartBoard.Models.ExpedienteViewModalDetalle
+@{
+    Layout = null;
+    //int cantidad = 1;
+    //Model.estimaciones.Count();
+    //int cantidadContrato = 1;
+    // int cantidadAdicional = 1;
+    //Model.conceptos.Where(a => a.Tipo == 1).Sum(a => a.Importe) > 0 ? 1 : 0;
+    //int cantidadDeductiva = 1;
+    //Model.conceptos.Where(a => a.Tipo == 2).Sum(a => a.Importe) > 0 ? 1 : 0;
+}
+
+<style>
+    .titulo_general {
+        font-weight: bold !important;
+    }
+
+    #dt-obras-finiquito_h.table-bordered td {
+        border: 1px solid #1a1919;
+    }
+
+    #dt-obras-finiquito_d.table-bordered td {
+        border: 1px solid #1a1919;
+    }
+
+    #dt-obras-finiquito_d.table-bordered th {
+        border: 1px solid #1a1919;
+    }
+</style>
+
+@if (Model.recursos.Count() <= 0)
+{
+    <h1 class=danger>
+        El recurso no ha sido capturado
+    </h1>
+}
+else
+{
+
+    int cantidad = Model.estimaciones.Count();
+    int cantidadContrato = 1;
+
+    int cantidadAdicional = Model.conceptos.Where(a => a.Tipo == 1).Sum(a => a.Importe) > 0 ? 1 : 0;
+    int cantidadDeductiva = Model.conceptos.Where(a => a.Tipo == 2).Sum(a => a.Importe) > 0 ? 1 : 0;
+
+
+    <div class="row">
+        <div class="col-md-12">
+
+            <table id="dt-obras-finiquito_h" class="table table-bordered table-hover table-striped w-100">
+                <thead class="bg-warning-200">
+                    <tr>
+                        <th colspan="8">Datos Generales</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="titulo_general">Numero de Contrato</td>
+                        <td colspan="3">@Model.folio</td>
+                        <td class="titulo_general">Numero de Convenio</td>
+                        <td colspan="3">@Model.Expediente</td>
+                    </tr>
+                    <tr>
+                        <td class="titulo_general">Nombre de la Obra</td>
+                        <td colspan="3">@Model.Nombreobra</td>
+                        <td class="titulo_general">Periodo Ejecución Contratado</td>
+                        <td>@(Model.recursos.Count()> 0 ?  Model.recursos.FirstOrDefault().Ejercicio : "")</td>
+                        <td class="titulo_general">Importe del Contrato Original</td>
+                        <td>@Model.recursos.Sum(a => a.ImporteContratado).ToString("c2")</td>
+
+                    </tr>
+                    <tr>
+                        <td class="titulo_general">Ubicación</td>
+                        <td>@Model.Coordenadas</td>
+                        <td class="titulo_general">Recurso</td>
+                        <td>@(Model.recursos.Count() > 0 ? string.Concat( Model.recursos.FirstOrDefault().Tiporecurso,"|", Model.recursos.FirstOrDefault().Recurso) : "" )</td>
+                        <td class="titulo_general">Periodo Ejecución Convenio</td>
+                        <td></td>
+                        <td class="titulo_general">Importe del Convenio</td>
+                        <td>@Model.recursos.Sum(a => a.ImporteModificado).ToString("c2")</td>
+                    </tr>
+
+                    <tr>
+                        <td class="titulo_general">Contratista</td>
+                        <td colspan="3">@Model.ContratistaNombre</td>
+
+                        <td class="titulo_general">Periodo Ejecución Real</td>
+                        <td></td>
+                        <td class="titulo_general">Importe Ejercido</td>
+                        <td> @Model.recursos.Sum(a => a.ImporteEjercido).ToString("c2")</td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+
+    <div class="col-sm-12">
+
+
+
+        <table id="dt-obras-finiquito_d" class="table table-bordered table-hover table-striped w-100">
+            <thead class="bg-warning-200">
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th colspan="3">Contrato</th>
+                    @for (int i = 0; i < cantidad; i++)
+                    {
+
+                        <th colspan="2">Estimación @(i+1)</th>
+                    }
+                    <th colspan="2">Adicionales</th>
+                    <th colspan="2">Deductivas</th>
+                    <th colspan="2">Ejecutado</th>
+                    <th colspan="2">Diferencia</th>
+                </tr>
+                <tr>
+
+                    <th rowspan="2">Clave</th>
+                    <th rowspan="2">Concepto</th>
+                    <th rowspan="2">Unidad</th>
+                    <th>Precio Unitario</th>
+
+                    <th>Cantidad</th>
+                    <th>Importe</th>
+                    @for (int ii = 0; ii < cantidad; ii++)
+                    {
+                        <th>Cantidad</th>
+                        <th>Importe</th>
+                    }
+
+
+                    <!-- Adicionales -->
+                    <th>Cantidad</th>
+                    <th>Importe</th>
+
+                    <!-- Deductivas -->
+                    <th>Cantidad</th>
+                    <th>Importe</th>
+
+                    <!-- Ejecutado -->
+                    <th>Cantidad</th>
+                    <th>Importe</th>
+
+                    <!-- Diferencias -->
+                    <th>Cantidad</th>
+                    <th>Importe</th>
+
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr>
+
+                    <td>@Model.recursos.FirstOrDefault().Tiporecurso</td>
+                    <td>@Model.recursos.FirstOrDefault().Recurso</td>
+                    <td>PZA</td>
+                    <td>@Model.recursos.Sum(a => a.ImporteContratado).ToString("c2")</td>
+
+                    <td>1</td>
+                    <td>@Model.recursos.Sum(a => a.ImporteContratado).ToString("c2")</td>
+
+
+
+
+
+                    @for (int i = 0; i < cantidad; i++)
+                    {
+
+                        <td>1</td>
+                        <td>@Model.estimaciones[i].MontoNetoPagar.ToString("c2")</td>
+                    }
+
+
+
+                    <!-- Adicionales -->
+                    <td>@cantidadAdicional</td>
+                    <td>@Model.conceptos.Where(a => a.Tipo == 1).Sum(a => a.Importe).ToString("c2")</td>
+
+                    <!-- Deductivas -->
+                    <td>@cantidadDeductiva</td>
+                    <td>@Model.conceptos.Where(a => a.Tipo == 2).Sum(a => a.Importe).ToString("c2")</td>
+
+                    <!-- Ejecutado -->
+                    <td>@Model.estimaciones.Count()</td>
+                    <td>@Model.estimaciones.Sum(a => a.MontoNetoPagar).ToString("c2")</td>
+
+                    <!-- Diferencias -->
+                    <td>@(cantidadContrato+cantidadAdicional-cantidadDeductiva- Model.estimaciones.Count())</td>
+                    <td>
+                        @(
+
+        (
+        Model.recursos.Sum(a => a.ImporteContratado) + @Model.conceptos.Where(a => a.Tipo == 1).Sum(a => a.Importe) - @Model.conceptos.Where(a => a.Tipo == 2).Sum(a => a.Importe) - Model.estimaciones.Sum(a => a.MontoNetoPagar)
+        ).ToString("c2")
+        )
+                    </td>
+                </tr>
+
+
+            </tbody>
+        </table>
+
+
+    </div>
+}

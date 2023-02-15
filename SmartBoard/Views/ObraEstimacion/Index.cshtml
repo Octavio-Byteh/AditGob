@@ -1,0 +1,156 @@
+﻿@model IEnumerable<SmartBoard.Data.Models.SmartBoard.TblObraEstimacion>
+
+@{
+    ViewData["PageName"] = "registro_obra";
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdFactura)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Numero)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumFactura)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaFactura)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaEstimacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MontoPagarSinIva)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AmortizadoSinIva)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Subtotal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SubtotalConIva)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CincoMillarSinIva)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MontoNetoPagar)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Retencion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Devolucion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AvenceFisicoProgramado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AvanceFisicoReal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AvanceFinancieron)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaPago)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pagado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Activo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Registro)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdTblobraNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdFactura)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Numero)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumFactura)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaFactura)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaEstimacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MontoPagarSinIva)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AmortizadoSinIva)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Subtotal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubtotalConIva)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CincoMillarSinIva)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MontoNetoPagar)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Retencion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Devolucion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AvenceFisicoProgramado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AvanceFisicoReal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AvanceFinancieron)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaPago)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pagado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Activo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Registro)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdTblobraNavigation.Id)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
