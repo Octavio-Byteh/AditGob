@@ -28,6 +28,11 @@ namespace SmartBoard.Data.Models.SmartBoard
         public string Titulo { get; set; }
         public string TituloShort { get; set; }
         public string Norma { get; set; }
+        public bool? ArchivoPermite { get; set; }
+        public bool ArchivoMultiple { get; set; }
+        public string ArchivoExtensions { get; set; }
+        public string HexColor { get; set; }
+        public int? Secuencia { get; set; }
 
         public virtual TblObra IdTblobraNavigation { get; set; }
         public virtual ICollection<TblObraDocProcHistorium> TblObraDocProcHistoria { get; set; }

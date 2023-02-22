@@ -67,13 +67,18 @@ namespace SmartBoard.Models
     {
         public int Id { get; set; }
         public int IdTblobra { get; set; }
+        public string Clave { get; set; }
+        public string Concepto { get; set; }
+        public string Unidad { get; set; }
+        public decimal PrecioUnitario { get; set; }
+
         public int Cantidad { get; set; }
         
         public decimal Importe { get; set; }
         public bool Activo { get; set; }
         public DateTime Fecha { get; set; }
         public string Observaciones { get; set; }
-        public int Tipo { get; set; }
+        public int Idtipoconcepto { get; set; }
 
     }
 

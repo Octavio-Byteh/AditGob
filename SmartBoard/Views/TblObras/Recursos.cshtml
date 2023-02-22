@@ -8,21 +8,22 @@
 }
 
 @{
-    if (Model.recursos != null)
-    {
-        if (Model.recursos.Count() > 0)
-        {
-            PermiteAgregar = false;
-        }
-        else
-        {
-            PermiteAgregar = true;
-        }
-    }
-    else
-    {
-        PermiteAgregar = true;
-    }
+    //if (Model.recursos != null)
+    //{
+    //    if (Model.recursos.Count() > 0)
+    //    {
+    //        PermiteAgregar = false;
+    //    }
+    //    else
+    //    {
+    //        PermiteAgregar = true;
+    //    }
+    //}
+    //else
+    //{
+    //    PermiteAgregar = true;
+    //}
+    PermiteAgregar = true;
 }
 
 @if (PermiteAgregar == true)

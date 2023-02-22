@@ -13,4 +13,14 @@ namespace SmartBoard.Models
         public string Descripcion { get; set; }
 
     }
+
+    public partial class DocumentoImagenesMetadata
+    {
+
+        public int IdDoc { get; set; }
+        public string filename { get; set; }
+        public string Pathimagen { get; set; }
+        public string Descripcion { get; set; }
+
+    }
 }

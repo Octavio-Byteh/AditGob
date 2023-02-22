@@ -59,6 +59,7 @@ namespace SmartBoard.Data.Models.SmartBoard
         public virtual DbSet<CatSubvertiente> CatSubvertientes { get; set; }
         public virtual DbSet<CatTipoAdjudicacion> CatTipoAdjudicacions { get; set; }
         public virtual DbSet<CatTipoCheckList> CatTipoCheckLists { get; set; }
+        public virtual DbSet<CatTipoConcepto> CatTipoConceptos { get; set; }
         public virtual DbSet<CatTipoDeContrato> CatTipoDeContratos { get; set; }
         public virtual DbSet<CatTipoRecurso> CatTipoRecursos { get; set; }
         public virtual DbSet<CatTipoprograma> CatTipoprogramas { get; set; }
@@ -67,7 +68,6 @@ namespace SmartBoard.Data.Models.SmartBoard
         public virtual DbSet<CatZona> CatZonas { get; set; }
         public virtual DbSet<Catprogsoc1> Catprogsocs1 { get; set; }
         public virtual DbSet<ExcelPoa> ExcelPoas { get; set; }
-        public virtual DbSet<StgCheckList> StgCheckLists { get; set; }
         public virtual DbSet<StgChecklistFull> StgChecklistFulls { get; set; }
         public virtual DbSet<StgProg> StgProgs { get; set; }
         public virtual DbSet<TblLocalidadinformacion> TblLocalidadinformacions { get; set; }
@@ -260,12 +260,29 @@ namespace SmartBoard.Data.Models.SmartBoard
 
                 entity.Property(e => e.Activo).HasColumnName("activo");
 
+                entity.Property(e => e.ArchivoExtensions)
+                    .HasMaxLength(250)
+                    .IsUnicode(false)
+                    .HasColumnName("archivo_extensions");
+
+                entity.Property(e => e.ArchivoMultiple).HasColumnName("archivo_multiple");
+
+                entity.Property(e => e.ArchivoPermite)
+                    .IsRequired()
+                    .HasColumnName("archivo_permite")
+                    .HasDefaultValueSql("((1))");
+
                 entity.Property(e => e.Categoria)
                     .HasMaxLength(255)
                     .IsUnicode(false)
                     .HasColumnName("categoria");
 
                 entity.Property(e => e.Estitilo).HasColumnName("estitilo");
+
+                entity.Property(e => e.HexColor)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("hex_color");
 
                 entity.Property(e => e.Idcategoriachecklist).HasColumnName("idcategoriachecklist");
 
@@ -1229,6 +1246,31 @@ namespace SmartBoard.Data.Models.SmartBoard
                     .HasColumnName("nombre");
             });
 
+            modelBuilder.Entity<CatTipoConcepto>(entity =>
+            {
+                entity.ToTable("cat_tipoConcepto");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Activo).HasColumnName("activo");
+
+                entity.Property(e => e.Descripcion)
+                    .HasMaxLength(250)
+                    .IsUnicode(false)
+                    .HasColumnName("descripcion");
+
+                entity.Property(e => e.EsPrincipal).HasColumnName("esPrincipal");
+
+                entity.Property(e => e.HexColor)
+                    .HasMaxLength(250)
+                    .IsUnicode(false)
+                    .HasColumnName("hex_color");
+
+                entity.Property(e => e.Nombre)
+                    .IsRequired()
+                    .HasColumnName("nombre");
+            });
+
             modelBuilder.Entity<CatTipoDeContrato>(entity =>
             {
                 entity.ToTable("cat_tipoDeContrato");
@@ -1475,19 +1517,6 @@ namespace SmartBoard.Data.Models.SmartBoard
                     .HasColumnName("2030");
             });
 
-            modelBuilder.Entity<StgCheckList>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToTable("stg_checkList");
-
-                entity.Property(e => e.Categoria).HasMaxLength(255);
-
-                entity.Property(e => e.Nombre).HasMaxLength(255);
-
-                entity.Property(e => e.Tipo).HasMaxLength(255);
-            });
-
             modelBuilder.Entity<StgChecklistFull>(entity =>
             {
                 entity.HasNoKey();
@@ -1600,6 +1629,30 @@ namespace SmartBoard.Data.Models.SmartBoard
                     .IsUnicode(false)
                     .HasColumnName("entidadEjecutora");
 
+                entity.Property(e => e.EoPrograFin)
+                    .HasColumnType("datetime")
+                    .HasColumnName("eo_progra_fin");
+
+                entity.Property(e => e.EoPrograInicio)
+                    .HasColumnType("datetime")
+                    .HasColumnName("eo_progra_inicio");
+
+                entity.Property(e => e.EoRealFin)
+                    .HasColumnType("datetime")
+                    .HasColumnName("eo_real_fin");
+
+                entity.Property(e => e.EoRealInicio)
+                    .HasColumnType("datetime")
+                    .HasColumnName("eo_real_inicio");
+
+                entity.Property(e => e.EoReprograFin)
+                    .HasColumnType("datetime")
+                    .HasColumnName("eo_reprogra_fin");
+
+                entity.Property(e => e.EoReprograInicio)
+                    .HasColumnType("datetime")
+                    .HasColumnName("eo_reprogra_inicio");
+
                 entity.Property(e => e.Expediente)
                     .HasMaxLength(250)
                     .IsUnicode(false)
@@ -1639,7 +1692,11 @@ namespace SmartBoard.Data.Models.SmartBoard
 
                 entity.Property(e => e.Idestadorevision).HasColumnName("idestadorevision");
 
+                entity.Property(e => e.Idestrategia).HasColumnName("idestrategia");
+
                 entity.Property(e => e.Idgradomarginal).HasColumnName("idgradomarginal");
+
+                entity.Property(e => e.Idlineaacion).HasColumnName("idlineaacion");
 
                 entity.Property(e => e.Idlocalidad).HasColumnName("idlocalidad");
 
@@ -1776,10 +1833,20 @@ namespace SmartBoard.Data.Models.SmartBoard
                     .HasForeignKey(d => d.Idestadorevision)
                     .HasConstraintName("FK_tbl_obra_cat_estadorevision");
 
+                entity.HasOne(d => d.IdestrategiaNavigation)
+                    .WithMany(p => p.TblObras)
+                    .HasForeignKey(d => d.Idestrategia)
+                    .HasConstraintName("FK_tbl_obra_cat_estrategia");
+
                 entity.HasOne(d => d.IdgradomarginalNavigation)
                     .WithMany(p => p.TblObras)
                     .HasForeignKey(d => d.Idgradomarginal)
                     .HasConstraintName("FK_tbl_obra_cat_gradomarginal");
+
+                entity.HasOne(d => d.IdlineaacionNavigation)
+                    .WithMany(p => p.TblObras)
+                    .HasForeignKey(d => d.Idlineaacion)
+                    .HasConstraintName("FK_tbl_obra_cat_lineaaccion");
 
                 entity.HasOne(d => d.IdlocalidadNavigation)
                     .WithMany(p => p.TblObras)
@@ -1930,6 +1997,16 @@ namespace SmartBoard.Data.Models.SmartBoard
                     .HasColumnType("money")
                     .HasColumnName("monto_pagar_sin_iva");
 
+                entity.Property(e => e.NombreArchivoEvidencia)
+                    .HasMaxLength(250)
+                    .IsUnicode(false)
+                    .HasColumnName("nombreArchivoEvidencia");
+
+                entity.Property(e => e.NombreArchivoFactura)
+                    .HasMaxLength(250)
+                    .IsUnicode(false)
+                    .HasColumnName("nombreArchivoFactura");
+
                 entity.Property(e => e.NumFactura)
                     .IsRequired()
                     .HasMaxLength(250)
@@ -1953,6 +2030,16 @@ namespace SmartBoard.Data.Models.SmartBoard
                 entity.Property(e => e.Retencion)
                     .HasColumnType("money")
                     .HasColumnName("retencion");
+
+                entity.Property(e => e.RutaArchivoEvidencia)
+                    .HasMaxLength(250)
+                    .IsUnicode(false)
+                    .HasColumnName("rutaArchivoEvidencia");
+
+                entity.Property(e => e.RutaArchivoFactura)
+                    .HasMaxLength(250)
+                    .IsUnicode(false)
+                    .HasColumnName("rutaArchivoFactura");
 
                 entity.Property(e => e.Subtotal)
                     .HasColumnType("money")
@@ -2091,11 +2178,28 @@ namespace SmartBoard.Data.Models.SmartBoard
 
                 entity.Property(e => e.Administracion).HasColumnName("administracion");
 
+                entity.Property(e => e.ArchivoExtensions)
+                    .HasMaxLength(250)
+                    .IsUnicode(false)
+                    .HasColumnName("archivo_extensions");
+
+                entity.Property(e => e.ArchivoMultiple).HasColumnName("archivo_multiple");
+
+                entity.Property(e => e.ArchivoPermite)
+                    .IsRequired()
+                    .HasColumnName("archivo_permite")
+                    .HasDefaultValueSql("((1))");
+
                 entity.Property(e => e.Estitulo).HasColumnName("estitulo");
 
                 entity.Property(e => e.Fecharegistro)
                     .HasColumnType("datetime")
                     .HasColumnName("fecharegistro");
+
+                entity.Property(e => e.HexColor)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("hex_color");
 
                 entity.Property(e => e.IdTblobra).HasColumnName("id_tblobra");
 
@@ -2124,6 +2228,8 @@ namespace SmartBoard.Data.Models.SmartBoard
 
                 entity.Property(e => e.PaginaInicio).HasColumnName("paginaInicio");
 
+                entity.Property(e => e.Secuencia).HasColumnName("secuencia");
+
                 entity.Property(e => e.Titulo)
                     .HasMaxLength(255)
                     .IsUnicode(false)
@@ -2151,11 +2257,29 @@ namespace SmartBoard.Data.Models.SmartBoard
 
                 entity.Property(e => e.Cantidad).HasColumnName("cantidad");
 
+                entity.Property(e => e.Clave)
+                    .IsRequired()
+                    .HasMaxLength(250)
+                    .IsUnicode(false)
+                    .HasColumnName("clave")
+                    .HasDefaultValueSql("('')");
+
+                entity.Property(e => e.Concepto)
+                    .IsRequired()
+                    .HasMaxLength(250)
+                    .IsUnicode(false)
+                    .HasColumnName("concepto")
+                    .HasDefaultValueSql("('')");
+
                 entity.Property(e => e.Fecha)
                     .HasColumnType("datetime")
                     .HasColumnName("fecha");
 
                 entity.Property(e => e.IdTblobra).HasColumnName("id_tblobra");
+
+                entity.Property(e => e.Idtipoconcepto)
+                    .HasColumnName("idtipoconcepto")
+                    .HasComment("Tipo  -  1 Adiciones, Tipo 2 - Decutivas");
 
                 entity.Property(e => e.Importe)
                     .HasColumnType("money")
@@ -2166,15 +2290,28 @@ namespace SmartBoard.Data.Models.SmartBoard
                     .IsUnicode(false)
                     .HasColumnName("observaciones");
 
-                entity.Property(e => e.Tipo)
-                    .HasColumnName("tipo")
-                    .HasComment("Tipo  -  1 Adiciones, Tipo 2 - Decutivas");
+                entity.Property(e => e.PrecioUnitario)
+                    .HasColumnType("money")
+                    .HasColumnName("precio_unitario");
+
+                entity.Property(e => e.Unidad)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("unidad")
+                    .HasDefaultValueSql("('')");
 
                 entity.HasOne(d => d.IdTblobraNavigation)
                     .WithMany(p => p.TblObraconceptos)
                     .HasForeignKey(d => d.IdTblobra)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_tbl_obraconcepto_tbl_obra");
+
+                entity.HasOne(d => d.IdtipoconceptoNavigation)
+                    .WithMany(p => p.TblObraconceptos)
+                    .HasForeignKey(d => d.Idtipoconcepto)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_tbl_obraconcepto_cat_tipoConcepto");
             });
 
             modelBuilder.Entity<TblObradocumentoproceso>(entity =>
@@ -2186,6 +2323,18 @@ namespace SmartBoard.Data.Models.SmartBoard
                 entity.Property(e => e.Activo).HasColumnName("activo");
 
                 entity.Property(e => e.Aprobado).HasColumnName("aprobado");
+
+                entity.Property(e => e.ArchivoExtensions)
+                    .HasMaxLength(250)
+                    .IsUnicode(false)
+                    .HasColumnName("archivo_extensions");
+
+                entity.Property(e => e.ArchivoMultiple).HasColumnName("archivo_multiple");
+
+                entity.Property(e => e.ArchivoPermite)
+                    .IsRequired()
+                    .HasColumnName("archivo_permite")
+                    .HasDefaultValueSql("((1))");
 
                 entity.Property(e => e.Categoria)
                     .IsRequired()
@@ -2203,6 +2352,11 @@ namespace SmartBoard.Data.Models.SmartBoard
                 entity.Property(e => e.Fecharegistro)
                     .HasColumnType("datetime")
                     .HasColumnName("fecharegistro");
+
+                entity.Property(e => e.HexColor)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("hex_color");
 
                 entity.Property(e => e.IdTblobra).HasColumnName("id_tblobra");
 
@@ -2235,6 +2389,8 @@ namespace SmartBoard.Data.Models.SmartBoard
                     .IsRequired()
                     .IsUnicode(false)
                     .HasColumnName("rutaarchivo");
+
+                entity.Property(e => e.Secuencia).HasColumnName("secuencia");
 
                 entity.Property(e => e.Titulo)
                     .HasMaxLength(255)

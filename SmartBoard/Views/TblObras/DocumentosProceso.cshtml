@@ -9,6 +9,8 @@
     string showBotton = "mostrardescarga";
     string showCarga = "documentoDeshabilitado";
 
+    
+
 }
 
 <div class="col-sm-12">
@@ -94,12 +96,11 @@
                                                 <div class="divcontenedor">
                                                     <input type="hidden" asp-for="@doc.idObra" />
                                                     <input type="hidden" asp-for="@doc.id" />
-
-                                                    @(contador + 1)
+                                                    @doc.Secuencia                                                    
                                                 </div>
                                             </td>
 
-                                            <td>
+                                            <td style="background-color: @doc.HexColor">
                                                 <div class="divcontenedor">
                                                     <input type="hidden" asp-for="@doc.documento" />
                                                     @doc.documento
@@ -107,14 +108,14 @@
                                             </td>
                                             <td>
                                                 <div style="display: inline-flex;">
-
+                                                   
                                                     @if (doc.activo)
                                                     {
 
 
                                                         <form name="form_@doc.id" method="post" enctype="multipart/form-data" action="TblObras/UploadFiles">
-                                                            <input type="hidden" id="IdDocObra" name="IdDocObra" value="@doc.idObra" />
-                                                            <input type="hidden" id="IdDoc" name="IdDoc" value="@doc.id" />
+                                                            <input type="hidden" id="IdDocObra_@doc.id" name="IdDocObra" value="@doc.idObra" />
+                                                            <input type="hidden" id="IdDoc_@doc.id" name="IdDoc" value="@doc.id" />
 
                                                             <div class="fileUpload btn btn-outline-default">
                                                                 <input type="file" id="files_@doc.id" name="files_@doc.id" class="upload" onchange="SubirArchivo(@doc.id,@Model.Id,@Model.Id)" />
@@ -123,13 +124,17 @@
                                                         </form>
                                                     }
 
+                                                    <div class="divdocumento" myid="@doc.id" id="divdocumento_@doc.id">
+                                                         
+                                                     </div>
+                                                     @*
                                                     <a asp-controller="TblObras"
                                                        asp-action="DownloadFile"
                                                        asp-route-IdDocObra="@Model.Id"
                                                        asp-route-IdDoc="@doc.id"
                                                        asp-route-idObra="@Model.Id"
                                                        asp-route-fileName="@doc.nombrearchivo" class="btn btn-outline-default @showBotton" target="_blank" id="descarga_id_@doc.id">
-                                                        <span class="fa-2x d-inline l-h-n color-fusion-400"> <i class="fal fa-download" style="color:white;"></i></span> <span></span>
+                                                        <span class="fa-2x d-inline l-h-n color-fusion-400"> <i class="fal fa-download" style="color:white;"></i></span> <span>  </span>
 
                                                     </a>
 
@@ -148,7 +153,7 @@
                                                         <span class="fa-2x d-inline l-h-n color-fusion-400"> <i class="fal fa-file-search" style="color:white;"></i></span> <span></span>
 
                                                     </a>
-
+*@
                                                 </div>
                                             </td>
                                             <td>

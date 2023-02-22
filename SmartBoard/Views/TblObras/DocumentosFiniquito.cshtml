@@ -40,9 +40,32 @@ else
     int cantidad = Model.estimaciones.Count();
     int cantidadContrato = 1;
 
-    int cantidadAdicional = Model.conceptos.Where(a => a.Tipo == 1).Sum(a => a.Importe) > 0 ? 1 : 0;
-    int cantidadDeductiva = Model.conceptos.Where(a => a.Tipo == 2).Sum(a => a.Importe) > 0 ? 1 : 0;
+    int cantidadAdicional = Model.conceptos.Where(a => a.Idtipoconcepto == 1).Sum(a => a.Importe) > 0 ? 1 : 0;
+    int cantidadDeductiva = Model.conceptos.Where(a => a.Idtipoconcepto == 2).Sum(a => a.Importe) > 0 ? 1 : 0;
 
+    <div class="row">
+
+        <div class="form-group">
+           
+                <a class="btn btn-danger" href="ObraConcepto/Create?IdTblobra=@Model.Id&tipo=1" title="Conceptos" data-filter-tags="ObraConcepto">
+                    <label>
+                        Agregar Adicionales
+                    </label>
+                </a>
+           
+                <a class="btn btn-danger" href="ObraConcepto/Create?IdTblobra=@Model.Id&tipo=2" title="Conceptos" data-filter-tags="ObraConcepto">
+                    <label>
+                        Agregar Deductivas
+                    </label>
+                </a>
+            <a class="btn btn-danger" href="ObraConcepto/Create?IdTblobra=@Model.Id&tipo=3" title="Conceptos" data-filter-tags="ObraConcepto">
+                <label>
+                    Agregar Convenio Modificatorio
+                </label>
+            </a>
+
+        </div>
+    </div>
 
     <div class="row">
         <div class="col-md-12">
@@ -155,9 +178,23 @@ else
             </thead>
             <tbody>
 
-                <tr>
+                @foreach (var cata in Model.conceptos.Where(a => a.Idtipoconcepto == 4))
+                {
+                    <tr>
+                        <td> @cata.Clave</td>
+                        <td> @cata.Concepto</td>
+                        <td> @cata.Unidad</td>
+                        <td> @cata.PrecioUnitario</td>
+                        <td> @cata.Cantidad</td>
+                        <td> @cata.Importe</td>
+                    </tr>
+                }
 
-                    <td>@Model.recursos.FirstOrDefault().Tiporecurso</td>
+                <tr>
+                    <td colspan="6">
+
+                    </td>
+                   @* <td>@Model.recursos.FirstOrDefault().Tiporecurso</td>
                     <td>@Model.recursos.FirstOrDefault().Recurso</td>
                     <td>PZA</td>
                     <td>@Model.recursos.Sum(a => a.ImporteContratado).ToString("c2")</td>
@@ -165,7 +202,7 @@ else
                     <td>1</td>
                     <td>@Model.recursos.Sum(a => a.ImporteContratado).ToString("c2")</td>
 
-
+*@
 
 
 
@@ -180,11 +217,11 @@ else
 
                     <!-- Adicionales -->
                     <td>@cantidadAdicional</td>
-                    <td>@Model.conceptos.Where(a => a.Tipo == 1).Sum(a => a.Importe).ToString("c2")</td>
+                    <td>@Model.conceptos.Where(a => a.Idtipoconcepto == 1).Sum(a => a.Importe).ToString("c2")</td>
 
                     <!-- Deductivas -->
                     <td>@cantidadDeductiva</td>
-                    <td>@Model.conceptos.Where(a => a.Tipo == 2).Sum(a => a.Importe).ToString("c2")</td>
+                    <td>@Model.conceptos.Where(a => a.Idtipoconcepto == 2).Sum(a => a.Importe).ToString("c2")</td>
 
                     <!-- Ejecutado -->
                     <td>@Model.estimaciones.Count()</td>
@@ -196,7 +233,7 @@ else
                         @(
 
         (
-        Model.recursos.Sum(a => a.ImporteContratado) + @Model.conceptos.Where(a => a.Tipo == 1).Sum(a => a.Importe) - @Model.conceptos.Where(a => a.Tipo == 2).Sum(a => a.Importe) - Model.estimaciones.Sum(a => a.MontoNetoPagar)
+        Model.recursos.Sum(a => a.ImporteContratado) + @Model.conceptos.Where(a => a.Idtipoconcepto == 1).Sum(a => a.Importe) - @Model.conceptos.Where(a => a.Idtipoconcepto == 2).Sum(a => a.Importe) - Model.estimaciones.Sum(a => a.MontoNetoPagar)
         ).ToString("c2")
         )
                     </td>
