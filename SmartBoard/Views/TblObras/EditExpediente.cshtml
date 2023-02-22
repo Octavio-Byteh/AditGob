@@ -1,7 +1,7 @@
 ﻿@model SmartBoard.Models.ExpedienteViewModalDetalle
 
 @{
-    ViewData["Title"] = "Editar de Expedientes";
+    ViewData["Title"] = "Editar Expediente";
     //ViewData["PageName"] = "intel_records_dashboard";
     ViewData["PageName"] = "registro_obra";
     ViewData["Category1"] = "Expedientes";
@@ -239,6 +239,86 @@
 
                                         </div>
                                         <div class="form-row form-group">
+                                             <div class="col-md-2 mb-2">
+                                                <span class="fa-2x d-inline l-h-n">
+
+                                                </span>
+                                                <label asp-for="EoPrograInicio" class="control-label"></label>
+                                                <input asp-for="EoPrograInicio" class="form-control clsObra" />
+                                                  <label asp-for="EoPrograFin" class="control-label"></label>
+                                                <input asp-for="EoPrograFin" class="form-control clsObra"  />
+                                            </div>
+                                             <div class="col-md-2 mb-2">
+                                                <span class="fa-2x d-inline l-h-n">
+
+                                                </span>
+                                                <label asp-for="EoReprograInicio" class="control-label"></label>
+                                                <input asp-for="EoReprograInicio" class="form-control clsObra" />
+                                                  <label asp-for="EoReprograFin" class="control-label"></label>
+                                                <input asp-for="EoReprograFin" class="form-control clsObra"  />
+                                            </div>
+                                             <div class="col-md-2 mb-2">
+                                                <span class="fa-2x d-inline l-h-n">
+
+                                                </span>
+                                                <label asp-for="EoRealInicio" class="control-label"></label>
+                                                <input asp-for="EoRealInicio" class="form-control clsObra" />
+                                                  <label asp-for="EoRealFin" class="control-label"></label>
+                                                <input asp-for="EoRealFin" class="form-control clsObra"  />
+                                            </div>
+
+                                              <div class="col-md-2 mb-2">
+                                                <span class="fa-2x d-inline l-h-n">
+
+                                                </span>
+                                                <label asp-for="Ideje" class="control-label"></label>
+                                                <select asp-for="Ideje" class="custom-select clsObra select2" required asp-items="ViewBag.Ideje" aria-label="Select eje"> Selecciona Eje</select>
+                                            </div>
+
+                                            <div class="col-md-2 mb-2">
+                                                <span class="fa-2x d-inline l-h-n">
+
+                                                </span>
+                                                <label asp-for="Idestrategia" class="control-label"></label>
+                                                <select asp-for="Idestrategia" class="custom-select clsObra select2" required asp-items="ViewBag.Idestrategia" aria-label="Select eje"> Selecciona Estrategia</select>
+                                            </div>
+
+                                            <div class="col-md-2 mb-2">
+                                                <span class="fa-2x d-inline l-h-n">
+
+                                                </span>
+                                                <label asp-for="Idlineaaccion" class="control-label"></label>
+                                                <select asp-for="Idlineaaccion" class="custom-select clsObra select2" required asp-items="ViewBag.Idlineaaccion" aria-label="Select eje"> Selecciona Linea de Accion</select>
+                                            </div>
+
+</div>
+                                      @*  <div class="form-row form-group">
+                                            <div class="col-md-2 mb-2">
+                                                <span class="fa-2x d-inline l-h-n">
+
+                                                </span>
+                                                <label asp-for="Ideje" class="control-label"></label>
+                                                <select asp-for="Ideje" class="custom-select clsObra select2" required asp-items="ViewBag.Ideje" aria-label="Select eje"> Selecciona Eje</select>
+                                            </div>
+
+                                            <div class="col-md-2 mb-2">
+                                                <span class="fa-2x d-inline l-h-n">
+
+                                                </span>
+                                                <label asp-for="Idestrategia" class="control-label"></label>
+                                                <select asp-for="Idestrategia" class="custom-select clsObra select2" required asp-items="ViewBag.Idestrategia" aria-label="Select eje"> Selecciona Estrategia</select>
+                                            </div>
+
+                                            <div class="col-md-2 mb-2">
+                                                <span class="fa-2x d-inline l-h-n">
+
+                                                </span>
+                                                <label asp-for="Idlineaaccion" class="control-label"></label>
+                                                <select asp-for="Idlineaaccion" class="custom-select clsObra select2" required asp-items="ViewBag.Idlineaaccion" aria-label="Select eje"> Selecciona Linea de Accion</select>
+                                            </div>
+                                        </div>*@
+
+                                        <div class="form-row form-group">
 
                                             <div class="col-md-2 mb-2">
                                                 <span class="fa-2x d-inline l-h-n">
@@ -287,7 +367,7 @@
                                                 <input asp-for="Coordenaday" class="form-control clsObra" required hidden />
 
                                             </div>
-                                            <div class="col-md-2 mb-3">
+                                            <div class="col-md-2 mb-2">
                                                 <span class="fa-2x d-inline l-h-n">
                                                 </span>
 
@@ -371,7 +451,7 @@
                                                 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#js_change_pill_justified-2">CheckList</a></li>
                                                 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#js_change_pill_justified-3">Documentos por Proceso</a></li>
                                                 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#js_change_pill_justified-4">Estimaciones/Facturas/Pagos</a></li>
-                                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#js_change_pill_justified-5">Adicionales/Deductivas</a></li>
+                                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#js_change_pill_justified-5">Catalogos</a></li>
                                                 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#js_change_pill_justified-6">Finiquito</a></li>
                                             </ul>
 
@@ -398,7 +478,7 @@
                                                 </div>
 
                                                 <div class="tab-pane fade" id="js_change_pill_justified-5" role="tabpanel">
-                                                    <partial name="~/Views/TblObras/DocumentosConceptos.cshtml" />
+                                                    <partial name="~/Views/TblObras/DocumentosCatalogos.cshtml" />
                                                 </div>
                                                 <div class="tab-pane fade" id="js_change_pill_justified-6" role="tabpanel">
                                                     <partial name="~/Views/TblObras/DocumentosFiniquito.cshtml" />
@@ -612,6 +692,107 @@
             });
         }
 
+
+        
+            function BorrarArchivoName(id,file) {
+
+
+
+
+            $.ajax({
+                url: '@Url.Action("BorrarArchivoName", "TblObras")?id='+id+'&file='+file, //URL to upload files
+                type: "POST", //as we will be posting files and other method POST is used
+                processData: false, //remember to set processData and ContentType to false, otherwise you may get an error
+                contentType: false,
+                success: function (result) {
+                    if (result == '1') {
+                        alert("Archivo borrado correctamente");
+                        $("#descarga_id_" + id).removeClass("mostrardescarga");
+                        $("#descarga_id_" + id).addClass("ocultardescarga");
+
+                        $("#borrar_id_" + id).removeClass("mostrardescarga");
+                        $("#borrar_id_" + id).addClass("ocultardescarga");
+
+
+                        $("#mostrar_id_" + id).removeClass("mostrardescarga");
+                        $("#mostrar_id_" + id).addClass("ocultardescarga");
+
+                        $("#aprobado_id_" + id).removeClass("mostrardescarga");
+                        $("#aprobado_id_" + id).addClass("ocultardescarga");
+
+                        $("#cambio_id_" + id).removeClass("mostrardescarga");
+                        $("#cambio_id_" + id).addClass("ocultardescarga");
+
+                        $("#bandera_id_" + id).removeClass("dot_yellow");
+                        $("#bandera_id_" + id).addClass("dot_red");
+
+                            $('#divdocumento_' + id).load('@Url.Action("getArchivos", "TblObras")?iddoc='+id);
+                        //location.reload(false)
+                    } else {
+                        alert('No se pudo borrar el documento ...');
+                    }
+                    /*alert(result);*/
+                },
+                error: function (err) {
+                    alert(err.statusText);
+                }
+            });
+        }
+
+
+         function BorrarArchivoEVFactura(id,file) {
+
+            $.ajax({
+                url: '@Url.Action("BorrarArchivoFactura", "TblObras")?id='+id+'&file='+file, //URL to upload files
+                type: "POST", //as we will be posting files and other method POST is used
+                processData: false, //remember to set processData and ContentType to false, otherwise you may get an error
+                contentType: false,
+                success: function (result) {
+                    if (result == '1') {
+                        alert("Archivo borrado correctamente");
+                        
+
+                            $('#divEVFactura_' + id).load('@Url.Action("getArchivosEVFactura", "TblObras")?iddoc='+id);          
+                        //location.reload(false)
+                    } else {
+                        alert('No se pudo borrar el documento ...');
+                    }
+                    /*alert(result);*/
+                },
+                error: function (err) {
+                    alert(err.statusText);
+                }
+            });
+        }
+
+         function BorrarArchivoEvidencia(id,file) {
+
+            $.ajax({
+                url: '@Url.Action("BorrarArchivoEvidencia", "TblObras")?id='+id+'&file='+file, //URL to upload files
+                type: "POST", //as we will be posting files and other method POST is used
+                processData: false, //remember to set processData and ContentType to false, otherwise you may get an error
+                contentType: false,
+                success: function (result) {
+                    if (result == '1') {
+                        alert("Archivo borrado correctamente");
+                        
+
+                            
+                        $('#divEVEvidencia_' + id).load('@Url.Action("getArchivosEvidencia", "TblObras")?iddoc=' + id);
+                        //location.reload(false)
+                    } else {
+                        alert('No se pudo borrar el documento ...');
+                    }
+                    /*alert(result);*/
+                },
+                error: function (err) {
+                    alert(err.statusText);
+                }
+            });
+        }
+
+
+
         function SubirArchivo(id, noObra, idObra) {
 
             var fileUpload = $("#files_"+id).get(0);
@@ -627,7 +808,7 @@
             fileData.append('IdDoc', id);
 
 
-
+            
 
             $.ajax({
                 url: '@Url.Action("UploadFiles", "TblObras")?id='+id, //URL to upload files
@@ -656,6 +837,95 @@
 
                         $("#bandera_id_" + id).removeClass("dot_red");
                         $("#bandera_id_" + id).addClass("dot_yellow");
+
+                        $('#divdocumento_' + id).load('@Url.Action("getArchivos", "TblObras")?iddoc='+id);          
+
+                        //location.reload(false)
+                    } else {
+                        alert('No se pudo cargar el documento ...');
+                    }
+                    /*alert(result);*/
+                },
+                error: function (err) {
+                    alert(err.statusText);
+                }
+            });
+        }
+
+
+        
+        function SubirArchivoEFactura(id, noObra, idObra) {
+
+            var fileUpload = $("#files_"+id).get(0);
+            var files = fileUpload.files;
+            var fileData = new FormData();
+
+            // if there are multiple files , loop through each files
+            for (var i = 0; i < files.length; i++) {
+                fileData.append(files[i].name, files[i]);
+            }
+            fileData.append('IdDocObra', noObra);
+            fileData.append('IdObra', idObra);
+            fileData.append('IdDoc', id);
+
+
+            
+
+            $.ajax({
+                url: '@Url.Action("UploadFilesEVFactura", "TblObras")?id='+id, //URL to upload files
+                type: "POST", //as we will be posting files and other method POST is used
+                processData: false, //remember to set processData and ContentType to false, otherwise you may get an error
+                contentType: false,
+                data: fileData,
+                success: function (result) {
+                    if (result == '1') {
+                        alert("Archivo cargado correctamente");
+                       
+
+                        $('#divEVFactura_' + id).load('@Url.Action("getArchivosEVFactura", "TblObras")?iddoc='+id);          
+
+                        //location.reload(false)
+                    } else {
+                        alert('No se pudo cargar el documento ...');
+                    }
+                    /*alert(result);*/
+                },
+                error: function (err) {
+                    alert(err.statusText);
+                }
+            });
+        }
+
+
+          function SubirArchivoEvidencia(id, noObra, idObra) {
+
+            var fileUpload = $("#files_"+id).get(0);
+            var files = fileUpload.files;
+            var fileData = new FormData();
+
+            // if there are multiple files , loop through each files
+            for (var i = 0; i < files.length; i++) {
+                fileData.append(files[i].name, files[i]);
+            }
+            fileData.append('IdDocObra', noObra);
+            fileData.append('IdObra', idObra);
+            fileData.append('IdDoc', id);
+
+
+            
+
+            $.ajax({
+                url: '@Url.Action("UploadFilesEvidencia", "TblObras")?id=' + id, //URL to upload files
+                type: "POST", //as we will be posting files and other method POST is used
+                processData: false, //remember to set processData and ContentType to false, otherwise you may get an error
+                contentType: false,
+                data: fileData,
+                success: function (result) {
+                    if (result == '1') {
+                        alert("Archivo cargado correctamente");
+                       
+
+                        $('#divEVEvidencia_' + id).load('@Url.Action("getArchivosEvidencia", "TblObras")?iddoc='+id);          
 
                         //location.reload(false)
                     } else {
@@ -708,8 +978,31 @@
     <script>
         $(function () {
 
+        $('.divdocumento').each(function(){
+            var currentElement = $(this).attr('myid');
+            var valueid = currentElement;
+                $('#divdocumento_' + valueid).load('@Url.Action("getArchivos", "TblObras")?iddoc='+valueid);          
+            
+        });
 
-
+            $('.divEVFactura').each(function () {
+            var currentElement = $(this).attr('myid');
+            var valueid = currentElement;
+                $('#divEVFactura_' + valueid).load('@Url.Action("getArchivosEVFactura", "TblObras")?iddoc='+valueid); 
+                         
+            
+        });
+                
+        
+            $('.divEVEvidencia').each(function () {
+            var currentElement = $(this).attr('myid');
+            var valueid = currentElement;
+                
+                $('#divEVEvidencia_' + valueid).load('@Url.Action("getArchivosEvidencia", "TblObras")?iddoc='+valueid);    
+                         
+            
+        });
+                
 
 
              @*var urlVertiente = '@Url.Action("FetchVertientes", "TblObras")';
@@ -784,6 +1077,7 @@
 
 
 
+
             $("#Idregion").change(function () {
                 var idregion = $("#Idregion option:selected").val();
                 var url = '@Url.Action("FetchMunucipios", "TblObras")?idregion=' + idregion;
@@ -800,8 +1094,49 @@
 
             });
 
+            
+                                    
+
+        @if(Model.Idestrategia == null) {
+          <text>
+                               var urlEstrategia = '@Url.Action("FetchEstrategia", "TblObras")?ideje=' + 0;
+                fillDDL(urlEstrategia, "Idestrategia", "--- Selecciona Estrategia ---");
 
 
+                </text>
+        }
+
+
+        @if (Model.Idlineaaccion == null)
+        {
+          <text>
+                 var urlIdlineaaccion = '@Url.Action("FetchLineaAccion", "TblObras")?idestrategia=' + 0;
+                fillDDL(urlIdlineaaccion, "Idlineaaccion", "--- Selecciona Linea de Accion ---");
+
+
+                </text>
+        }
+                 
+
+                
+                     
+
+                 $("#Ideje").change(function () {
+                var Ideje = $("#Ideje option:selected").val();
+
+                       var urlEstrategia = '@Url.Action("FetchEstrategia", "TblObras")?ideje=' + Ideje;
+                fillDDL(urlEstrategia, "Idestrategia", "--- Selecciona Estrategia ---");
+                $("#Idestrategia").change();
+
+            });
+
+            
+                 $("#Idestrategia").change(function () {
+                var Idestrategia = $("#Idestrategia option:selected").val();
+                            var urlIdlineaaccion = '@Url.Action("FetchLineaAccion", "TblObras")?idestrategia=' + Idestrategia;
+                fillDDL(urlIdlineaaccion, "Idlineaaccion", "--- Selecciona Linea de Accion ---");
+
+            });
 
 
             $("input[type=checkbox]").click(function () {

@@ -17,6 +17,10 @@ namespace SmartBoard.Data.Models.SmartBoard
         public string Nota { get; set; }
         public string Categoria { get; set; }
         public int? Numero { get; set; }
+        public bool? ArchivoPermite { get; set; }
+        public bool ArchivoMultiple { get; set; }
+        public string ArchivoExtensions { get; set; }
+        public string HexColor { get; set; }
 
         public virtual CatCategoriaCheckList IdcategoriachecklistNavigation { get; set; }
         public virtual CatTipoCheckList IdtipochecklistNavigation { get; set; }

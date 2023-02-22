@@ -1,0 +1,46 @@
+﻿@model IEnumerable<SmartBoard.Models.ObraChkDocumento>
+@{
+    Layout = null;
+}
+
+
+@foreach (var item in Model)
+{
+    if (!string.IsNullOrEmpty(item.filename))
+    {
+
+
+        <div style="display:block; border-block: solid 1px white; background-color:gainsboro">
+            @item.filename
+            <br>
+
+            <a asp-controller="TblObras"
+       asp-action="DownloadFile"
+       asp-route-IdDocObra="@item.idObra"
+       asp-route-IdDoc="@item.id"
+       asp-route-idObra="@item.idObra"
+       asp-route-fileName="@item.filename" class="btn btn-outline-default display: initial;" target="_blank" id="descarga_id_@item.id">
+                <span class="fa-2x d-inline l-h-n color-fusion-400"> <i class="fal fa-download" style="color:white;"></i></span> <span>  </span>
+
+            </a>
+
+            <div class="fileUpload btn btn-outline-default  display: initial;" id="borrar_id_@item.id" onclick="BorrarArchivoName(@item.id,'@item.filename')">
+                <span class="fa-2x d-inline l-h-n color-fusion-400"> <i class="fal fa-trash-alt" style="color:white;"></i></span> <span></span>
+            </div>
+
+
+
+            <a asp-controller="TblObras"
+       asp-action="MostrarFile"
+       asp-route-IdDocObra="@item.idObra"
+       asp-route-IdDoc="@item.id"
+       asp-route-idObra="@item.idObra"
+       asp-route-fileName="@item.filename" class="btn btn-outline-default display: initial;" target="_blank" id="mostrar_id_@item.id">
+                <span class="fa-2x d-inline l-h-n color-fusion-400"> <i class="fal fa-file-search" style="color:white;"></i></span> <span></span>
+
+            </a>
+
+        </div>
+
+    }
+}

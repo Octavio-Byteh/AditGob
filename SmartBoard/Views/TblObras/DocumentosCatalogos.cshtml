@@ -1,0 +1,58 @@
+﻿@model SmartBoard.Models.ExpedienteViewModalDetalle
+@{
+    Layout = null;
+   
+}
+<div class="row">
+    <div class="form-group">       
+            <a class="btn btn-danger" href="ObraConcepto/Create?IdTblobra=@Model.Id&tipo=4" title="Conceptos" data-filter-tags="ObraConcepto">
+                <label>
+                    Agregar Catálogo
+                </label>
+            </a>        
+    </div>
+</div>
+
+<div class="col-sm-12">
+
+
+    <table id="dt-obras-documentos3" class="table table-bordered table-hover table-striped w-100">
+        <thead class="bg-warning-200">
+            <tr>
+                <th>Clave</th>
+                <th>Concepto</th>
+                <th>Unidad</th>
+                <th>Precio Unitario</th>
+                <th>Cantidad</th>
+                <th>Importe</th>
+
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.conceptos.Where(a => a.Idtipoconcepto == 4))
+            {
+                <tr>
+
+                    <td>@Html.DisplayFor(modelItem => item.Clave)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Concepto)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Unidad)</td>
+                    <td>@Html.DisplayFor(modelItem => item.PrecioUnitario)</td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cantidad)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Importe)
+                    </td>
+
+
+
+                </tr>
+            }
+
+
+        </tbody>
+    </table>
+
+
+</div>

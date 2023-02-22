@@ -1,40 +1,41 @@
 ﻿@model SmartBoard.Models.ExpedienteViewModalDetalle
 @{
     Layout = null;
-    bool agregaAdicional = true;
-    bool agregaDeductiva = true;
-    if (Model.conceptos != null)
-    {
-        if(Model.conceptos.Where(a=>a.Tipo == 1).Count() > 0)
-        {
-            agregaAdicional = false;
-        }
-        if (Model.conceptos.Where(a => a.Tipo == 2).Count() > 0)
-        {
-            agregaDeductiva = false;
-        }
-    }
+    //bool agregaAdicional = true;
+    //bool agregaDeductiva = true;
+    //if (Model.conceptos != null)
+    //{
+    //    if (Model.conceptos.Where(a => a.Idtipoconcepto == 1).Count() > 0)
+    //    {
+    //        agregaAdicional = false;
+    //    }
+    //    if (Model.conceptos.Where(a => a.Idtipoconcepto == 2).Count() > 0)
+    //    {
+    //        agregaDeductiva = false;
+    //    }
+    //}
 }
 <div class="row">
 
     <div class="form-group">
-        @if (agregaAdicional)
-        {
+      
             <a class="btn btn-danger" href="ObraConcepto/Create?IdTblobra=@Model.Id&tipo=1" title="Conceptos" data-filter-tags="ObraConcepto">
                 <label>
                     Agregar Adicionales
                 </label>
             </a>
-        }
-
-        @if (agregaDeductiva)
-        {
+      
             <a class="btn btn-danger" href="ObraConcepto/Create?IdTblobra=@Model.Id&tipo=2" title="Conceptos" data-filter-tags="ObraConcepto">
                 <label>
                     Agregar Deductivas
                 </label>
             </a>
-        }
+
+        <a class="btn btn-danger" href="ObraConcepto/Create?IdTblobra=@Model.Id&tipo=3" title="Conceptos" data-filter-tags="ObraConcepto">
+            <label>
+                Agregar Convenio Modificatorio
+            </label>
+        </a>
 
     </div>
 </div>
@@ -46,20 +47,29 @@
         <thead class="bg-warning-200">
             <tr>
                 <th>Tipo</th>
+                <th>Clave</th>
+                <th>Concepto</th>
+                <th>Unidad</th>
+                <th>Precio Unitario</th>
                 <th>Cantidad</th>
                 <th>Importe</th>
+
 
 
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model.conceptos)
+            @foreach (var item in Model.conceptos.Where(a => a.Idtipoconcepto != 4))
             {
                 <tr>
 
                     <td>
-                        @(item.Tipo == 1 ? "Adicional" : "Deductiva")
+                        @(item.Idtipoconcepto == 1 ? "Adicional" : (item.Idtipoconcepto == 2 ? "Deductiva" : "Convenio Modificatorio"))
                     </td>
+                    <td>@Html.DisplayFor(modelItem => item.Clave)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Concepto)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Unidad)</td>
+                    <td>@Html.DisplayFor(modelItem => item.PrecioUnitario)</td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Cantidad)
                     </td>

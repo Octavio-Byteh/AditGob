@@ -29,7 +29,6 @@ namespace SmartBoard.Data.Models.SmartBoard
         public int? Idcategoria { get; set; }
         public int? Idunidadmedida { get; set; }
         public int? Idejecutor { get; set; }
-        public int? Ideje { get; set; }
         public int? Numeroobra { get; set; }
         public string Nombreobra { get; set; }
         public string Descripcion { get; set; }
@@ -72,6 +71,15 @@ namespace SmartBoard.Data.Models.SmartBoard
         public string EntidadEjecutora { get; set; }
         public string ContratistaNombre { get; set; }
         public int? Idzap { get; set; }
+        public int? Ideje { get; set; }
+        public int? Idestrategia { get; set; }
+        public int? Idlineaacion { get; set; }
+        public DateTime? EoPrograInicio { get; set; }
+        public DateTime? EoPrograFin { get; set; }
+        public DateTime? EoReprograInicio { get; set; }
+        public DateTime? EoReprograFin { get; set; }
+        public DateTime? EoRealInicio { get; set; }
+        public DateTime? EoRealFin { get; set; }
 
         public virtual CatCategorium IdcategoriaNavigation { get; set; }
         public virtual CatContratacion IdcontratacionNavigation { get; set; }
@@ -80,7 +88,9 @@ namespace SmartBoard.Data.Models.SmartBoard
         public virtual CatEjecutor IdejecutorNavigation { get; set; }
         public virtual CatEstadoobra IdestadoobraNavigation { get; set; }
         public virtual CatEstadorevision IdestadorevisionNavigation { get; set; }
+        public virtual CatEstrategium IdestrategiaNavigation { get; set; }
         public virtual CatGradomarginal IdgradomarginalNavigation { get; set; }
+        public virtual CatLineaaccion IdlineaacionNavigation { get; set; }
         public virtual CatLocalidad IdlocalidadNavigation { get; set; }
         public virtual CatModalidadEjecucion IdmodalidadEjecicionNavigation { get; set; }
         public virtual CatMunicipio IdmunicipioNavigation { get; set; }

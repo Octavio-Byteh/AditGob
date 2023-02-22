@@ -53,12 +53,12 @@
 
                                 @if (item.Estitulo == false)
                                     {
-                                <text>   @i </text>
+                                <text>   @Model.checklist[contador].Secuencia </text>
                                     }
 
                             </div>
                         </td>
-                        <td>
+                            <td style="background-color: @Model.checklist[contador].HexColor">
                             <div class="divcontenedorlargo">
                                 @if (item.Estitulo == true)
                                     {
@@ -70,13 +70,9 @@
                                     }
                                     else
                                     {
+                                        
                                 <input type="hidden" asp-for="@Model.checklist[contador].nombre" />
-                                @*<label>
-
-                                    @Model.checklist[contador].nombre
-                                    <span class="tooltip">I'm a tooltip</span>
-                                </label>*@
-
+                               
                                 <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="@Model.checklist[contador].Norma">
                                     @Model.checklist[contador].nombre
                                 </span>

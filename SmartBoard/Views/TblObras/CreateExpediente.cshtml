@@ -77,13 +77,6 @@
                                                 <input asp-for="Nombreobra" class="form-control clsObra" placeholder="Requerido*" required />
                                                 <span asp-validation-for="Nombreobra" class="text-danger"></span>
                                             </div>
-                                            @*<div class="col-md-1 mb-3">
-            <div class="custom-control custom-switch">
-                <input type="checkbox" class="custom-control-input" id="customSwitch2radio" checked="" name="defaultSwitchRadioExample">
-                <label class="custom-control-label" for="customSwitch2radio">POA</label>
-            </div>
-
-        </div>*@
                                             <div class="col-md-2 mb-2">
                                                 <label asp-for="Expediente" class="control-label"></label>
                                                 <input asp-for="Expediente" class="form-control clsObra" placeholder="Requerido*" required />
@@ -117,8 +110,92 @@
                                             </div>
 
                                         </div>
+
+                                         <div class="form-row form-group">
+                                             <div class="col-md-2 mb-2">
+                                                <span class="fa-2x d-inline l-h-n">
+
+                                                </span>
+                                                <label asp-for="EoPrograInicio" class="control-label"></label>
+                                                <input asp-for="EoPrograInicio" class="form-control clsObra" />
+                                                  <label asp-for="EoPrograFin" class="control-label"></label>
+                                                <input asp-for="EoPrograFin" class="form-control clsObra"  />
+                                            </div>
+                                             <div class="col-md-2 mb-2">
+                                                <span class="fa-2x d-inline l-h-n">
+
+                                                </span>
+                                                <label asp-for="EoReprograInicio" class="control-label"></label>
+                                                <input asp-for="EoReprograInicio" class="form-control clsObra" />
+                                                  <label asp-for="EoReprograFin" class="control-label"></label>
+                                                <input asp-for="EoReprograFin" class="form-control clsObra"  />
+                                            </div>
+                                             <div class="col-md-2 mb-2">
+                                                <span class="fa-2x d-inline l-h-n">
+
+                                                </span>
+                                                <label asp-for="EoRealInicio" class="control-label"></label>
+                                                <input asp-for="EoRealInicio" class="form-control clsObra" />
+                                                  <label asp-for="EoRealFin" class="control-label"></label>
+                                                <input asp-for="EoRealFin" class="form-control clsObra"  />
+                                            </div>
+
+                                              <div class="col-md-2 mb-2">
+                                                <span class="fa-2x d-inline l-h-n">
+
+                                                </span>
+                                                <label asp-for="Ideje" class="control-label"></label>
+                                                <select asp-for="Ideje" class="custom-select clsObra select2" required asp-items="ViewBag.Ideje" aria-label="Select eje"> Selecciona Eje</select>
+                                            </div>
+
+                                            <div class="col-md-2 mb-2">
+                                                <span class="fa-2x d-inline l-h-n">
+
+                                                </span>
+                                                <label asp-for="Idestrategia" class="control-label"></label>
+                                                <select asp-for="Idestrategia" class="custom-select clsObra select2" required asp-items="ViewBag.Idestrategia" aria-label="Select eje"> Selecciona Estrategia</select>
+                                            </div>
+
+                                            <div class="col-md-2 mb-2">
+                                                <span class="fa-2x d-inline l-h-n">
+
+                                                </span>
+                                                <label asp-for="Idlineaaccion" class="control-label"></label>
+                                                <select asp-for="Idlineaaccion" class="custom-select clsObra select2" required asp-items="ViewBag.Idlineaaccion" aria-label="Select eje"> Selecciona Linea de Accion</select>
+                                            </div>
+
+</div>
+
+@*
                                         <div class="form-row form-group">
-                                           
+                                            <div class="col-md-2 mb-2">
+                                                <span class="fa-2x d-inline l-h-n">
+
+                                                </span>
+                                                <label asp-for="Ideje" class="control-label"></label>
+                                                <select asp-for="Ideje" class="custom-select clsObra select2" required asp-items="ViewBag.Ideje" aria-label="Select eje"> Selecciona Eje</select>
+                                            </div>
+
+                                            <div class="col-md-2 mb-2">
+                                                <span class="fa-2x d-inline l-h-n">
+
+                                                </span>
+                                                <label asp-for="Idestrategia" class="control-label"></label>
+                                                <select asp-for="Idestrategia" class="custom-select clsObra select2" required asp-items="ViewBag.Idestrategia" aria-label="Select eje"> Selecciona Estrategia</select>
+                                            </div>
+
+                                            <div class="col-md-2 mb-2">
+                                                <span class="fa-2x d-inline l-h-n">
+
+                                                </span>
+                                                <label asp-for="Idlineaaccion" class="control-label"></label>
+                                                <select asp-for="Idlineaaccion" class="custom-select clsObra select2" required asp-items="ViewBag.Idlineaaccion" aria-label="Select eje"> Selecciona Linea de Accion</select>
+                                            </div>
+                                        </div>
+
+
+*@                                        <div class="form-row form-group">
+
                                             <div class="col-md-2 mb-2">
                                                 <span class="fa-2x d-inline l-h-n">
                                                     @*<i class="fal fa-map-marked-alt"></i>*@
@@ -133,7 +210,7 @@
                                                 <label asp-for="Idmunicipio" class="control-label"></label>
                                                 <select asp-for="Idmunicipio" class="custom-select clsObra select2" required asp-items="ViewBag.Idmunicipio" aria-label="Select your country" Seleciona Municipio></select>
                                             </div>
-                                          
+
 
                                             <div class="col-md-2 mb-2">
                                                 <span class="fa-2x d-inline l-h-n">
@@ -170,83 +247,83 @@
                                             <div class="col-md-2 mb-3">
                                                 <span class="fa-2x d-inline l-h-n">
                                                 </span>
-                                                
-                                                    <label class="control-label"> Avance</label>
-                                                    <input asp-for="Porcentajeavance" class="form-control clsObra" required  pattern="^\d*(\.\d{0,2})?$"/> % Fisico
-                                                    <span asp-validation-for="Porcentajeavance" class="text-danger"></span>
-                                                    <input asp-for="AvanceFinanciero" class="form-control clsObra" required  pattern="^\d*(\.\d{0,2})?$"/> % Financiero
-                                                    <span asp-validation-for="AvanceFinanciero" class="text-danger"></span>
-                                                
+
+                                                <label class="control-label"> Avance</label>
+                                                <input asp-for="Porcentajeavance" class="form-control clsObra" required pattern="^\d*(\.\d{0,2})?$" /> % Fisico
+                                                <span asp-validation-for="Porcentajeavance" class="text-danger"></span>
+                                                <input asp-for="AvanceFinanciero" class="form-control clsObra" required pattern="^\d*(\.\d{0,2})?$" /> % Financiero
+                                                <span asp-validation-for="AvanceFinanciero" class="text-danger"></span>
+
                                             </div>
 
 
                                         </div>
-                                       
-
-                                            @*<div class="form-group">
-                <label asp-for="Idpoadetalle" class="control-label"></label>
-                <select asp-for="Idpoadetalle" class="form-control" asp-items="ViewBag.Idpoadetalle"></select>
-            </div>*@
-
-                                            <div class="form-row form-group">
-                                                <div class="col-md-2 mb-2">
-                                                    <span class="fa-2x d-inline l-h-n">
-                                                        @*<i class="fal fa-map-marked-alt"></i>*@
-                                                    </span>
-                                                    <label asp-for="Idgradomarginal" class="control-label"></label>
-                                                    <select asp-for="Idgradomarginal" class="custom-select clsObra select2" required asp-items="ViewBag.Idgradomarginal" aria-label="Select your country"> sleect algo</select>
-                                                </div>
-                                                <div class="col-md-2 mb-2">
-                                                    <span class="fa-2x d-inline l-h-n">
-                                                        @*<i class="fal fa-map-marked-alt"></i>*@
-                                                    </span>
-                                                    <label asp-for="IdnormativaAplicable" class="control-label"></label>
-                                                    <select asp-for="IdnormativaAplicable" class="custom-select clsObra select2" required asp-items="ViewBag.IdnormativaAplicable" aria-label="Select your country"> sleect algo</select>
-                                                </div>
-                                                <div class="col-md-2 mb-2">
-                                                    <span class="fa-2x d-inline l-h-n">
-                                                        @*<i class="fal fa-map-marked-alt"></i>*@
-                                                    </span>
-                                                    <label asp-for="IdmodalidadEjecicion" class="control-label"></label>
-                                                    <select asp-for="IdmodalidadEjecicion" class="custom-select clsObra select2" required asp-items="ViewBag.IdmodalidadEjecicion"></select>
-                                                </div>
-                                                <div class="col-md-2 mb-2">
-                                                    <span class="fa-2x d-inline l-h-n">
-                                                        @*<i class="fal fa-map-marked-alt"></i>*@
-                                                    </span>
-                                                    <label asp-for="Idcontratacion" class="control-label"></label>
-                                                    <select asp-for="Idcontratacion" class="custom-select clsObra select2" required asp-items="ViewBag.Idcontratacion"></select>
-                                                </div>
-                                                <div class="col-md-2 mb-2">
-                                                    <span class="fa-2x d-inline l-h-n">
-                                                        @*<i class="fal fa-map-marked-alt"></i>*@
-                                                    </span>
-                                                    <label asp-for="IdtipoAdjudicacion" class="control-label"></label>
-                                                    <select asp-for="IdtipoAdjudicacion" class="custom-select clsObra select2" required asp-items="ViewBag.IdtipoAdjudicacion"></select>
-                                                </div>
 
 
-                                                <div class="col-md-2 mb-2">
-                                                    <span class="fa-2x d-inline l-h-n">
-                                                        @*<i class="fal fa-map-marked-alt"></i>*@
-                                                    </span>
-                                                    <label asp-for="IdtipoContrato" class="control-label"></label>
-                                                    <select asp-for="IdtipoContrato" class="custom-select clsObra select2" required asp-items="ViewBag.IdtipoContrato"></select>
-                                                </div>
+                                        @*<div class="form-group">
+                                        <label asp-for="Idpoadetalle" class="control-label"></label>
+                                        <select asp-for="Idpoadetalle" class="form-control" asp-items="ViewBag.Idpoadetalle"></select>
+                                        </div>*@
 
-
+                                        <div class="form-row form-group">
+                                            <div class="col-md-2 mb-2">
+                                                <span class="fa-2x d-inline l-h-n">
+                                                    @*<i class="fal fa-map-marked-alt"></i>*@
+                                                </span>
+                                                <label asp-for="Idgradomarginal" class="control-label"></label>
+                                                <select asp-for="Idgradomarginal" class="custom-select clsObra select2" required asp-items="ViewBag.Idgradomarginal" aria-label="Select your country"> sleect algo</select>
+                                            </div>
+                                            <div class="col-md-2 mb-2">
+                                                <span class="fa-2x d-inline l-h-n">
+                                                    @*<i class="fal fa-map-marked-alt"></i>*@
+                                                </span>
+                                                <label asp-for="IdnormativaAplicable" class="control-label"></label>
+                                                <select asp-for="IdnormativaAplicable" class="custom-select clsObra select2" required asp-items="ViewBag.IdnormativaAplicable" aria-label="Select your country"> sleect algo</select>
+                                            </div>
+                                            <div class="col-md-2 mb-2">
+                                                <span class="fa-2x d-inline l-h-n">
+                                                    @*<i class="fal fa-map-marked-alt"></i>*@
+                                                </span>
+                                                <label asp-for="IdmodalidadEjecicion" class="control-label"></label>
+                                                <select asp-for="IdmodalidadEjecicion" class="custom-select clsObra select2" required asp-items="ViewBag.IdmodalidadEjecicion"></select>
+                                            </div>
+                                            <div class="col-md-2 mb-2">
+                                                <span class="fa-2x d-inline l-h-n">
+                                                    @*<i class="fal fa-map-marked-alt"></i>*@
+                                                </span>
+                                                <label asp-for="Idcontratacion" class="control-label"></label>
+                                                <select asp-for="Idcontratacion" class="custom-select clsObra select2" required asp-items="ViewBag.Idcontratacion"></select>
+                                            </div>
+                                            <div class="col-md-2 mb-2">
+                                                <span class="fa-2x d-inline l-h-n">
+                                                    @*<i class="fal fa-map-marked-alt"></i>*@
+                                                </span>
+                                                <label asp-for="IdtipoAdjudicacion" class="control-label"></label>
+                                                <select asp-for="IdtipoAdjudicacion" class="custom-select clsObra select2" required asp-items="ViewBag.IdtipoAdjudicacion"></select>
                                             </div>
 
 
-
-
-
-                                            <div class="form-group">
-
-                                                <button class="btn btn-primary" type="submit">Continuar</button>
+                                            <div class="col-md-2 mb-2">
+                                                <span class="fa-2x d-inline l-h-n">
+                                                    @*<i class="fal fa-map-marked-alt"></i>*@
+                                                </span>
+                                                <label asp-for="IdtipoContrato" class="control-label"></label>
+                                                <select asp-for="IdtipoContrato" class="custom-select clsObra select2" required asp-items="ViewBag.IdtipoContrato"></select>
                                             </div>
+
+
                                         </div>
-</form>
+
+
+
+
+
+                                        <div class="form-group">
+
+                                            <button class="btn btn-primary" type="submit">Continuar</button>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
 
@@ -279,8 +356,8 @@
             getLocation();
         });
 
-        function getLocation(){
-            
+        function getLocation() {
+
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(showPosition);
             } else {
@@ -335,16 +412,16 @@
 
 
 
-              var urlMarginacion = '@Url.Action("FetchGradoMarginacion", "TblObras")' ;
+            var urlMarginacion = '@Url.Action("FetchGradoMarginacion", "TblObras")';
             fillDDL(urlMarginacion, "Idgradomarginal", "--- Selecciona Marginación ---");
 
-              var urlNormativa = '@Url.Action("FetchNormativaAplicable", "TblObras")' ;
+            var urlNormativa = '@Url.Action("FetchNormativaAplicable", "TblObras")';
             fillDDL(urlNormativa, "IdnormativaAplicable", "--- Selecciona Normativa ---");
 
-                var urlModalidad = '@Url.Action("FetchModalidadEjecucion", "TblObras")' ;
+            var urlModalidad = '@Url.Action("FetchModalidadEjecucion", "TblObras")';
             fillDDL(urlModalidad, "IdmodalidadEjecicion", "--- Selecciona Modalidad ---");
 
-              var urlTipoAdjudicacion = '@Url.Action("FetchAdjudicacionByNormativa", "TblObras")?idnormativa=' + 0;
+            var urlTipoAdjudicacion = '@Url.Action("FetchAdjudicacionByNormativa", "TblObras")?idnormativa=' + 0;
             fillDDL(urlTipoAdjudicacion, "IdtipoAdjudicacion", "--- Selecciona Adjudicación ---");
 
 
@@ -367,10 +444,10 @@
             });
 
             $("#IdnormativaAplicable").change(function () {
-                 var idnormativa = $("#IdnormativaAplicable option:selected").val();
+                var idnormativa = $("#IdnormativaAplicable option:selected").val();
 
-                 var urllocalidad = '@Url.Action("FetchAdjudicacionByNormativa", "TblObras")?idnormativa=' + idnormativa;
-                 fillDDL(urllocalidad, "IdtipoAdjudicacion", "--- Selecciona Adjudicación ---");
+                var urllocalidad = '@Url.Action("FetchAdjudicacionByNormativa", "TblObras")?idnormativa=' + idnormativa;
+                fillDDL(urllocalidad, "IdtipoAdjudicacion", "--- Selecciona Adjudicación ---");
 
 
             });
@@ -393,9 +470,34 @@
 
                     $('#IdtipoAdjudicacion').prop('required', true);
                 }
-                 @*var urllocalidad = '@Url.Action("FetchAdjudicacionByNormativa", "TblObras")?idnormativa=' + idnormativa;
-                 fillDDL(urllocalidad, "IdtipoAdjudicacion", "--- Selecciona Adjudicación ---");*@
+        @*var urllocalidad = '@Url.Action("FetchAdjudicacionByNormativa", "TblObras")?idnormativa=' + idnormativa;
+                fillDDL(urllocalidad, "IdtipoAdjudicacion", "--- Selecciona Adjudicación ---");*@
 
+
+                    });
+
+
+                       var urlEstrategia = '@Url.Action("FetchEstrategia", "TblObras")?ideje=' + 0;
+                fillDDL(urlEstrategia, "Idestrategia", "--- Selecciona Estrategia ---");
+                  
+                var urlIdlineaaccion = '@Url.Action("FetchLineaAccion", "TblObras")?idestrategia=' + 0;
+                fillDDL(urlIdlineaaccion, "Idlineaaccion", "--- Selecciona Linea de Accion ---");
+
+                    
+                 $("#Ideje").change(function () {
+                var Ideje = $("#Ideje option:selected").val();
+
+                       var urlEstrategia = '@Url.Action("FetchEstrategia", "TblObras")?ideje=' + Ideje;
+                fillDDL(urlEstrategia, "Idestrategia", "--- Selecciona Estrategia ---");
+                $("#Idestrategia").change();
+
+            });
+
+            
+                 $("#Idestrategia").change(function () {
+                var Idestrategia = $("#Idestrategia option:selected").val();
+                            var urlIdlineaaccion = '@Url.Action("FetchLineaAccion", "TblObras")?idestrategia=' + Idestrategia;
+                fillDDL(urlIdlineaaccion, "Idlineaaccion", "--- Selecciona Linea de Accion ---");
 
             });
 

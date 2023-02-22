@@ -47,6 +47,7 @@ namespace SmartBoard.Controllers
         // GET: ObraConcepto/Create
         public IActionResult Create(int IdTblobra, int tipo)
         {
+            ViewData["Idtipoconcepto"] = new SelectList(_context.CatTipoConceptos.Where(a=>a.Id == tipo), "Id", "Nombre", tipo);
             ViewData["miIdObra"] = IdTblobra;
             ViewData["tipo"] = tipo;
             ViewData["IdTblobra"] = new SelectList(_context.TblObras, "Id", "Id",IdTblobra);
@@ -63,7 +64,9 @@ namespace SmartBoard.Controllers
             tblObraconcepto.Cantidad = 1;
             tblObraconcepto.Fecha = DateTime.Now;
             tblObraconcepto.Activo = true;
-            tblObraconcepto.Tipo = tblObraconcepto.Tipo;
+            tblObraconcepto.Idtipoconcepto = tblObraconcepto.Idtipoconcepto;
+            tblObraconcepto.Importe = tblObraconcepto.PrecioUnitario * tblObraconcepto.Cantidad;
+
 
             if (ModelState.IsValid)
             {
@@ -72,9 +75,10 @@ namespace SmartBoard.Controllers
                 return RedirectToAction("EditExpediente", "TblObras", new { id = tblObraconcepto.IdTblobra });
                 //return RedirectToAction(nameof(Index));
             }
+            ViewData["Idtipoconcepto"] = new SelectList(_context.CatTipoConceptos, "Id", "Nombre", tblObraconcepto.Idtipoconcepto);
             ViewData["IdTblobra"] = new SelectList(_context.TblObras, "Id", "Id", tblObraconcepto.IdTblobra);
             ViewData["miIdObra"] = tblObraconcepto.IdTblobra;
-            ViewData["tipo"] = tblObraconcepto.Tipo;
+            ViewData["tipo"] = tblObraconcepto.Idtipoconcepto;
             return View(tblObraconcepto);
         }
 

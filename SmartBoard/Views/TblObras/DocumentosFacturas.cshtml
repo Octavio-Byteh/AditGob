@@ -35,6 +35,8 @@
                 <th>Avance Financiero</th>
                 <th>Fecha de Pago</th>
                 <th>Pagado</th>
+                <th>Xml</th>
+                <th>Evidencias</th>
 
             </tr>
         </thead>
@@ -78,9 +80,7 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.MontoNetoPagar)
                     </td>
-                    @*<td>
-                    @Html.DisplayFor(modelItem => item.AvenceFisicoProgramado)
-                </td>*@
+                  
                     <td>
                         @Html.DisplayFor(modelItem => item.AvanceFisicoReal)
                     </td>
@@ -93,13 +93,39 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.Pagado)
                     </td>
-                    @*<td>
-                    @Html.DisplayFor(modelItem => item.Activo)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Registro)
-                </td>*@
+                   <td>
+                        @if (item.Activo)
+                        {
+                            <form name="form_@item.Id" method="post" enctype="multipart/form-data" action="TblObras/UploadFiles">
+                                <input type="hidden" id="IdDocObra_@item.Id" name="IdDocObra" value="@item.IdTblobra" />
+                                <input type="hidden" id="IdDoc_@item.Id" name="IdDoc" value="@item.Id" />
 
+                                <div class="fileUpload btn btn-outline-default">
+                                    <input type="file" id="files_@item.Id" name="files_@item.Id" class="upload" onchange="SubirArchivoEFactura(@item.Id,@item.IdTblobra,@item.IdTblobra)" />
+                                    <span class="fa-2x d-inline l-h-n color-fusion-400"> <i class="fal fa-upload" style="color:white;"></i></span> <span></span>
+                                </div>
+                            </form>
+                        }
+                        <div class="divEVFactura" myid="@item.Id" id="divEVFactura_@item.Id">
+                          
+                         </div>
+                   </td>
+                   <td>
+                        @if (item.Activo)
+                        {
+                            <form name="form_@item.Id" method="post" enctype="multipart/form-data" action="TblObras/UploadFiles">
+                                <input type="hidden" id="IdDocObra_@item.Id" name="IdDocObra" value="@item.IdTblobra" />
+                                <input type="hidden" id="IdDoc_@item.Id" name="IdDoc" value="@item.Id" />
+
+                                <div class="fileUpload btn btn-outline-default">
+                                    <input type="file" id="files_@item.Id" name="files_@item.Id" class="upload" onchange="SubirArchivoEvidencia(@item.Id,@item.IdTblobra,@item.IdTblobra)" />
+                                    <span class="fa-2x d-inline l-h-n color-fusion-400"> <i class="fal fa-upload" style="color:white;"></i></span> <span></span>
+                                </div>
+                            </form>
+                        }
+                        <div class="divEVEvidencia" myid="@item.Id" id="divEVEvidencia_@item.Id">
+                        </div>
+                   </td>
 
                 </tr>
             }

@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SmartBoard.Data.Models.SmartBoard;
 using SmartBoard.Models;
+using SmartBoard.Services;
 
 namespace SmartBoard.Controllers
 {
@@ -21,6 +22,9 @@ namespace SmartBoard.Controllers
             _context = context;
         }
 
+        #region Archivos
+
+        
         public ActionResult MostrarFile(int IdDocObra, int IdDoc, int idObra, string fileName)
         {
             //Build the File Path.
@@ -28,22 +32,50 @@ namespace SmartBoard.Controllers
                       Directory.GetCurrentDirectory(),
                       "wwwroot", "img", "expediente", IdDocObra.ToString(), IdDoc.ToString());
 
-            //var mypath = pathUpload.Replace(Path.Combine(
-            //        Directory.GetCurrentDirectory(),
-            //        "wwwroot", "img"), "").Replace("/", @"\");
+           
 
-            var docObra = _context.TblObradocumentoprocesos.Where(a => a.IdTblobra == idObra && a.Id == IdDoc).FirstOrDefault();
-            if (docObra != null)
+            //var docObra = _context.TblObradocumentoprocesos.Where(a => a.IdTblobra == idObra && a.Id == IdDoc).FirstOrDefault();
+            //if (docObra != null)
+            //{
+            //    if (!string.IsNullOrWhiteSpace(docObra.Nombrearchivo))
+            //    {
+
+
+            //        fileName = docObra.Nombrearchivo;
+
+
+            //    }
+            //}
+
+            var mypath = pathUpload;
+
+            string path = mypath + @"\" + fileName;
+
+            //Read the File data into Byte Array.
+            byte[] bytes = System.IO.File.ReadAllBytes(path);
+
+            var cd = new System.Net.Mime.ContentDisposition
             {
-                if (!string.IsNullOrWhiteSpace(docObra.Nombrearchivo))
-                {
+                // for example foo.bak
+                FileName = fileName,
 
+                // always prompt the user for downloading, set to true if you want 
+                // the browser to try to show the file inline
+                Inline = false,
+            };
+            Response.Headers["CustomHeader1"] = new[] { "Content-Disposition", cd.ToString() };
 
-                    fileName = docObra.Nombrearchivo;
+            //Send the File to Download.
+            return File(bytes, "application/octet-stream", fileName);
+        }
 
+        public ActionResult MostrarFileEstimacion(int IdDocObra, int IdDoc, int idObra, string fileName, bool factura)
+        {
+            //Build the File Path.
+            var pathUpload = Path.Combine(
+                      Directory.GetCurrentDirectory(),
+                      "wwwroot", "img", "expediente", IdDocObra.ToString(), "estimacion", IdDoc.ToString(), (factura ? "factura" : "evidencia"));
 
-                }
-            }
 
             var mypath = pathUpload;
 
@@ -78,18 +110,38 @@ namespace SmartBoard.Controllers
             //        Directory.GetCurrentDirectory(),
             //        "wwwroot", "img"), "").Replace("/", @"\");
 
-            var docObra = _context.TblObradocumentoprocesos.Where(a => a.IdTblobra == idObra && a.Id == IdDoc).FirstOrDefault();
-            if (docObra != null)
-            {
-                if (!string.IsNullOrWhiteSpace(docObra.Nombrearchivo))
-                {
+            //var docObra = _context.TblObradocumentoprocesos.Where(a => a.IdTblobra == idObra && a.Id == IdDoc).FirstOrDefault();
+            //if (docObra != null)
+            //{
+            //    if (!string.IsNullOrWhiteSpace(docObra.Nombrearchivo))
+            //    {
 
 
-                    fileName = docObra.Nombrearchivo;
+            //        fileName = docObra.Nombrearchivo;
 
 
-                }
-            }
+            //    }
+            //}
+
+            var mypath = pathUpload;
+
+            string path = mypath + @"\" + fileName;
+
+            //Read the File data into Byte Array.
+            byte[] bytes = System.IO.File.ReadAllBytes(path);
+
+            //Send the File to Download.
+            return File(bytes, "application/octet-stream", fileName);
+        }
+
+        public FileResult DownloadFileEstimacion(int IdDocObra, int IdDoc, int idObra, string fileName,bool factura)
+        {
+            //Build the File Path.
+            var pathUpload = Path.Combine(
+                      Directory.GetCurrentDirectory(),
+                      "wwwroot", "img", "expediente", IdDocObra.ToString(), "estimacion", IdDoc.ToString(), (factura ? "factura" : "evidencia"));
+
+           
 
             var mypath = pathUpload;
 
@@ -126,6 +178,126 @@ namespace SmartBoard.Controllers
             }
             return Json("0");
         }
+
+
+        [HttpPost]
+        public ActionResult BorrarArchivoFactura(int id,string file)
+        {
+            var docsObra =
+                            _context
+                            .TblObraEstimacions
+                            .Where(a => a.Id == id)
+                            .FirstOrDefault();
+            if (docsObra != null)
+            {
+                docsObra.RutaArchivoFactura = "";
+                docsObra.NombreArchivoFactura = "";
+               
+                _context.Update(docsObra);
+                _context.SaveChangesAsync();
+
+                try
+                {
+                    var pathUpload = Path.Combine(
+                   Directory.GetCurrentDirectory(),
+                   "wwwroot", "img", "expediente", docsObra.IdTblobra.ToString(), "estimacion", docsObra.Id.ToString(), "factura");
+                    //"wwwroot", "img", "expediente", IdDocObra.ToString(), "estimacion", IdDoc.ToString(), (factura ? "factura" : "evidencia"));
+
+                    var mypath = pathUpload;
+                    string path = mypath + @"\" + file;
+                    System.IO.File.Delete(path);
+                }
+                catch (Exception)
+                {
+                    return Json("0");
+                }              
+
+                return Json("1");
+            }
+            return Json("0");
+        }
+
+
+
+        [HttpPost]
+        public ActionResult BorrarArchivoEvidencia(int id, string file)
+        {
+            var docsObra =
+                            _context
+                            .TblObraEstimacions
+                            .Where(a => a.Id == id)
+                            .FirstOrDefault();
+            if (docsObra != null)
+            {
+                docsObra.RutaArchivoEvidencia = "";
+                docsObra.NombreArchivoEvidencia = "";
+
+                _context.Update(docsObra);
+                _context.SaveChangesAsync();
+
+                try
+                {
+                    var pathUpload = Path.Combine(
+                   Directory.GetCurrentDirectory(),
+                   "wwwroot", "img", "expediente", docsObra.IdTblobra.ToString(), "estimacion", docsObra.Id.ToString(), "evidencia");
+                    //"wwwroot", "img", "expediente", IdDocObra.ToString(), "estimacion", IdDoc.ToString(), (factura ? "factura" : "evidencia"));
+
+                    var mypath = pathUpload;
+                    string path = mypath + @"\" + file;
+                    System.IO.File.Delete(path);
+                }
+                catch (Exception)
+                {
+                    return Json("0");
+                }
+
+                return Json("1");
+            }
+            return Json("0");
+        }
+
+
+        [HttpPost]
+        public ActionResult BorrarArchivoName(int id,string file)
+        {
+            var docsObra =
+                            _context
+                            .TblObradocumentoprocesos
+                            .Where(a => a.Id == id)
+                            .FirstOrDefault();
+            if (docsObra != null)
+            {
+                docsObra.Rutaarchivo = "";
+                docsObra.Nombrearchivo = "";
+                docsObra.Estatus = "red";
+                docsObra.Observaciones = "";
+
+
+                _context.Update(docsObra);
+                _context.SaveChangesAsync();
+
+                try
+                {
+                    var pathUpload = Path.Combine(
+                   Directory.GetCurrentDirectory(),
+                   "wwwroot", "img", "expediente", docsObra.IdTblobra.ToString(), docsObra.Id.ToString());
+
+                    var mypath = pathUpload;
+                    string path = mypath + @"\" + file;
+                    System.IO.File.Delete(path);
+                }
+                catch (Exception)
+                {
+
+                    return Json("0");
+                }
+               
+
+                return Json("1");
+            }
+            return Json("0");
+        }
+
 
         [HttpPost]
         public ActionResult ObservacionArchivo(int id,string observacion)
@@ -275,6 +447,191 @@ namespace SmartBoard.Controllers
 
 
         [HttpPost]
+        public ActionResult UploadFilesEVFactura(int idObra, List<IFormFile> files)
+        {
+            //if (Request.Files.Count > 0)
+            //{
+
+            //}
+
+            int IdDocObra = int.Parse(HttpContext.Request.Form["IdDocObra"]);
+            int IdObra = int.Parse(HttpContext.Request.Form["IdObra"]);
+            int IdDoc = int.Parse(HttpContext.Request.Form["IdDoc"]);
+
+            //int IdDocObra = 25693;
+            //int IdDoc = 1;
+
+            bool hasFiles = false;
+            string mimeType = "";
+            var fileName = "demo.jpg";
+            string rutaArchivo = "";
+
+            files = HttpContext.Request.Form.Files.ToList();
+
+            if (files.Count() > 0)
+            {
+                hasFiles = true;
+
+
+
+                var pathUpload = Path.Combine(
+                      Directory.GetCurrentDirectory(),
+                      "wwwroot", "img", "expediente", IdDocObra.ToString(),"estimacion", IdDoc.ToString(), "factura");
+
+                if (!Directory.Exists(pathUpload))
+                {
+                    Directory.CreateDirectory(pathUpload);
+                }
+
+
+
+
+                long size = files.Sum(f => f.Length);
+
+                List<string> uploadedFiles = new List<string>();
+                foreach (IFormFile postedFile in files)
+                {
+                    mimeType = postedFile.ContentType;
+
+                    // Se obtien el dia del campo, se inclue en el files desde la vista con la etiqueta name="Id_Files_***"
+
+
+                    fileName = DateTime.Now.Ticks + Path.GetFileName(postedFile.FileName);
+                    rutaArchivo = Path.Combine(pathUpload, fileName);
+
+                    using (FileStream stream = new FileStream(Path.Combine(pathUpload, fileName), FileMode.Create))
+                    {
+                        postedFile.CopyTo(stream);
+                        uploadedFiles.Add(fileName);
+                        ViewBag.Message += string.Format("<b>{0}</b> uploaded.<br />", fileName);
+                    }
+
+                    // Inluimos la lista de Documentos adjuntos
+                    if (hasFiles == true)
+                    {
+                        var docsObra =
+                            _context
+                            .TblObraEstimacions
+                            .Where(a => a.IdTblobra == IdObra && a.Id == IdDoc)
+                            .FirstOrDefault();
+                        docsObra.RutaArchivoFactura = rutaArchivo;
+                        docsObra.NombreArchivoFactura = fileName;
+                        //docsObra.Estatus = "yellow";
+                        //docsObra.Observaciones = "";
+
+
+
+                        _context.Update(docsObra);
+                        _context.SaveChangesAsync();
+
+                    }
+
+                }
+                return Json("1");
+            }
+            else
+            {
+                return Json("0");
+            }
+
+
+        }
+
+
+
+        [HttpPost]
+        public ActionResult UploadFilesEvidencia(int idObra, List<IFormFile> files)
+        {
+            //if (Request.Files.Count > 0)
+            //{
+
+            //}
+
+            int IdDocObra = int.Parse(HttpContext.Request.Form["IdDocObra"]);
+            int IdObra = int.Parse(HttpContext.Request.Form["IdObra"]);
+            int IdDoc = int.Parse(HttpContext.Request.Form["IdDoc"]);
+
+            //int IdDocObra = 25693;
+            //int IdDoc = 1;
+
+            bool hasFiles = false;
+            string mimeType = "";
+            var fileName = "demo.jpg";
+            string rutaArchivo = "";
+
+            files = HttpContext.Request.Form.Files.ToList();
+
+            if (files.Count() > 0)
+            {
+                hasFiles = true;
+
+
+
+                var pathUpload = Path.Combine(
+                      Directory.GetCurrentDirectory(),
+                      "wwwroot", "img", "expediente", IdDocObra.ToString(), "estimacion", IdDoc.ToString(), "evidencia");
+
+                if (!Directory.Exists(pathUpload))
+                {
+                    Directory.CreateDirectory(pathUpload);
+                }
+
+
+
+
+                long size = files.Sum(f => f.Length);
+
+                List<string> uploadedFiles = new List<string>();
+                foreach (IFormFile postedFile in files)
+                {
+                    mimeType = postedFile.ContentType;
+
+                    // Se obtien el dia del campo, se inclue en el files desde la vista con la etiqueta name="Id_Files_***"
+
+
+                    fileName = DateTime.Now.Ticks + Path.GetFileName(postedFile.FileName);
+                    rutaArchivo = Path.Combine(pathUpload, fileName);
+
+                    using (FileStream stream = new FileStream(Path.Combine(pathUpload, fileName), FileMode.Create))
+                    {
+                        postedFile.CopyTo(stream);
+                        uploadedFiles.Add(fileName);
+                        ViewBag.Message += string.Format("<b>{0}</b> uploaded.<br />", fileName);
+                    }
+
+                    // Inluimos la lista de Documentos adjuntos
+                    if (hasFiles == true)
+                    {
+                        var docsObra =
+                            _context
+                            .TblObraEstimacions
+                            .Where(a => a.IdTblobra == IdObra && a.Id == IdDoc)
+                            .FirstOrDefault();
+                        docsObra.RutaArchivoEvidencia = rutaArchivo;
+                        docsObra.NombreArchivoEvidencia = fileName;
+                        //docsObra.Estatus = "yellow";
+                        //docsObra.Observaciones = "";
+
+
+
+                        _context.Update(docsObra);
+                        _context.SaveChangesAsync();
+
+                    }
+
+                }
+                return Json("1");
+            }
+            else
+            {
+                return Json("0");
+            }
+
+
+        }
+
+
+        [HttpPost]
         public ActionResult UploadFilesFotos(int idObra, List<IFormFile> files)
         {
             //if (Request.Files.Count > 0)
@@ -372,6 +729,11 @@ namespace SmartBoard.Controllers
 
 
         }
+        
+        
+        #endregion
+
+        #region Jsons
 
 
 
@@ -395,7 +757,21 @@ namespace SmartBoard.Controllers
         }
 
 
+        public JsonResult FetchEje()
+        {
+            return Json(new SelectList(_context.CatEjes, "Id", "Nombre"));
+        }
 
+        public JsonResult FetchEstrategia(int ideje)
+        {
+            return Json(new SelectList(_context.CatEstrategia.Where(a => a.Ideje == ideje), "Id", "Nombre"));
+        }
+
+
+        public JsonResult FetchLineaAccion(int idestrategia)
+        {
+            return Json(new SelectList(_context.CatLineaaccions.Where(a => a.Idestrategia == idestrategia), "Id", "Nombre"));
+        }
 
 
         public JsonResult FetchVertientes()
@@ -465,6 +841,9 @@ namespace SmartBoard.Controllers
             }
             //return Json(new SelectList(_context.CatLocalidads.Where(a => a.Idmunicipio == idnormativa), "Id", "Clave"));
         }
+
+        #endregion
+
 
         #region Puebla Catalogos
 
@@ -545,6 +924,140 @@ namespace SmartBoard.Controllers
 
         #endregion
 
+
+        public async Task<IActionResult> getArchivos(int iddoc)
+        {
+            var lista = await _context.TblObradocumentoprocesos
+                .Where(a => a.Id == iddoc)
+                .Select(a => new ObraChkDocumento { multiplefile = a.ArchivoMultiple, idObra = a.IdTblobra, id = a.Id, path = a.Rutaarchivo, filename = a.Nombrearchivo })
+                .ToListAsync();
+
+            List<ObraChkDocumento> lista2 = new List<ObraChkDocumento>();
+
+            foreach (var item in lista)
+            {
+                if (item.multiplefile == true)
+                {
+                    var listFiles =
+                    (
+                     new ImagesService().GetDocuments(item.idObra, item.id)
+                    );
+                    foreach (var itemFile in listFiles)
+                    {
+                        lista2.Add(new ObraChkDocumento()
+                        {
+                            id = item.id,
+                            idObra = item.idObra,
+                            filename = itemFile.filename,
+                            path = itemFile.Pathimagen
+                        });
+                    }
+                }
+                else
+                {
+                    lista2.Add(new ObraChkDocumento()
+                    {
+                        id = item.id,
+                        idObra = item.idObra,
+                        filename = item.filename,
+                        path = item.path
+                    });
+                }
+                
+            }
+
+
+            return View(lista2);
+        }
+          public async Task<IActionResult> getArchivosEVFactura(int iddoc)
+        {
+            var lista = await _context.TblObraEstimacions
+                .Where(a => a.Id == iddoc)
+                .Select(a => new ObraChkDocumento { multiplefile = false, idObra = a.IdTblobra, id = a.Id, path = a.RutaArchivoFactura, filename = a.NombreArchivoFactura })
+                .ToListAsync();
+
+            List<ObraChkDocumento> lista2 = new List<ObraChkDocumento>();
+
+            foreach (var item in lista)
+            {
+                if (item.multiplefile == true)
+                {
+                    var listFiles =
+                    (
+                     new ImagesService().GetEstimacionesDocs(item.idObra, item.id,true)
+                    );
+                    foreach (var itemFile in listFiles)
+                    {
+                        lista2.Add(new ObraChkDocumento()
+                        {
+                            id = item.id,
+                            idObra = item.idObra,
+                            filename = itemFile.filename,
+                            path = itemFile.Pathimagen
+                        });
+                    }
+                }
+                else
+                {
+                    lista2.Add(new ObraChkDocumento()
+                    {
+                        id = item.id,
+                        idObra = item.idObra,
+                        filename = item.filename,
+                        path = item.path
+                    });
+                }
+                
+            }
+
+
+            return View(lista2);
+        }
+           public async Task<IActionResult> getArchivosEvidencia(int iddoc)
+        {
+            var lista = await _context.TblObraEstimacions
+                .Where(a => a.Id == iddoc)
+                .Select(a => new ObraChkDocumento { multiplefile = false, idObra = a.IdTblobra, id = a.Id, path = a.RutaArchivoEvidencia, filename = a.NombreArchivoEvidencia })
+                .ToListAsync();
+
+            List<ObraChkDocumento> lista2 = new List<ObraChkDocumento>();
+
+            foreach (var item in lista)
+            {
+                if (item.multiplefile == true)
+                {
+                    var listFiles =
+                    (
+                     new ImagesService().GetEstimacionesDocs(item.idObra, item.id,false)
+                    );
+                    foreach (var itemFile in listFiles)
+                    {
+                        lista2.Add(new ObraChkDocumento()
+                        {
+                            id = item.id,
+                            idObra = item.idObra,
+                            filename = itemFile.filename,
+                            path = itemFile.Pathimagen
+                        });
+                    }
+                }
+                else
+                {
+                    lista2.Add(new ObraChkDocumento()
+                    {
+                        id = item.id,
+                        idObra = item.idObra,
+                        filename = item.filename,
+                        path = item.path
+                    });
+                }
+                
+            }
+
+
+            return View(lista2);
+        }
+
         // GET: TblObras
         public async Task<IActionResult> Index()
         {
@@ -585,12 +1098,11 @@ namespace SmartBoard.Controllers
 
         // GET: TblObras/Create
         public IActionResult CreateExpediente()
-        {
-            //var TblObra = _context.TblObras.Where(a => a.Year == 2022).Max(a => a.Numeroobraexterno);
-
-            //var ExpedienteViewModal = new ExpedienteViewModal() { folio = "70500" };
-
-            //ViewData["Idprogsoc"] = new SelectList(_context.CatProgsocs, "Id", "Descripcion");
+        {            
+            ViewData["Ideje"] = new SelectList(_context.CatEjes, "Id", "Nombre");
+            ViewData["Idestrategia"] = new SelectList(_context.CatEstrategia, "Id", "Nombre");
+            ViewData["Idlineaaccion"] = new SelectList(_context.CatLineaaccions, "Id", "Nombre");
+            
             ViewData["Idcategoria"] = new SelectList(_context.CatCategoria, "Id", "Nombre");
             ViewData["Idregion"] = new SelectList(_context.CatRegions, "Id", "Nombre");
             ViewData["Idlocalidad"] = new SelectList(_context.CatLocalidads, "Id", "Clave");
@@ -677,7 +1189,12 @@ namespace SmartBoard.Controllers
                         Numero = i + 1,
                         Titulo = a.Titulo,
                         Norma = a.Norma,
-                        TituloShort = (string.IsNullOrWhiteSpace(a.Titulo) ? "TBD" : a.Titulo.Replace(" ", "").Substring(1, 4))
+                        TituloShort = (string.IsNullOrWhiteSpace(a.Titulo) ? "TBD" : a.Titulo.Replace(" ", "").Substring(1, 4)),
+                        ArchivoExtensions = a.ArchivoExtensions,
+                        ArchivoMultiple = a.ArchivoMultiple,
+                        ArchivoPermite = a.ArchivoPermite,
+                        HexColor = a.HexColor,
+                        Secuencia = a.Secuencia
 
                     }).OrderBy(a => a.Numero).ToList();
 
@@ -703,8 +1220,13 @@ namespace SmartBoard.Controllers
                         Titulo = a.Titulo,
                         TituloShort = a.TituloShort,
                         Estitulo = a.Estitulo,
-                        Norma = a.Norma
-                       
+                        Norma = a.Norma,
+                        ArchivoExtensions = a.ArchivoExtensions,
+                        ArchivoMultiple = a.ArchivoMultiple,
+                        ArchivoPermite = a.ArchivoPermite,
+                        HexColor = a.HexColor,
+                        Secuencia = a.Secuencia
+
                         //Numero = 
 
                     }).OrderBy(a => a.Numero).ToList();
@@ -751,6 +1273,17 @@ namespace SmartBoard.Controllers
                 expediente.AvanceFinanciero = Obra.AvanceFinanciero;
                 expediente.Localidad = Obra.Localidad;
 
+                expediente.Ideje = Obra.Ideje;
+                expediente.Idestrategia = Obra.Idestrategia;
+                expediente.Idlineaacion = Obra.Idlineaaccion;
+
+                expediente.EoPrograInicio = Obra.EoPrograInicio;
+                expediente.EoPrograFin = Obra.EoPrograFin;
+                expediente.EoReprograInicio = Obra.EoReprograInicio;
+                expediente.EoReprograFin = Obra.EoReprograFin;
+                expediente.EoRealInicio = Obra.EoRealInicio;
+                expediente.EoRealFin = Obra.EoRealFin;
+
 
                 expediente.TblObrachecklists = listaPlantillas;
                 expediente.TblObradocumentoprocesos = listaDocumentos;
@@ -761,10 +1294,13 @@ namespace SmartBoard.Controllers
                 return RedirectToAction("EditExpediente", "TblObras", new { id = expediente.Id });
                 //return RedirectPermanent("~/TblObras/EditExpediente?id=" + expediente.Id);
             }
-            //ViewData["Idprogsoc"] = new SelectList(_context.CatProgsocs, "Id", "Descripcion", Obra.Idprogsoc);
-            //ViewData["Idcategoria"] = new SelectList(_context.CatCategoria, "Id", "Nombre", Obra.Idcategoria);
+
+            ViewData["Ideje"] = new SelectList(_context.CatEjes, "Id", "Nombre",Obra.Ideje);
+            ViewData["Idestrategia"] = new SelectList(_context.CatEstrategia, "Id", "Nombre",Obra.Idestrategia);
+            ViewData["Idlineaaccion"] = new SelectList(_context.CatLineaaccions, "Id", "Nombre", Obra.Idlineaaccion);
+
             ViewData["Idregion"] = new SelectList(_context.CatRegions, "Id", "Nombre", Obra.Idregion);
-            //ViewData["Idlocalidad"] = new SelectList(_context.CatLocalidads, "Id", "Clave", Obra.Idlocalidad);
+            
             ViewData["Idmunicipio"] = new SelectList(_context.CatMunicipios, "Id", "Municipio", Obra.Idmunicipio);
             ViewData["Idpoadetalle"] = new SelectList(_context.TblPoadetalles, "Id", "Actividades", Obra.Idpoadetalle);
 
@@ -824,7 +1360,16 @@ namespace SmartBoard.Controllers
                     Porcentajeavance = a.Porcentajeavance,
                     AvanceFinanciero = a.AvanceFinanciero,
                     Localidad = a.Localidad,
-
+                    Ideje =a.Ideje,
+                    Idestrategia = a.Idestrategia,
+                    Idlineaaccion = a.Idlineaacion,
+                    EoPrograInicio = a.EoPrograInicio,
+                    EoRealFin = a.EoPrograFin,
+                    EoPrograFin= a.EoPrograFin,
+                    EoRealInicio = a.EoRealInicio,
+                    EoReprograFin = a.EoReprograFin,
+                    EoReprograInicio = a.EoReprograInicio,
+                    
 
 
                     checklist = a.TblObrachecklists.Select(b => new ExpedientePlantillaViewModel()
@@ -845,6 +1390,11 @@ namespace SmartBoard.Controllers
                         TituloShort = b.TituloShort,
                         Titulo = b.Titulo,
                         Norma = b.Norma,
+                        ArchivoExtensions = b.ArchivoExtensions,
+                        ArchivoMultiple = b.ArchivoMultiple,
+                        ArchivoPermite = b.ArchivoPermite ?? false,
+                        Secuencia = b.Secuencia ?? 1,
+                        HexColor = b.HexColor
 
 
                     }).OrderBy(c => c.Numero).ToList(),
@@ -867,6 +1417,11 @@ namespace SmartBoard.Controllers
                         TituloShort = b.TituloShort,
                         activo = b.Activo,
                         Norma = b.Norma,
+                        ArchivoExtensions = b.ArchivoExtensions,
+                        ArchivoMultiple = b.ArchivoMultiple,
+                        ArchivoPermite = b.ArchivoPermite ?? false,
+                        Secuencia = b.Secuencia ?? 1,
+                        HexColor = b.HexColor
 
                     }).OrderBy(c => c.Numero).ToList(),
 
@@ -937,7 +1492,11 @@ namespace SmartBoard.Controllers
                         Id = b.Id,
                         Importe = b.Importe,
                         Observaciones = b.Observaciones,
-                        Tipo = b.Tipo
+                        Idtipoconcepto = b.Idtipoconcepto,
+                        Clave = b.Clave,
+                        Concepto = b.Concepto,
+                        PrecioUnitario = b.PrecioUnitario,
+                        Unidad = b.Unidad
                     }).ToList()
 
                 })
@@ -948,6 +1507,11 @@ namespace SmartBoard.Controllers
             {
                 return NotFound();
             }
+
+
+            ViewData["Ideje"] = new SelectList(_context.CatEjes, "Id", "Nombre", tblObra.Ideje);
+            ViewData["Idestrategia"] = new SelectList(_context.CatEstrategia.Where(a => a.Ideje == tblObra.Ideje), "Id", "Nombre", tblObra.Idestrategia);
+            ViewData["Idlineaaccion"] = new SelectList(_context.CatLineaaccions.Where(a => a.Idestrategia == tblObra.Idestrategia), "Id", "Nombre", tblObra.Idlineaaccion);
 
             ViewData["Idvertiente"] = new SelectList(_context.CatVertientes, "Id", "Nombre", tblObra.Idvertiente);
             ViewData["Idsubvertiente"] = new SelectList(_context.CatSubvertientes, "Id", "Nombre", tblObra.Idsubvertiente);
@@ -1088,6 +1652,17 @@ namespace SmartBoard.Controllers
                     expediente.Porcentajeavance = Obra.Porcentajeavance;
                     expediente.AvanceFinanciero = Obra.AvanceFinanciero;
 
+                    expediente.Ideje = Obra.Ideje;
+                    expediente.Idestrategia = Obra.Idestrategia;
+                    expediente.Idlineaacion = Obra.Idlineaaccion;
+                    
+                    expediente.EoPrograInicio = Obra.EoPrograInicio;
+                    expediente.EoPrograFin = Obra.EoPrograFin;
+                    expediente.EoReprograInicio = Obra.EoReprograInicio;
+                    expediente.EoReprograFin = Obra.EoReprograFin;
+                    expediente.EoRealInicio = Obra.EoRealInicio;
+                    expediente.EoRealFin = Obra.EoRealFin;
+
 
                     //expediente.Idcategoria = Obra.Idcategoria;
                     expediente.Idprogsog = Obra.Idprogsoc;
@@ -1148,6 +1723,9 @@ namespace SmartBoard.Controllers
 
             }
 
+            ViewData["Ideje"] = new SelectList(_context.CatEjes, "Id", "Nombre", Obra.Ideje);
+            ViewData["Idestrategia"] = new SelectList(_context.CatEstrategia.Where(a => a.Ideje == Obra.Ideje), "Id", "Nombre", Obra.Idestrategia);
+            ViewData["Idlineaaccion"] = new SelectList(_context.CatLineaaccions.Where(a => a.Idestrategia == Obra.Idestrategia), "Id", "Nombre", Obra.Idlineaaccion);
 
             ViewData["Idprogsoc"] = new SelectList(_context.CatProgsocs, "Id", "Descripcion", Obra.Idprogsoc);
             //ViewData["Idcategoria"] = new SelectList(_context.CatCategoria, "Id", "Nombre", Obra.Idcategoria);

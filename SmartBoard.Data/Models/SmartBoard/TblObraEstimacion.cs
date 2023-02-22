@@ -28,6 +28,10 @@ namespace SmartBoard.Data.Models.SmartBoard
         public bool Activo { get; set; }
         public DateTime Registro { get; set; }
         public bool Aplica5millar { get; set; }
+        public string RutaArchivoFactura { get; set; }
+        public string RutaArchivoEvidencia { get; set; }
+        public string NombreArchivoFactura { get; set; }
+        public string NombreArchivoEvidencia { get; set; }
 
         public virtual TblObra IdTblobraNavigation { get; set; }
     }
