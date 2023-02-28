@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json.Linq;
 using SmartBoard.Data.Models.SmartBoard;
 using SmartBoard.Models;
 using SmartBoard.Services;
@@ -825,19 +826,23 @@ namespace SmartBoard.Controllers
             return Json(new SelectList(_context.CatModalidadEjecucions.Where(a => a.Activo==true), "Id", "Nombre"));
         }
 
-        public JsonResult FetchAdjudicacionByNormativa(int idnormativa)
+        public JsonResult FetchAdjudicacionByNormativa(int idnormativa, int idtipoobra)
         {
-            if (idnormativa == 1)
+            if (idnormativa == 1 && idtipoobra == 2)
             {
-                return Json(new SelectList(_context.CatTipoAdjudicacions.Where(a => a.Activo == true && a.Id != 2), "Id", "Nombre"));
+                return Json(new SelectList(_context.CatTipoAdjudicacions.Where(a => a.Idtipoobra == idtipoobra && a.Activo == true && a.Id != 6), "Id", "Nombre"));
+            }
+            if (idnormativa == 1 && idtipoobra == 1)
+            {
+                return Json(new SelectList(_context.CatTipoAdjudicacions.Where(a => a.Idtipoobra == idtipoobra && a.Activo == true && a.Id != 2), "Id", "Nombre"));
             }
             else if (idnormativa == 0)
             {
-                return Json(new SelectList(_context.CatTipoAdjudicacions.Where(a => a.Activo == true && a.Id == 0), "Id", "Nombre"));
+                return Json(new SelectList(_context.CatTipoAdjudicacions.Where(a => a.Idtipoobra == idtipoobra &&  a.Activo == true && a.Id == 0), "Id", "Nombre"));
             }
             else
             {
-                return Json(new SelectList(_context.CatTipoAdjudicacions.Where(a => a.Activo == true), "Id", "Nombre"));
+                return Json(new SelectList(_context.CatTipoAdjudicacions.Where(a => a.Idtipoobra == idtipoobra &&  a.Activo == true), "Id", "Nombre"));
             }
             //return Json(new SelectList(_context.CatLocalidads.Where(a => a.Idmunicipio == idnormativa), "Id", "Clave"));
         }
@@ -916,9 +921,9 @@ namespace SmartBoard.Controllers
 
 
 
-        public SelectList tipoContrato(int? id)
+        public SelectList tipoContrato(int? id, int idTipoObra)
         {
-            return new SelectList(_context.CatTipoDeContratos.Where(a => a.Activo == true).ToList(), "Id", "Nombre", id);
+            return new SelectList(_context.CatTipoDeContratos.Where(a => a.Idtipoobra == idTipoObra && a.Activo == true).ToList(), "Id", "Nombre", id);
         }
 
 
@@ -1097,8 +1102,9 @@ namespace SmartBoard.Controllers
         }
 
         // GET: TblObras/Create
-        public IActionResult CreateExpediente()
-        {            
+        public IActionResult CreateExpediente(int IdtipoObra)
+        {
+            ViewData["MyIdtipoObra"] = IdtipoObra;
             ViewData["Ideje"] = new SelectList(_context.CatEjes, "Id", "Nombre");
             ViewData["Idestrategia"] = new SelectList(_context.CatEstrategia, "Id", "Nombre");
             ViewData["Idlineaaccion"] = new SelectList(_context.CatLineaaccions, "Id", "Nombre");
@@ -1112,10 +1118,12 @@ namespace SmartBoard.Controllers
             ViewData["Idgradomarginal"] = grados(null);
             ViewData["Idzap"] = zap(null);
             ViewData["IdnormativaAplicable"] = normativa(null);
-            ViewData["IdmodalidadEjecicion"] = modelidadejecucion(null);
+            ViewData["IdmodalidadEjecicion"] = modelidadejecucion((IdtipoObra == 2 ? 1 :null));
             ViewData["Idcontratacion"] = contratacion(null);
             ViewData["IdtipoAdjudicacion"] = adjudicacion(null);
-            ViewData["IdtipoContrato"] = tipoContrato(null);
+            ViewData["IdtipoContrato"] = tipoContrato(null, IdtipoObra);
+
+            ViewData["IdEjercicio"] = new SelectList(_context.CatEjercicios, "Id", "Nombre");
 
             return View();
         }
@@ -1127,26 +1135,29 @@ namespace SmartBoard.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateExpediente(ExpedienteViewModal Obra)
         {
+            
             if (ModelState.IsValid)
             {
+
                 string lat = "", longitud = "";
-                if (Obra.Coordenadas.Contains(",") && Obra.Coordenadas.Contains("."))
+                if (!string.IsNullOrWhiteSpace(Obra.Coordenadas))
                 {
-                    //tiene datos de cordenadas
-                    string[] words = Obra.Coordenadas.Split(",");
-                    if (words != null && words.Count() >= 1)
+                    if (Obra.Coordenadas.Contains(",") && Obra.Coordenadas.Contains("."))
                     {
-                        lat = words[0];
-                        longitud = words[1];
+                        //tiene datos de cordenadas
+                        string[] words = Obra.Coordenadas.Split(",");
+                        if (words != null && words.Count() >= 1)
+                        {
+                            lat = words[0];
+                            longitud = words[1];
+                        }
+                    }
+                    else
+                    {
+                        lat = Obra.Coordenadas;
+                        longitud = Obra.Coordenadas;
                     }
                 }
-                else
-                {
-                    lat = Obra.Coordenadas;
-                    longitud = Obra.Coordenadas;
-                }
-
-
 
                 var categoriaCheck = _context.CatNormativaAplicables.Where(a => a.Id == Obra.IdnormativaAplicable).FirstOrDefault().Nombre;
                 var tipoCheck = _context.CatTipoAdjudicacions.Where(a => a.Id == Obra.IdtipoAdjudicacion).FirstOrDefault();
@@ -1163,6 +1174,10 @@ namespace SmartBoard.Controllers
                     {
                         tipo = "AD-";
                     }
+                    else if (tipoCheck.Nombre.ToUpper().Contains("CONCURSO"))
+                    {
+                        tipo = "CI-";
+                    }
                     else if (tipoCheck.Nombre.Contains("5") || tipoCheck.Nombre.Contains("3"))
                     {
                         tipo = "INV";
@@ -1172,7 +1187,8 @@ namespace SmartBoard.Controllers
                 var listaPlantillas =
                     _context
                     .CatChecklists
-                    .Where(a =>
+                    .Where(a => 
+                    a.Idtipoobra == Obra.IdtipoObra &&
                     a.IdcategoriachecklistNavigation.Nombre.Contains(categoriaCheck) &&
                     a.IdtipochecklistNavigation.Nombre.ToUpper().Contains(tipo)
                     ).AsEnumerable()
@@ -1230,15 +1246,15 @@ namespace SmartBoard.Controllers
                         //Numero = 
 
                     }).OrderBy(a => a.Numero).ToList();
+                
+                int numberYear;
+                string StringYear = _context.CatEjercicios.Where(a => a.Id == Obra.IdEjercicio).FirstOrDefault().Nombre;
 
+                bool success = int.TryParse(StringYear, out numberYear);
 
                 TblObra expediente = new TblObra()
                 {
-                    //Idcategoria = Obra.Idcategoria.Value,
-                    //Idprogsog = 1,
-                    //Idvertiente = 1,
-                    //Idsubvertiente = 1,
-                    //Idunidadmedida = 1,
+                    
                     Numeroobra = int.Parse(DateTime.Now.Ticks.ToString().Substring(1, 5)),
                     Numeroobraexterno = Obra.folio,
                     Nombreobra = Obra.Nombreobra,
@@ -1253,7 +1269,7 @@ namespace SmartBoard.Controllers
 
                     Region = _context.CatMunicipios.Where(a => a.Id == Obra.Idmunicipio).FirstOrDefault().Region,
                     Fecharegistro = DateTime.Now,
-                    Year = DateTime.Now.Year,
+                    Year = success ? numberYear : DateTime.Now.Year,
 
 
                 };
@@ -1283,6 +1299,9 @@ namespace SmartBoard.Controllers
                 expediente.EoReprograFin = Obra.EoReprograFin;
                 expediente.EoRealInicio = Obra.EoRealInicio;
                 expediente.EoRealFin = Obra.EoRealFin;
+                expediente.IdtipoObra = Obra.IdtipoObra;
+                expediente.ProveedorAdjudicado = Obra.ProveedorAdjudicado;
+                expediente.EntidadRequiriente = Obra.EntidadRequiriente;
 
 
                 expediente.TblObrachecklists = listaPlantillas;
@@ -1294,6 +1313,8 @@ namespace SmartBoard.Controllers
                 return RedirectToAction("EditExpediente", "TblObras", new { id = expediente.Id });
                 //return RedirectPermanent("~/TblObras/EditExpediente?id=" + expediente.Id);
             }
+
+            ViewData["MyIdtipoObra"] = Obra.IdtipoObra;
 
             ViewData["Ideje"] = new SelectList(_context.CatEjes, "Id", "Nombre",Obra.Ideje);
             ViewData["Idestrategia"] = new SelectList(_context.CatEstrategia, "Id", "Nombre",Obra.Idestrategia);
@@ -1307,10 +1328,12 @@ namespace SmartBoard.Controllers
             ViewData["Idgradomarginal"] = grados(Obra.Idgradomarginal);
             ViewData["Idzap"] = zap(Obra.Idzap);
             ViewData["IdnormativaAplicable"] = normativa(Obra.IdnormativaAplicable);
-            ViewData["IdmodalidadEjecicion"] = modelidadejecucion(Obra.IdmodalidadEjecicion);
+            ViewData["IdmodalidadEjecicion"] = modelidadejecucion((Obra.IdtipoObra == 2 ? 1 : Obra.IdmodalidadEjecicion));
             ViewData["Idcontratacion"] = contratacion(Obra.Idcontratacion);
             ViewData["IdtipoAdjudicacion"] = adjudicacion(Obra.IdtipoAdjudicacion);
-            ViewData["IdtipoContrato"] = tipoContrato(Obra.IdtipoContrato);
+            ViewData["IdtipoContrato"] = tipoContrato(Obra.IdtipoContrato,Obra.IdtipoObra);
+
+            ViewData["IdEjercicio"] = new SelectList(_context.CatEjercicios, "Id", "Nombre", Obra.IdEjercicio);
 
             return View(Obra);
         }
@@ -1323,20 +1346,22 @@ namespace SmartBoard.Controllers
                 return NotFound();
             }
 
+
             var tblObra = await _context.TblObras
                 .Select(a =>
                 new ExpedienteViewModalDetalle()
                 {
                     Id = a.Id,
                     Coordenadas = string.Concat(a.Coordenadax, ",", a.Coordenaday),
+                    
                     folio = a.Numeroobraexterno,
-
-                    Idvertiente = a.Idvertiente,
-                    Idsubvertiente = a.Idsubvertiente,
-                    //Idcategoria = a.Idcategoria,
-                    Idprogsoc = a.Idprogsog,
-                    //Idlocalidad = a.Idlocalidad,
-                    Idmunicipio = a.Idmunicipio,
+                    year = a.Year,
+                    //Idvertiente = a.Idvertiente,
+                    //Idsubvertiente = a.Idsubvertiente,
+                    //Idprogsoc = a.Idprogsog,
+                    Idmunicipio = a.Idmunicipio ?? 0,
+                    Idregion = a.IdmunicipioNavigation.Idregion,
+                    Region = a.IdmunicipioNavigation.Region, // _context.CatMunicipios.Where(a => a.Id == Obra.Idmunicipio).FirstOrDefault().Region,
                     Coordenadax = a.Coordenadax,
                     Coordenaday = a.Coordenaday,
                     Nombreobra = a.Nombreobra,
@@ -1369,7 +1394,9 @@ namespace SmartBoard.Controllers
                     EoRealInicio = a.EoRealInicio,
                     EoReprograFin = a.EoReprograFin,
                     EoReprograInicio = a.EoReprograInicio,
-                    
+                    IdtipoObra = a.IdtipoObra,
+                    ProveedorAdjudicado = a.ProveedorAdjudicado,
+                    EntidadRequiriente = a.EntidadRequiriente,
 
 
                     checklist = a.TblObrachecklists.Select(b => new ExpedientePlantillaViewModel()
@@ -1453,8 +1480,12 @@ namespace SmartBoard.Controllers
                         Rubro = b.IdRubroNavigation.Nombre,
                         IdTiporecurso = b.IdTiporecurso,
                         Tiporecurso = b.IdTiporecursoNavigation.Nombre,
-
-
+                        IdClasificadorN1 = b.IdClasificadorN1,
+                        IdClasificadorN2 = b.IdClasificadorN2,
+                        IdClasificadorN3 = b.IdClasificadorN3,
+                        ClasificadorN1 = b.IdClasificadorN1Navigation.Nombre,
+                        ClasificadorN2 = b.IdClasificadorN2Navigation.Nombre,
+                        ClasificadorN3 = b.IdClasificadorN3Navigation.Nombre
                     }).ToList(),
 
                     estimaciones = a.TblObraEstimacions.Select(b => new EstimacionesViewModal()
@@ -1503,21 +1534,26 @@ namespace SmartBoard.Controllers
                 .Where(a => a.Id == id)
                 .FirstOrDefaultAsync();
 
+           
+
             if (tblObra == null)
             {
                 return NotFound();
             }
 
 
+            ViewData["MyIdtipoObra"] = tblObra.IdtipoObra;
+
             ViewData["Ideje"] = new SelectList(_context.CatEjes, "Id", "Nombre", tblObra.Ideje);
             ViewData["Idestrategia"] = new SelectList(_context.CatEstrategia.Where(a => a.Ideje == tblObra.Ideje), "Id", "Nombre", tblObra.Idestrategia);
             ViewData["Idlineaaccion"] = new SelectList(_context.CatLineaaccions.Where(a => a.Idestrategia == tblObra.Idestrategia), "Id", "Nombre", tblObra.Idlineaaccion);
 
-            ViewData["Idvertiente"] = new SelectList(_context.CatVertientes, "Id", "Nombre", tblObra.Idvertiente);
-            ViewData["Idsubvertiente"] = new SelectList(_context.CatSubvertientes, "Id", "Nombre", tblObra.Idsubvertiente);
+            //ViewData["Idvertiente"] = new SelectList(_context.CatVertientes, "Id", "Nombre", tblObra.Idvertiente);
+            //ViewData["Idsubvertiente"] = new SelectList(_context.CatSubvertientes, "Id", "Nombre", tblObra.Idsubvertiente);
 
-            ViewData["Idprogsoc"] = new SelectList(_context.CatProgsocs, "Id", "Descripcion", tblObra.Idprogsoc);
-            //ViewData["Idcategoria"] = new SelectList(_context.CatCategoria, "Id", "Nombre", tblObra.Idcategoria);
+            //ViewData["Idprogsoc"] = new SelectList(_context.CatProgsocs, "Id", "Descripcion", tblObra.Idprogsoc);
+
+            
             ViewData["Idregion"] = new SelectList(_context.CatRegions, "Id", "Nombre", tblObra.Idregion);
             //ViewData["Idlocalidad"] = new SelectList(_context.CatLocalidads, "Id", "Clave", tblObra.Idlocalidad);
             ViewData["Idmunicipio"] = new SelectList(_context.CatMunicipios, "Id", "Municipio", tblObra.Idmunicipio);
@@ -1529,8 +1565,16 @@ namespace SmartBoard.Controllers
             ViewData["IdmodalidadEjecicion"] = modelidadejecucion(tblObra.IdmodalidadEjecicion);
             ViewData["Idcontratacion"] = contratacion(tblObra.Idcontratacion);
             ViewData["IdtipoAdjudicacion"] = adjudicacion(tblObra.IdtipoAdjudicacion);
-            ViewData["IdtipoContrato"] = tipoContrato(tblObra.IdtipoContrato);
+            ViewData["IdtipoContrato"] = tipoContrato(tblObra.IdtipoContrato,tblObra.IdtipoObra);
 
+            var ejercicio = _context.CatEjercicios.Where(a => a.Nombre.Equals(tblObra.year.ToString())).FirstOrDefault();
+            if (ejercicio != null)
+            {
+                tblObra.IdEjercicio = ejercicio.Id;
+            }
+            
+
+            ViewData["IdEjercicio"] = new SelectList(_context.CatEjercicios, "Id", "Nombre", tblObra.IdEjercicio);
 
             return View(tblObra);
         }
@@ -1552,20 +1596,23 @@ namespace SmartBoard.Controllers
                 try
                 {
                     string lat = "", longitud = "";
-                    if (Obra.Coordenadas.Contains(",") && Obra.Coordenadas.Contains("."))
+                    if (!string.IsNullOrWhiteSpace(Obra.Coordenadas))
                     {
-                        //tiene datos de cordenadas
-                        string[] words = Obra.Coordenadas.Split(",");
-                        if (words != null && words.Count() >= 1)
+                        if (Obra.Coordenadas.Contains(",") && Obra.Coordenadas.Contains("."))
                         {
-                            lat = words[0];
-                            longitud = words[1];
+                            //tiene datos de cordenadas
+                            string[] words = Obra.Coordenadas.Split(",");
+                            if (words != null && words.Count() >= 1)
+                            {
+                                lat = words[0];
+                                longitud = words[1];
+                            }
                         }
-                    }
-                    else
-                    {
-                        lat = Obra.Coordenadas;
-                        longitud = Obra.Coordenadas;
+                        else
+                        {
+                            lat = Obra.Coordenadas;
+                            longitud = Obra.Coordenadas;
+                        }
                     }
 
                     TblObra expediente = _context.TblObras.Where(a => a.Id == id).FirstOrDefault();
@@ -1638,6 +1685,11 @@ namespace SmartBoard.Controllers
                         
                     }
 
+                    int numberYear;
+                    string StringYear = _context.CatEjercicios.Where(a => a.Id == Obra.IdEjercicio.Value).FirstOrDefault().Nombre;
+
+                    bool success = int.TryParse(StringYear, out numberYear);
+
                     expediente.Localidad = Obra.Localidad;
                     expediente.Idgradomarginal = Obra.Idgradomarginal;
                     expediente.IdnormativaAplicable = Obra.IdnormativaAplicable;
@@ -1663,11 +1715,8 @@ namespace SmartBoard.Controllers
                     expediente.EoRealInicio = Obra.EoRealInicio;
                     expediente.EoRealFin = Obra.EoRealFin;
 
-
-                    //expediente.Idcategoria = Obra.Idcategoria;
-                    expediente.Idprogsog = Obra.Idprogsoc;
-                    expediente.Idvertiente = Obra.Idvertiente;
-                    expediente.Idsubvertiente = Obra.Idsubvertiente;
+                    expediente.ProveedorAdjudicado = Obra.ProveedorAdjudicado;
+                    expediente.EntidadRequiriente = Obra.EntidadRequiriente;
 
 
                     expediente.Numeroobra = int.Parse(DateTime.Now.Ticks.ToString().Substring(1, 5));
@@ -1682,13 +1731,14 @@ namespace SmartBoard.Controllers
 
                     expediente.Region = _context.CatMunicipios.Where(a => a.Id == Obra.Idmunicipio).FirstOrDefault().Region;
                     expediente.Fecharegistro = DateTime.Now;
-                    expediente.Year = DateTime.Now.Year;
+                    expediente.Year = success ? numberYear : DateTime.Now.Year;
 
                     expediente.Inversion = Obra.Inversion;
                     expediente.InversionEstatal = Obra.InversionEstatal;
                     expediente.InversionFederal = Obra.InversionFederal;
                     expediente.InversionMunicipal = Obra.InversionMunicipal;
                     expediente.InversionBeneficiario = Obra.InversionBeneficiario;
+                    
 
                     expediente.TblObrachecklists = checklist;
                     expediente.TblObradocumentoprocesos = documentos;
@@ -1711,23 +1761,15 @@ namespace SmartBoard.Controllers
                 return RedirectToAction("EditExpediente", "TblObras", new { id = Obra.Id });
                 //return RedirectToAction(nameof(Index));
             }
-            ViewData["Idvertiente"] = new SelectList(_context.CatVertientes, "Id", "Nombre", Obra.Idvertiente);
-            if (Obra.Idvertiente.HasValue)
-            {
 
-                ViewData["Idsubvertiente"] = new SelectList(_context.CatSubvertientes.Where(a => a.Idvertiente == Obra.Idvertiente.Value), "Id", "Nombre", Obra.Idsubvertiente);
-            }
-            else
-            {
-                ViewData["Idsubvertiente"] = new SelectList(_context.CatSubvertientes, "Id", "Nombre", Obra.Idsubvertiente);
 
-            }
+            ViewData["MyIdtipoObra"] = Obra.IdtipoObra;
 
             ViewData["Ideje"] = new SelectList(_context.CatEjes, "Id", "Nombre", Obra.Ideje);
             ViewData["Idestrategia"] = new SelectList(_context.CatEstrategia.Where(a => a.Ideje == Obra.Ideje), "Id", "Nombre", Obra.Idestrategia);
             ViewData["Idlineaaccion"] = new SelectList(_context.CatLineaaccions.Where(a => a.Idestrategia == Obra.Idestrategia), "Id", "Nombre", Obra.Idlineaaccion);
 
-            ViewData["Idprogsoc"] = new SelectList(_context.CatProgsocs, "Id", "Descripcion", Obra.Idprogsoc);
+            //ViewData["Idprogsoc"] = new SelectList(_context.CatProgsocs, "Id", "Descripcion", Obra.Idprogsoc);
             //ViewData["Idcategoria"] = new SelectList(_context.CatCategoria, "Id", "Nombre", Obra.Idcategoria);
             ViewData["Idregion"] = new SelectList(_context.CatRegions, "Id", "Nombre", Obra.Idregion);
             //ViewData["Idlocalidad"] = new SelectList(_context.CatLocalidads, "Id", "Clave", Obra.Idlocalidad);
@@ -1740,8 +1782,9 @@ namespace SmartBoard.Controllers
             ViewData["IdmodalidadEjecicion"] = modelidadejecucion(Obra.IdmodalidadEjecicion);
             ViewData["Idcontratacion"] = contratacion(Obra.Idcontratacion);
             ViewData["IdtipoAdjudicacion"] = adjudicacion(Obra.IdtipoAdjudicacion);
-            ViewData["IdtipoContrato"] = tipoContrato(Obra.IdtipoContrato);
+            ViewData["IdtipoContrato"] = tipoContrato(Obra.IdtipoContrato, Obra.IdtipoObra);
 
+            ViewData["IdEjercicio"] = new SelectList(_context.CatEjercicios, "Id", "Nombre", Obra.IdEjercicio);
 
             return View(Obra);
         }

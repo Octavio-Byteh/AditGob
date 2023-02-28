@@ -214,19 +214,19 @@ namespace SmartBoard.Models
     {
    
 
-        [Required(ErrorMessage = "ZAP es campo obligatorio")]
+        //[Required(ErrorMessage = "ZAP es campo obligatorio")]
         [Display(Name = "ZAP")]
         public int? Idzap { get; set; }
 
-        [Required(ErrorMessage = "Normativa Aplicable es campo obligatorio")]
+        //[Required(ErrorMessage = "Normativa Aplicable es campo obligatorio")]
         [Display(Name = "Normativa Aplicable")]
         public int? IdnormativaAplicable { get; set; }
 
-        [Required(ErrorMessage = "Modalidad de ejecución es campo obligatorio")]
+        //[Required(ErrorMessage = "Modalidad de ejecución es campo obligatorio")]
         [Display(Name = "Modalidad de ejecución")]
         public int? IdmodalidadEjecicion { get; set; }
 
-        [Required(ErrorMessage = "Contratación es campo obligatorio")]
+        //[Required(ErrorMessage = "Contratación es campo obligatorio")]
         [Display(Name = "Contratacion")]
         public int? Idcontratacion { get; set; }
 
@@ -235,50 +235,50 @@ namespace SmartBoard.Models
         public int? IdtipoAdjudicacion { get; set; }
 
 
-        [Required(ErrorMessage = "Tipo contrato es campo obligatorio")]
+        //[Required(ErrorMessage = "Tipo contrato es campo obligatorio")]
         [Display(Name = "Tipo contrato")]
         public int? IdtipoContrato { get; set; }
 
 
-        [Required(ErrorMessage = "Grado de Marginación es campo obligatorio")]
+        //[Required(ErrorMessage = "Grado de Marginación es campo obligatorio")]
         [Display(Name = "Grado de Marginación")]
         public int? Idgradomarginal { get; set; }
 
         public string Localidad { get; set; }
        
 
-        [Required(ErrorMessage = "Entidad Ejecutora es campo obligatorio")]
+        //[Required(ErrorMessage = "Entidad Ejecutora es campo obligatorio")]
         [Display(Name = "Entidad Ejecutora")]
         public string EntidadEjecutora { get; set; }
 
-        [Required(ErrorMessage = "Contratista  es campo obligatorio")]
+        //[Required(ErrorMessage = "Contratista  es campo obligatorio")]
         [Display(Name = "Contratista")]
         public string ContratistaNombre { get; set; }
 
-        [Required(ErrorMessage = "Benficiarios  es campo obligatorio")]
+        //[Required(ErrorMessage = "Benficiarios  es campo obligatorio")]
         [Display(Name = "Beneficiarios")]
         public string BeneficiarioNombre { get; set; }
         //public string BeneficiarioDomicilio { get; set; }
 
 
-        [Required(ErrorMessage = "Avance Fisico campo obligatorio")]
+        //[Required(ErrorMessage = "Avance Fisico campo obligatorio")]
         [Display(Name = "Avance Fisico")]
         public decimal? Porcentajeavance { get; set; }
 
-        [Required(ErrorMessage = "Avance financiero campo obligatorio")]
+        //[Required(ErrorMessage = "Avance financiero campo obligatorio")]
         [Display(Name = "Avance financiero")]
         public decimal? AvanceFinanciero { get; set; }
 
         // Cambios
-        [Required(ErrorMessage = "Eje es campo obligatorio")]
+        //[Required(ErrorMessage = "Eje es campo obligatorio")]
         [Display(Name = "Eje")]
         public int? Ideje { get; set; }
 
-        [Required(ErrorMessage = "Estrategia es campo obligatorio")]
+        //[Required(ErrorMessage = "Estrategia es campo obligatorio")]
         [Display(Name = "Estrategia")]
         public int? Idestrategia { get; set; }
            
-        [Required(ErrorMessage = "Línea de Acción es campo obligatorio")]
+        //[Required(ErrorMessage = "Línea de Acción es campo obligatorio")]
         [Display(Name = "Línea de Acción")]
         public int? Idlineaaccion { get; set; }
 
@@ -307,9 +307,22 @@ namespace SmartBoard.Models
         [DataType(DataType.Date)]
         public DateTime? EoRealFin { get; set; }
 
+        [Display(Name = "Tipo Obra")]
+        public int IdtipoObra { get; set; }
+
+        [Display(Name = "Proveedor Adjudicado")]
+        public string ProveedorAdjudicado { get; set; }
+        
+        [Display(Name = "Entidad Requiriente")]
+        public string EntidadRequiriente { get; set; }
+
+
     }
     public partial class ExpedienteViewModal : ExpedienteContratoViewModal
     {
+        public int? year { get; set; }
+        public int? IdEjercicio { get; set; }
+
         public int Id { get; set; }
      
         public int? Idpoadetalle { get; set; }
@@ -324,6 +337,7 @@ namespace SmartBoard.Models
         public int Idmunicipio { get; set; }
 
 
+        public string Region { get; set; }
 
         [Required(ErrorMessage = "Nombre es campo obligatorio")]
         [Display(Name = "Nombre")]
@@ -356,12 +370,21 @@ namespace SmartBoard.Models
         public string Expediente { get; set; }
         //public decimal AvanceFinanciero { get; set; }
 
+        public List<ExpedientePlantillaViewModel>? checklist { get; set; }
+        public List<ExpedienteDocumentoViewModel>? documentoproceso { get; set; }
+
+        public List<EstimacionesViewModal>? estimaciones { get; set; }
+        public List<ObraconceptoViewModal>? conceptos { get; set; }
+        public List<RecursosViewModal>? recursos { get; set; }
+
     }
 
-    
+
     public partial class ExpedienteViewModalDetalle : ExpedienteContratoViewModal
     {
 
+        public int? year { get; set; }
+        public int? IdEjercicio { get; set; }
         public int Id { get; set; }
 
         public int? Idpoadetalle { get; set; }
@@ -374,7 +397,9 @@ namespace SmartBoard.Models
         [Display(Name = "Municipio")]
         public int? Idmunicipio { get; set; }
 
-      
+        public string Region { get; set; }
+
+
         [Display(Name = "Programa")]
         public int? Idprogsoc { get; set; }
 
@@ -411,17 +436,17 @@ namespace SmartBoard.Models
         //public decimal AvanceFinanciero { get; set; }
 
 
-        public List<ExpedientePlantillaViewModel> checklist { get; set; }
-        public List<ExpedienteDocumentoViewModel> documentoproceso { get; set; }
+        public List<ExpedientePlantillaViewModel>? checklist { get; set; }
+        public List<ExpedienteDocumentoViewModel>? documentoproceso { get; set; }
 
 
-        public EstimacionesViewModal estimacion { get; set; }
-        public List<EstimacionesViewModal> estimaciones { get; set; }
-        public List<ObraconceptoViewModal> conceptos { get; set; }
-        public RecursosViewModal recurso { get; set; }
-        public List<RecursosViewModal> recursos { get; set; }
+        public EstimacionesViewModal? estimacion { get; set; }
+        public List<EstimacionesViewModal>? estimaciones { get; set; }
+        public List<ObraconceptoViewModal>? conceptos { get; set; }
+        public RecursosViewModal? recurso { get; set; }
+        public List<RecursosViewModal>? recursos { get; set; }
 
-        public TipoConceptoViewModal TipoConcepto { get; set; }
+        public TipoConceptoViewModal? TipoConcepto { get; set; }
 
     }
 

@@ -61,7 +61,7 @@ namespace SmartBoard.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(TblObraconcepto tblObraconcepto)
         {
-            tblObraconcepto.Cantidad = 1;
+            //tblObraconcepto.Cantidad = 1;
             tblObraconcepto.Fecha = DateTime.Now;
             tblObraconcepto.Activo = true;
             tblObraconcepto.Idtipoconcepto = tblObraconcepto.Idtipoconcepto;

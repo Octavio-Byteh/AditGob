@@ -28,7 +28,7 @@ namespace SmartBoard.Controllers
         }
         // GET: Obras Get data      
         [HttpGet]
-        public IActionResult GetObrasByYear(int year) => Json(new RecordsService(_context).getObrasbyYear(year));
+        public IActionResult GetObrasByYear(int year, int IdtipoObra) => Json(new RecordsService(_context).getObrasbyYear(year,IdtipoObra));
 
         [HttpGet]
         public IActionResult GetObrasByYearToPivot(int year) => Json(new RecordsService(_context).getObrasbyYearToPivot(year));

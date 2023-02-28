@@ -80,6 +80,9 @@ namespace SmartBoard.Data.Models.SmartBoard
         public DateTime? EoReprograFin { get; set; }
         public DateTime? EoRealInicio { get; set; }
         public DateTime? EoRealFin { get; set; }
+        public int IdtipoObra { get; set; }
+        public string ProveedorAdjudicado { get; set; }
+        public string EntidadRequiriente { get; set; }
 
         public virtual CatCategorium IdcategoriaNavigation { get; set; }
         public virtual CatContratacion IdcontratacionNavigation { get; set; }
@@ -100,6 +103,7 @@ namespace SmartBoard.Data.Models.SmartBoard
         public virtual CatSubvertiente IdsubvertienteNavigation { get; set; }
         public virtual CatTipoAdjudicacion IdtipoAdjudicacionNavigation { get; set; }
         public virtual CatTipoDeContrato IdtipoContratoNavigation { get; set; }
+        public virtual CatTipoObra IdtipoObraNavigation { get; set; }
         public virtual CatUnidadmedidum IdunidadmedidaNavigation { get; set; }
         public virtual CatVertiente IdvertienteNavigation { get; set; }
         public virtual CatCattipomunicipio IdzapNavigation { get; set; }

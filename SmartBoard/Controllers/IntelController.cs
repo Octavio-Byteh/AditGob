@@ -27,14 +27,15 @@ namespace SmartBoard.WebUI.Controllers
         public IActionResult MarketingDashboard() => View();
         //public IActionResult RecordsDashboard() => View();
 
-        public IActionResult RecordsDashboard() {
+        public IActionResult RecordsDashboard(int IdtipoObra) {
 
+            ViewData["MyIdtipoObra"] = IdtipoObra;
             //string year = configuration.GetValue<string>("SmartSettings:CurrentYear");
             //if (year == "0")
             //{
             //    year = DateTime.Now.Year.ToString();
             //}
-            
+
             //RecordsService Service = new RecordsService(_context);
             //ViewData["Markers"] = Service.GetMarkers(int.Parse(year));
 
@@ -50,24 +51,27 @@ namespace SmartBoard.WebUI.Controllers
 
 
         [HttpGet]
-        public IActionResult ObtieneObrasPendientes(int year)
+        public IActionResult ObtieneObrasPendientes(int year, int IdtipoObra)
         {
+
+            
+
             RecordsService chartService = new RecordsService(_context);
             
-            return Json(chartService.otienePendientes(year));
+            return Json(chartService.otienePendientes(year, IdtipoObra));
         }
 
         [HttpGet]
-        public IActionResult ObtieneObrasTerminadas(int year) => Json(new RecordsService(_context).otieneTerminadas(year));
+        public IActionResult ObtieneObrasTerminadas(int year, int IdtipoObra) => Json(new RecordsService(_context).otieneTerminadas(year, IdtipoObra));
 
 
         [HttpGet]
-        public IActionResult ObtieneObrasTotal(int year) => Json(new RecordsService(_context).otieneTotal(year));
+        public IActionResult ObtieneObrasTotal(int year, int IdtipoObra) => Json(new RecordsService(_context).otieneTotal(year, IdtipoObra));
 
 
 
         [HttpGet]
-        public IActionResult ObtieneObrasProgramados(int year) => Json(new RecordsService(_context).otieneProgramados(year));
+        public IActionResult ObtieneObrasProgramados(int year, int IdtipoObra) => Json(new RecordsService(_context).otieneProgramados(year,IdtipoObra));
 
 
 

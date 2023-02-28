@@ -6,25 +6,33 @@
 
 
     <li class="@(pageName.Contains("registro_obra") ? "active open" : "")">
-        <a href="TblObras/CreateExpediente" title="Obras" data-filter-tags="Obras">
+        <a href="TblObras/CreateExpediente?IdtipoObra=1" title="Obras" data-filter-tags="Obras">
             <i class="fal fa-chart-pie"></i>
             <span class="nav-link-text">Obras</span>
 
         </a>
     </li>
 
-    <li class="@(pageName.Contains("adquisicion") ? "active open" : "")">
-        <a href="TblObras/CreateExpediente" title="adquisicion" data-filter-tags="adquisicion">
+    <li class="@(pageName.Contains("registro_adquisicion") ? "active open" : "")">
+        <a href="TblObras/CreateExpediente?IdtipoObra=2" title="adquisicion" data-filter-tags="adquisicion">
             <i class="fal fa-chart-pie"></i>
             <span class="nav-link-text">Adquisiciones</span>
 
         </a>
     </li>
 
-    <li class="@(pageName.Contains("dashboard") ? "active open" : "")">
-        <a href="Intel/RecordsDashboard" title="expediente" data-filter-tags="expediente">
+    <li class="@(pageName.Contains("dashboard_ex") ? "active open" : "")">
+        <a href="Intel/RecordsDashboard?IdtipoObra=1" title="expediente" data-filter-tags="expediente">
             <i class="fal fa-chart-pie"></i>
-            <span class="nav-link-text">DashBoard</span>
+            <span class="nav-link-text">DashBoard Obras</span>
+
+        </a>
+    </li>
+
+     <li class="@(pageName.Contains("dashboard_ad") ? "active open" : "")">
+        <a href="Intel/RecordsDashboard?IdtipoObra=2" title="expediente" data-filter-tags="expediente">
+            <i class="fal fa-chart-pie"></i>
+            <span class="nav-link-text">DashBoard Adquisiciones</span>
 
         </a>
     </li>

@@ -61,6 +61,14 @@ namespace SmartBoard.Models
         public string Clasificacion { get; set; }
 
 
+        public int? IdClasificadorN1 { get; set; }
+        public string ClasificadorN1 { get; set; }
+        public int? IdClasificadorN2 { get; set; }
+        public string ClasificadorN2 { get; set; }
+        public int? IdClasificadorN3 { get; set; }
+        public string ClasificadorN3 { get; set; }
+
+
     }
 
     public class ObraconceptoViewModal

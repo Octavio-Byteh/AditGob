@@ -24,8 +24,14 @@ namespace SmartBoard.Data.Models.SmartBoard
         public bool Activo { get; set; }
         public DateTime Registro { get; set; }
         public string Norma { get; set; }
+        public int? IdClasificadorN1 { get; set; }
+        public int? IdClasificadorN2 { get; set; }
+        public int? IdClasificadorN3 { get; set; }
 
         public virtual CatClasificacion IdClasificacionNavigation { get; set; }
+        public virtual CatClasificador IdClasificadorN1Navigation { get; set; }
+        public virtual CatClasificador IdClasificadorN2Navigation { get; set; }
+        public virtual CatClasificador IdClasificadorN3Navigation { get; set; }
         public virtual CatEjercicio IdEjercicioNavigation { get; set; }
         public virtual CatFondo IdFondoNavigation { get; set; }
         public virtual CatPrograma IdProgramaNavigation { get; set; }
