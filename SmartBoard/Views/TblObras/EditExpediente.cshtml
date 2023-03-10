@@ -4,7 +4,7 @@
     int idtipo = ((int)ViewData["MyIdtipoObra"]);
     string titulo = (idtipo == 1 ? "Expedientes" : "Adquisiciones");
 
-   
+
     ViewData["Title"] = titulo;
     //ViewData["PageName"] = "intel_records_dashboard";
     ViewData["PageName"] = "registro_" + titulo;
@@ -17,12 +17,11 @@
     @*<link id="mytheme" rel="stylesheet" media="screen, print" href="~/css/themes/cust-theme-13.css">*@
     <link rel="stylesheet" media="screen, print" href="~/css/fa-brands.css">
     <link rel="stylesheet" media="screen, print" href="~/css/formplugins/select2/select2.bundle.css">
-     @if (idtipo != 1)
+            @if(idtipo != 1)
             {
-        <link id="mytheme" rel="stylesheet" media="screen, print" href="~/css/themes/cust-theme-13.css">
+                <link id="mytheme" rel="stylesheet" media="screen, print" href="~/css/themes/cust-theme-13.css">
             }
     <style>
-
 
         .btn-outline-default {
             background-color: black;
@@ -110,9 +109,9 @@
         }
 
         /* .clsObra {
-                            border-color: #E5E5E5 !important;
-                        }
-                */
+                                            border-color: #E5E5E5 !important;
+                                        }
+                                */
         .clsObra {
             /*border-color: #E5E5E5 !important;*/
             border-color: #000000 !important;
@@ -173,7 +172,7 @@
 <div class="row">
     <div class="col-xl-12">
         <div id="panel-expediente" class="panel">
-           
+
             <div class="panel-container show">
                 <div class="panel-content">
                     <div id="DivNuevoExpediente">
@@ -187,14 +186,14 @@
                                     <input type="hidden" asp-for="Region" />
                                     <input type="hidden" asp-for="IdtipoObra" />
 
-                                    
+
                                     <div class="panel-content">
                                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                         <div class="form-group">
-                                        <label asp-for="IdEjercicio" class="control-label">Ejercicio</label>
+                                            <label asp-for="IdEjercicio" class="control-label">Ejercicio</label>
                                             <select asp-for="IdEjercicio" required disabled class="form-control  clsObra select2" asp-items="ViewBag.IdEjercicio"></select>
                                         </div>
-                                        @if (idtipo == 1)
+                                        @if(idtipo == 1)
                                         {
                                             <div class="form-row">
                                                 <div class="col-md-8 mb-3">
@@ -247,7 +246,7 @@
                                                 </div>
                                             </div>
                                         }
-                                        @if (idtipo == 1)
+                                        @if(idtipo == 1)
                                         {
                                             <div class="form-row form-group">
                                                 <div class="col-md-4 mb-4">
@@ -271,7 +270,7 @@
                                             </div>
                                         }
 
-                                        @if (idtipo == 1)
+                                        @if(idtipo == 1)
                                         {
                                             <div class="form-row form-group">
                                                 <div class="col-md-2 mb-2">
@@ -344,8 +343,8 @@
                                                 <select asp-for="Idmunicipio" class="custom-select clsObra select2" required asp-items="ViewBag.Idmunicipio"></select>
                                             </div>
 
-                                           
-                                            @if (idtipo == 1)
+
+                                            @if(idtipo == 1)
                                             {
                                                 <div class="col-md-2 mb-2">
                                                     <span class="fa-2x d-inline l-h-n">
@@ -393,7 +392,7 @@
                                         </div>
 
                                         <div class="form-row form-group">
-                                            @if (idtipo == 1)
+                                            @if(idtipo == 1)
                                             {
                                                 <div class="col-md-2 mb-2">
                                                     <span class="fa-2x d-inline l-h-n">
@@ -409,7 +408,7 @@
                                                 <input type="hidden" asp-for="IdnormativaAplicable" />
                                                 <select asp-for="IdnormativaAplicable" disabled class="custom-select clsObra select2" required asp-items="ViewBag.IdnormativaAplicable" aria-label="Select your country"> sleect algo</select>
                                             </div>
-                                            @if (idtipo == 1)
+                                            @if(idtipo == 1)
                                             {
                                                 <div class="col-md-2 mb-2">
                                                     <span class="fa-2x d-inline l-h-n">
@@ -458,45 +457,80 @@
                                         <div class="panel-content">
 
                                             <ul class="nav nav-pills nav-justified" role="tablist" style="border-bottom: 2px solid;">
-                                                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#js_change_pill_justified-1">Recursos</a></li>
+                                                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#js_change_pill_justified-1"> @(idtipo == 1 ? "Recursos" : "Contratos")</a></li>
                                                 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#js_change_pill_justified-2">CheckList</a></li>
                                                 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#js_change_pill_justified-3">Documentos por Proceso</a></li>
-                                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#js_change_pill_justified-4">Estimaciones/Facturas/Pagos</a></li>
-                                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#js_change_pill_justified-5">Catalogos</a></li>
-                                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#js_change_pill_justified-6">Finiquito</a></li>
+                                               
+                                                @if (idtipo == 1)
+                                                {
+                                                     <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#js_change_pill_justified-4">Estimaciones/Facturas/Pagos</a></li>
+                                                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#js_change_pill_justified-5">Catalogos</a></li>
+                                                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#js_change_pill_justified-6">Finiquito</a></li>
+                                                }
+                                                else
+                                                {
+                                                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#js_change_pill_justified-7">Pagos</a></li>
+
+                                                }
+                                                @*<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#js_change_pill_justified-8">Fotos</a></li>*@
+
                                             </ul>
 
                                             <div class="tab-content py-3">
 
-                                                  <div class="tab-pane fade show active" id="js_change_pill_justified-1" role="tabpanel">
-
-                                                <partial name="~/Views/TblObras/Recursos.cshtml" />
+                                                <div class="tab-pane fade show active" id="js_change_pill_justified-1" role="tabpanel">
+                                                    @if (idtipo == 1)
+                                                    {
+                                                        <partial name="~/Views/TblObras/Recursos.cshtml" />
+                                                    }
+                                                    else
+                                                    {
+                                                        <partial name="~/Views/TblObras/Contrato.cshtml" />
+                                                    }
                                                 </div>
-                                               
+
                                                 <div class="tab-pane fade" id="js_change_pill_justified-2" role="tabpanel">
-                                                <partial name="~/Views/TblObras/CheckList.cshtml" />
+                                                    <partial name="~/Views/TblObras/CheckList.cshtml" />
 
                                                 </div>
 
-                                                
+
                                                 <div class="tab-pane fade" id="js_change_pill_justified-3" role="tabpanel">
 
-                                                <partial name="~/views/tblobras/documentosproceso.cshtml" />
+                                                    <partial name="~/views/tblobras/DocumentosProceso.cshtml" />
                                                 </div>
 
-                                               
-                                                <div class="tab-pane fade" id="js_change_pill_justified-4" role="tabpanel">
-                                                <partial name="~/Views/TblObras/DocumentosFacturas.cshtml" />
-                                                </div>
-                                                 
-                                                <div class="tab-pane fade" id="js_change_pill_justified-5" role="tabpanel">
-                                                <partial name="~/Views/TblObras/DocumentosCatalogos.cshtml" />
-                                                </div>
+
                                                 
-                                                <div class="tab-pane fade" id="js_change_pill_justified-6" role="tabpanel">
-                                                <partial name="~/Views/TblObras/DocumentosFiniquito.cshtml" />
+
+                                                @if(idtipo == 1)
+                                                {
+                                                    <div class="tab-pane fade" id="js_change_pill_justified-4" role="tabpanel">
+                                                    <partial name="~/Views/TblObras/DocumentosFacturas.cshtml" />
                                                 </div>
-                                                
+
+                                                    <div class="tab-pane fade" id="js_change_pill_justified-5" role="tabpanel">
+                                                        <partial name="~/Views/TblObras/DocumentosCatalogos.cshtml" />
+                                                    </div>
+
+                                                    <div class="tab-pane fade" id="js_change_pill_justified-6" role="tabpanel">
+                                                        <partial name="~/Views/TblObras/DocumentosFiniquito.cshtml" />
+                                                    </div>
+                                                }
+                                                else
+                                                {
+                                                    <div class="tab-pane fade" id="js_change_pill_justified-7" role="tabpanel">
+                                                        <partial name="~/views/tblobras/DocumentosPagos.cshtml" />
+                                                    </div>
+                                                }
+
+                                               @*   <div class="tab-pane fade" id="js_change_pill_justified-8" role="tabpanel">
+
+                                                    <partial name="~/views/tblobras/DocumentosFotos.cshtml" />
+                                                </div>*@
+
+
+
                                             </div>
 
                                         </div>
@@ -1113,7 +1147,7 @@
         @if (Model.Idestrategia == null)
         {
             <text>
-                                           var urlEstrategia = '@Url.Action("FetchEstrategia", "TblObras")?ideje=' + 0;
+                                                                   var urlEstrategia = '@Url.Action("FetchEstrategia", "TblObras")?ideje=' + 0;
                 fillDDL(urlEstrategia, "Idestrategia", "--- Selecciona Estrategia ---");
 
 
@@ -1124,7 +1158,7 @@
         @if (Model.Idlineaaccion == null)
         {
             <text>
-                             var urlIdlineaaccion = '@Url.Action("FetchLineaAccion", "TblObras")?idestrategia=' + 0;
+                                                     var urlIdlineaaccion = '@Url.Action("FetchLineaAccion", "TblObras")?idestrategia=' + 0;
                 fillDDL(urlIdlineaaccion, "Idlineaaccion", "--- Selecciona Linea de Accion ---");
 
 

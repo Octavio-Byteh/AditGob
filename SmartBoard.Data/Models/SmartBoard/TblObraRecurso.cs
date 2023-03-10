@@ -27,6 +27,8 @@ namespace SmartBoard.Data.Models.SmartBoard
         public int? IdClasificadorN1 { get; set; }
         public int? IdClasificadorN2 { get; set; }
         public int? IdClasificadorN3 { get; set; }
+        public decimal ImporteContratadoMinimo { get; set; }
+        public decimal ImporteContratadoMaximo { get; set; }
 
         public virtual CatClasificacion IdClasificacionNavigation { get; set; }
         public virtual CatClasificador IdClasificadorN1Navigation { get; set; }

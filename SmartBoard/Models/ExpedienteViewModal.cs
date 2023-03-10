@@ -442,11 +442,14 @@ namespace SmartBoard.Models
 
         public EstimacionesViewModal? estimacion { get; set; }
         public List<EstimacionesViewModal>? estimaciones { get; set; }
+        public List<PagosViewModal>? pagos { get; set; }
         public List<ObraconceptoViewModal>? conceptos { get; set; }
         public RecursosViewModal? recurso { get; set; }
         public List<RecursosViewModal>? recursos { get; set; }
 
         public TipoConceptoViewModal? TipoConcepto { get; set; }
+
+        public List<ObrasImagenesMetadata>? obrasImagenesMetadata { get; set; }
 
     }
 

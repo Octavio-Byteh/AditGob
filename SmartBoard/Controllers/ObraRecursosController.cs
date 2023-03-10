@@ -21,6 +21,47 @@ namespace SmartBoard.Controllers
 
         #region JsonResults
 
+        #region Clasificador  - contratos
+
+        public JsonResult FetchClasficadorNivel(int nivel,int? idparent)
+        {
+            var clave = _context.CatClasificadors.Where(a => a.Id == idparent).FirstOrDefault();
+            string inicio = "0";
+            string mitad = "0";
+            string final = "0";
+
+            if (clave != null)
+            {
+                inicio = clave.Inicio;
+                mitad = clave.Mitad;
+                final = clave.Final;
+            }
+            
+
+
+            var lista = new List<CatClasificador>();
+
+            switch (nivel)
+            {
+                case 1:
+                    lista = _context.CatClasificadors.Where(a => a.Activo == true && a.Nivel1 == 1).ToList();
+                    break;
+                case 2:
+                    lista = _context.CatClasificadors.Where(a => a.Activo == true && a.Nivel2 == 1 && a.Inicio == inicio).ToList();
+                    break;
+                case 3:
+                    lista = _context.CatClasificadors.Where(a => a.Activo == true && a.Nivel3 == 1 && a.Inicio == inicio && a.Mitad == mitad).ToList();
+                    break;
+                default:
+                    break;
+            }
+            
+
+            return Json(new SelectList(lista, "Id", "Nombre"));
+        }
+
+
+        #endregion
 
         public JsonResult FetchTipoRecurso()
         {
@@ -392,6 +433,69 @@ namespace SmartBoard.Controllers
 
             return View(tblObraRecurso);
         }
+
+
+
+
+        // GET: ObraRecursos/Create
+        public IActionResult CreateContrato(int IdTblobra)
+        {
+            ViewData["IdTiporecurso"] = new SelectList(_context.CatTipoRecursos, "Id", "Nombre");
+            ViewData["IdRamo"] = new SelectList(_context.CatRamos, "Id", "Nombre");
+            ViewData["IdRubro"] = new SelectList(_context.CatRubros, "Id", "Nombre");
+            ViewData["IdFondo"] = new SelectList(_context.CatFondos, "Id", "Nombre");
+            ViewData["IdClasificacion"] = new SelectList(_context.CatClasificacions, "Id", "Nombre");
+
+
+            ViewData["IdEjercicio"] = new SelectList(_context.CatEjercicios, "Id", "Nombre");
+            ViewData["IdPrograma"] = new SelectList(_context.CatProgramas, "Id", "Nombre");
+            ViewData["IdRecurso"] = new SelectList(_context.CatOrigenrecursos, "Id", "Nombre");
+            ViewData["IdSubprograma"] = new SelectList(_context.CatSubprogramas, "Id", "Nombre");
+            ViewData["IdTblobra"] = new SelectList(_context.TblObras, "Id", "Id", IdTblobra);
+            ViewData["miIdObra"] = IdTblobra;
+            var tblObraTipoContrato = _context.TblObras.Where(a => a.Id == IdTblobra).FirstOrDefault().IdtipoContrato;
+            ViewData["abierto"] = (tblObraTipoContrato.HasValue && tblObraTipoContrato.Value == 4 ? true : false);
+
+            return View();
+        }
+
+        // POST: ObraRecursos/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateContrato(TblObraRecurso tblObraRecurso)
+        {
+            tblObraRecurso.Activo = true;
+            tblObraRecurso.Registro = DateTime.Now;
+
+            if (ModelState.IsValid)
+            {
+                _context.Add(tblObraRecurso);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("EditExpediente", "TblObras", new { id = tblObraRecurso.IdTblobra });
+                //return RedirectToAction(nameof(Index));
+            }
+            ViewData["IdEjercicio"] = new SelectList(_context.CatEjercicios, "Id", "Nombre", tblObraRecurso.IdEjercicio);
+            ViewData["IdPrograma"] = new SelectList(_context.CatProgramas, "Id", "Nombre", tblObraRecurso.IdPrograma);
+            ViewData["IdRecurso"] = new SelectList(_context.CatOrigenrecursos, "Id", "Nombre", tblObraRecurso.IdRecurso);
+            ViewData["IdSubprograma"] = new SelectList(_context.CatSubprogramas, "Id", "Nombre", tblObraRecurso.IdSubprograma);
+            ViewData["IdTblobra"] = new SelectList(_context.TblObras, "Id", "Id", tblObraRecurso.IdTblobra);
+            ViewData["miIdObra"] = tblObraRecurso.IdTblobra;
+            var tblObraTipoContrato = _context.TblObras.Where(a => a.Id == tblObraRecurso.IdTblobra).FirstOrDefault().IdtipoContrato;
+            ViewData["abierto"] = (tblObraTipoContrato.HasValue && tblObraTipoContrato.Value == 4 ? true : false);
+
+            ViewData["IdTiporecurso"] = new SelectList(_context.CatTipoRecursos, "Id", "Nombre", tblObraRecurso.IdTiporecurso);
+            ViewData["IdRamo"] = new SelectList(_context.CatRamos, "Id", "Nombre", tblObraRecurso.IdRamo);
+            ViewData["IdRubro"] = new SelectList(_context.CatRubros, "Id", "Nombre", tblObraRecurso.IdRubro);
+            ViewData["IdFondo"] = new SelectList(_context.CatFondos, "Id", "Nombre", tblObraRecurso.IdFondo);
+            ViewData["IdClasificacion"] = new SelectList(_context.CatClasificacions, "Id", "Nombre", tblObraRecurso.IdClasificacion);
+
+
+            return View(tblObraRecurso);
+        }
+
+
 
 
         // GET: ObraRecursos/Edit/5

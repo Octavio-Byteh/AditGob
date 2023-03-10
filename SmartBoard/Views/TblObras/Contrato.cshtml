@@ -1,0 +1,119 @@
+﻿@model SmartBoard.Models.ExpedienteViewModalDetalle
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = null;
+    bool PermiteAgregar = false;
+    bool contratoAbierto = false;
+
+    if (Model.IdtipoContrato.HasValue)
+    {
+        if (Model.IdtipoContrato.Value == 4)
+        {
+            contratoAbierto = true;
+        }
+    }
+
+}
+
+@{
+
+    PermiteAgregar = true;
+}
+
+@if (PermiteAgregar == true)
+{
+
+    <div class="row">
+        <div class="form-group">
+            <a class="btn btn-danger" href="ObraRecursos/CreateContrato?IdTblobra=@Model.Id" title="Obras" data-filter-tags="ObraContrato">
+                <label>
+                    Agregar Recursos / Contratos
+                </label>
+            </a>
+            <h1 center> @(contratoAbierto ==  true ? "Contrato Abierto" : "Contrato") </h1>
+        </div>
+    </div>
+
+}
+
+<div class="row">
+    <div class="col-sm-12 col-xl-12">
+
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Recursos</th>
+                    <th>Ejercicio</th>
+                    <th>Programa</th>
+                    <th>Sub Programa</th>
+                    @if (contratoAbierto == false)
+                    {
+                        <th>Partida Presupuestal</th>
+                    }
+                    <th>Autorizados</th>
+                    @if (contratoAbierto == true)
+                    {
+                        <th>Importe contratado Minimo</th>
+                        <th>Importe contratado Maximo</th>
+                    }
+                    else
+                    {
+                        <th>Importe contratado</th>
+                    }
+                    <th>Importe Modificado</th>
+                    <th>Importe Ejercido</th>
+                    <th>Importe Por Ejercer</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.recursos)
+                {
+                    <tr>
+                        <td>@item.Recurso</td>
+                        <td>@item.Ejercicio</td>
+                        <td>@item.Programa</td>
+                        <td>@item.Subprograma</td>
+                         @if (contratoAbierto == false)
+                    {
+                            <td> @item.ClasificadorN1 <br> @item.ClasificadorN2 <br> @item.ClasificadorN3 </td>
+                    }
+                        <td>@item.Autorizados</td>
+                        @if (contratoAbierto == true)
+                        {
+
+                        <td>@Html.DisplayFor(modelItem => item.ImporteContratadoMinimo)</td>
+                        <td>@Html.DisplayFor(modelItem => item.ImporteContratadoMaximo)</td>
+                        }
+                        else
+                        {
+                            
+                        <td>@Html.DisplayFor(modelItem => item.ImporteContratado)</td>
+                        }
+                        <td>@Html.DisplayFor(modelItem => item.ImporteModificado)</td>
+                        <td>@Html.DisplayFor(modelItem => item.ImporteEjercido)</td>
+                        <td>@Html.DisplayFor(modelItem => item.ImportePorEjercer)</td>
+
+                    </tr>
+                }
+
+            </tbody>
+            <tfoot>
+                <tr style="font-weight:bold">
+                    <td colspan="5">Total</td>
+                    <td>@Model.recursos.Sum(a => a.ImporteContratado).ToString("C2")</td>
+                    <td>@Model.recursos.Sum(a => a.ImporteModificado).ToString("C2")</td>
+                    <td>@Model.recursos.Sum(a => a.ImporteEjercido).ToString("C2")</td>
+                    <td>@Model.recursos.Sum(a => a.ImportePorEjercer).ToString("C2")</td>
+
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+</div>
+
+
+

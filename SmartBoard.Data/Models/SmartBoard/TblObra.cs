@@ -8,6 +8,7 @@ namespace SmartBoard.Data.Models.SmartBoard
         public TblObra()
         {
             TblObraEstimacions = new HashSet<TblObraEstimacion>();
+            TblObraPagos = new HashSet<TblObraPago>();
             TblObraRecursos = new HashSet<TblObraRecurso>();
             TblObrachecklists = new HashSet<TblObrachecklist>();
             TblObraconceptos = new HashSet<TblObraconcepto>();
@@ -108,6 +109,7 @@ namespace SmartBoard.Data.Models.SmartBoard
         public virtual CatVertiente IdvertienteNavigation { get; set; }
         public virtual CatCattipomunicipio IdzapNavigation { get; set; }
         public virtual ICollection<TblObraEstimacion> TblObraEstimacions { get; set; }
+        public virtual ICollection<TblObraPago> TblObraPagos { get; set; }
         public virtual ICollection<TblObraRecurso> TblObraRecursos { get; set; }
         public virtual ICollection<TblObrachecklist> TblObrachecklists { get; set; }
         public virtual ICollection<TblObraconcepto> TblObraconceptos { get; set; }

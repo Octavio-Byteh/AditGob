@@ -78,6 +78,7 @@ namespace SmartBoard.Data.Models.SmartBoard
         public virtual DbSet<TblObra> TblObras { get; set; }
         public virtual DbSet<TblObraDocProcHistorium> TblObraDocProcHistoria { get; set; }
         public virtual DbSet<TblObraEstimacion> TblObraEstimacions { get; set; }
+        public virtual DbSet<TblObraPago> TblObraPagos { get; set; }
         public virtual DbSet<TblObraRecurso> TblObraRecursos { get; set; }
         public virtual DbSet<TblObrachecklist> TblObrachecklists { get; set; }
         public virtual DbSet<TblObraconcepto> TblObraconceptos { get; set; }
@@ -2179,6 +2180,89 @@ namespace SmartBoard.Data.Models.SmartBoard
                     .HasConstraintName("FK_tbl_obraEstimacion_tbl_obra");
             });
 
+            modelBuilder.Entity<TblObraPago>(entity =>
+            {
+                entity.ToTable("tbl_obraPagos");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Activo).HasColumnName("activo");
+
+                entity.Property(e => e.FechaFactura)
+                    .HasColumnType("datetime")
+                    .HasColumnName("fecha_factura");
+
+                entity.Property(e => e.FechaPago)
+                    .HasColumnType("datetime")
+                    .HasColumnName("fecha_pago");
+
+                entity.Property(e => e.IdFactura).HasColumnName("id_factura");
+
+                entity.Property(e => e.IdTblobra).HasColumnName("id_tblobra");
+
+                entity.Property(e => e.ImporteTotal)
+                    .HasColumnType("money")
+                    .HasColumnName("importe_total");
+
+                entity.Property(e => e.NombreArchivoEvidencia)
+                    .HasMaxLength(250)
+                    .IsUnicode(false)
+                    .HasColumnName("nombreArchivoEvidencia");
+
+                entity.Property(e => e.NombreArchivoFactura)
+                    .HasMaxLength(250)
+                    .IsUnicode(false)
+                    .HasColumnName("nombreArchivoFactura");
+
+                entity.Property(e => e.NumFactura)
+                    .IsRequired()
+                    .HasMaxLength(250)
+                    .IsUnicode(false)
+                    .HasColumnName("num_factura");
+
+                entity.Property(e => e.Numero)
+                    .IsRequired()
+                    .HasMaxLength(250)
+                    .IsUnicode(false)
+                    .HasColumnName("numero");
+
+                entity.Property(e => e.OrdenPago)
+                    .IsRequired()
+                    .HasMaxLength(250)
+                    .IsUnicode(false)
+                    .HasColumnName("orden_pago");
+
+                entity.Property(e => e.Pago)
+                    .HasColumnType("money")
+                    .HasColumnName("pago");
+
+                entity.Property(e => e.Registro)
+                    .HasColumnType("datetime")
+                    .HasColumnName("registro");
+
+                entity.Property(e => e.RutaArchivoEvidencia)
+                    .HasMaxLength(250)
+                    .IsUnicode(false)
+                    .HasColumnName("rutaArchivoEvidencia");
+
+                entity.Property(e => e.RutaArchivoFactura)
+                    .HasMaxLength(250)
+                    .IsUnicode(false)
+                    .HasColumnName("rutaArchivoFactura");
+
+                entity.Property(e => e.SolicitudPago)
+                    .IsRequired()
+                    .HasMaxLength(250)
+                    .IsUnicode(false)
+                    .HasColumnName("solicitud_pago");
+
+                entity.HasOne(d => d.IdTblobraNavigation)
+                    .WithMany(p => p.TblObraPagos)
+                    .HasForeignKey(d => d.IdTblobra)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_tbl_obraPagos_tbl_obra");
+            });
+
             modelBuilder.Entity<TblObraRecurso>(entity =>
             {
                 entity.ToTable("tbl_obraRecursos");
@@ -2221,6 +2305,14 @@ namespace SmartBoard.Data.Models.SmartBoard
                 entity.Property(e => e.ImporteContratado)
                     .HasColumnType("money")
                     .HasColumnName("importe_contratado");
+
+                entity.Property(e => e.ImporteContratadoMaximo)
+                    .HasColumnType("money")
+                    .HasColumnName("importe_contratado_maximo");
+
+                entity.Property(e => e.ImporteContratadoMinimo)
+                    .HasColumnType("money")
+                    .HasColumnName("importe_contratado_minimo");
 
                 entity.Property(e => e.ImporteEjercido)
                     .HasColumnType("money")

@@ -69,6 +69,15 @@ namespace SmartBoard.Models
         public string ClasificadorN3 { get; set; }
 
 
+        [Display(Name = "Importe Contratado Minimo")]
+        [DataType(DataType.Currency)]
+        public decimal ImporteContratadoMinimo { get; set; }
+
+        [Display(Name = "Importe Contratado Maximo")]
+        [DataType(DataType.Currency)]
+        public decimal ImporteContratadoMaximo { get; set; }
+
+
     }
 
     public class ObraconceptoViewModal
@@ -90,6 +99,34 @@ namespace SmartBoard.Models
 
     }
 
+    public class PagosViewModal
+    {
+        public int Id { get; set; }
+        public int IdTblobra { get; set; }
+        public int? IdFactura { get; set; }
+        public string Numero { get; set; }
+        public string NumFactura { get; set; }
+
+        [DataType(DataType.Date)]
+        public DateTime FechaFactura { get; set; }
+        public string SolicitudPago { get; set; }
+        public string OrdenPago { get; set; }
+        [DataType(DataType.Currency)]
+        public decimal ImporteTotal { get; set; }
+        [DataType(DataType.Currency)]
+        public decimal Pago { get; set; }
+
+        [DataType(DataType.Date)]
+        public DateTime FechaPago { get; set; }
+        public bool Activo { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime Registro { get; set; }
+        public string RutaArchivoFactura { get; set; }
+        public string RutaArchivoEvidencia { get; set; }
+        public string NombreArchivoFactura { get; set; }
+        public string NombreArchivoEvidencia { get; set; }
+
+    }
     public class EstimacionesViewModal
     {
         public int Id { get; set; }

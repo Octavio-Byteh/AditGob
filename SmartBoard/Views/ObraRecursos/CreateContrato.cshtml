@@ -1,0 +1,363 @@
+﻿@model SmartBoard.Data.Models.SmartBoard.TblObraRecurso
+
+@{
+    ViewData["PageName"] = "registro_obra";
+    ViewData["Title"] = "Create";
+    int idObra = ((int)ViewData["miIdObra"]);
+    bool abierto = ((bool)ViewData["abierto"]);
+
+}
+
+<h1>Crear Recurso</h1>
+
+
+
+<div>
+    <a asp-action="EditExpediente" asp-controller="TblObras" asp-route-id="@idObra">Regresar a la obra</a>
+</div>
+
+
+<div class="row">
+    <div class="col-md-6">
+        <form class="needs-validation" novalidate asp-action="CreateContrato">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="IdTblobra" value="@idObra" />
+
+            @*<div class="form-group">
+                    <label asp-for="IdTblobra" class="control-label"></label>
+                    <input type="hidden" asp-for="IdTblobra" />
+                    <select asp-for="IdTblobra" class="form-control" asp-items="ViewBag.IdTblobra"></select>
+                </div>*@
+            <div class="form-group">
+                <label asp-for="IdEjercicio" class="control-label">Ejercicio</label>
+                <select asp-for="IdEjercicio" required class="form-control" asp-items="ViewBag.IdEjercicio"></select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="IdTiporecurso" class="control-label">Tipo Recurso</label>
+                <select asp-for="IdTiporecurso" required class="form-control" asp-items="ViewBag.IdTiporecurso"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdRecurso" class="control-label">Recurso</label>
+                <select asp-for="IdRecurso" required class="form-control" asp-items="ViewBag.IdRecurso"></select>
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="IdRamo" class="control-label">Ramo</label>
+                <select asp-for="IdRamo" class="form-control" asp-items="ViewBag.IdRamo"></select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="IdRubro" class="control-label">Rubro</label>
+                <select asp-for="IdRubro" required class="form-control" asp-items="ViewBag.IdRubro"></select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="IdFondo" class="control-label">Fondo</label>
+                <select asp-for="IdFondo" required class="form-control" asp-items="ViewBag.IdFondo"></select>
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="IdPrograma" class="control-label">Programa</label>
+                <select asp-for="IdPrograma" required class="form-control" asp-items="ViewBag.IdPrograma"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdSubprograma" class="control-label">Sub Programa</label>
+                <select asp-for="IdSubprograma" required class="form-control" asp-items="ViewBag.IdSubprograma"></select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="IdClasificacion" class="control-label">Clasificación</label>
+                <select asp-for="IdClasificacion" class="form-control" asp-items="ViewBag.IdClasificacion"></select>
+            </div> 
+            
+            <hr />
+            <div class="form-group">
+                <label asp-for="IdClasificadorN1" class="control-label">Clasificador Nivel 1</label>
+                <select asp-for="IdClasificadorN1" class="form-control" asp-items="ViewBag.IdClasificadorN1"></select>
+            </div>
+
+             <div class="form-group">
+                <label asp-for="IdClasificadorN2" class="control-label">Clasificador Nivel 2</label>
+                <select asp-for="IdClasificadorN2" class="form-control" asp-items="ViewBag.IdClasificadorN2"></select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="IdClasificadorN3" class="control-label">Clasificador Nivel 3</label>
+                <select asp-for="IdClasificadorN3" class="form-control" asp-items="ViewBag.IdClasificadorN3"></select>
+            </div>
+            <hr />
+
+            <div class="form-group">
+                <label asp-for="Autorizados" class="control-label">Autorizados</label>
+                <input asp-for="Autorizados" required class="form-control" />
+                <span asp-validation-for="Autorizados" class="text-danger"></span>
+            </div>
+            @if(abierto == true)
+            {
+                 <div class="form-group">
+                <label asp-for="ImporteContratadoMinimo" class="control-label">Importe Contratado Minimo</label>
+                    <input asp-for="ImporteContratadoMinimo" required class="form-control" />
+                    <span asp-validation-for="ImporteContratadoMinimo" class="text-danger"></span>
+            </div>
+             <div class="form-group">
+                <label asp-for="ImporteContratadoMaximo" class="control-label">Importe Contratado Maximo</label>
+                <input asp-for="ImporteContratadoMaximo" required class="form-control" />
+                    <span asp-validation-for="ImporteContratadoMaximo" class="text-danger"></span>
+            </div>
+            }
+            else
+            {
+                 <div class="form-group">
+                <label asp-for="ImporteContratado" class="control-label">Importe Contratado</label>
+                <input asp-for="ImporteContratado" required class="form-control" />
+                <span asp-validation-for="ImporteContratado" class="text-danger"></span>
+            </div>
+            }
+           
+            <div class="form-group">
+                <label asp-for="ImporteModificado" class="control-label">Importe Modificado</label>
+                <input asp-for="ImporteModificado" required class="form-control" />
+                <span asp-validation-for="ImporteModificado" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImporteEjercido" class="control-label">Importe Ejercido</label>
+                <input asp-for="ImporteEjercido" required class="form-control" />
+                <span asp-validation-for="ImporteEjercido" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImportePorEjercer" class="control-label">Importe Por Ejercer</label>
+                <input asp-for="ImportePorEjercer" required class="form-control" />
+                <span asp-validation-for="ImportePorEjercer" class="text-danger"></span>
+            </div>
+            @*<div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="Activo" /> @Html.DisplayNameFor(model => model.Activo)
+                    </label>
+                </div>*@
+            @*<div class="form-group">
+                    <label asp-for="Registro" class="control-label"></label>
+                    <input asp-for="Registro" class="form-control" />
+                    <span asp-validation-for="Registro" class="text-danger"></span>
+                </div>*@
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="EditExpediente" asp-controller="TblObras" asp-route-id="@idObra">Regresar a la obra</a>
+</div>
+
+
+
+@section ScriptsBlock {
+    <script type="text/javascript">
+        (function () {
+
+            'use strict';
+            window.addEventListener('load', function () {
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+
+
+
+    </script>
+    <script>
+        $(function () {
+
+            // fucniones para Programas y Sub-programas
+            var urlTipo = '@Url.Action("FetchTipoRecurso", "ObraRecursos")';
+            fillDDL(urlTipo, "IdTiporecurso", "--- Selecciona Tipo Recurso ---");
+
+            var urlOrigen= '@Url.Action("FetchOrigenRecurso", "ObraRecursos")?IdTiporecurso=' + 0;
+            fillDDL(urlOrigen, "IdRecurso", "--- Selecciona Recurso ---");
+
+            var url = '@Url.Action("FetchRamo", "ObraRecursos")?iddrecurso=' + 0;
+            fillDDL(url, "IdRamo", "--- Selecciona Ramo ---");
+
+            var urlRubro = '@Url.Action("FetchRubro", "ObraRecursos")?idramo=' + 0;
+            fillDDL(urlRubro, "IdRubro", "--- Selecciona Rubro ---");
+
+             var urlFondo = '@Url.Action("FetchFondo", "ObraRecursos")?idramo=' + 0;
+            fillDDL(urlFondo, "IdFondo", "--- Selecciona Fondo ---");
+
+              var urlPrograma = '@Url.Action("FetchPrograma", "ObraRecursos")?idramo=' + 0;
+            fillDDL(urlPrograma, "IdPrograma", "--- Selecciona Programa ---");
+
+
+            var urlSubPrograma = '@Url.Action("FetchSubPrograma", "ObraRecursos")?idprograma=' + 0;
+            fillDDL(urlSubPrograma, "IdSubprograma", "--- Selecciona Sub Programa ---");
+
+
+            var urlClasificacion = '@Url.Action("FetchClasificacion", "ObraRecursos")?idSubprograma=' + 0;
+            fillDDL(urlClasificacion, "IdClasificacion", "--- Selecciona Clasificacion ---");
+            
+           
+
+            $("#IdTiporecurso").change(function () {
+                var idtipo = $("#IdTiporecurso option:selected").val();
+                var url = '@Url.Action("FetchOrigenRecurso", "ObraRecursos")?IdTiporecurso=' + idtipo;
+                fillDDL(url, "IdRecurso", "--- Selecciona Recurso ---");
+                $("#IdRecurso").change();
+            });
+
+            $("#IdRecurso").change(function () {
+                var IdRecurso = $("#IdRecurso option:selected").val();
+                var url = '@Url.Action("FetchRamo", "ObraRecursos")?iddrecurso=' + IdRecurso;
+            fillDDL(url, "IdRamo", "--- Selecciona Ramo ---");
+                $("#IdRamo").change();
+            });
+
+            $("#IdRamo").change(function () {
+
+                // Ramos
+
+                var IdRamo = $("#IdRamo option:selected").val();
+                // Rubros
+                var urlRubro = '@Url.Action("FetchRubro", "ObraRecursos")?idramo=' + IdRamo;
+                fillDDL(urlRubro, "IdRubro", "--- Selecciona Rubro ---");
+                $("#IdRubro").change();
+                //Fondos
+                var urlFondo = '@Url.Action("FetchFondo", "ObraRecursos")?idramo=' + IdRamo;
+                fillDDL(urlFondo, "IdFondo", "--- Selecciona Fondo ---");
+                $("#IdFondo").change();
+
+                //Programa
+                var urlPrograma = '@Url.Action("FetchPrograma", "ObraRecursos")?idramo=' + IdRamo;
+                fillDDL(urlPrograma, "IdPrograma", "--- Selecciona Programa ---");
+                $("#IdPrograma").change();
+
+
+            });
+
+            $("#IdRubro").change(function () {
+                var IdRecurso = $("#IdRubro option:selected").val();
+                var IdRamo = $("#IdRamo option:selected").val();
+                //Fondos
+                var urlFondo = '@Url.Action("FetchFondo", "ObraRecursos")?idramo=' + IdRamo + '&idrubro=' + IdRecurso;
+                fillDDL(urlFondo, "IdFondo", "--- Selecciona Fondo ---");
+
+                 //Programa
+                var urlPrograma = '@Url.Action("FetchPrograma", "ObraRecursos")?idramo=' + IdRamo + '&idrubro=' + IdRecurso;
+            fillDDL(urlPrograma, "IdPrograma", "--- Selecciona Programa ---");
+
+            });
+
+
+            $("#IdFondo").change(function () {
+                var IdFondo = $("#IdFondo option:selected").val();
+                var IdRecurso = $("#IdRubro option:selected").val();
+                var IdRamo = $("#IdRamo option:selected").val();
+
+
+                 //Programa
+                var urlPrograma = '@Url.Action("FetchPrograma", "ObraRecursos")?idramo=' + IdRamo + '&idrubro=' + IdRecurso + '&idfondo=' + IdFondo;
+            fillDDL(urlPrograma, "IdPrograma", "--- Selecciona Programa ---");
+                
+
+                 var urlSubPrograma = '@Url.Action("FetchSubPrograma", "ObraRecursos")?idprograma=' + 0;
+            fillDDL(urlSubPrograma, "IdSubprograma", "--- Selecciona Sub Programa ---");
+
+
+            var urlClasificacion = '@Url.Action("FetchClasificacion", "ObraRecursos")?idSubprograma=' + 0;
+            fillDDL(urlClasificacion, "IdClasificacion", "--- Selecciona Clasificacion ---");
+
+                $("#IdPrograma").change();
+
+            });
+
+
+            $("#IdPrograma").change(function () {
+                var IdPrograma = $("#IdPrograma option:selected").val();
+
+                //SubPrograma
+                var urlSubPrograma = '@Url.Action("FetchSubPrograma", "ObraRecursos")?idprograma=' + IdPrograma;
+            fillDDL(urlSubPrograma, "IdSubprograma", "--- Selecciona Sub Programa ---");
+                $("#IdSubprograma").change();
+            });
+
+
+            $("#IdSubprograma").change(function () {
+                var IdSubprograma = $("#IdSubprograma option:selected").val();
+
+                //Clasificacion
+                var urlClasificacion = '@Url.Action("FetchClasificacion", "ObraRecursos")?idSubprograma=' + IdSubprograma;
+            fillDDL(urlClasificacion, "IdClasificacion", "--- Selecciona Clasificacion ---");
+
+
+            });
+
+
+
+            
+            
+            
+            // fucniones para Clasificador
+
+            var urlClasificacion = '@Url.Action("FetchClasficadorNivel", "ObraRecursos")?nivel=' + 1;
+            fillDDL(urlClasificacion, "IdClasificadorN1", "--- Selecciona Clasificador N1 ---");
+
+
+            $("#IdClasificadorN1").change(function () {
+                var IdClasificadorN1 = $("#IdClasificadorN1 option:selected").val();
+
+                //nivel 2
+                var urlClasificacionN2 = '@Url.Action("FetchClasficadorNivel", "ObraRecursos")?nivel=' + 2 + '&idparent=' + IdClasificadorN1;
+                fillDDL(urlClasificacionN2, "IdClasificadorN2", "--- Selecciona Clasificador N2 ---");
+                $("#IdClasificadorN2").change();
+            });
+
+
+            $("#IdClasificadorN2").change(function () {
+                var IdClasificadorN2 = $("#IdClasificadorN2 option:selected").val();
+
+                //nivel 2
+                var urlClasificacionN3 = '@Url.Action("FetchClasficadorNivel", "ObraRecursos")?nivel=' + 3 + '&idparent=' + IdClasificadorN2;
+                fillDDL(urlClasificacionN3, "IdClasificadorN3", "--- Selecciona Clasificador N3 ---");
+                //$("#IdSubprograma").change();
+            });
+
+
+
+
+
+            function fillDDL(url, elementId, defaultText) {
+
+
+
+                $.getJSON(url, null, function (data) {
+                    //Requiered Remove
+                    $("#" + elementId).removeAttr('required');
+                    var items = "<option value>" + defaultText + "</option>";
+
+                    $.each(data, function (i, item) {
+                        //Requiered Add
+                        $("#" + elementId).prop('required', true);
+                        items = items + "<option value='" + item.value + "'>" + item.text + "</option>";
+                    });
+                    $("#" + elementId).html(items);
+                });
+
+                /*$("#" + elementId).change();*/
+            }
+
+        })
+    </script>
+}

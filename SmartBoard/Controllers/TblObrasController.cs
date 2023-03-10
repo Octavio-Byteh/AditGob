@@ -1346,6 +1346,7 @@ namespace SmartBoard.Controllers
                 return NotFound();
             }
 
+           
 
             var tblObra = await _context.TblObras
                 .Select(a =>
@@ -1448,10 +1449,30 @@ namespace SmartBoard.Controllers
                         ArchivoMultiple = b.ArchivoMultiple,
                         ArchivoPermite = b.ArchivoPermite ?? false,
                         Secuencia = b.Secuencia ?? 1,
-                        HexColor = b.HexColor
+                        HexColor = b.HexColor,
+                        
 
                     }).OrderBy(c => c.Numero).ToList(),
-
+                    pagos = a.TblObraPagos.Select(b => new PagosViewModal()
+                    {
+                        Id = b.Id,
+                        Activo = b.Activo,
+                        FechaFactura = b.FechaFactura,
+                        FechaPago = b.FechaPago,
+                        IdTblobra = b.IdTblobra,
+                        IdFactura = b.IdFactura,
+                        ImporteTotal = b.ImporteTotal,
+                        NombreArchivoEvidencia = b.NombreArchivoEvidencia,
+                        NombreArchivoFactura = b.NombreArchivoFactura,
+                        Numero = b.Numero,
+                        NumFactura= b.NumFactura,
+                        OrdenPago = b.OrdenPago,
+                        Pago = b.Pago,
+                        Registro = b.Registro,
+                        RutaArchivoEvidencia = b.RutaArchivoEvidencia,
+                        RutaArchivoFactura = b.RutaArchivoFactura,
+                        SolicitudPago = b.SolicitudPago                        
+                    }).ToList(),
                     recursos = a.TblObraRecursos.Select(b => new RecursosViewModal() {
                         Id = b.Id,
                         IdTblobra = b.IdTblobra,
@@ -1485,7 +1506,9 @@ namespace SmartBoard.Controllers
                         IdClasificadorN3 = b.IdClasificadorN3,
                         ClasificadorN1 = b.IdClasificadorN1Navigation.Nombre,
                         ClasificadorN2 = b.IdClasificadorN2Navigation.Nombre,
-                        ClasificadorN3 = b.IdClasificadorN3Navigation.Nombre
+                        ClasificadorN3 = b.IdClasificadorN3Navigation.Nombre,
+                        ImporteContratadoMaximo = b.ImporteContratadoMaximo,
+                        ImporteContratadoMinimo = b.ImporteContratadoMinimo
                     }).ToList(),
 
                     estimaciones = a.TblObraEstimacions.Select(b => new EstimacionesViewModal()
@@ -1534,12 +1557,15 @@ namespace SmartBoard.Controllers
                 .Where(a => a.Id == id)
                 .FirstOrDefaultAsync();
 
-           
 
+           
             if (tblObra == null)
             {
                 return NotFound();
             }
+
+            List<ObrasImagenesMetadata> listaImagenes = new ImagesService().GetImagenesByNoObra(id);
+            tblObra.obrasImagenesMetadata = listaImagenes;
 
 
             ViewData["MyIdtipoObra"] = tblObra.IdtipoObra;
