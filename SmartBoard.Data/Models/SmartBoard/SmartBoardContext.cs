@@ -96,7 +96,7 @@ namespace SmartBoard.Data.Models.SmartBoard
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=DESKTOP-VATE5RE\\SQLEXPRESS214;Database=SmartBoardStable;Persist Security Info=True;User ID=sa;password=devpc123456");
+                optionsBuilder.UseSqlServer("Server=DESKTOP-VATE5RE\\SQLEXPRESS2019;Database=SmartBoardServer;Persist Security Info=True;User ID=sa;password=devpc123456");
             }
         }
 
@@ -2076,6 +2076,8 @@ namespace SmartBoard.Data.Models.SmartBoard
                     .HasColumnName("amortizado_sin_iva");
 
                 entity.Property(e => e.Aplica5millar).HasColumnName("aplica5millar");
+
+                entity.Property(e => e.AplicaAnticipo).HasColumnName("aplicaAnticipo");
 
                 entity.Property(e => e.AvanceFinancieron)
                     .HasColumnType("money")

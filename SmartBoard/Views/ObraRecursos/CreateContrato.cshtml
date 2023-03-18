@@ -112,24 +112,24 @@
             {
                  <div class="form-group">
                 <label asp-for="ImporteContratado" class="control-label">Importe Contratado</label>
-                <input asp-for="ImporteContratado" required class="form-control" />
+                <input asp-for="ImporteContratado" required class="form-control" pattern="^\d*(\.\d{0,2})?$" />
                 <span asp-validation-for="ImporteContratado" class="text-danger"></span>
             </div>
             }
            
             <div class="form-group">
                 <label asp-for="ImporteModificado" class="control-label">Importe Modificado</label>
-                <input asp-for="ImporteModificado" required class="form-control" />
+                <input asp-for="ImporteModificado" required class="form-control" pattern="^\d*(\.\d{0,2})?$" />
                 <span asp-validation-for="ImporteModificado" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ImporteEjercido" class="control-label">Importe Ejercido</label>
-                <input asp-for="ImporteEjercido" required class="form-control" />
+                <input asp-for="ImporteEjercido" required class="form-control" pattern="^\d*(\.\d{0,2})?$" />
                 <span asp-validation-for="ImporteEjercido" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ImportePorEjercer" class="control-label">Importe Por Ejercer</label>
-                <input asp-for="ImportePorEjercer" required class="form-control" />
+                <input asp-for="ImportePorEjercer" required class="form-control" pattern="^\d*(\.\d{0,2})?$" />
                 <span asp-validation-for="ImportePorEjercer" class="text-danger"></span>
             </div>
             @*<div class="form-group form-check">

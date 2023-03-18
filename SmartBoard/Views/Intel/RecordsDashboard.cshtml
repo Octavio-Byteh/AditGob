@@ -28,6 +28,12 @@
             }
 
     <style>
+        .tdc{
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
         .gm-style .gm-style-iw {
             color: black !important;
         }
@@ -108,11 +114,11 @@
 }
 
 <partial name="~/Views/Intel/_tablero.cshtml" />
-
+@*
 <text>
     @idtipo
 </text>
-
+*@
 <div class="row">
 
     <div class="col-sm-6">
@@ -121,7 +127,8 @@
                 <h2>
                     Listado <span class="fw-300"><i>@titulo</i></span>
                 </h2>
-                
+                <a href="TblObras/Index?IdtipoObra=@idtipo" class="btn btn-warning" style="font-weight:400; color:white; margin-right: 1px;"> Resumen </a>
+               
             </div>
             <div class="panel-container show">
                 <div class="panel-content">
@@ -457,7 +464,7 @@
                         },
                         {
                             'data': function (row, type,set) {
-                                return '<button class="btn btn-default divbutton"  onClick="showDetail(' + row.id + '); showBotonera(' + row.id + '); CargarMarkers(' + row.coordenadax + ',' + row.coordenaday + ',' + row.Descripcion + ',' + row.Descripcion + ',' + row.idestatusobra + '); return false;">' + row.numeroDeObra + '</button>'
+                                return '<button class="btn btn-default divbutton tdc"  onClick="showDetail(' + row.id + '); showBotonera(' + row.id + '); CargarMarkers(' + row.coordenadax + ',' + row.coordenaday + ',' + row.Descripcion + ',' + row.Descripcion + ',' + row.idestatusobra + '); return false;">' + row.numeroDeObra + '</button>'
                             }
                         },
                         {

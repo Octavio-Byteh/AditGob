@@ -49,6 +49,14 @@
                 <input asp-for="FechaEstimacion" required type="date" data-date-format="DD/MM/YYY" class="form-control" />
                 <span asp-validation-for="FechaEstimacion" class="text-danger"></span>
             </div>
+
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="AplicaAnticipo" /> @Html.DisplayNameFor(model => model.AplicaAnticipo)
+                </label>
+                <span asp-validation-for="AplicaAnticipo" class="text-danger"></span>
+            </div>
+
             <div class="form-group">
                 <label asp-for="MontoPagarSinIva" class="control-label">Monto a Pagar Sin Iva</label>
                 <input asp-for="MontoPagarSinIva" required class="form-control" pattern="^\d*(\.\d{0,2})?$"  />
@@ -101,18 +109,18 @@
 
 
             <div class="form-group">
-                <label asp-for="AvenceFisicoProgramado" class="control-label"> Avance Fisico Programado</label>
-                <input asp-for="AvenceFisicoProgramado" required class="form-control" />
+                <label asp-for="AvenceFisicoProgramado" class="control-label"> Avance Fisico Programado %</label>
+                <input asp-for="AvenceFisicoProgramado" required class="form-control" pattern="^\d*(\.\d{0,2})?$" />
                 <span asp-validation-for="AvenceFisicoProgramado" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="AvanceFisicoReal" class="control-label"> Avance Fisico Real </label>
-                <input asp-for="AvanceFisicoReal" required class="form-control" />
+                <label asp-for="AvanceFisicoReal" class="control-label"> Avance Fisico Real % </label>
+                <input asp-for="AvanceFisicoReal" required class="form-control" pattern="^\d*(\.\d{0,2})?$" />
                 <span asp-validation-for="AvanceFisicoReal" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="AvanceFinancieron" class="control-label">Avance Financiero</label>
-                <input asp-for="AvanceFinancieron" required class="form-control" />
+                <label asp-for="AvanceFinancieron" class="control-label">Avance Financiero %</label>
+                <input asp-for="AvanceFinancieron" required class="form-control" pattern="^\d*(\.\d{0,2})?$" />
                 <span asp-validation-for="AvanceFinancieron" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -122,7 +130,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Pagado" class="control-label">Pagado</label>
-                <input asp-for="Pagado" required class="form-control" />
+                <input asp-for="Pagado" required class="form-control" pattern="^\d*(\.\d{0,2})?$" />
                 <span asp-validation-for="Pagado" class="text-danger"></span>
             </div>
             @*<div class="form-group form-check">

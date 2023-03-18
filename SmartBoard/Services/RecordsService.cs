@@ -276,7 +276,7 @@ namespace SmartBoard.Services
         {
             int data = 0;
 
-            data = _context.TblObras.Where(a => a.IdtipoObra == IdtipoObra && (a.Idestadoobra == 3 || a.Idestadoobra == 4) && a.Year == year).Count();
+            data = _context.TblObras.Where(a => a.IdtipoObra == IdtipoObra && (a.Idestadoobra == 3 || a.Idestadoobra == 4) ).Count();
 
             return data;
         }
@@ -285,7 +285,7 @@ namespace SmartBoard.Services
         {
             int data = 0;
 
-            data = _context.TblObras.Where(a => a.IdtipoObra == IdtipoObra &&  a.Year == year ).Count();
+            data = _context.TblObras.Where(a => a.IdtipoObra == IdtipoObra  ).Count();
 
             return data;
         }
@@ -294,7 +294,7 @@ namespace SmartBoard.Services
         {
             int data = 0;
 
-            data = _context.TblObras.Where(a => a.IdtipoObra == IdtipoObra && a.Idestadoobra == 2 && a.Year == year).Count();
+            data = _context.TblObras.Where(a => a.IdtipoObra == IdtipoObra && a.Idestadoobra == 2 ).Count();
 
             return data;
         }
@@ -303,7 +303,7 @@ namespace SmartBoard.Services
         {
             int data = 0;
 
-            data = _context.TblObras.Where(a => a.IdtipoObra == IdtipoObra && a.Idestadoobra == 1 && a.Year == year).Count();
+            data = _context.TblObras.Where(a => a.IdtipoObra == IdtipoObra && a.Idestadoobra == 1).Count();
 
             return data;
         }

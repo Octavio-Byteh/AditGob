@@ -1063,11 +1063,238 @@ namespace SmartBoard.Controllers
             return View(lista2);
         }
 
-        // GET: TblObras
-        public async Task<IActionResult> Index()
+       
+
+        public List<ExpedienteViewModalDetalle> getObras()
         {
-            var smartBoardContext = _context.TblObras.Include(t => t.IdcategoriaNavigation).Include(t => t.IddependenciaNavigation).Include(t => t.IdejeNavigation).Include(t => t.IdejecutorNavigation).Include(t => t.IdestadoobraNavigation).Include(t => t.IdestadorevisionNavigation).Include(t => t.IdlocalidadNavigation).Include(t => t.IdmunicipioNavigation).Include(t => t.IdpoadetalleNavigation).Include(t => t.IdprogsogNavigation).Include(t => t.IdsubvertienteNavigation).Include(t => t.IdunidadmedidaNavigation).Include(t => t.IdvertienteNavigation);
-            return View(await smartBoardContext.ToListAsync());
+            List<ExpedienteViewModalDetalle> lista = new List<ExpedienteViewModalDetalle>();
+
+           
+            lista = _context.TblObras
+                .Select(a =>
+                new ExpedienteViewModalDetalle()
+                {
+                    Id = a.Id,
+                    Coordenadas = string.Concat(a.Coordenadax, ",", a.Coordenaday),
+
+                    folio = a.Numeroobraexterno,
+                    year = a.Year,
+                         NombreZap = a.IdzapNavigation.Nombre ,
+         NombreMunicipio = a.IdmunicipioNavigation.Municipio ,
+         NombreModalidadEjecucion = a.IdmodalidadEjecicionNavigation.Nombre,
+         NombreTipoAdjudicacion = a.IdtipoAdjudicacionNavigation.Nombre,
+         NombreContratacion = a.IdcontratacionNavigation.Nombre ,
+         NombreTipoContrato =  a.IdtipoContratoNavigation.Nombre,
+
+         NombreGradoMarginal = a.IdgradomarginalNavigation.Nombre ,
+
+        Idmunicipio = a.Idmunicipio ?? 0,
+                    Idregion = a.IdmunicipioNavigation.Idregion,
+                    Region = a.IdmunicipioNavigation.Region, 
+                    Coordenadax = a.Coordenadax,
+                    Coordenaday = a.Coordenaday,
+                    Nombreobra = a.Nombreobra,
+                    Inversion = a.Inversion,
+                    InversionBeneficiario = a.InversionBeneficiario,
+                    InversionEstatal = a.InversionEstatal,
+                    InversionFederal = a.InversionFederal,
+                    InversionMunicipal = a.InversionMunicipal,
+
+                    Expediente = a.Expediente,
+                    Idgradomarginal = a.Idgradomarginal,
+                    IdnormativaAplicable = a.IdnormativaAplicable,
+                    IdmodalidadEjecicion = a.IdmodalidadEjecicion,
+                    Idcontratacion = a.Idcontratacion,
+                    IdtipoAdjudicacion = a.IdtipoAdjudicacion,
+                    IdtipoContrato = a.IdtipoContrato,
+                    Idzap = a.Idzap,
+                    Idejecutor = a.Idejecutor,
+                    BeneficiarioNombre = a.BeneficiarioNombre,
+                    EntidadEjecutora = a.EntidadEjecutora,
+                    ContratistaNombre = a.ContratistaNombre,
+                    Porcentajeavance = a.Porcentajeavance,
+                    AvanceFinanciero = a.AvanceFinanciero,
+                    Localidad = a.Localidad,
+                    Ideje = a.Ideje,
+                    Idestrategia = a.Idestrategia,
+                    Idlineaaccion = a.Idlineaacion,
+                    EoPrograInicio = a.EoPrograInicio,
+                    EoRealFin = a.EoPrograFin,
+                    EoPrograFin = a.EoPrograFin,
+                    EoRealInicio = a.EoRealInicio,
+                    EoReprograFin = a.EoReprograFin,
+                    EoReprograInicio = a.EoReprograInicio,
+                    IdtipoObra = a.IdtipoObra,
+                    ProveedorAdjudicado = a.ProveedorAdjudicado,
+                    EntidadRequiriente = a.EntidadRequiriente,
+
+
+                    checklist = a.TblObrachecklists.Select(b => new ExpedientePlantillaViewModel()
+                    {
+                        id = b.Id,
+                        idObra = b.IdTblobra,
+                        nombre = b.Nombre,
+                        activo = b.Activo,
+                        adjudicacion = b.Adjudicacion,
+                        administracion = b.Administracion,
+                        licitacion = b.Licitacion,
+                        invitacion = b.Invitacion,
+                        Estitulo = b.Estitulo,
+                        Numero = b.Numero ?? 0,
+                        Observaciones = b.Observaciones,
+                        PaginaFinal = b.PaginaFinal,
+                        PaginaInicio = b.PaginaInicio,
+                        TituloShort = b.TituloShort,
+                        Titulo = b.Titulo,
+                        Norma = b.Norma,
+                        ArchivoExtensions = b.ArchivoExtensions,
+                        ArchivoMultiple = b.ArchivoMultiple,
+                        ArchivoPermite = b.ArchivoPermite ?? false,
+                        Secuencia = b.Secuencia ?? 1,
+                        HexColor = b.HexColor
+
+
+                    }).OrderBy(c => c.Numero).ToList(),
+                    documentoproceso = a.TblObradocumentoprocesos.Select(b => new ExpedienteDocumentoViewModel()
+                    {
+                        id = b.Id,
+                        idObra = b.IdTblobra,
+                        categoria = b.Categoria,
+                        documento = b.Nombre,
+                        estatus = b.Estatus,
+                        rutaarchivo = b.Rutaarchivo,
+                        nombrearchivo = b.Nombrearchivo,
+                        aprobado = b.Aprobado,
+                        Estitulo = b.Estitulo,
+                        Numero = b.Numero ?? 0,
+                        Observaciones = b.Observaciones,
+                        PaginaInicio = b.PaginaInicio,
+                        PaginaFinal = b.PaginaFinal,
+                        Titulo = b.Titulo,
+                        TituloShort = b.TituloShort,
+                        activo = b.Activo,
+                        Norma = b.Norma,
+                        ArchivoExtensions = b.ArchivoExtensions,
+                        ArchivoMultiple = b.ArchivoMultiple,
+                        ArchivoPermite = b.ArchivoPermite ?? false,
+                        Secuencia = b.Secuencia ?? 1,
+                        HexColor = b.HexColor,
+
+
+                    }).OrderBy(c => c.Numero).ToList(),
+                    pagos = a.TblObraPagos.Select(b => new PagosViewModal()
+                    {
+                        Id = b.Id,
+                        Activo = b.Activo,
+                        FechaFactura = b.FechaFactura,
+                        FechaPago = b.FechaPago,
+                        IdTblobra = b.IdTblobra,
+                        IdFactura = b.IdFactura,
+                        ImporteTotal = b.ImporteTotal,
+                        NombreArchivoEvidencia = b.NombreArchivoEvidencia,
+                        NombreArchivoFactura = b.NombreArchivoFactura,
+                        Numero = b.Numero,
+                        NumFactura = b.NumFactura,
+                        OrdenPago = b.OrdenPago,
+                        Pago = b.Pago,
+                        Registro = b.Registro,
+                        RutaArchivoEvidencia = b.RutaArchivoEvidencia,
+                        RutaArchivoFactura = b.RutaArchivoFactura,
+                        SolicitudPago = b.SolicitudPago
+                    }).ToList(),
+                    recursos = a.TblObraRecursos.Select(b => new RecursosViewModal()
+                    {
+                        Id = b.Id,
+                        IdTblobra = b.IdTblobra,
+                        Activo = b.Activo,
+                        Autorizados = b.Autorizados,
+                        IdEjercicio = b.IdEjercicio,
+                        Ejercicio = b.IdEjercicioNavigation.Nombre,
+                        IdPrograma = b.IdPrograma,
+                        Programa = b.IdProgramaNavigation.Nombre,
+                        IdRecurso = b.IdRecurso,
+                        Recurso = b.IdRecursoNavigation.Nombre,
+                        IdSubprograma = b.IdSubprograma,
+                        Subprograma = b.IdSubprogramaNavigation.Nombre,
+                        ImporteContratado = b.ImporteContratado,
+                        ImporteEjercido = b.ImporteEjercido,
+                        ImporteModificado = b.ImporteModificado,
+                        ImportePorEjercer = b.ImportePorEjercer,
+                        Registro = b.Registro,
+                        IdClasificacion = b.IdClasificacion,
+                        Clasificacion = b.IdClasificacionNavigation.Nombre,
+                        IdFondo = b.IdFondo,
+                        Fondo = b.IdFondoNavigation.Nombre,
+                        IdRamo = b.IdRamo,
+                        Ramo = b.IdRamoNavigation.Nombre,
+                        IdRubro = b.IdRubro,
+                        Rubro = b.IdRubroNavigation.Nombre,
+                        IdTiporecurso = b.IdTiporecurso,
+                        Tiporecurso = b.IdTiporecursoNavigation.Nombre,
+                        IdClasificadorN1 = b.IdClasificadorN1,
+                        IdClasificadorN2 = b.IdClasificadorN2,
+                        IdClasificadorN3 = b.IdClasificadorN3,
+                        ClasificadorN1 = b.IdClasificadorN1Navigation.Nombre,
+                        ClasificadorN2 = b.IdClasificadorN2Navigation.Nombre,
+                        ClasificadorN3 = b.IdClasificadorN3Navigation.Nombre,
+                        ImporteContratadoMaximo = b.ImporteContratadoMaximo,
+                        ImporteContratadoMinimo = b.ImporteContratadoMinimo
+                    }).ToList(),
+
+                    estimaciones = a.TblObraEstimacions.Select(b => new EstimacionesViewModal()
+                    {
+                        Activo = b.Activo,
+                        AmortizadoSinIva = b.AmortizadoSinIva,
+                        AvanceFinancieron = b.AvanceFinancieron,
+                        AvanceFisicoReal = b.AvanceFisicoReal,
+                        AvenceFisicoProgramado = b.AvenceFisicoProgramado,
+                        CincoMillarSinIva = b.CincoMillarSinIva,
+                        Devolucion = b.Devolucion,
+                        FechaEstimacion = b.FechaEstimacion,
+                        FechaFactura = b.FechaFactura,
+                        FechaPago = b.FechaPago,
+                        Id = b.Id,
+                        IdFactura = b.IdFactura,
+                        IdTblobra = b.IdTblobra,
+                        MontoNetoPagar = b.MontoNetoPagar,
+                        MontoPagarSinIva = b.MontoPagarSinIva,
+                        Numero = b.Numero,
+                        NumFactura = b.NumFactura,
+                        Pagado = b.Pagado,
+                        Registro = b.Registro,
+                        Retencion = b.Retencion,
+                        Subtotal = b.Subtotal,
+                        SubtotalConIva = b.SubtotalConIva
+                    }).ToList(),
+
+                    conceptos = a.TblObraconceptos.Select(b => new ObraconceptoViewModal()
+                    {
+                        Activo = b.Activo,
+                        Cantidad = b.Cantidad,
+                        Fecha = b.Fecha,
+                        IdTblobra = b.IdTblobra,
+                        Id = b.Id,
+                        Importe = b.Importe,
+                        Observaciones = b.Observaciones,
+                        Idtipoconcepto = b.Idtipoconcepto,
+                        Clave = b.Clave,
+                        Concepto = b.Concepto,
+                        PrecioUnitario = b.PrecioUnitario,
+                        Unidad = b.Unidad
+                    }).ToList()
+
+                })                
+                .ToList();
+
+            return lista;
+        }
+
+        // GET: TblObras
+        public IActionResult Index(int IdtipoObra)
+        {
+            ViewData["MyIdtipoObra"] = IdtipoObra;
+            var smartBoardContext = getObras().Where(a => a.IdtipoObra == IdtipoObra) ;
+            return View(smartBoardContext.ToList());
         }
 
         // GET: TblObras/Details/5
@@ -1108,7 +1335,9 @@ namespace SmartBoard.Controllers
             ViewData["Ideje"] = new SelectList(_context.CatEjes, "Id", "Nombre");
             ViewData["Idestrategia"] = new SelectList(_context.CatEstrategia, "Id", "Nombre");
             ViewData["Idlineaaccion"] = new SelectList(_context.CatLineaaccions, "Id", "Nombre");
-            
+
+            ViewData["Idejecutor"] = new SelectList(_context.CatEjecutors, "Id", "Nombre");
+
             ViewData["Idcategoria"] = new SelectList(_context.CatCategoria, "Id", "Nombre");
             ViewData["Idregion"] = new SelectList(_context.CatRegions, "Id", "Nombre");
             ViewData["Idlocalidad"] = new SelectList(_context.CatLocalidads, "Id", "Clave");
@@ -1290,6 +1519,7 @@ namespace SmartBoard.Controllers
                 expediente.Localidad = Obra.Localidad;
 
                 expediente.Ideje = Obra.Ideje;
+                expediente.Idejecutor = Obra.Idejecutor;
                 expediente.Idestrategia = Obra.Idestrategia;
                 expediente.Idlineaacion = Obra.Idlineaaccion;
 
@@ -1321,7 +1551,8 @@ namespace SmartBoard.Controllers
             ViewData["Idlineaaccion"] = new SelectList(_context.CatLineaaccions, "Id", "Nombre", Obra.Idlineaaccion);
 
             ViewData["Idregion"] = new SelectList(_context.CatRegions, "Id", "Nombre", Obra.Idregion);
-            
+            ViewData["Idejecutor"] = new SelectList(_context.CatEjecutors, "Id", "Nombre", Obra.Idejecutor);
+
             ViewData["Idmunicipio"] = new SelectList(_context.CatMunicipios, "Id", "Municipio", Obra.Idmunicipio);
             ViewData["Idpoadetalle"] = new SelectList(_context.TblPoadetalles, "Id", "Actividades", Obra.Idpoadetalle);
 
@@ -1380,6 +1611,7 @@ namespace SmartBoard.Controllers
                     IdtipoAdjudicacion = a.IdtipoAdjudicacion,
                     IdtipoContrato = a.IdtipoContrato,
                     Idzap = a.Idzap,
+                    Idejecutor = a.Idejecutor,
                     BeneficiarioNombre = a.BeneficiarioNombre,
                     EntidadEjecutora = a.EntidadEjecutora,
                     ContratistaNombre = a.ContratistaNombre,
@@ -1579,7 +1811,8 @@ namespace SmartBoard.Controllers
 
             //ViewData["Idprogsoc"] = new SelectList(_context.CatProgsocs, "Id", "Descripcion", tblObra.Idprogsoc);
 
-            
+            ViewData["Idejecutor"] = new SelectList(_context.CatEjecutors, "Id", "Nombre", tblObra.Idejecutor);
+
             ViewData["Idregion"] = new SelectList(_context.CatRegions, "Id", "Nombre", tblObra.Idregion);
             //ViewData["Idlocalidad"] = new SelectList(_context.CatLocalidads, "Id", "Clave", tblObra.Idlocalidad);
             ViewData["Idmunicipio"] = new SelectList(_context.CatMunicipios, "Id", "Municipio", tblObra.Idmunicipio);
@@ -1724,6 +1957,7 @@ namespace SmartBoard.Controllers
                     expediente.IdtipoAdjudicacion = Obra.IdtipoAdjudicacion;
                     expediente.IdtipoContrato = Obra.IdtipoContrato;
                     expediente.Idzap = Obra.Idzap;
+                    expediente.Idejecutor = Obra.Idejecutor;
                     expediente.BeneficiarioNombre = Obra.BeneficiarioNombre;
                     expediente.EntidadEjecutora = Obra.EntidadEjecutora;
                     expediente.ContratistaNombre = Obra.ContratistaNombre;
@@ -1798,6 +2032,8 @@ namespace SmartBoard.Controllers
             //ViewData["Idprogsoc"] = new SelectList(_context.CatProgsocs, "Id", "Descripcion", Obra.Idprogsoc);
             //ViewData["Idcategoria"] = new SelectList(_context.CatCategoria, "Id", "Nombre", Obra.Idcategoria);
             ViewData["Idregion"] = new SelectList(_context.CatRegions, "Id", "Nombre", Obra.Idregion);
+            ViewData["Idejecutor"] = new SelectList(_context.CatEjecutors, "Id", "Nombre",Obra.Idejecutor);
+
             //ViewData["Idlocalidad"] = new SelectList(_context.CatLocalidads, "Id", "Clave", Obra.Idlocalidad);
             ViewData["Idmunicipio"] = new SelectList(_context.CatMunicipios, "Id", "Municipio", Obra.Idmunicipio);
             ViewData["Idpoadetalle"] = new SelectList(_context.TblPoadetalles, "Id", "Actividades", Obra.Idpoadetalle);

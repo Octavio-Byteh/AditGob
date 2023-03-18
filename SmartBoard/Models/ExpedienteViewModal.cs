@@ -210,9 +210,24 @@ namespace SmartBoard.Models
         public int year { get; set; }
     }
 
-    public partial class ExpedienteContratoViewModal
+    public class ExpedienteNamesViewmodal
     {
-   
+        public string NombreZap { get; set; }
+        public string NombreMunicipio { get; set; }
+        public string NombreModalidadEjecucion { get; set; }
+        public string NombreTipoAdjudicacion { get; set; }
+        public string NombreContratacion { get; set; }
+        public string NombreTipoContrato { get; set; }
+        
+        public string NombreGradoMarginal { get; set; }
+    }
+
+    public partial class ExpedienteContratoViewModal : ExpedienteNamesViewmodal
+    {
+
+        [Required(ErrorMessage = "Entidad Ejecutora es campo obligatorio")]
+        [Display(Name = "Entidad Ejecutora")]
+        public int? Idejecutor { get; set; }
 
         //[Required(ErrorMessage = "ZAP es campo obligatorio")]
         [Display(Name = "ZAP")]
@@ -331,6 +346,10 @@ namespace SmartBoard.Models
         [Required(ErrorMessage = "Región es campo obligatorio")]
         [Display(Name = "Región")]
         public int Idregion { get; set; }
+
+        //[Required(ErrorMessage = "Entidad Ejecutora es campo obligatorio")]
+        //[Display(Name = "Entidad Ejecutora")]
+        //public int? Idejecutor { get; set; }
 
         [Required(ErrorMessage = "Municipio es campo obligatorio")]
         [Display(Name = "Municipio")]
