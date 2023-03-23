@@ -21,7 +21,7 @@ namespace SmartBoard.Controllers
 
         public IActionResult Index()
         {
-            return RedirectToActionPermanent("RecordsDashboard", "Intel");
+            return RedirectToActionPermanent("RecordsDashboard", "Intel", new { IdtipoObra = 1 });
             //return View();
         }
 

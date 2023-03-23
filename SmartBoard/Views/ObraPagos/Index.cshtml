@@ -1,0 +1,125 @@
+﻿@model IEnumerable<SmartBoard.Data.Models.SmartBoard.TblObraPago>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdFactura)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Numero)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumFactura)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaFactura)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SolicitudPago)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrdenPago)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImporteTotal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pago)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaPago)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Activo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Registro)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RutaArchivoFactura)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RutaArchivoEvidencia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreArchivoFactura)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreArchivoEvidencia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdTblobraNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdFactura)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Numero)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumFactura)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaFactura)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SolicitudPago)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrdenPago)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImporteTotal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pago)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaPago)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Activo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Registro)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RutaArchivoFactura)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RutaArchivoEvidencia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreArchivoFactura)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreArchivoEvidencia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdTblobraNavigation.Id)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

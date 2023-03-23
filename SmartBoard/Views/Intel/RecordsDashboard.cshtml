@@ -1,8 +1,12 @@
-@{ ViewData["Title"] = "Tablero de Expedientes";
+@{
+    int idtipo = ((int)ViewData["MyIdtipoObra"]);
+    string titulo = (idtipo == 1 ? "Expedientes" : "Adquisiciones");
+
+    ViewData["Title"] = "Tablero de " + titulo;
     //ViewData["PageName"] = "intel_records_dashboard";
-    ViewData["PageName"] = "dashboard";
-    ViewData["Category1"] = "Expedientes";
-    ViewData["Heading"] = "<i class='subheader-icon fal fa-chart-area'></i> Tablero de <span class='fw-300'>Expedientes</span>";
+    ViewData["PageName"] = "dashboard_"+titulo;
+    ViewData["Category1"] = titulo;
+    ViewData["Heading"] = "<i class='subheader-icon fal fa-chart-area'></i> Tablero de <span class='fw-300'>" + titulo + "</span>";
 
     string year = @Settings.CurrentYear;
     if (year == "0")
@@ -11,13 +15,25 @@
     }
 
     string apikeymaps = @Settings.api_key_maps;
-
+    string urlmaps = string.Concat("https://maps.googleapis.com/maps/api/js?key=", apikeymaps);
     string mapTheme = @Settings.maptheme;
 
 }
 @section HeadBlock {
+
     <link rel="stylesheet" media="screen, print" href="~/css/datagrid/datatables/datatables.bundle.css">
+      @if (idtipo != 1)
+            {
+        <link id="mytheme" rel="stylesheet" media="screen, print" href="~/css/themes/cust-theme-13.css">
+            }
+
     <style>
+        .tdc{
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
         .gm-style .gm-style-iw {
             color: black !important;
         }
@@ -98,16 +114,21 @@
 }
 
 <partial name="~/Views/Intel/_tablero.cshtml" />
-
+@*
+<text>
+    @idtipo
+</text>
+*@
 <div class="row">
 
     <div class="col-sm-6">
         <div id="panel-2" class="panel">
             <div class="panel-hdr">
                 <h2>
-                    Listado <span class="fw-300"><i>Expediente</i></span>
+                    Listado <span class="fw-300"><i>@titulo</i></span>
                 </h2>
-                
+                <a href="TblObras/Index?IdtipoObra=@idtipo" class="btn btn-warning" style="font-weight:400; color:white; margin-right: 1px;"> Resumen </a>
+               
             </div>
             <div class="panel-container show">
                 <div class="panel-content">
@@ -245,6 +266,7 @@
             </div>
         </div>
     </div>
+    
 
     <div class="col-sm-12">
 
@@ -273,7 +295,7 @@
             </div>
         </div>
     </div>
-
+    
 </div>
 
 
@@ -333,7 +355,7 @@
 
             $.ajax({
                 method: "GET",
-                url: '@Url.Content("~/Intel/ObtieneObrasPendientes")?year=@year',
+                url: '@Url.Content("~/Intel/ObtieneObrasPendientes")?year=@year&IdtipoObra=@idtipo',
                 datatype: 'json',
                 beforeSend: function () {
                     $('#loader-1').removeClass('hidden')
@@ -348,7 +370,7 @@
 
             $.ajax({
                 method: "GET",
-                url: '@Url.Content("~/Intel/ObtieneObrasTerminadas")?year=@year',
+                url: '@Url.Content("~/Intel/ObtieneObrasTerminadas")?year=@year&IdtipoObra=@idtipo',
                 datatype: 'json',
                 beforeSend: function () {
                     $('#loader-2').removeClass('hidden')
@@ -363,7 +385,7 @@
 
             $.ajax({
                 method: "GET",
-                url: '@Url.Content("~/Intel/ObtieneObrasTotal")?year=@year',
+                url: '@Url.Content("~/Intel/ObtieneObrasTotal")?year=@year&IdtipoObra=@idtipo',
                 datatype: 'json',
                 beforeSend: function () {
                     $('#loader-3').removeClass('hidden')
@@ -378,7 +400,7 @@
 
             $.ajax({
                 method: "GET",
-                url: '@Url.Content("~/Intel/ObtieneObrasProgramados")?year=@year',
+                url: '@Url.Content("~/Intel/ObtieneObrasProgramados")?year=@year&IdtipoObra=@idtipo',
                 datatype: 'json',
                 beforeSend: function () {
                     $('#loader-4').removeClass('hidden')
@@ -392,7 +414,7 @@
             });
 
             $.ajax({
-                "url": '@Url.Action("GetObrasByYear", "Obras")?year=@year',
+                "url": '@Url.Action("GetObrasByYear", "Obras")?year=@year&IdtipoObra=@idtipo',
                 "type": "GET",
                 "datatype": 'json',
                 beforeSend: function () {
@@ -442,7 +464,7 @@
                         },
                         {
                             'data': function (row, type,set) {
-                                return '<button class="btn btn-default divbutton"  onClick="showDetail(' + row.id + '); showBotonera(' + row.id + '); CargarMarkers(' + row.coordenadax + ',' + row.coordenaday + ',' + row.Descripcion + ',' + row.Descripcion + ',' + row.idestatusobra + '); return false;">' + row.numeroDeObra + '</button>'
+                                return '<button class="btn btn-default divbutton tdc"  onClick="showDetail(' + row.id + '); showBotonera(' + row.id + '); CargarMarkers(' + row.coordenadax + ',' + row.coordenaday + ',' + row.Descripcion + ',' + row.Descripcion + ',' + row.idestatusobra + '); return false;">' + row.numeroDeObra + '</button>'
                             }
                         },
                         {
@@ -528,7 +550,8 @@
     <script src="~/js/statistics/flot/flot.bundle.js"></script>
     <script src="~/js/statistics/easypiechart/easypiechart.bundle.js"></script>
     <script src="~/js/datagrid/datatables/datatables.bundle.js"></script>
-      <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTYZxBuaaCVa5ExcFcCZAZA2uGmhjno0o"></script>
+      @*<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTYZxBuaaCVa5ExcFcCZAZA2uGmhjno0o"></script>*@
+      <script type="text/javascript" src=@urlmaps></script>
 
 
 <script>

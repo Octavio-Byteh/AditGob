@@ -216,11 +216,11 @@ else
 
 
                     <!-- Adicionales -->
-                    <td>@cantidadAdicional</td>
+                    <td>@Model.conceptos.Where(a => a.Idtipoconcepto == 1).Sum(a=>a.Cantidad)</td>
                     <td>@Model.conceptos.Where(a => a.Idtipoconcepto == 1).Sum(a => a.Importe).ToString("c2")</td>
 
                     <!-- Deductivas -->
-                    <td>@cantidadDeductiva</td>
+                    <td>@Model.conceptos.Where(a => a.Idtipoconcepto == 2).Sum(a=>a.Cantidad)</td>
                     <td>@Model.conceptos.Where(a => a.Idtipoconcepto == 2).Sum(a => a.Importe).ToString("c2")</td>
 
                     <!-- Ejecutado -->

@@ -15,9 +15,11 @@ namespace SmartBoard.Services
             _context = ctx;
         }
 
-        public List<ObrasViewModel> getObrasbyYear(int year)
+        public List<ObrasViewModel> getObrasbyYear(int year,int IdtipoObra)
         {
-            var listaObras = _context.TblObras.Where(a => a.Year == year)
+            var listaObras = _context.TblObras
+                .Where(a => a.IdtipoObra == IdtipoObra)
+                //.Where(a => a.Year == year)
                 //.OrderByDescending(a=>a.Id)
                 .Select(a => new ObrasViewModel()
                 {
@@ -223,7 +225,8 @@ namespace SmartBoard.Services
         public List<ObrasViewModel> getObrasbyYearToPivot(int year)
         {
             var listaObras = 
-                _context.TblObras.Where(a => a.Year == year)
+                _context.TblObras
+                //.Where(a => a.Year == year)
                 //.OrderByDescending(a => a.Id)
                 .Select(a => new ObrasViewModel()
                 {
@@ -269,38 +272,38 @@ namespace SmartBoard.Services
             return listaObrasAgrupada;
         }
 
-        public int otieneProgramados(int year)
+        public int otieneProgramados(int year, int IdtipoObra)
         {
             int data = 0;
 
-            data = _context.TblObras.Where(a => (a.Idestadoobra == 3 || a.Idestadoobra == 4) && a.Year == year).Count();
+            data = _context.TblObras.Where(a => a.IdtipoObra == IdtipoObra && (a.Idestadoobra == 3 || a.Idestadoobra == 4) ).Count();
 
             return data;
         }
 
-        public int otieneTotal(int year)
+        public int otieneTotal(int year, int IdtipoObra)
         {
             int data = 0;
 
-            data = _context.TblObras.Where(a => a.Year == year).Count();
+            data = _context.TblObras.Where(a => a.IdtipoObra == IdtipoObra  ).Count();
 
             return data;
         }
 
-        public int otienePendientes(int year)
+        public int otienePendientes(int year, int IdtipoObra)
         {
             int data = 0;
 
-            data = _context.TblObras.Where(a => a.Idestadoobra == 2 && a.Year == year).Count();
+            data = _context.TblObras.Where(a => a.IdtipoObra == IdtipoObra && a.Idestadoobra == 2 ).Count();
 
             return data;
         }
 
-        public int otieneTerminadas(int year)
+        public int otieneTerminadas(int year,int IdtipoObra)
         {
             int data = 0;
 
-            data = _context.TblObras.Where(a => a.Idestadoobra == 1 && a.Year == year).Count();
+            data = _context.TblObras.Where(a => a.IdtipoObra == IdtipoObra && a.Idestadoobra == 1).Count();
 
             return data;
         }

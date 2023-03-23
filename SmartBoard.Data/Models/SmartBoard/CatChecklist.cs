@@ -21,8 +21,10 @@ namespace SmartBoard.Data.Models.SmartBoard
         public bool ArchivoMultiple { get; set; }
         public string ArchivoExtensions { get; set; }
         public string HexColor { get; set; }
+        public int Idtipoobra { get; set; }
 
         public virtual CatCategoriaCheckList IdcategoriachecklistNavigation { get; set; }
         public virtual CatTipoCheckList IdtipochecklistNavigation { get; set; }
+        public virtual CatTipoObra IdtipoobraNavigation { get; set; }
     }
 }

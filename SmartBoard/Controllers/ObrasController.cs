@@ -28,7 +28,7 @@ namespace SmartBoard.Controllers
         }
         // GET: Obras Get data      
         [HttpGet]
-        public IActionResult GetObrasByYear(int year) => Json(new RecordsService(_context).getObrasbyYear(year));
+        public IActionResult GetObrasByYear(int year, int IdtipoObra) => Json(new RecordsService(_context).getObrasbyYear(year,IdtipoObra));
 
         [HttpGet]
         public IActionResult GetObrasByYearToPivot(int year) => Json(new RecordsService(_context).getObrasbyYearToPivot(year));
@@ -112,7 +112,7 @@ namespace SmartBoard.Controllers
                  .Include(o => o.IdvertienteNavigation)
                 .Include(o => o.IdsubvertienteNavigation)
                 .Include(o => o.IdprogsogNavigation)
-                .FirstOrDefaultAsync(m => m.Id == id.Value && m.Year == year);
+                .FirstOrDefaultAsync(m => m.Id == id.Value );
             if (obra == null)
             {
                 return NotFound();
@@ -156,7 +156,7 @@ namespace SmartBoard.Controllers
             }
 
             var obra = await _context.TblObras
-                   .FirstOrDefaultAsync(m => m.Id == id.Value && m.Year == year);
+                   .FirstOrDefaultAsync(m => m.Id == id.Value );
             if (obra == null)
             {
                 return NotFound();

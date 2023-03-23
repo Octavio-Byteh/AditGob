@@ -1,305 +1,158 @@
-﻿@model IEnumerable<SmartBoard.Data.Models.SmartBoard.TblObra>
+﻿@*@model IEnumerable<SmartBoard.Data.Models.SmartBoard.TblObra>*@
+@model IEnumerable<SmartBoard.Models.ExpedienteViewModalDetalle>
 
 @{
-    ViewData["Title"] = "Index";
+    int idtipo = ((int)ViewData["MyIdtipoObra"]);
+    string titulo = (idtipo == 1 ? "Expedientes" : "Adquisiciones");
+    ViewData["Title"] = titulo;
+    ViewData["PageName"] = "dashboard_" + titulo;
+    int c = 0;
 }
 
-<h1>Index</h1>
+@if (idtipo != 1)
+{
+    <link id="mytheme" rel="stylesheet" media="screen, print" href="~/css/themes/cust-theme-13.css">
+}
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<h1>
+    Listado <span class="fw-300"><i>@titulo</i></span>
+</h1>
+
+<div>
+    <a asp-action="RecordsDashboard" asp-controller="Intel" asp-route-IdtipoObra="@idtipo">Regresar @titulo</a>
+</div>
+
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Year)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Region)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Numeroobra)
+                @Html.DisplayNameFor(model => model.Expediente)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Nombreobra)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Descripcion)
+                @Html.DisplayNameFor(model => model.Region)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Inversion)
+                Municipio
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Fuentefinanciamiento)
+                @Html.DisplayNameFor(model => model.Localidad)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Coordenadax)
+                ZAP
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Coordenaday)
+                Grado Marginal
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Inaguracion)
+                Modalidad Ejecución
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PeriodoInforme)
+                Tipo Adjudicación
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Porcentajeavance)
+                Contratación
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Fechainicio)
+                Tipo Contrato
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Fechatermino)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Posibleconflicto)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Observaciones)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Georeferenciado)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NumeroreferenciaCiceco)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Imagenobra)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Observacionesrevision)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Fecharegistro)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.BeneficiarioNombre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.BeneficiarioDomicilio)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Numeroobraexterno)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.InversionFederal)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.InversionEstatal)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.InversionMunicipal)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.InversionBeneficiario)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CantidadBeneficioHombre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CantidadBeneficioMujer)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CantidadUnidadmedida)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Expediente)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AvanceFinanciero)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdcategoriaNavigation)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IddependenciaNavigation)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdejeNavigation)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdejecutorNavigation)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdestadoobraNavigation)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdestadorevisionNavigation)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdlocalidadNavigation)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdmunicipioNavigation)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdpoadetalleNavigation)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdprogsogNavigation)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdsubvertienteNavigation)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdunidadmedidaNavigation)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdvertienteNavigation)
-            </th>
-            <th></th>
+          
+            <th>Monto Aprobado</th>
+            <th>Origen de los recursos</th>
+            <th>Ejercicio fiscal</th>
+            <th>Monto Contratado</th>
+            <th>Monto Modificado</th>
+            <th>Monto Total</th>
+            <th>Periodo Contractual</th>
+            <th>Periodo Modificado</th>
+            <th>Periodo Periodo Total</th>
+            <th>Plazo de ejecución Contratado (dias)</th>
+            <th>Plazo de ejecución Modificado (dias)</th>
+            <th>Plazo Total</th>
+
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Year)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Region)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Numeroobra)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nombreobra)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Descripcion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Inversion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Fuentefinanciamiento)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Coordenadax)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Coordenaday)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Inaguracion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PeriodoInforme)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Porcentajeavance)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Fechainicio)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Fechatermino)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Posibleconflicto)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Observaciones)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Georeferenciado)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NumeroreferenciaCiceco)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Imagenobra)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Observacionesrevision)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Fecharegistro)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BeneficiarioNombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BeneficiarioDomicilio)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Numeroobraexterno)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.InversionFederal)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.InversionEstatal)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.InversionMunicipal)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.InversionBeneficiario)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CantidadBeneficioHombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CantidadBeneficioMujer)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CantidadUnidadmedida)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Expediente)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AvanceFinanciero)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdcategoriaNavigation.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IddependenciaNavigation.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdejeNavigation.Clave)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdejecutorNavigation.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdestadoobraNavigation.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdestadorevisionNavigation.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdlocalidadNavigation.Clave)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdmunicipioNavigation.Clave)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdpoadetalleNavigation.Actividades)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdprogsogNavigation.Descripcion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdsubvertienteNavigation.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdunidadmedidaNavigation.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdvertienteNavigation.Clave)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            c = 0;
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Expediente)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombreobra)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Region)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombreMunicipio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Localidad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombreZap)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombreGradoMarginal)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombreModalidadEjecucion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombreTipoAdjudicacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombreContratacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombreTipoContrato)
+                </td>
+                <td></td>
+                <td>
+                    
+                    @foreach (var rec in item.recursos)
+                    {
+                        if (c == 1) break;
+                        @rec.Recurso
+                        c++;
+                    }
+                    
+                </td>
+
+                <td>
+                    @{
+                        c = 0;
+                    }
+                    @foreach (var rec in item.recursos)
+                    {
+                        if (c == 1) break;
+                        @rec.Ejercicio
+                        c++;
+                    }
+
+                </td>
+                <td>
+                    @item.recursos.Sum(a=>a.ImporteContratado)
+                </td>
+                <td>
+                    @item.recursos.Sum(a=>a.ImporteModificado)
+                </td>
+                <td>
+                    @item.recursos.Sum(a=>a.ImporteContratado + a.ImporteModificado)
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+
+            </tr>
+        }
     </tbody>
 </table>

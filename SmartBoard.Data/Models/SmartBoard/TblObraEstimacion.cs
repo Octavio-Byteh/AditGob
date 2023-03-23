@@ -32,6 +32,7 @@ namespace SmartBoard.Data.Models.SmartBoard
         public string RutaArchivoEvidencia { get; set; }
         public string NombreArchivoFactura { get; set; }
         public string NombreArchivoEvidencia { get; set; }
+        public bool AplicaAnticipo { get; set; }
 
         public virtual TblObra IdTblobraNavigation { get; set; }
     }

@@ -14,7 +14,9 @@ namespace SmartBoard.Data.Models.SmartBoard
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
         public bool Activo { get; set; }
+        public int Idtipoobra { get; set; }
 
+        public virtual CatTipoObra IdtipoobraNavigation { get; set; }
         public virtual ICollection<TblObra> TblObras { get; set; }
     }
 }

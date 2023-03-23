@@ -1,0 +1,146 @@
+﻿@model SmartBoard.Models.ExpedienteViewModalDetalle
+@{
+    
+    Layout = null;
+    bool PermiteAgregar = false;
+    bool contratoAbierto = false;
+
+    if (Model.IdtipoContrato.HasValue)
+    {
+        if (Model.IdtipoContrato.Value == 4)
+        {
+            contratoAbierto = true;
+        }
+    }
+}
+
+  <div class="row">
+        <div class="form-group">
+            <a class="btn btn-danger" href="ObraPagos/Create?IdTblobra=@Model.Id" title="Obras" data-filter-tags="ObraPago">
+                <label>
+                    Agregar Pagos
+                </label>
+            </a>
+            <h1 center> @(contratoAbierto ==  true ? "Contrato Abierto" : "Contrato") </h1>
+        </div>
+    </div>
+
+<div class="col-sm-12">
+
+
+    <table id="dt-obras-documentos3" class="table table-bordered table-hover table-striped w-100">
+        <thead class="bg-warning-200">
+            <tr>
+
+                <th>Num. Factura</th>
+                <th>Fecha Factura</th>
+                <th>importe Total</th>
+                <th>Solicitud de Pago</th>
+                <th>Orden de pago</th>
+                <th>Pagado</th>
+                <th>Fecha de Pago</th>  
+                <th>Doc. Factura</th>
+                <th>Evidencias</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.pagos)
+            {
+                <tr>
+
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NumFactura)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FechaFactura)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ImporteTotal)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SolicitudPago)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.OrdenPago)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Pago)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FechaPago)
+                    </td>
+                   
+                   <td>
+                       @* @if (item.Activo)
+                        {
+                           
+                                <div class="fileUpload btn btn-outline-default">
+                                    <input type="file" id="files_@item.Id" name="files_@item.Id" class="upload" onchange="SubirArchivoEFactura(@item.Id,@item.IdTblobra,@item.IdTblobra)" />
+                                    <span class="fa-2x d-inline l-h-n color-fusion-400"> <i class="fal fa-upload" style="color:white;"></i></span> <span></span>
+                                </div>
+                            
+                        }*@
+                        <div class="divEVFactura" myid="@item.Id" id="divEVFactura_@item.Id">
+                          
+                         </div>
+                   </td>
+                   <td>
+                        @*@if (item.Activo)
+                        {
+                       
+                                <div class="fileUpload btn btn-outline-default">
+                                    <input type="file" id="files_@item.Id" name="files_@item.Id" class="upload" onchange="SubirArchivoEvidencia(@item.Id,@item.IdTblobra,@item.IdTblobra)" />
+                                    <span class="fa-2x d-inline l-h-n color-fusion-400"> <i class="fal fa-upload" style="color:white;"></i></span> <span></span>
+                                </div>
+                            
+                        }*@
+                        <div class="divEVEvidencia" myid="@item.Id" id="divEVEvidencia_@item.Id">
+                        </div>
+                   </td>
+
+                </tr>
+            }
+            <tr style="font-weight:bold">
+                <td colspan="5" style="text-align:right"> Total</td>
+                <td>@Model.pagos.Sum(a => a.Pago).ToString("c2")</td>
+              
+                <td colspan="3"></td>
+            </tr>
+            @if (contratoAbierto == true)
+            {                           
+                <tr style="font-weight:bold">
+                    <td colspan="5" style="text-align:right"> Contratado Minimo</td>
+                    <td>0</td>
+                    <td colspan="3"></td>
+                </tr>
+                <tr style="font-weight:bold">
+                    <td colspan="5" style="text-align:right"> Contratado Maximo</td>
+                    <td>0</td>
+                    <td colspan="3"></td>
+                </tr>
+                <tr style="font-weight:bold">
+                    <td colspan="5" style="text-align:right"> importe Maximo Ejercido</td>
+                    <td>0</td>
+                    <td colspan="3"></td>
+                </tr>
+            }
+            else
+            {
+                <tr style="font-weight:bold">
+                    <td colspan="5" style="text-align:right"> Contratado</td>
+                    <td>0</td>
+                    <td colspan="3"></td>
+                </tr>
+                <tr style="font-weight:bold">
+                    <td colspan="5" style="text-align:right"> Saldo por ejercer</td>
+                    <td>0</td>
+                    <td colspan="3"></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+</div>

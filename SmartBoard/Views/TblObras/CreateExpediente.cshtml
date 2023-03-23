@@ -1,20 +1,27 @@
 ﻿@model SmartBoard.Models.ExpedienteViewModal
 
 @{
-    ViewData["Title"] = "Nuevo de Expedientes";
-    //ViewData["PageName"] = "intel_records_dashboard";
-    ViewData["PageName"] = "registro_obra";
-    ViewData["Category1"] = "Expedientes";
-    ViewData["Heading"] = "<i class='subheader-icon fal fa-chart-area'></i> Alta de <span class='fw-300'>Expedientes</span>";
+    int idtipo = ((int)ViewData["MyIdtipoObra"]);
+    string titulo = (idtipo == 1 ? "Expedientes" : "Adquisiciones");
 
-    //ViewData["Title"] = "Create";
-    //Layout = null;
+    ViewData["Title"] = titulo;
+    //ViewData["PageName"] = "intel_records_dashboard";
+    ViewData["PageName"] = "registro_" + titulo;
+    ViewData["Category1"] = titulo;
+    ViewData["Heading"] = "<i class='subheader-icon fal fa-chart-area'></i> Alta de <span class='fw-300'>" + @titulo + "</span>";
+
+
 }
 
 @section HeadBlock {
     @*<link id="mytheme" rel="stylesheet" media="screen, print" href="~/css/themes/cust-theme-13.css">*@
-    <link rel="stylesheet" media="screen, print" href="~/css/fa-brands.css">
     <link rel="stylesheet" media="screen, print" href="~/css/formplugins/select2/select2.bundle.css">
+    <link rel="stylesheet" media="screen, print" href="~/css/fa-brands.css">
+
+            @if (idtipo != 1)
+            {
+        <link id="mytheme" rel="stylesheet" media="screen, print" href="~/css/themes/cust-theme-13.css">
+            }
     <style>
 
         .clsObra {
@@ -48,30 +55,28 @@
     </div>
 }
 
-
-
 <div class="row">
     <div class="col-xl-12">
         <div id="panel-expediente" class="panel">
-            <div class="panel-hdr">
-                <h2>
-                    Nuevo <span class="fw-300"><i>Expediente</i></span>
-                </h2>
-            </div>
             <div class="panel-container show">
                 <div class="panel-content">
                     <div id="DivNuevoExpediente">
-
-                        <h5>Datos Generales</h5>
-
-                        @*<h4>TblObra</h4>*@
-                        @*<hr />*@
                         <div class="row">
                             <div class="col-md-12">
                                 <form class="needs-validation" novalidate asp-action="CreateExpediente" id="frmCreateObra">
                                     <div class="panel-content">
                                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                                        <div class="form-row">
+                                        <input type="hidden" asp-for="IdtipoObra" value="@idtipo" />
+
+                                        <div class="form-group">
+                                            <label asp-for="IdEjercicio" class="control-label">Ejercicio</label>
+                                            <select asp-for="IdEjercicio" required class="form-control  clsObra select2" asp-items="ViewBag.IdEjercicio" value="10"></select>
+                                        </div>
+                                      
+                                       
+                                        @if (idtipo == 1)
+                                        {
+                                             <div class="form-row">
                                             <div class="col-md-8 mb-3">
                                                 <label asp-for="Nombreobra" class="control-label">Nombre de Obra</label>
                                                 <input asp-for="Nombreobra" class="form-control clsObra" placeholder="Requerido*" required />
@@ -90,57 +95,98 @@
 
                                             </div>
                                         </div>
+                                        }
+                                        else
+                                        {
+                                            <input type="hidden" asp-for="Nombreobra" value="---" />
+
+                                            <div class="form-row">
+                                                <div class="col-md-3 mb-3">
+                                                    <label asp-for="ProveedorAdjudicado" class="control-label">Proveedor Adjudicado</label>
+                                                    <input asp-for="ProveedorAdjudicado" class="form-control clsObra" placeholder="Requerido*" required />
+                                                    <span asp-validation-for="ProveedorAdjudicado" class="text-danger"></span>
+                                                </div>
+
+                                                <div class="col-md-3 mb-3">
+                                                    <label asp-for="EntidadRequiriente" class="control-label">Entidad Requiriente</label>
+                                                    <input asp-for="EntidadRequiriente" class="form-control clsObra" placeholder="Requerido*" required />
+                                                    <span asp-validation-for="EntidadRequiriente" class="text-danger"></span>
+                                                </div>
+
+                                                <div class="col-md-3 mb-3">
+                                                    <label asp-for="Expediente" class="control-label">No. adjudicacion</label>
+                                                    <input asp-for="Expediente" class="form-control clsObra" placeholder="Requerido*" required />
+                                                    <span asp-validation-for="Expediente" class="text-danger"></span>
+
+                                                </div>
+                                                <div class="col-md-3 mb-3">
+                                                    <label asp-for="folio" class="control-label"></label>
+                                                    <input asp-for="folio" class="form-control clsObra" placeholder="Requerido*" required />
+                                                    <span asp-validation-for="folio" class="text-danger"></span>
+
+                                                </div>
+                                            </div>
+                                        }
+                                        @if (idtipo == 1)
+                                        {
+                                            <div class="form-row form-group">
+                                                <div class="col-md-4 mb-4">
+                                                    <label asp-for="BeneficiarioNombre" class="control-label"></label>
+                                                    <input asp-for="BeneficiarioNombre" class="form-control clsObra" placeholder="Requerido*" required />
+                                                    <span asp-validation-for="BeneficiarioNombre" class="text-danger"></span>
+                                                </div>
+
+                                                <div class="col-md-4 mb-4">
+                                                    @*
+                                                        <label asp-for="EntidadEjecutora" class="control-label"></label>
+                                                    <input asp-for="EntidadEjecutora" class="form-control clsObra" placeholder="Requerido*" required />
+                                                    *@
+                                                    <label asp-for="Idejecutor" class="control-label"></label>
+                                                    <select asp-for="Idejecutor" class="custom-select clsObra select2" required asp-items="ViewBag.Idejecutor" aria-label="Select your country"> Selecciona Entidad Ejecutor</select>
+
+                                                    <span asp-validation-for="Idejecutor" class="text-danger"></span>
+                                                </div>
+
+                                                <div class="col-md-4 mb-4">
+                                                    <label asp-for="ContratistaNombre" class="control-label"></label>
+                                                    <input asp-for="ContratistaNombre" class="form-control clsObra" placeholder="Requerido*" required />
+                                                    <span asp-validation-for="ContratistaNombre" class="text-danger"></span>
+                                                </div>
+
+                                            </div>
+                                        }
+                                      
+                                        @if(idtipo == 1){
                                         <div class="form-row form-group">
-                                            <div class="col-md-4 mb-4">
-                                                <label asp-for="BeneficiarioNombre" class="control-label"></label>
-                                                <input asp-for="BeneficiarioNombre" class="form-control clsObra" placeholder="Requerido*" required />
-                                                <span asp-validation-for="BeneficiarioNombre" class="text-danger"></span>
-                                            </div>
-
-                                            <div class="col-md-4 mb-4">
-                                                <label asp-for="EntidadEjecutora" class="control-label"></label>
-                                                <input asp-for="EntidadEjecutora" class="form-control clsObra" placeholder="Requerido*" required />
-                                                <span asp-validation-for="EntidadEjecutora" class="text-danger"></span>
-                                            </div>
-
-                                            <div class="col-md-4 mb-4">
-                                                <label asp-for="ContratistaNombre" class="control-label"></label>
-                                                <input asp-for="ContratistaNombre" class="form-control clsObra" placeholder="Requerido*" required />
-                                                <span asp-validation-for="ContratistaNombre" class="text-danger"></span>
-                                            </div>
-
-                                        </div>
-
-                                         <div class="form-row form-group">
-                                             <div class="col-md-2 mb-2">
+                                            <div class="col-md-2 mb-2">
                                                 <span class="fa-2x d-inline l-h-n">
 
                                                 </span>
                                                 <label asp-for="EoPrograInicio" class="control-label"></label>
                                                 <input asp-for="EoPrograInicio" class="form-control clsObra" />
-                                                  <label asp-for="EoPrograFin" class="control-label"></label>
-                                                <input asp-for="EoPrograFin" class="form-control clsObra"  />
+                                                <label asp-for="EoPrograFin" class="control-label"></label>
+                                                <input asp-for="EoPrograFin" class="form-control clsObra" />
                                             </div>
-                                             <div class="col-md-2 mb-2">
+                                            <div class="col-md-2 mb-2">
                                                 <span class="fa-2x d-inline l-h-n">
 
                                                 </span>
                                                 <label asp-for="EoReprograInicio" class="control-label"></label>
                                                 <input asp-for="EoReprograInicio" class="form-control clsObra" />
-                                                  <label asp-for="EoReprograFin" class="control-label"></label>
-                                                <input asp-for="EoReprograFin" class="form-control clsObra"  />
+                                                <label asp-for="EoReprograFin" class="control-label"></label>
+                                                <input asp-for="EoReprograFin" class="form-control clsObra" />
                                             </div>
-                                             <div class="col-md-2 mb-2">
+                                            <div class="col-md-2 mb-2">
                                                 <span class="fa-2x d-inline l-h-n">
 
                                                 </span>
                                                 <label asp-for="EoRealInicio" class="control-label"></label>
                                                 <input asp-for="EoRealInicio" class="form-control clsObra" />
-                                                  <label asp-for="EoRealFin" class="control-label"></label>
-                                                <input asp-for="EoRealFin" class="form-control clsObra"  />
+                                                <label asp-for="EoRealFin" class="control-label"></label>
+                                                <input asp-for="EoRealFin" class="form-control clsObra" />
                                             </div>
 
-                                              <div class="col-md-2 mb-2">
+                                            <div class="col-md-2 mb-2">
                                                 <span class="fa-2x d-inline l-h-n">
 
                                                 </span>
@@ -164,37 +210,10 @@
                                                 <select asp-for="Idlineaaccion" class="custom-select clsObra select2" required asp-items="ViewBag.Idlineaaccion" aria-label="Select eje"> Selecciona Linea de Accion</select>
                                             </div>
 
-</div>
-
-@*
+                                            </div>
+                                        }
+                                       
                                         <div class="form-row form-group">
-                                            <div class="col-md-2 mb-2">
-                                                <span class="fa-2x d-inline l-h-n">
-
-                                                </span>
-                                                <label asp-for="Ideje" class="control-label"></label>
-                                                <select asp-for="Ideje" class="custom-select clsObra select2" required asp-items="ViewBag.Ideje" aria-label="Select eje"> Selecciona Eje</select>
-                                            </div>
-
-                                            <div class="col-md-2 mb-2">
-                                                <span class="fa-2x d-inline l-h-n">
-
-                                                </span>
-                                                <label asp-for="Idestrategia" class="control-label"></label>
-                                                <select asp-for="Idestrategia" class="custom-select clsObra select2" required asp-items="ViewBag.Idestrategia" aria-label="Select eje"> Selecciona Estrategia</select>
-                                            </div>
-
-                                            <div class="col-md-2 mb-2">
-                                                <span class="fa-2x d-inline l-h-n">
-
-                                                </span>
-                                                <label asp-for="Idlineaaccion" class="control-label"></label>
-                                                <select asp-for="Idlineaaccion" class="custom-select clsObra select2" required asp-items="ViewBag.Idlineaaccion" aria-label="Select eje"> Selecciona Linea de Accion</select>
-                                            </div>
-                                        </div>
-
-
-*@                                        <div class="form-row form-group">
 
                                             <div class="col-md-2 mb-2">
                                                 <span class="fa-2x d-inline l-h-n">
@@ -211,92 +230,97 @@
                                                 <select asp-for="Idmunicipio" class="custom-select clsObra select2" required asp-items="ViewBag.Idmunicipio" aria-label="Select your country" Seleciona Municipio></select>
                                             </div>
 
+                                            @if (idtipo == 1)
+                                            {
+                                                <div class="col-md-2 mb-2">
+                                                    <span class="fa-2x d-inline l-h-n">
 
-                                            <div class="col-md-2 mb-2">
-                                                <span class="fa-2x d-inline l-h-n">
+                                                    </span>
+                                                    <label asp-for="Localidad" class="control-label"></label>
+                                                    <input asp-for="Localidad" class="form-control clsObra" placeholder="Requerido*" required />
+                                                    <span asp-validation-for="Localidad" class="text-danger"></span>
 
-                                                </span>
-                                                <label asp-for="Localidad" class="control-label"></label>
-                                                <input asp-for="Localidad" class="form-control clsObra" placeholder="Requerido*" required />
-                                                <span asp-validation-for="Localidad" class="text-danger"></span>
+                                                </div>
 
-                                            </div>
+                                                <div class="col-md-2 mb-2">
+                                                    <span class="fa-2x d-inline l-h-n">
+                                                        @*<i class="fal fa-map-marked-alt"></i>*@
+                                                    </span>
+                                                    <label asp-for="Idzap" class="control-label"></label>
+                                                    <select asp-for="Idzap" class="custom-select clsObra select2" required asp-items="ViewBag.Idzap"></select>
+                                                </div>
 
-                                            <div class="col-md-2 mb-2">
-                                                <span class="fa-2x d-inline l-h-n">
-                                                    @*<i class="fal fa-map-marked-alt"></i>*@
-                                                </span>
-                                                <label asp-for="Idzap" class="control-label"></label>
-                                                <select asp-for="Idzap" class="custom-select clsObra select2" required asp-items="ViewBag.Idzap"></select>
-                                            </div>
+                                                <div class="col-md-2 mb-2">
 
-                                            <div class="col-md-2 mb-2">
+                                                    <span class="fa-2x d-inline l-h-n color-fusion-400">
+                                                        <i class="fal fa-solid fa-map-marked-alt" id="getLocationGeo" style="color: black;"></i>
+                                                    </span>
+                                                    <label asp-for="Coordenadas" class="control-label">Ubicación</label>
+                                                    <input asp-for="Coordenadas" class="form-control clsObra" required />
+                                                    <span asp-validation-for="Coordenadas" class="text-danger"></span>
 
-                                                <span class="fa-2x d-inline l-h-n color-fusion-400">
-                                                    <i class="fal fa-solid fa-map-marked-alt" id="getLocationGeo" style="color: black;"></i>
-                                                </span>
-                                                <label asp-for="Coordenadas" class="control-label">Ubicación</label>
-                                                <input asp-for="Coordenadas" class="form-control clsObra" required />
-                                                <span asp-validation-for="Coordenadas" class="text-danger"></span>
+                                                    <input asp-for="Coordenadax" class="form-control clsObra" hidden />
+                                                    <input asp-for="Coordenaday" class="form-control clsObra" hidden />
 
-                                                <input asp-for="Coordenadax" class="form-control clsObra" hidden />
-                                                <input asp-for="Coordenaday" class="form-control clsObra" hidden />
+                                                </div>
 
-                                            </div>
+                                               @* <div class="col-md-2 mb-3">
+                                                    <span class="fa-2x d-inline l-h-n">
+                                                    </span>
 
-                                            <div class="col-md-2 mb-3">
-                                                <span class="fa-2x d-inline l-h-n">
-                                                </span>
+                                                    
+                                                    <input asp-for="Porcentajeavance" hidden class="form-control clsObra" required pattern="^\d*(\.\d{0,2})?$" /> 
+                                                    <span asp-validation-for="Porcentajeavance" class="text-danger"></span>
+                                                    <input asp-for="AvanceFinanciero" hidden class="form-control clsObra" required pattern="^\d*(\.\d{0,2})?$" /> 
+                                                    <span asp-validation-for="AvanceFinanciero" class="text-danger"></span>
 
-                                                <label class="control-label"> Avance</label>
-                                                <input asp-for="Porcentajeavance" class="form-control clsObra" required pattern="^\d*(\.\d{0,2})?$" /> % Fisico
-                                                <span asp-validation-for="Porcentajeavance" class="text-danger"></span>
-                                                <input asp-for="AvanceFinanciero" class="form-control clsObra" required pattern="^\d*(\.\d{0,2})?$" /> % Financiero
-                                                <span asp-validation-for="AvanceFinanciero" class="text-danger"></span>
-
-                                            </div>
-
+                                                </div>*@
+                                            }
 
                                         </div>
 
 
-                                        @*<div class="form-group">
-                                        <label asp-for="Idpoadetalle" class="control-label"></label>
-                                        <select asp-for="Idpoadetalle" class="form-control" asp-items="ViewBag.Idpoadetalle"></select>
-                                        </div>*@
 
                                         <div class="form-row form-group">
+                                            @if (idtipo == 1)
+                                            {
+                                                <div class="col-md-2 mb-2">
+                                                    <span class="fa-2x d-inline l-h-n">
+
+                                                    </span>
+                                                    <label asp-for="Idgradomarginal" class="control-label"></label>
+                                                    <select asp-for="Idgradomarginal" class="custom-select clsObra select2" required asp-items="ViewBag.Idgradomarginal" aria-label="Select your country"> sleect algo</select>
+                                                </div>
+                                            }
                                             <div class="col-md-2 mb-2">
                                                 <span class="fa-2x d-inline l-h-n">
-                                                    @*<i class="fal fa-map-marked-alt"></i>*@
-                                                </span>
-                                                <label asp-for="Idgradomarginal" class="control-label"></label>
-                                                <select asp-for="Idgradomarginal" class="custom-select clsObra select2" required asp-items="ViewBag.Idgradomarginal" aria-label="Select your country"> sleect algo</select>
-                                            </div>
-                                            <div class="col-md-2 mb-2">
-                                                <span class="fa-2x d-inline l-h-n">
-                                                    @*<i class="fal fa-map-marked-alt"></i>*@
+                                                    
                                                 </span>
                                                 <label asp-for="IdnormativaAplicable" class="control-label"></label>
                                                 <select asp-for="IdnormativaAplicable" class="custom-select clsObra select2" required asp-items="ViewBag.IdnormativaAplicable" aria-label="Select your country"> sleect algo</select>
                                             </div>
-                                            <div class="col-md-2 mb-2">
+                                           
+                                            @if (idtipo == 1)
+                                            {
+                                                 <div class="col-md-2 mb-2">
                                                 <span class="fa-2x d-inline l-h-n">
-                                                    @*<i class="fal fa-map-marked-alt"></i>*@
+                                                    
                                                 </span>
                                                 <label asp-for="IdmodalidadEjecicion" class="control-label"></label>
                                                 <select asp-for="IdmodalidadEjecicion" class="custom-select clsObra select2" required asp-items="ViewBag.IdmodalidadEjecicion"></select>
                                             </div>
+
+                                                <div class="col-md-2 mb-2">
+                                                    <span class="fa-2x d-inline l-h-n">
+
+                                                    </span>
+                                                    <label asp-for="Idcontratacion" class="control-label"></label>
+                                                    <select asp-for="Idcontratacion" class="custom-select clsObra select2" required asp-items="ViewBag.Idcontratacion"></select>
+                                                </div>
+                                            }
                                             <div class="col-md-2 mb-2">
                                                 <span class="fa-2x d-inline l-h-n">
-                                                    @*<i class="fal fa-map-marked-alt"></i>*@
-                                                </span>
-                                                <label asp-for="Idcontratacion" class="control-label"></label>
-                                                <select asp-for="Idcontratacion" class="custom-select clsObra select2" required asp-items="ViewBag.Idcontratacion"></select>
-                                            </div>
-                                            <div class="col-md-2 mb-2">
-                                                <span class="fa-2x d-inline l-h-n">
-                                                    @*<i class="fal fa-map-marked-alt"></i>*@
+                                                    
                                                 </span>
                                                 <label asp-for="IdtipoAdjudicacion" class="control-label"></label>
                                                 <select asp-for="IdtipoAdjudicacion" class="custom-select clsObra select2" required asp-items="ViewBag.IdtipoAdjudicacion"></select>
@@ -305,7 +329,7 @@
 
                                             <div class="col-md-2 mb-2">
                                                 <span class="fa-2x d-inline l-h-n">
-                                                    @*<i class="fal fa-map-marked-alt"></i>*@
+                                                    
                                                 </span>
                                                 <label asp-for="IdtipoContrato" class="control-label"></label>
                                                 <select asp-for="IdtipoContrato" class="custom-select clsObra select2" required asp-items="ViewBag.IdtipoContrato"></select>
@@ -421,7 +445,7 @@
             var urlModalidad = '@Url.Action("FetchModalidadEjecucion", "TblObras")';
             fillDDL(urlModalidad, "IdmodalidadEjecicion", "--- Selecciona Modalidad ---");
 
-            var urlTipoAdjudicacion = '@Url.Action("FetchAdjudicacionByNormativa", "TblObras")?idnormativa=' + 0;
+            var urlTipoAdjudicacion = '@Url.Action("FetchAdjudicacionByNormativa", "TblObras")?idnormativa=' + 0 + '&idtipoobra=' + @idtipo;
             fillDDL(urlTipoAdjudicacion, "IdtipoAdjudicacion", "--- Selecciona Adjudicación ---");
 
 
@@ -446,7 +470,7 @@
             $("#IdnormativaAplicable").change(function () {
                 var idnormativa = $("#IdnormativaAplicable option:selected").val();
 
-                var urllocalidad = '@Url.Action("FetchAdjudicacionByNormativa", "TblObras")?idnormativa=' + idnormativa;
+                var urllocalidad = '@Url.Action("FetchAdjudicacionByNormativa", "TblObras")?idnormativa=' + idnormativa + '&idtipoobra=' + @idtipo;
                 fillDDL(urllocalidad, "IdtipoAdjudicacion", "--- Selecciona Adjudicación ---");
 
 
@@ -459,13 +483,13 @@
                 //alert(IdmodalidadEjecicion);
                 if (IdmodalidadEjecicion == 2) {
 
-                    var urllocalidad = '@Url.Action("FetchAdjudicacionByNormativa", "TblObras")?idnormativa=' + 0;
+                    var urllocalidad = '@Url.Action("FetchAdjudicacionByNormativa", "TblObras")?idnormativa=' + 0 + '&idtipoobra=' + @idtipo;
                     fillDDL(urllocalidad, "IdtipoAdjudicacion", "--- Selecciona Adjudicación ---");
 
                     $('#IdtipoAdjudicacion').removeAttr('required');
                 } else {
                     var idnormativa = $("#IdnormativaAplicable option:selected").val();
-                    var urllocalidad = '@Url.Action("FetchAdjudicacionByNormativa", "TblObras")?idnormativa=' + idnormativa;
+                    var urllocalidad = '@Url.Action("FetchAdjudicacionByNormativa", "TblObras")?idnormativa=' + idnormativa + '&idtipoobra=' + @idtipo;
                     fillDDL(urllocalidad, "IdtipoAdjudicacion", "--- Selecciona Adjudicación ---");
 
                     $('#IdtipoAdjudicacion').prop('required', true);
@@ -474,29 +498,29 @@
                 fillDDL(urllocalidad, "IdtipoAdjudicacion", "--- Selecciona Adjudicación ---");*@
 
 
-                    });
+                                    });
 
 
-                       var urlEstrategia = '@Url.Action("FetchEstrategia", "TblObras")?ideje=' + 0;
-                fillDDL(urlEstrategia, "Idestrategia", "--- Selecciona Estrategia ---");
-                  
-                var urlIdlineaaccion = '@Url.Action("FetchLineaAccion", "TblObras")?idestrategia=' + 0;
-                fillDDL(urlIdlineaaccion, "Idlineaaccion", "--- Selecciona Linea de Accion ---");
+            var urlEstrategia = '@Url.Action("FetchEstrategia", "TblObras")?ideje=' + 0;
+            fillDDL(urlEstrategia, "Idestrategia", "--- Selecciona Estrategia ---");
 
-                    
-                 $("#Ideje").change(function () {
+            var urlIdlineaaccion = '@Url.Action("FetchLineaAccion", "TblObras")?idestrategia=' + 0;
+            fillDDL(urlIdlineaaccion, "Idlineaaccion", "--- Selecciona Linea de Accion ---");
+
+
+            $("#Ideje").change(function () {
                 var Ideje = $("#Ideje option:selected").val();
 
-                       var urlEstrategia = '@Url.Action("FetchEstrategia", "TblObras")?ideje=' + Ideje;
+                var urlEstrategia = '@Url.Action("FetchEstrategia", "TblObras")?ideje=' + Ideje;
                 fillDDL(urlEstrategia, "Idestrategia", "--- Selecciona Estrategia ---");
                 $("#Idestrategia").change();
 
             });
 
-            
-                 $("#Idestrategia").change(function () {
+
+            $("#Idestrategia").change(function () {
                 var Idestrategia = $("#Idestrategia option:selected").val();
-                            var urlIdlineaaccion = '@Url.Action("FetchLineaAccion", "TblObras")?idestrategia=' + Idestrategia;
+                var urlIdlineaaccion = '@Url.Action("FetchLineaAccion", "TblObras")?idestrategia=' + Idestrategia;
                 fillDDL(urlIdlineaaccion, "Idlineaaccion", "--- Selecciona Linea de Accion ---");
 
             });

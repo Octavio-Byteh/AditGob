@@ -9,7 +9,7 @@
     string showBotton = "mostrardescarga";
     string showCarga = "documentoDeshabilitado";
 
-    
+
 
 }
 
@@ -94,66 +94,70 @@
                                         <tr>
                                             <td>
                                                 <div class="divcontenedor">
-                                                    <input type="hidden" asp-for="@doc.idObra" />
-                                                    <input type="hidden" asp-for="@doc.id" />
-                                                    @doc.Secuencia                                                    
+                                                    @*<input type="hidden" asp-for="@doc.idObra" />*@
+                                                    @*<input type="hidden" asp-for="@doc.id" />*@
+                                                    @*<input type="hidden" asp-for="@doc.Numero" />*@
+                                            @*        <input type="hidden" asp-for="@doc.Secuencia" />
+                                                    <input type="hidden" asp-for="@doc.Estitulo" />*@
+                                                    @doc.Secuencia
                                                 </div>
                                             </td>
 
                                             <td style="background-color: @doc.HexColor">
                                                 <div class="divcontenedor">
-                                                    <input type="hidden" asp-for="@doc.documento" />
+                                                    @*<input type="hidden" asp-for="@doc.documento" />*@
                                                     @doc.documento
                                                 </div>
                                             </td>
                                             <td>
                                                 <div style="display: inline-flex;">
-                                                   
+
                                                     @if (doc.activo)
                                                     {
 
 
-                                                        <form name="form_@doc.id" method="post" enctype="multipart/form-data" action="TblObras/UploadFiles">
-                                                            <input type="hidden" id="IdDocObra_@doc.id" name="IdDocObra" value="@doc.idObra" />
+                                                        @*<form name="form_@doc.id" method="post" enctype="multipart/form-data" action="TblObras/UploadFiles">*@
+                                                        
+                                                           @* <input type="hidden" id="IdDocObra_@doc.id" name="IdDocObra" value="@doc.idObra" />
                                                             <input type="hidden" id="IdDoc_@doc.id" name="IdDoc" value="@doc.id" />
-
+*@
                                                             <div class="fileUpload btn btn-outline-default">
+                                                                @*<input type="file" id="files_@doc.id" name="files_@doc.id" class="upload" onchange="SubirArchivo(@doc.id,@Model.Id,@Model.Id)" />*@
                                                                 <input type="file" id="files_@doc.id" name="files_@doc.id" class="upload" onchange="SubirArchivo(@doc.id,@Model.Id,@Model.Id)" />
                                                                 <span class="fa-2x d-inline l-h-n color-fusion-400"> <i class="fal fa-upload" style="color:white;"></i></span> <span></span>
                                                             </div>
-                                                        </form>
+                                                        
                                                     }
 
                                                     <div class="divdocumento" myid="@doc.id" id="divdocumento_@doc.id">
-                                                         
-                                                     </div>
-                                                     @*
-                                                    <a asp-controller="TblObras"
-                                                       asp-action="DownloadFile"
-                                                       asp-route-IdDocObra="@Model.Id"
-                                                       asp-route-IdDoc="@doc.id"
-                                                       asp-route-idObra="@Model.Id"
-                                                       asp-route-fileName="@doc.nombrearchivo" class="btn btn-outline-default @showBotton" target="_blank" id="descarga_id_@doc.id">
-                                                        <span class="fa-2x d-inline l-h-n color-fusion-400"> <i class="fal fa-download" style="color:white;"></i></span> <span>  </span>
-
-                                                    </a>
-
-                                                    <div class="fileUpload btn btn-outline-default  @showBotton" id="borrar_id_@doc.id" onclick="BorrarArchivo(@doc.id)">
-                                                        <span class="fa-2x d-inline l-h-n color-fusion-400"> <i class="fal fa-trash-alt" style="color:white;"></i></span> <span></span>
                                                     </div>
+                                                    @*
+                                            <a asp-controller="TblObras"
+                                            asp-action="DownloadFile"
+                                            asp-route-IdDocObra="@Model.Id"
+                                            asp-route-IdDoc="@doc.id"
+                                            asp-route-idObra="@Model.Id"
+                                            asp-route-fileName="@doc.nombrearchivo" class="btn btn-outline-default @showBotton" target="_blank" id="descarga_id_@doc.id">
+                                            <span class="fa-2x d-inline l-h-n color-fusion-400"> <i class="fal fa-download" style="color:white;"></i></span> <span>  </span>
+
+                                            </a>
+
+                                            <div class="fileUpload btn btn-outline-default  @showBotton" id="borrar_id_@doc.id" onclick="BorrarArchivo(@doc.id)">
+                                            <span class="fa-2x d-inline l-h-n color-fusion-400"> <i class="fal fa-trash-alt" style="color:white;"></i></span> <span></span>
+                                            </div>
 
 
 
-                                                    <a asp-controller="TblObras"
-                                                       asp-action="MostrarFile"
-                                                       asp-route-IdDocObra="@Model.Id"
-                                                       asp-route-IdDoc="@doc.id"
-                                                       asp-route-idObra="@Model.Id"
-                                                       asp-route-fileName="@doc.nombrearchivo" class="btn btn-outline-default @showBotton" target="_blank" id="mostrar_id_@doc.id">
-                                                        <span class="fa-2x d-inline l-h-n color-fusion-400"> <i class="fal fa-file-search" style="color:white;"></i></span> <span></span>
+                                            <a asp-controller="TblObras"
+                                            asp-action="MostrarFile"
+                                            asp-route-IdDocObra="@Model.Id"
+                                            asp-route-IdDoc="@doc.id"
+                                            asp-route-idObra="@Model.Id"
+                                            asp-route-fileName="@doc.nombrearchivo" class="btn btn-outline-default @showBotton" target="_blank" id="mostrar_id_@doc.id">
+                                            <span class="fa-2x d-inline l-h-n color-fusion-400"> <i class="fal fa-file-search" style="color:white;"></i></span> <span></span>
 
-                                                    </a>
-*@
+                                            </a>
+                                            *@
                                                 </div>
                                             </td>
                                             <td>
@@ -166,14 +170,14 @@
                                             </td>
                                             <td>
 
-                                                <input type="hidden" asp-for="@doc.estatus" />
+                                                @*<input type="hidden" asp-for="@doc.estatus" />*@
                                                 <span id="bandera_id_@doc.id" class="dot dot_@doc.estatus"></span>
 
                                             </td>
                                             <td>
                                                 <div>
 
-
+                                                    @*<input type="hidden" asp-for="@doc.Observaciones" />*@
                                                     @doc.Observaciones
 
                                                     <div class="fileUpload btn btn-outline-default  @showBotton" id="cambio_id_@doc.id" onclick="CambioObservacion(@doc.id)">
