@@ -2493,7 +2493,9 @@ namespace SmartBoard.Data.Models.SmartBoard
 
                 entity.Property(e => e.Activo).HasColumnName("activo");
 
-                entity.Property(e => e.Cantidad).HasColumnName("cantidad");
+                entity.Property(e => e.Cantidad)
+                    .HasColumnType("money")
+                    .HasColumnName("cantidad");
 
                 entity.Property(e => e.Clave)
                     .IsRequired()

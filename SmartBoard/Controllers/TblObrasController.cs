@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.OleDb;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,11 +18,15 @@ namespace SmartBoard.Controllers
 {
     public class TblObrasController : Controller
     {
+        private readonly IConfiguration _configuration;
+        private readonly ILogger<TblObrasController> _logger;
         private readonly SmartBoardContext _context;
 
-        public TblObrasController(SmartBoardContext context)
+        public TblObrasController(SmartBoardContext context, ILogger<TblObrasController> logger, IConfiguration configuratio)
         {
             _context = context;
+            _logger = logger;
+            _configuration = configuratio;
         }
 
         #region Archivos
@@ -433,6 +439,230 @@ namespace SmartBoard.Controllers
                         //};
 
                         //Resultado.DocumentosAdjuntos.Add(Adjuntos);
+                    }
+
+                }
+                return Json("1");
+            }
+            else
+            {
+                return Json("0");
+            }
+
+
+        }
+
+        [HttpPost]
+        public ActionResult UploadFilesCatalogo(int idObra, List<IFormFile> files)
+        {
+            //if (Request.Files.Count > 0)
+            //{
+
+            //}
+
+            int IdDocObra = int.Parse(HttpContext.Request.Form["IdDocObra"]);
+            int IdObra = int.Parse(HttpContext.Request.Form["IdObra"]);
+            int IdDoc = int.Parse(HttpContext.Request.Form["IdDoc"]);
+            int IdTipo = int.Parse(HttpContext.Request.Form["IdTipo"]);
+
+            //int IdDocObra = 25693;
+            //int IdDoc = 1;
+
+            bool hasFiles = false;
+            string mimeType = "";
+            var fileName = "demo.jpg";
+            string rutaArchivo = "";
+
+            files = HttpContext.Request.Form.Files.ToList();
+
+            if (files.Count() > 0)
+            {
+                hasFiles = true;
+
+
+
+                var pathUpload = Path.Combine(
+                      Directory.GetCurrentDirectory(),
+                      "wwwroot", "img", "expediente", IdDocObra.ToString(), "catalogo");
+
+                if (!Directory.Exists(pathUpload))
+                {
+                    Directory.CreateDirectory(pathUpload);
+                }
+
+
+
+
+                long size = files.Sum(f => f.Length);
+
+                List<string> uploadedFiles = new List<string>();
+                foreach (IFormFile postedFile in files)
+                {
+                    mimeType = postedFile.ContentType;
+
+                    if (!Path.GetFileName(postedFile.FileName).Contains("layout_"))
+                    {
+                        return Json("2");
+                    }
+
+                    // Se obtien el dia del campo, se inclue en el files desde la vista con la etiqueta name="Id_Files_***"
+
+
+                    fileName = DateTime.Now.Ticks + Path.GetFileName(postedFile.FileName);
+                    rutaArchivo = Path.Combine(pathUpload, fileName);
+
+                    using (FileStream stream = new FileStream(Path.Combine(pathUpload, fileName), FileMode.Create))
+                    {
+                        postedFile.CopyTo(stream);
+                        uploadedFiles.Add(fileName);
+                        ViewBag.Message += string.Format("<b>{0}</b> uploaded.<br />", fileName);
+                    }
+
+                    // Inluimos la lista de Documentos adjuntos
+                    if (hasFiles == true)
+                    {
+
+
+                        string conString = _configuration.GetValue<string>("ExcelConString");
+                        DataTable dt = new DataTable();
+                        conString = string.Format(conString, Path.Combine(pathUpload, fileName));
+
+                        using (OleDbConnection connExcel = new OleDbConnection(conString))
+                        {
+                            using (OleDbCommand cmdExcel = new OleDbCommand())
+                            {
+                                using (OleDbDataAdapter odaExcel = new OleDbDataAdapter())
+                                {
+                                    cmdExcel.Connection = connExcel;
+
+                                    //Get the name of First Sheet.
+                                    connExcel.Open();
+                                    DataTable dtExcelSchema;
+                                    dtExcelSchema = connExcel.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
+                                    string sheetName = dtExcelSchema.Rows[0]["TABLE_NAME"].ToString();
+                                    connExcel.Close();
+
+                                    //Read Data from First Sheet.
+                                    connExcel.Open();
+                                    cmdExcel.CommandText = "SELECT * From [" + sheetName + "]";
+                                    odaExcel.SelectCommand = cmdExcel;
+                                    odaExcel.Fill(dt);
+                                    connExcel.Close();
+
+
+
+
+                                }
+                            }
+                        }
+
+                        if (dt != null)
+                        {
+                            if (dt.Rows.Count > 0)
+                            {
+                                bool curpEncontrado = true;
+                                foreach (DataRow row in dt.Rows)
+                                {
+                                    string _clave = (row.Field<string>(0));
+                                    string _concepto = (row.Field<string>(1));
+                                    string _unidad = (row.Field<string>(2));
+                                    decimal _precio = 0m;
+                                    decimal _cantidad = 0m;
+                                    decimal _importe = 0m;
+
+                                    try
+                                    {
+                                        decimal number;
+                                        if (Decimal.TryParse(row[3].ToString(), out number))
+                                            _precio = number;
+
+                                        decimal numberCantidad;
+                                        if (Decimal.TryParse(row[4].ToString(), out numberCantidad))
+                                            _cantidad = numberCantidad;
+
+                                        decimal numberImporte;
+                                        if (Decimal.TryParse(row[5].ToString(), out numberImporte))
+                                            _importe = numberImporte;
+
+
+                                        //_precio = (decimal)row[3]; //(row.Field<decimal>(3));
+                                        //_cantidad = (int)row[4];  //(row.Field<decimal>(4));
+                                        //_importe = (decimal)row[5];  //(row.Field<decimal>(5));
+                                    } catch(Exception ex)
+                                    {
+
+                                    }
+
+                                    // Buscamos por curp Para poner los curp activos
+                                    var lista = _context.TblObraconceptos.Where(
+                                        a => 
+                                        a.IdTblobra == IdObra && 
+                                        a.Idtipoconcepto == IdTipo &&
+                                        a.Clave.Trim().Equals(_clave)
+                                        ).ToList();
+
+                                    if (lista != null)
+                                    {
+                                        curpEncontrado = true;
+                                        if (lista.Count > 0)
+                                        {
+                                            curpEncontrado = true;
+                                            foreach (var item in lista)
+                                            {
+                                                item.Activo = true;
+                                                item.Concepto = _concepto;
+                                                item.Unidad = _unidad;
+                                                item.PrecioUnitario = _precio;
+                                                item.Cantidad = _cantidad;
+                                                item.Importe = _importe;
+
+
+                                                _context.Update(item);
+                                                _context.SaveChanges();
+                                            }
+                                        }
+                                        else
+                                        {
+                                            curpEncontrado = false;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        curpEncontrado = false;
+                                    }
+
+                                    if (curpEncontrado == false)
+                                    {
+
+
+                                        // Se insertan los curp no contrados
+                                        var TblCurp = new TblObraconcepto()
+                                        {
+                                            IdTblobra = IdObra,
+                                            Idtipoconcepto = IdTipo,
+                                            Clave = _clave,
+                                            Concepto = _concepto,
+                                            Unidad = _unidad,
+                                            PrecioUnitario = _precio,
+                                            Cantidad = _cantidad,
+                                            Importe = _importe,
+                                            Activo   = true,
+                                            Fecha = DateTime.Now,
+
+                                        };
+
+                                        _context.Add(TblCurp);
+                                        _context.SaveChanges();
+
+                                    }
+                                }
+                            }
+                        }
+
+
+                        //    _context.Update(docsObra);
+                        //_context.SaveChangesAsync();
+
                     }
 
                 }

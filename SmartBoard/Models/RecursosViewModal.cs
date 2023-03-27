@@ -89,7 +89,7 @@ namespace SmartBoard.Models
         public string Unidad { get; set; }
         public decimal PrecioUnitario { get; set; }
 
-        public int Cantidad { get; set; }
+        public decimal Cantidad { get; set; }
         
         public decimal Importe { get; set; }
         public bool Activo { get; set; }
