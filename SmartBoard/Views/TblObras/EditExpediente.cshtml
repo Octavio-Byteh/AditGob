@@ -949,6 +949,49 @@
         }
 
 
+        function SubirArchivoCatalogo(id, noObra, idObra, idTipo) {
+
+            var fileUpload = $("#files_catalogo" + idTipo + "_" + id).get(0);
+            var files = fileUpload.files;
+            var fileData = new FormData();
+
+            // if there are multiple files , loop through each files
+            for (var i = 0; i < files.length; i++) {
+                fileData.append(files[i].name, files[i]);
+            }
+            fileData.append('IdDocObra', noObra);
+            fileData.append('IdObra', idObra);
+            fileData.append('IdDoc', id);
+            fileData.append('IdTipo', idTipo);
+
+
+
+
+            $.ajax({
+                url: '@Url.Action("UploadFilesCatalogo", "TblObras")?id=' + id, //URL to upload files
+                type: "POST", //as we will be posting files and other method POST is used
+                processData: false, //remember to set processData and ContentType to false, otherwise you may get an error
+                contentType: false,
+                data: fileData,
+                success: function (result) {
+                    if (result == '1') {
+                        alert("Archivo cargado correctamente");
+
+
+                        //$('#divEVFactura_' + id).load('@Url.Action("getArchivosEVFactura", "TblObras")?iddoc=' + id);
+
+                        location.reload(false)
+                    } else {
+                        alert('No se pudo cargar el documento ...');
+                    }
+
+                },
+                error: function (err) {
+                    alert(err.statusText);
+                }
+            });
+        }
+
         function SubirArchivoEvidencia(id, noObra, idObra) {
 
             var fileUpload = $("#files_" + id).get(0);

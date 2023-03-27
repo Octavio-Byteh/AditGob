@@ -46,23 +46,49 @@ else
     <div class="row">
 
         <div class="form-group">
-           
+
+            <div>
+
                 <a class="btn btn-danger" href="ObraConcepto/Create?IdTblobra=@Model.Id&tipo=1" title="Conceptos" data-filter-tags="ObraConcepto">
                     <label>
                         Agregar Adicionales
                     </label>
                 </a>
-           
+                <div class="fileUpload btn btn-outline-default">
+                    <input type="file" id="files_catalogo1_@Model.Id" name="files_@Model.Id" class="upload" onchange="SubirArchivoCatalogo(@Model.Id,@Model.Id,@Model.Id,1)" />
+                    <span class="fa-2x d-inline l-h-n color-fusion-400"> <i class="fal fa-upload" style="color:white;"></i></span> <span></span>
+                </div>
+
+
+            </div>
+
+            <div>
+
                 <a class="btn btn-danger" href="ObraConcepto/Create?IdTblobra=@Model.Id&tipo=2" title="Conceptos" data-filter-tags="ObraConcepto">
                     <label>
                         Agregar Deductivas
                     </label>
                 </a>
-            <a class="btn btn-danger" href="ObraConcepto/Create?IdTblobra=@Model.Id&tipo=3" title="Conceptos" data-filter-tags="ObraConcepto">
-                <label>
-                    Agregar Convenio Modificatorio
-                </label>
-            </a>
+                <div class="fileUpload btn btn-outline-default">
+                    <input type="file" id="files_catalogo2_@Model.Id" name="files_@Model.Id" class="upload" onchange="SubirArchivoCatalogo(@Model.Id,@Model.Id,@Model.Id,2)" />
+                    <span class="fa-2x d-inline l-h-n color-fusion-400"> <i class="fal fa-upload" style="color:white;"></i></span> <span></span>
+                </div>
+            </div>
+
+            <div>
+
+                <a class="btn btn-danger" href="ObraConcepto/Create?IdTblobra=@Model.Id&tipo=3" title="Conceptos" data-filter-tags="ObraConcepto">
+                    <label>
+                        Agregar Convenio Modificatorio
+                    </label>
+                </a>
+
+                <div class="fileUpload btn btn-outline-default">
+                    <input type="file" id="files_catalogo3_@Model.Id" name="files_@Model.Id" class="upload" onchange="SubirArchivoCatalogo(@Model.Id,@Model.Id,@Model.Id,3)" />
+                    <span class="fa-2x d-inline l-h-n color-fusion-400"> <i class="fal fa-upload" style="color:white;"></i></span> <span></span>
+                </div>
+
+            </div>
 
         </div>
     </div>
@@ -87,7 +113,7 @@ else
                         <td class="titulo_general">Nombre de la Obra</td>
                         <td colspan="3">@Model.Nombreobra</td>
                         <td class="titulo_general">Periodo Ejecución Contratado</td>
-                        <td>@(Model.recursos.Count()> 0 ?  Model.recursos.FirstOrDefault().Ejercicio : "")</td>
+                        <td>@(Model.recursos.Count() > 0 ? Model.recursos.FirstOrDefault().Ejercicio : "")</td>
                         <td class="titulo_general">Importe del Contrato Original</td>
                         <td>@Model.recursos.Sum(a => a.ImporteContratado).ToString("c2")</td>
 
@@ -96,7 +122,7 @@ else
                         <td class="titulo_general">Ubicación</td>
                         <td>@Model.Coordenadas</td>
                         <td class="titulo_general">Recurso</td>
-                        <td>@(Model.recursos.Count() > 0 ? string.Concat( Model.recursos.FirstOrDefault().Tiporecurso,"|", Model.recursos.FirstOrDefault().Recurso) : "" )</td>
+                        <td>@(Model.recursos.Count() > 0 ? string.Concat(Model.recursos.FirstOrDefault().Tiporecurso, "|", Model.recursos.FirstOrDefault().Recurso) : "")</td>
                         <td class="titulo_general">Periodo Ejecución Convenio</td>
                         <td></td>
                         <td class="titulo_general">Importe del Convenio</td>
@@ -135,7 +161,7 @@ else
                     @for (int i = 0; i < cantidad; i++)
                     {
 
-                        <th colspan="2">Estimación @(i+1)</th>
+                        <th colspan="2">Estimación @(i + 1)</th>
                     }
                     <th colspan="2">Adicionales</th>
                     <th colspan="2">Deductivas</th>
@@ -192,17 +218,16 @@ else
 
                 <tr>
                     <td colspan="6">
-
                     </td>
-                   @* <td>@Model.recursos.FirstOrDefault().Tiporecurso</td>
-                    <td>@Model.recursos.FirstOrDefault().Recurso</td>
-                    <td>PZA</td>
-                    <td>@Model.recursos.Sum(a => a.ImporteContratado).ToString("c2")</td>
+                    @* <td>@Model.recursos.FirstOrDefault().Tiporecurso</td>
+                <td>@Model.recursos.FirstOrDefault().Recurso</td>
+                <td>PZA</td>
+                <td>@Model.recursos.Sum(a => a.ImporteContratado).ToString("c2")</td>
 
-                    <td>1</td>
-                    <td>@Model.recursos.Sum(a => a.ImporteContratado).ToString("c2")</td>
+                <td>1</td>
+                <td>@Model.recursos.Sum(a => a.ImporteContratado).ToString("c2")</td>
 
-*@
+                *@
 
 
 
@@ -228,14 +253,14 @@ else
                     <td>@Model.estimaciones.Sum(a => a.MontoNetoPagar).ToString("c2")</td>
 
                     <!-- Diferencias -->
-                    <td>@(cantidadContrato+cantidadAdicional-cantidadDeductiva- Model.estimaciones.Count())</td>
+                    <td>@(cantidadContrato + cantidadAdicional - cantidadDeductiva - Model.estimaciones.Count())</td>
                     <td>
                         @(
 
-        (
-        Model.recursos.Sum(a => a.ImporteContratado) + @Model.conceptos.Where(a => a.Idtipoconcepto == 1).Sum(a => a.Importe) - @Model.conceptos.Where(a => a.Idtipoconcepto == 2).Sum(a => a.Importe) - Model.estimaciones.Sum(a => a.MontoNetoPagar)
-        ).ToString("c2")
-        )
+                            (
+                            Model.recursos.Sum(a => a.ImporteContratado) + @Model.conceptos.Where(a => a.Idtipoconcepto == 1).Sum(a => a.Importe) - @Model.conceptos.Where(a => a.Idtipoconcepto == 2).Sum(a => a.Importe) - Model.estimaciones.Sum(a => a.MontoNetoPagar)
+                            ).ToString("c2")
+                            )
                     </td>
                 </tr>
 
