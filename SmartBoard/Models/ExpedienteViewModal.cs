@@ -225,7 +225,7 @@ namespace SmartBoard.Models
     public partial class ExpedienteContratoViewModal : ExpedienteNamesViewmodal
     {
 
-        [Required(ErrorMessage = "Entidad Ejecutora es campo obligatorio")]
+        //[Required(ErrorMessage = "Entidad Ejecutora es campo obligatorio")]
         [Display(Name = "Entidad Ejecutora")]
         public int? Idejecutor { get; set; }
 

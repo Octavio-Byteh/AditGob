@@ -49,8 +49,7 @@ namespace SmartBoard.Controllers
                 .Include(o => o.IdestadoobraNavigation)
                 .Include(o => o.IdestadorevisionNavigation)
                 .Include(o => o.IdmunicipioNavigation)
-                .Include(o => o.IdvertienteNavigation)
-                .Include(o => o.IdsubvertienteNavigation)
+        
                 .Include(o => o.IdprogsogNavigation)
                 .FirstOrDefaultAsync(m => m.Numeroobra == noobra && m.Year == year);
             if (obra == null)
@@ -78,8 +77,7 @@ namespace SmartBoard.Controllers
                 .Include(o => o.IdestadoobraNavigation)
                 .Include(o => o.IdestadorevisionNavigation)
                 .Include(o => o.IdmunicipioNavigation)
-                 .Include(o => o.IdvertienteNavigation)
-                .Include(o => o.IdsubvertienteNavigation)
+                 
                 .Include(o => o.IdprogsogNavigation)
                 .FirstOrDefaultAsync(m => m.Numeroobraexterno == noobra && m.Year ==year);
             if (obra == null)
@@ -109,8 +107,7 @@ namespace SmartBoard.Controllers
                 .Include(o => o.IdestadoobraNavigation)
                 .Include(o => o.IdestadorevisionNavigation)
                 .Include(o => o.IdmunicipioNavigation)
-                 .Include(o => o.IdvertienteNavigation)
-                .Include(o => o.IdsubvertienteNavigation)
+       
                 .Include(o => o.IdprogsogNavigation)
                 .FirstOrDefaultAsync(m => m.Id == id.Value );
             if (obra == null)

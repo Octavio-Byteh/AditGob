@@ -7,7 +7,6 @@ namespace SmartBoard.Data.Models.SmartBoard
     {
         public CatMunicipio()
         {
-            CatLocalidads = new HashSet<CatLocalidad>();
             TblObras = new HashSet<TblObra>();
         }
 
@@ -15,8 +14,6 @@ namespace SmartBoard.Data.Models.SmartBoard
         public int Idregion { get; set; }
         public int? Idtipomunicipio { get; set; }
         public int? Idgdo { get; set; }
-        public int? IddistritoLocal { get; set; }
-        public int? IddistrictoFederal { get; set; }
         public string Region { get; set; }
         public string Municipio { get; set; }
         public decimal? InversionMunicipal { get; set; }
@@ -27,7 +24,6 @@ namespace SmartBoard.Data.Models.SmartBoard
         public int? TotalObras { get; set; }
         public string Clave { get; set; }
         public string Partido { get; set; }
-        public int? Idzona { get; set; }
         public int? Delega { get; set; }
         public string Presidente { get; set; }
         public int? PobTot { get; set; }
@@ -52,12 +48,8 @@ namespace SmartBoard.Data.Models.SmartBoard
         public string Longitud { get; set; }
         public string Gdeshum { get; set; }
 
-        public virtual CatDistritofederal IddistrictoFederalNavigation { get; set; }
-        public virtual CatDistritolocal IddistritoLocalNavigation { get; set; }
         public virtual CatRegion IdregionNavigation { get; set; }
         public virtual CatCattipomunicipio IdtipomunicipioNavigation { get; set; }
-        public virtual CatZona IdzonaNavigation { get; set; }
-        public virtual ICollection<CatLocalidad> CatLocalidads { get; set; }
         public virtual ICollection<TblObra> TblObras { get; set; }
     }
 }

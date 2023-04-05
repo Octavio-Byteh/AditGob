@@ -16,17 +16,13 @@ namespace SmartBoard.Data.Models.SmartBoard
         }
 
         public int Id { get; set; }
-        public int? Idpoadetalle { get; set; }
         public int? Year { get; set; }
         public string Region { get; set; }
         public int? Idmunicipio { get; set; }
-        public int? Idlocalidad { get; set; }
         public int? Iddependencia { get; set; }
         public int? Idestadoobra { get; set; }
         public int? Idestadorevision { get; set; }
         public int? Idprogsog { get; set; }
-        public int? Idvertiente { get; set; }
-        public int? Idsubvertiente { get; set; }
         public int? Idcategoria { get; set; }
         public int? Idunidadmedida { get; set; }
         public int? Idejecutor { get; set; }
@@ -95,18 +91,14 @@ namespace SmartBoard.Data.Models.SmartBoard
         public virtual CatEstrategium IdestrategiaNavigation { get; set; }
         public virtual CatGradomarginal IdgradomarginalNavigation { get; set; }
         public virtual CatLineaaccion IdlineaacionNavigation { get; set; }
-        public virtual CatLocalidad IdlocalidadNavigation { get; set; }
         public virtual CatModalidadEjecucion IdmodalidadEjecicionNavigation { get; set; }
         public virtual CatMunicipio IdmunicipioNavigation { get; set; }
         public virtual CatNormativaAplicable IdnormativaAplicableNavigation { get; set; }
-        public virtual TblPoadetalle IdpoadetalleNavigation { get; set; }
         public virtual CatProgsoc IdprogsogNavigation { get; set; }
-        public virtual CatSubvertiente IdsubvertienteNavigation { get; set; }
         public virtual CatTipoAdjudicacion IdtipoAdjudicacionNavigation { get; set; }
         public virtual CatTipoDeContrato IdtipoContratoNavigation { get; set; }
         public virtual CatTipoObra IdtipoObraNavigation { get; set; }
         public virtual CatUnidadmedidum IdunidadmedidaNavigation { get; set; }
-        public virtual CatVertiente IdvertienteNavigation { get; set; }
         public virtual CatCattipomunicipio IdzapNavigation { get; set; }
         public virtual ICollection<TblObraEstimacion> TblObraEstimacions { get; set; }
         public virtual ICollection<TblObraPago> TblObraPagos { get; set; }
