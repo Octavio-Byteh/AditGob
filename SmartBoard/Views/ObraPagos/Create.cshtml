@@ -27,7 +27,7 @@
                 <select asp-for="IdTblobra" class ="form-control" asp-items="ViewBag.IdTblobra"></select>
             </div>*@
             <div class="form-group">
-                <label asp-for="IdFactura" class="control-label"></label>
+                <label asp-for="IdFactura" class="control-label">Id Factura</label>
                 <input asp-for="IdFactura" required class="form-control" />
                 <span asp-validation-for="IdFactura" class="text-danger"></span>
             </div>
@@ -37,27 +37,27 @@
                 <span asp-validation-for="Numero" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="NumFactura"  class="control-label"></label>
+                <label asp-for="NumFactura"  class="control-label">Numero Factura</label>
                 <input asp-for="NumFactura" required class="form-control" />
                 <span asp-validation-for="NumFactura" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="FechaFactura" class="control-label"></label>
+                <label asp-for="FechaFactura" class="control-label">Fecha Factura</label>
                 <input asp-for="FechaFactura" required type="date" data-date-format="DD/MM/YYY" class="form-control" />
                 <span asp-validation-for="FechaFactura" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="SolicitudPago" class="control-label"></label>
+                <label asp-for="SolicitudPago" class="control-label">Solicitud Pago</label>
                 <input asp-for="SolicitudPago" required class="form-control" />
                 <span asp-validation-for="SolicitudPago" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="OrdenPago" class="control-label"></label>
+                <label asp-for="OrdenPago" class="control-label">Orden Pago</label>
                 <input asp-for="OrdenPago" required class="form-control" />
                 <span asp-validation-for="OrdenPago" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ImporteTotal" class="control-label"></label>
+                <label asp-for="ImporteTotal" class="control-label">Importe Total</label>
                 <input asp-for="ImporteTotal" required class="form-control" />
                 <span asp-validation-for="ImporteTotal" class="text-danger"></span>
             </div>
@@ -67,7 +67,7 @@
                 <span asp-validation-for="Pago" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="FechaPago" class="control-label"></label>
+                <label asp-for="FechaPago" class="control-label">Fecha Pago</label>
                 <input asp-for="FechaPago" required type="date" data-date-format="DD/MM/YYY" class="form-control" />
                 <span asp-validation-for="FechaPago" class="text-danger"></span>
             </div>
@@ -102,7 +102,7 @@
                 <span asp-validation-for="NombreArchivoEvidencia" class="text-danger"></span>
             </div>*@
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Guardar" class="btn btn-primary" />
             </div>
         </form>
     </div>

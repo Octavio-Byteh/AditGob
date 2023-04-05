@@ -93,7 +93,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="ImportePorEjercer" class="control-label">Importe Por Ejercer</label>
-                <input asp-for="ImportePorEjercer" required class="form-control" pattern="^\d*(\.\d{0,2})?$" />
+                <input asp-for="ImportePorEjercer" required class="form-control" readonly pattern="^\d*(\.\d{0,2})?$" />
                 <span asp-validation-for="ImportePorEjercer" class="text-danger"></span>
             </div>
             @*<div class="form-group form-check">
@@ -145,6 +145,42 @@
     </script>
     <script>
         $(function () {
+
+             function calcula() {
+                var contratado = 0.0;
+                var modificado = 0.0;
+                var ejercido = 0.0;
+
+                if ($("#ImporteContratado").val() == null) {
+                    $("#ImporteContratado").val(0);
+                }
+                if ($("#ImporteModificado").val() == null) {
+                    $("#ImporteModificado").val(0);
+                }
+                if ($("#ImporteEjercido").val() == null) {
+                    $("#ImporteEjercido").val(0);
+                }
+
+                contratado = $("#ImporteContratado").val()
+                modificado = $("#ImporteModificado").val()
+                ejercido = $("#ImporteEjercido").val();
+
+                var porEjercer = parseFloat(contratado) + parseFloat(modificado) - parseFloat(ejercido);
+                $("#ImportePorEjercer").val(porEjercer);
+            }
+
+
+            $("#ImporteContratado").blur(function () {
+               calcula();
+            });
+            $("#ImporteModificado").blur(function () {
+               calcula();
+            });
+            $("#ImporteEjercido").blur(function () {
+               calcula();
+            });
+
+
             var urlTipo = '@Url.Action("FetchTipoRecurso", "ObraRecursos")';
             fillDDL(urlTipo, "IdTiporecurso", "--- Selecciona Tipo Recurso ---");
 

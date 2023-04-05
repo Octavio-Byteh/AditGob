@@ -226,10 +226,19 @@
                                                     <span asp-validation-for="ProveedorAdjudicado" class="text-danger"></span>
                                                 </div>
 
-                                                <div class="col-md-3 mb-3">
+                                               @* <div class="col-md-3 mb-3">
                                                     <label asp-for="EntidadRequiriente" class="control-label">Entidad Requiriente</label>
                                                     <input asp-for="EntidadRequiriente" class="form-control clsObra" placeholder="Requerido*" required />
                                                     <span asp-validation-for="EntidadRequiriente" class="text-danger"></span>
+                                                </div>*@
+
+                                                <input type="hidden" asp-for="EntidadRequiriente" />
+                                                <div class="col-md-3 mb-3">
+                                                 
+                                                    <label asp-for="Idejecutor" class="control-label"> Entidad Requiriente </label>
+                                                    <select asp-for="Idejecutor" class="custom-select clsObra select2" required asp-items="ViewBag.Idejecutor" aria-label="Select your country"> Selecciona Entidad Ejecutor</select>
+
+                                                    <span asp-validation-for="Idejecutor" class="text-danger"></span>
                                                 </div>
 
                                                 <div class="col-md-3 mb-3">
@@ -1172,6 +1181,13 @@
 
 
 
+
+            $("#Idejecutor").change(function () {
+                var ejecutor = $("#Idejecutor option:selected").text();
+                $("#EntidadRequiriente").val(ejecutor);
+
+
+            });
 
             $("#Idregion").change(function () {
                 var idregion = $("#Idregion option:selected").val();

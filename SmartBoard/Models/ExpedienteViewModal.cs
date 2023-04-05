@@ -305,11 +305,11 @@ namespace SmartBoard.Models
         [DataType(DataType.Date)]
         public DateTime? EoPrograFin { get; set; }
         
-        [Display(Name = "ReProgramado Inicio")]
+        [Display(Name = "Re Programado Inicio")]
         [DataType(DataType.Date)]
         public DateTime? EoReprograInicio { get; set; }
         
-        [Display(Name = "ReProgramado Fin")]
+        [Display(Name = "Re Programado Fin")]
         [DataType(DataType.Date)]
         public DateTime? EoReprograFin { get; set; }
         
