@@ -8,8 +8,6 @@ namespace SmartBoard.Data.Models.SmartBoard
         public CatLineaaccion()
         {
             TblObras = new HashSet<TblObra>();
-            TblPoadetallePeds = new HashSet<TblPoadetallePed>();
-            TblPoas = new HashSet<TblPoa>();
         }
 
         public int Id { get; set; }
@@ -22,7 +20,5 @@ namespace SmartBoard.Data.Models.SmartBoard
 
         public virtual CatEstrategium IdestrategiaNavigation { get; set; }
         public virtual ICollection<TblObra> TblObras { get; set; }
-        public virtual ICollection<TblPoadetallePed> TblPoadetallePeds { get; set; }
-        public virtual ICollection<TblPoa> TblPoas { get; set; }
     }
 }

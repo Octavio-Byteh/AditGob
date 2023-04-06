@@ -1,0 +1,7 @@
+delete from tbl_obraconcepto
+delete from tbl_obrachecklist
+delete from tbl_obradocumentoproceso
+delete from tbl_obraEstimacion
+delete from tbl_obraPagos
+delete from tbl_obraRecursos
+delete from tbl_obra

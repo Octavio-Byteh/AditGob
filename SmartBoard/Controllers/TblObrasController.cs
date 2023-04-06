@@ -1005,16 +1005,8 @@ namespace SmartBoard.Controllers
         }
 
 
-        public JsonResult FetchVertientes()
-        {
-            return Json(new SelectList(_context.CatVertientes, "Id", "Nombre"));
-        }
 
 
-        public JsonResult FetchSubVertientes(int idVertiente)
-        {
-            return Json(new SelectList(_context.CatSubvertientes.Where(a => a.Idvertiente == idVertiente), "Id", "Nombre"));
-        }
 
         public JsonResult FetchCatProgSoc()
         {
@@ -1032,10 +1024,6 @@ namespace SmartBoard.Controllers
             return Json(new SelectList(_context.CatRegions, "Id", "Nombre"));
         }
 
-        public JsonResult FetchLocalidades(int urllocalidad)
-        {
-            return Json(new SelectList(_context.CatLocalidads.Where(a => a.Idmunicipio == urllocalidad), "Id", "Clave"));
-        }
         public JsonResult FetchMunucipios(int idregion)
         {
             return Json(new SelectList(_context.CatMunicipios.Where(a => a.Idregion == idregion), "Id", "Municipio"));
@@ -1542,13 +1530,9 @@ namespace SmartBoard.Controllers
                 .Include(t => t.IdejecutorNavigation)
                 .Include(t => t.IdestadoobraNavigation)
                 .Include(t => t.IdestadorevisionNavigation)
-                .Include(t => t.IdlocalidadNavigation)
                 .Include(t => t.IdmunicipioNavigation)
-                .Include(t => t.IdpoadetalleNavigation)
                 .Include(t => t.IdprogsogNavigation)
-                .Include(t => t.IdsubvertienteNavigation)
                 .Include(t => t.IdunidadmedidaNavigation)
-                .Include(t => t.IdvertienteNavigation)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (tblObra == null)
             {
@@ -1559,8 +1543,14 @@ namespace SmartBoard.Controllers
         }
 
         // GET: TblObras/Create
-        public IActionResult CreateExpediente(int IdtipoObra)
+        public IActionResult CreateExpediente(int? IdtipoObra)
         {
+
+            if (IdtipoObra == null)
+            {
+                return RedirectToAction("CreateExpediente", "TblObras", new { IdtipoObra = 1 });
+            }
+
             ViewData["MyIdtipoObra"] = IdtipoObra;
             ViewData["Ideje"] = new SelectList(_context.CatEjes, "Id", "Nombre");
             ViewData["Idestrategia"] = new SelectList(_context.CatEstrategia, "Id", "Nombre");
@@ -1570,9 +1560,7 @@ namespace SmartBoard.Controllers
 
             ViewData["Idcategoria"] = new SelectList(_context.CatCategoria, "Id", "Nombre");
             ViewData["Idregion"] = new SelectList(_context.CatRegions, "Id", "Nombre");
-            ViewData["Idlocalidad"] = new SelectList(_context.CatLocalidads, "Id", "Clave");
             ViewData["Idmunicipio"] = new SelectList(_context.CatMunicipios, "Id", "Municipio");
-            ViewData["Idpoadetalle"] = new SelectList(_context.TblPoadetalles, "Id", "Actividades");
 
             ViewData["Idgradomarginal"] = grados(null);
             ViewData["Idzap"] = zap(null);
@@ -1580,7 +1568,7 @@ namespace SmartBoard.Controllers
             ViewData["IdmodalidadEjecicion"] = modelidadejecucion((IdtipoObra == 2 ? 1 :null));
             ViewData["Idcontratacion"] = contratacion(null);
             ViewData["IdtipoAdjudicacion"] = adjudicacion(null);
-            ViewData["IdtipoContrato"] = tipoContrato(null, IdtipoObra);
+            ViewData["IdtipoContrato"] = tipoContrato(null, IdtipoObra.Value);
 
             ViewData["IdEjercicio"] = new SelectList(_context.CatEjercicios, "Id", "Nombre");
 
@@ -1784,7 +1772,6 @@ namespace SmartBoard.Controllers
             ViewData["Idejecutor"] = new SelectList(_context.CatEjecutors, "Id", "Nombre", Obra.Idejecutor);
 
             ViewData["Idmunicipio"] = new SelectList(_context.CatMunicipios, "Id", "Municipio", Obra.Idmunicipio);
-            ViewData["Idpoadetalle"] = new SelectList(_context.TblPoadetalles, "Id", "Actividades", Obra.Idpoadetalle);
 
             ViewData["Idgradomarginal"] = grados(Obra.Idgradomarginal);
             ViewData["Idzap"] = zap(Obra.Idzap);
@@ -2036,17 +2023,10 @@ namespace SmartBoard.Controllers
             ViewData["Idestrategia"] = new SelectList(_context.CatEstrategia.Where(a => a.Ideje == tblObra.Ideje), "Id", "Nombre", tblObra.Idestrategia);
             ViewData["Idlineaaccion"] = new SelectList(_context.CatLineaaccions.Where(a => a.Idestrategia == tblObra.Idestrategia), "Id", "Nombre", tblObra.Idlineaaccion);
 
-            //ViewData["Idvertiente"] = new SelectList(_context.CatVertientes, "Id", "Nombre", tblObra.Idvertiente);
-            //ViewData["Idsubvertiente"] = new SelectList(_context.CatSubvertientes, "Id", "Nombre", tblObra.Idsubvertiente);
-
-            //ViewData["Idprogsoc"] = new SelectList(_context.CatProgsocs, "Id", "Descripcion", tblObra.Idprogsoc);
-
+            
             ViewData["Idejecutor"] = new SelectList(_context.CatEjecutors, "Id", "Nombre", tblObra.Idejecutor);
-
             ViewData["Idregion"] = new SelectList(_context.CatRegions, "Id", "Nombre", tblObra.Idregion);
-            //ViewData["Idlocalidad"] = new SelectList(_context.CatLocalidads, "Id", "Clave", tblObra.Idlocalidad);
             ViewData["Idmunicipio"] = new SelectList(_context.CatMunicipios, "Id", "Municipio", tblObra.Idmunicipio);
-            ViewData["Idpoadetalle"] = new SelectList(_context.TblPoadetalles, "Id", "Actividades", tblObra.Idpoadetalle);
 
             ViewData["Idgradomarginal"] = grados(tblObra.Idgradomarginal);
             ViewData["Idzap"] = zap(tblObra.Idzap);
@@ -2259,14 +2239,9 @@ namespace SmartBoard.Controllers
             ViewData["Idestrategia"] = new SelectList(_context.CatEstrategia.Where(a => a.Ideje == Obra.Ideje), "Id", "Nombre", Obra.Idestrategia);
             ViewData["Idlineaaccion"] = new SelectList(_context.CatLineaaccions.Where(a => a.Idestrategia == Obra.Idestrategia), "Id", "Nombre", Obra.Idlineaaccion);
 
-            //ViewData["Idprogsoc"] = new SelectList(_context.CatProgsocs, "Id", "Descripcion", Obra.Idprogsoc);
-            //ViewData["Idcategoria"] = new SelectList(_context.CatCategoria, "Id", "Nombre", Obra.Idcategoria);
             ViewData["Idregion"] = new SelectList(_context.CatRegions, "Id", "Nombre", Obra.Idregion);
             ViewData["Idejecutor"] = new SelectList(_context.CatEjecutors, "Id", "Nombre",Obra.Idejecutor);
-
-            //ViewData["Idlocalidad"] = new SelectList(_context.CatLocalidads, "Id", "Clave", Obra.Idlocalidad);
             ViewData["Idmunicipio"] = new SelectList(_context.CatMunicipios, "Id", "Municipio", Obra.Idmunicipio);
-            ViewData["Idpoadetalle"] = new SelectList(_context.TblPoadetalles, "Id", "Actividades", Obra.Idpoadetalle);
 
             ViewData["Idgradomarginal"] = grados(Obra.Idgradomarginal);
             ViewData["Idzap"] = zap(Obra.Idzap);
@@ -2292,172 +2267,8 @@ namespace SmartBoard.Controllers
             return View();
         }
 
-        // GET: TblObras/Create
-        public IActionResult Create()
-        {
-            ViewData["Idcategoria"] = new SelectList(_context.CatCategoria, "Id", "Nombre");
-            ViewData["Iddependencia"] = new SelectList(_context.CatDependencia, "Id", "Nombre");
-            ViewData["Ideje"] = new SelectList(_context.CatEjes, "Id", "Clave");
-            ViewData["Idejecutor"] = new SelectList(_context.CatEjecutors, "Id", "Nombre");
-            ViewData["Idestadoobra"] = new SelectList(_context.CatEstadoobras, "Id", "Id");
-            ViewData["Idestadorevision"] = new SelectList(_context.CatEstadorevisions, "Id", "Id");
-            ViewData["Idlocalidad"] = new SelectList(_context.CatLocalidads, "Id", "Clave");
-            ViewData["Idmunicipio"] = new SelectList(_context.CatMunicipios, "Id", "Municipio");
-            ViewData["Idpoadetalle"] = new SelectList(_context.TblPoadetalles, "Id", "Actividades");
-            ViewData["Idprogsog"] = new SelectList(_context.CatProgsocs, "Id", "Descripcion");
-            ViewData["Idsubvertiente"] = new SelectList(_context.CatSubvertientes, "Id", "Id");
-            ViewData["Idunidadmedida"] = new SelectList(_context.CatUnidadmedida, "Id", "Nombre");
-            ViewData["Idvertiente"] = new SelectList(_context.CatVertientes, "Id", "Clave");
-            return View();
-        }
-
-        // POST: TblObras/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Idpoadetalle,Year,Region,Idmunicipio,Idlocalidad,Iddependencia,Idestadoobra,Idestadorevision,Idprogsog,Idvertiente,Idsubvertiente,Idcategoria,Idunidadmedida,Idejecutor,Ideje,Numeroobra,Nombreobra,Descripcion,Inversion,Fuentefinanciamiento,Coordenadax,Coordenaday,Inaguracion,PeriodoInforme,Porcentajeavance,Fechainicio,Fechatermino,Posibleconflicto,Observaciones,Georeferenciado,NumeroreferenciaCiceco,Imagenobra,Observacionesrevision,Fecharegistro,BeneficiarioNombre,BeneficiarioDomicilio,Numeroobraexterno,InversionFederal,InversionEstatal,InversionMunicipal,InversionBeneficiario,CantidadBeneficioHombre,CantidadBeneficioMujer,CantidadUnidadmedida,Expediente,AvanceFinanciero")] TblObra tblObra)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(tblObra);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["Idcategoria"] = new SelectList(_context.CatCategoria, "Id", "Nombre", tblObra.Idcategoria);
-            ViewData["Iddependencia"] = new SelectList(_context.CatDependencia, "Id", "Nombre", tblObra.Iddependencia);
-            ViewData["Ideje"] = new SelectList(_context.CatEjes, "Id", "Clave", tblObra.Ideje);
-            ViewData["Idejecutor"] = new SelectList(_context.CatEjecutors, "Id", "Nombre", tblObra.Idejecutor);
-            ViewData["Idestadoobra"] = new SelectList(_context.CatEstadoobras, "Id", "Id", tblObra.Idestadoobra);
-            ViewData["Idestadorevision"] = new SelectList(_context.CatEstadorevisions, "Id", "Id", tblObra.Idestadorevision);
-            ViewData["Idlocalidad"] = new SelectList(_context.CatLocalidads, "Id", "Clave", tblObra.Idlocalidad);
-            ViewData["Idmunicipio"] = new SelectList(_context.CatMunicipios, "Id", "Municipio", tblObra.Idmunicipio);
-            ViewData["Idpoadetalle"] = new SelectList(_context.TblPoadetalles, "Id", "Actividades", tblObra.Idpoadetalle);
-            ViewData["Idprogsog"] = new SelectList(_context.CatProgsocs, "Id", "Descripcion", tblObra.Idprogsog);
-            ViewData["Idsubvertiente"] = new SelectList(_context.CatSubvertientes, "Id", "Id", tblObra.Idsubvertiente);
-            ViewData["Idunidadmedida"] = new SelectList(_context.CatUnidadmedida, "Id", "Nombre", tblObra.Idunidadmedida);
-            ViewData["Idvertiente"] = new SelectList(_context.CatVertientes, "Id", "Clave", tblObra.Idvertiente);
-            return View(tblObra);
-        }
-
-        // GET: TblObras/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var tblObra = await _context.TblObras.FindAsync(id);
-            if (tblObra == null)
-            {
-                return NotFound();
-            }
-            ViewData["Idcategoria"] = new SelectList(_context.CatCategoria, "Id", "Nombre", tblObra.Idcategoria);
-            ViewData["Iddependencia"] = new SelectList(_context.CatDependencia, "Id", "Nombre", tblObra.Iddependencia);
-            ViewData["Ideje"] = new SelectList(_context.CatEjes, "Id", "Clave", tblObra.Ideje);
-            ViewData["Idejecutor"] = new SelectList(_context.CatEjecutors, "Id", "Nombre", tblObra.Idejecutor);
-            ViewData["Idestadoobra"] = new SelectList(_context.CatEstadoobras, "Id", "Id", tblObra.Idestadoobra);
-            ViewData["Idestadorevision"] = new SelectList(_context.CatEstadorevisions, "Id", "Id", tblObra.Idestadorevision);
-            ViewData["Idlocalidad"] = new SelectList(_context.CatLocalidads, "Id", "Clave", tblObra.Idlocalidad);
-            ViewData["Idmunicipio"] = new SelectList(_context.CatMunicipios, "Id", "Clave", tblObra.Idmunicipio);
-            ViewData["Idpoadetalle"] = new SelectList(_context.TblPoadetalles, "Id", "Actividades", tblObra.Idpoadetalle);
-            ViewData["Idprogsog"] = new SelectList(_context.CatProgsocs, "Id", "Descripcion", tblObra.Idprogsog);
-            ViewData["Idsubvertiente"] = new SelectList(_context.CatSubvertientes, "Id", "Id", tblObra.Idsubvertiente);
-            ViewData["Idunidadmedida"] = new SelectList(_context.CatUnidadmedida, "Id", "Nombre", tblObra.Idunidadmedida);
-            ViewData["Idvertiente"] = new SelectList(_context.CatVertientes, "Id", "Clave", tblObra.Idvertiente);
-            return View(tblObra);
-        }
-
-        // POST: TblObras/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Idpoadetalle,Year,Region,Idmunicipio,Idlocalidad,Iddependencia,Idestadoobra,Idestadorevision,Idprogsog,Idvertiente,Idsubvertiente,Idcategoria,Idunidadmedida,Idejecutor,Ideje,Numeroobra,Nombreobra,Descripcion,Inversion,Fuentefinanciamiento,Coordenadax,Coordenaday,Inaguracion,PeriodoInforme,Porcentajeavance,Fechainicio,Fechatermino,Posibleconflicto,Observaciones,Georeferenciado,NumeroreferenciaCiceco,Imagenobra,Observacionesrevision,Fecharegistro,BeneficiarioNombre,BeneficiarioDomicilio,Numeroobraexterno,InversionFederal,InversionEstatal,InversionMunicipal,InversionBeneficiario,CantidadBeneficioHombre,CantidadBeneficioMujer,CantidadUnidadmedida,Expediente,AvanceFinanciero")] TblObra tblObra)
-        {
-            if (id != tblObra.Id)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(tblObra);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!TblObraExists(tblObra.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["Idcategoria"] = new SelectList(_context.CatCategoria, "Id", "Nombre", tblObra.Idcategoria);
-            ViewData["Iddependencia"] = new SelectList(_context.CatDependencia, "Id", "Nombre", tblObra.Iddependencia);
-            ViewData["Ideje"] = new SelectList(_context.CatEjes, "Id", "Clave", tblObra.Ideje);
-            ViewData["Idejecutor"] = new SelectList(_context.CatEjecutors, "Id", "Nombre", tblObra.Idejecutor);
-            ViewData["Idestadoobra"] = new SelectList(_context.CatEstadoobras, "Id", "Id", tblObra.Idestadoobra);
-            ViewData["Idestadorevision"] = new SelectList(_context.CatEstadorevisions, "Id", "Id", tblObra.Idestadorevision);
-            ViewData["Idlocalidad"] = new SelectList(_context.CatLocalidads, "Id", "Clave", tblObra.Idlocalidad);
-            ViewData["Idmunicipio"] = new SelectList(_context.CatMunicipios, "Id", "Clave", tblObra.Idmunicipio);
-            ViewData["Idpoadetalle"] = new SelectList(_context.TblPoadetalles, "Id", "Actividades", tblObra.Idpoadetalle);
-            ViewData["Idprogsog"] = new SelectList(_context.CatProgsocs, "Id", "Descripcion", tblObra.Idprogsog);
-            ViewData["Idsubvertiente"] = new SelectList(_context.CatSubvertientes, "Id", "Id", tblObra.Idsubvertiente);
-            ViewData["Idunidadmedida"] = new SelectList(_context.CatUnidadmedida, "Id", "Nombre", tblObra.Idunidadmedida);
-            ViewData["Idvertiente"] = new SelectList(_context.CatVertientes, "Id", "Clave", tblObra.Idvertiente);
-            return View(tblObra);
-        }
-
-        // GET: TblObras/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var tblObra = await _context.TblObras
-                .Include(t => t.IdcategoriaNavigation)
-                .Include(t => t.IddependenciaNavigation)
-                .Include(t => t.IdejeNavigation)
-                .Include(t => t.IdejecutorNavigation)
-                .Include(t => t.IdestadoobraNavigation)
-                .Include(t => t.IdestadorevisionNavigation)
-                .Include(t => t.IdlocalidadNavigation)
-                .Include(t => t.IdmunicipioNavigation)
-                .Include(t => t.IdpoadetalleNavigation)
-                .Include(t => t.IdprogsogNavigation)
-                .Include(t => t.IdsubvertienteNavigation)
-                .Include(t => t.IdunidadmedidaNavigation)
-                .Include(t => t.IdvertienteNavigation)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (tblObra == null)
-            {
-                return NotFound();
-            }
-
-            return View(tblObra);
-        }
-
-        // POST: TblObras/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var tblObra = await _context.TblObras.FindAsync(id);
-            _context.TblObras.Remove(tblObra);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
+        
+      
 
         private bool TblObraExists(int id)
         {

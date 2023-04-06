@@ -21,7 +21,6 @@ namespace SmartBoard.Data.Models.SmartBoard
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
-        public virtual DbSet<CatArea> CatAreas { get; set; }
         public virtual DbSet<CatCategoriaCheckList> CatCategoriaCheckLists { get; set; }
         public virtual DbSet<CatCategorium> CatCategoria { get; set; }
         public virtual DbSet<CatCattipomunicipio> CatCattipomunicipios { get; set; }
@@ -29,10 +28,7 @@ namespace SmartBoard.Data.Models.SmartBoard
         public virtual DbSet<CatClasificacion> CatClasificacions { get; set; }
         public virtual DbSet<CatClasificador> CatClasificadors { get; set; }
         public virtual DbSet<CatContratacion> CatContratacions { get; set; }
-        public virtual DbSet<CatDelegacion> CatDelegacions { get; set; }
         public virtual DbSet<CatDependencium> CatDependencia { get; set; }
-        public virtual DbSet<CatDistritofederal> CatDistritofederals { get; set; }
-        public virtual DbSet<CatDistritolocal> CatDistritolocals { get; set; }
         public virtual DbSet<CatEje> CatEjes { get; set; }
         public virtual DbSet<CatEjecutor> CatEjecutors { get; set; }
         public virtual DbSet<CatEjercicio> CatEjercicios { get; set; }
@@ -42,14 +38,9 @@ namespace SmartBoard.Data.Models.SmartBoard
         public virtual DbSet<CatFondo> CatFondos { get; set; }
         public virtual DbSet<CatGradomarginal> CatGradomarginals { get; set; }
         public virtual DbSet<CatLineaaccion> CatLineaaccions { get; set; }
-        public virtual DbSet<CatLocalidad> CatLocalidads { get; set; }
         public virtual DbSet<CatModalidadEjecucion> CatModalidadEjecucions { get; set; }
         public virtual DbSet<CatMunicipio> CatMunicipios { get; set; }
         public virtual DbSet<CatNormativaAplicable> CatNormativaAplicables { get; set; }
-        public virtual DbSet<CatObjetivo> CatObjetivos { get; set; }
-        public virtual DbSet<CatOdsIndicador> CatOdsIndicadors { get; set; }
-        public virtual DbSet<CatOdsMetum> CatOdsMeta { get; set; }
-        public virtual DbSet<CatOdsObjetivo> CatOdsObjetivos { get; set; }
         public virtual DbSet<CatOrigenrecurso> CatOrigenrecursos { get; set; }
         public virtual DbSet<CatPrograma> CatProgramas { get; set; }
         public virtual DbSet<CatProgsoc> CatProgsocs { get; set; }
@@ -57,24 +48,15 @@ namespace SmartBoard.Data.Models.SmartBoard
         public virtual DbSet<CatRegion> CatRegions { get; set; }
         public virtual DbSet<CatRubro> CatRubros { get; set; }
         public virtual DbSet<CatSubprograma> CatSubprogramas { get; set; }
-        public virtual DbSet<CatSubvertiente> CatSubvertientes { get; set; }
         public virtual DbSet<CatTipoAdjudicacion> CatTipoAdjudicacions { get; set; }
         public virtual DbSet<CatTipoCheckList> CatTipoCheckLists { get; set; }
         public virtual DbSet<CatTipoConcepto> CatTipoConceptos { get; set; }
         public virtual DbSet<CatTipoDeContrato> CatTipoDeContratos { get; set; }
         public virtual DbSet<CatTipoObra> CatTipoObras { get; set; }
         public virtual DbSet<CatTipoRecurso> CatTipoRecursos { get; set; }
-        public virtual DbSet<CatTipoprograma> CatTipoprogramas { get; set; }
         public virtual DbSet<CatUnidadmedidum> CatUnidadmedida { get; set; }
-        public virtual DbSet<CatVertiente> CatVertientes { get; set; }
-        public virtual DbSet<CatZona> CatZonas { get; set; }
         public virtual DbSet<Catprogsoc1> Catprogsocs1 { get; set; }
-        public virtual DbSet<ExcelPoa> ExcelPoas { get; set; }
-        public virtual DbSet<StgChecklistAdquiFull> StgChecklistAdquiFulls { get; set; }
-        public virtual DbSet<StgChecklistFull> StgChecklistFulls { get; set; }
-        public virtual DbSet<StgClasificador> StgClasificadors { get; set; }
         public virtual DbSet<StgProg> StgProgs { get; set; }
-        public virtual DbSet<TblLocalidadinformacion> TblLocalidadinformacions { get; set; }
         public virtual DbSet<TblObra> TblObras { get; set; }
         public virtual DbSet<TblObraDocProcHistorium> TblObraDocProcHistoria { get; set; }
         public virtual DbSet<TblObraEstimacion> TblObraEstimacions { get; set; }
@@ -83,13 +65,6 @@ namespace SmartBoard.Data.Models.SmartBoard
         public virtual DbSet<TblObrachecklist> TblObrachecklists { get; set; }
         public virtual DbSet<TblObraconcepto> TblObraconceptos { get; set; }
         public virtual DbSet<TblObradocumentoproceso> TblObradocumentoprocesos { get; set; }
-        public virtual DbSet<TblPoa> TblPoas { get; set; }
-        public virtual DbSet<TblPoadetalle> TblPoadetalles { get; set; }
-        public virtual DbSet<TblPoadetalleArea> TblPoadetalleAreas { get; set; }
-        public virtual DbSet<TblPoadetalleOd> TblPoadetalleOds { get; set; }
-        public virtual DbSet<TblPoadetallePed> TblPoadetallePeds { get; set; }
-        public virtual DbSet<TblPoadetalleinversion> TblPoadetalleinversions { get; set; }
-        public virtual DbSet<VistaObra> VistaObras { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -170,37 +145,6 @@ namespace SmartBoard.Data.Models.SmartBoard
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.AspNetUserLogins)
                     .HasForeignKey(d => d.UserId);
-            });
-
-            modelBuilder.Entity<CatArea>(entity =>
-            {
-                entity.ToTable("cat_area");
-
-                entity.Property(e => e.Id).HasColumnName("id");
-
-                entity.Property(e => e.Activo).HasColumnName("activo");
-
-                entity.Property(e => e.Clave)
-                    .IsRequired()
-                    .HasMaxLength(250)
-                    .IsUnicode(false)
-                    .HasColumnName("clave");
-
-                entity.Property(e => e.Descripcion)
-                    .HasMaxLength(250)
-                    .IsUnicode(false)
-                    .HasColumnName("descripcion");
-
-                entity.Property(e => e.Nombre)
-                    .IsRequired()
-                    .HasMaxLength(250)
-                    .IsUnicode(false)
-                    .HasColumnName("nombre");
-
-                entity.Property(e => e.Responsable)
-                    .HasMaxLength(250)
-                    .IsUnicode(false)
-                    .HasColumnName("responsable");
             });
 
             modelBuilder.Entity<CatCategoriaCheckList>(entity =>
@@ -394,24 +338,6 @@ namespace SmartBoard.Data.Models.SmartBoard
                     .HasColumnName("nombre");
             });
 
-            modelBuilder.Entity<CatDelegacion>(entity =>
-            {
-                entity.ToTable("cat_delegacion");
-
-                entity.Property(e => e.Id).HasColumnName("id");
-
-                entity.Property(e => e.Delegado)
-                    .HasMaxLength(250)
-                    .IsUnicode(false)
-                    .HasColumnName("delegado");
-
-                entity.Property(e => e.Nombre)
-                    .IsRequired()
-                    .HasMaxLength(250)
-                    .IsUnicode(false)
-                    .HasColumnName("nombre");
-            });
-
             modelBuilder.Entity<CatDependencium>(entity =>
             {
                 entity.ToTable("cat_dependencia");
@@ -435,70 +361,6 @@ namespace SmartBoard.Data.Models.SmartBoard
                     .HasMaxLength(250)
                     .IsUnicode(false)
                     .HasColumnName("titular");
-            });
-
-            modelBuilder.Entity<CatDistritofederal>(entity =>
-            {
-                entity.ToTable("cat_distritofederal");
-
-                entity.Property(e => e.Id).HasColumnName("id");
-
-                entity.Property(e => e.Activo).HasColumnName("activo");
-
-                entity.Property(e => e.Descripcion)
-                    .HasMaxLength(250)
-                    .IsUnicode(false)
-                    .HasColumnName("descripcion");
-
-                entity.Property(e => e.Diputado)
-                    .IsRequired()
-                    .HasMaxLength(250)
-                    .IsUnicode(false)
-                    .HasColumnName("diputado");
-
-                entity.Property(e => e.Nombre)
-                    .IsRequired()
-                    .HasMaxLength(250)
-                    .IsUnicode(false)
-                    .HasColumnName("nombre");
-
-                entity.Property(e => e.Partido)
-                    .IsRequired()
-                    .HasMaxLength(250)
-                    .IsUnicode(false)
-                    .HasColumnName("partido");
-            });
-
-            modelBuilder.Entity<CatDistritolocal>(entity =>
-            {
-                entity.ToTable("cat_distritolocal");
-
-                entity.Property(e => e.Id).HasColumnName("id");
-
-                entity.Property(e => e.Activo).HasColumnName("activo");
-
-                entity.Property(e => e.Descripcion)
-                    .HasMaxLength(250)
-                    .IsUnicode(false)
-                    .HasColumnName("descripcion");
-
-                entity.Property(e => e.Diputado)
-                    .IsRequired()
-                    .HasMaxLength(250)
-                    .IsUnicode(false)
-                    .HasColumnName("diputado");
-
-                entity.Property(e => e.Nombre)
-                    .IsRequired()
-                    .HasMaxLength(250)
-                    .IsUnicode(false)
-                    .HasColumnName("nombre");
-
-                entity.Property(e => e.Partido)
-                    .IsRequired()
-                    .HasMaxLength(250)
-                    .IsUnicode(false)
-                    .HasColumnName("partido");
             });
 
             modelBuilder.Entity<CatEje>(entity =>
@@ -698,50 +560,6 @@ namespace SmartBoard.Data.Models.SmartBoard
                     .HasConstraintName("FK_cat_lineaaccion_cat_estrategia");
             });
 
-            modelBuilder.Entity<CatLocalidad>(entity =>
-            {
-                entity.ToTable("cat_localidad");
-
-                entity.Property(e => e.Id).HasColumnName("id");
-
-                entity.Property(e => e.Activo).HasColumnName("activo");
-
-                entity.Property(e => e.Clave)
-                    .IsRequired()
-                    .HasMaxLength(50)
-                    .IsUnicode(false)
-                    .HasColumnName("clave");
-
-                entity.Property(e => e.Fecharegistro)
-                    .HasColumnType("datetime")
-                    .HasColumnName("fecharegistro");
-
-                entity.Property(e => e.Grado95)
-                    .HasMaxLength(10)
-                    .HasColumnName("grado95");
-
-                entity.Property(e => e.Idmunicipio).HasColumnName("idmunicipio");
-
-                entity.Property(e => e.Indice95).HasColumnName("indice95");
-
-                entity.Property(e => e.Nombre)
-                    .HasMaxLength(250)
-                    .IsUnicode(false)
-                    .HasColumnName("nombre");
-
-                entity.Property(e => e.Partido)
-                    .HasMaxLength(250)
-                    .IsUnicode(false)
-                    .HasColumnName("partido");
-
-                entity.Property(e => e.Pobtot95).HasColumnName("pobtot95");
-
-                entity.HasOne(d => d.IdmunicipioNavigation)
-                    .WithMany(p => p.CatLocalidads)
-                    .HasForeignKey(d => d.Idmunicipio)
-                    .HasConstraintName("FK_cat_localidad_cat_municipio");
-            });
-
             modelBuilder.Entity<CatModalidadEjecucion>(entity =>
             {
                 entity.ToTable("cat_modalidadEjecucion");
@@ -795,17 +613,11 @@ namespace SmartBoard.Data.Models.SmartBoard
                     .IsUnicode(false)
                     .HasColumnName("gdeshum");
 
-                entity.Property(e => e.IddistrictoFederal).HasColumnName("iddistrictoFederal");
-
-                entity.Property(e => e.IddistritoLocal).HasColumnName("iddistritoLocal");
-
                 entity.Property(e => e.Idgdo).HasColumnName("idgdo");
 
                 entity.Property(e => e.Idregion).HasColumnName("idregion");
 
                 entity.Property(e => e.Idtipomunicipio).HasColumnName("idtipomunicipio");
-
-                entity.Property(e => e.Idzona).HasColumnName("idzona");
 
                 entity.Property(e => e.Igife)
                     .HasColumnName("IGIFE")
@@ -878,16 +690,6 @@ namespace SmartBoard.Data.Models.SmartBoard
 
                 entity.Property(e => e.Totviv).HasColumnName("totviv");
 
-                entity.HasOne(d => d.IddistrictoFederalNavigation)
-                    .WithMany(p => p.CatMunicipios)
-                    .HasForeignKey(d => d.IddistrictoFederal)
-                    .HasConstraintName("FK_cat_municipio_cat_distritofederal");
-
-                entity.HasOne(d => d.IddistritoLocalNavigation)
-                    .WithMany(p => p.CatMunicipios)
-                    .HasForeignKey(d => d.IddistritoLocal)
-                    .HasConstraintName("FK_cat_municipio_cat_distritolocal");
-
                 entity.HasOne(d => d.IdregionNavigation)
                     .WithMany(p => p.CatMunicipios)
                     .HasForeignKey(d => d.Idregion)
@@ -898,11 +700,6 @@ namespace SmartBoard.Data.Models.SmartBoard
                     .WithMany(p => p.CatMunicipios)
                     .HasForeignKey(d => d.Idtipomunicipio)
                     .HasConstraintName("FK_cat_municipio_cat_cattipomunicipio");
-
-                entity.HasOne(d => d.IdzonaNavigation)
-                    .WithMany(p => p.CatMunicipios)
-                    .HasForeignKey(d => d.Idzona)
-                    .HasConstraintName("FK_cat_municipio_cat_zona");
             });
 
             modelBuilder.Entity<CatNormativaAplicable>(entity =>
@@ -917,119 +714,6 @@ namespace SmartBoard.Data.Models.SmartBoard
                     .HasMaxLength(250)
                     .IsUnicode(false)
                     .HasColumnName("descripcion");
-
-                entity.Property(e => e.Nombre)
-                    .IsRequired()
-                    .HasColumnName("nombre");
-            });
-
-            modelBuilder.Entity<CatObjetivo>(entity =>
-            {
-                entity.ToTable("cat_objetivo");
-
-                entity.Property(e => e.Id).HasColumnName("id");
-
-                entity.Property(e => e.Activo).HasColumnName("activo");
-
-                entity.Property(e => e.Clasifica)
-                    .HasMaxLength(15)
-                    .IsUnicode(false)
-                    .HasColumnName("clasifica");
-
-                entity.Property(e => e.Clave)
-                    .IsRequired()
-                    .HasMaxLength(10)
-                    .IsUnicode(false)
-                    .HasColumnName("clave");
-
-                entity.Property(e => e.Descripcion)
-                    .HasMaxLength(250)
-                    .IsUnicode(false)
-                    .HasColumnName("descripcion");
-
-                entity.Property(e => e.Ideje).HasColumnName("ideje");
-
-                entity.Property(e => e.Nombre)
-                    .IsRequired()
-                    .HasColumnName("nombre");
-
-                entity.HasOne(d => d.IdejeNavigation)
-                    .WithMany(p => p.CatObjetivos)
-                    .HasForeignKey(d => d.Ideje)
-                    .HasConstraintName("FK_cat_objetivo_cat_eje");
-            });
-
-            modelBuilder.Entity<CatOdsIndicador>(entity =>
-            {
-                entity.ToTable("cat_ods_indicador");
-
-                entity.Property(e => e.Id).HasColumnName("id");
-
-                entity.Property(e => e.Activo).HasColumnName("activo");
-
-                entity.Property(e => e.Clave)
-                    .IsRequired()
-                    .HasMaxLength(10)
-                    .IsUnicode(false)
-                    .HasColumnName("clave");
-
-                entity.Property(e => e.Descripcion).HasColumnName("descripcion");
-
-                entity.Property(e => e.IdOdsMeta).HasColumnName("id_ods_meta");
-
-                entity.Property(e => e.Nombre)
-                    .IsRequired()
-                    .HasColumnName("nombre");
-
-                entity.HasOne(d => d.IdOdsMetaNavigation)
-                    .WithMany(p => p.CatOdsIndicadors)
-                    .HasForeignKey(d => d.IdOdsMeta)
-                    .HasConstraintName("FK_cat_ods_indicador_cat_ods_meta");
-            });
-
-            modelBuilder.Entity<CatOdsMetum>(entity =>
-            {
-                entity.ToTable("cat_ods_meta");
-
-                entity.Property(e => e.Id).HasColumnName("id");
-
-                entity.Property(e => e.Activo).HasColumnName("activo");
-
-                entity.Property(e => e.Clave)
-                    .IsRequired()
-                    .HasMaxLength(10)
-                    .IsUnicode(false)
-                    .HasColumnName("clave");
-
-                entity.Property(e => e.Descripcion).HasColumnName("descripcion");
-
-                entity.Property(e => e.IdOdsObjetivo).HasColumnName("id_ods_objetivo");
-
-                entity.Property(e => e.Nombre)
-                    .IsRequired()
-                    .HasColumnName("nombre");
-
-                entity.HasOne(d => d.IdOdsObjetivoNavigation)
-                    .WithMany(p => p.CatOdsMeta)
-                    .HasForeignKey(d => d.IdOdsObjetivo)
-                    .HasConstraintName("FK_cat_ods_meta_cat_ods_objetivo");
-            });
-
-            modelBuilder.Entity<CatOdsObjetivo>(entity =>
-            {
-                entity.ToTable("cat_ods_objetivo");
-
-                entity.Property(e => e.Id).HasColumnName("id");
-
-                entity.Property(e => e.Activo).HasColumnName("activo");
-
-                entity.Property(e => e.Clave)
-                    .IsRequired()
-                    .HasMaxLength(10)
-                    .IsUnicode(false)
-                    .HasColumnName("clave");
-
-                entity.Property(e => e.Descripcion).HasColumnName("descripcion");
 
                 entity.Property(e => e.Nombre)
                     .IsRequired()
@@ -1216,32 +900,6 @@ namespace SmartBoard.Data.Models.SmartBoard
                     .HasColumnName("nombre");
             });
 
-            modelBuilder.Entity<CatSubvertiente>(entity =>
-            {
-                entity.ToTable("cat_subvertiente");
-
-                entity.Property(e => e.Id).HasColumnName("id");
-
-                entity.Property(e => e.Activo).HasColumnName("activo");
-
-                entity.Property(e => e.Clave)
-                    .HasMaxLength(10)
-                    .IsUnicode(false)
-                    .HasColumnName("clave");
-
-                entity.Property(e => e.Idvertiente).HasColumnName("idvertiente");
-
-                entity.Property(e => e.Nombre)
-                    .HasMaxLength(255)
-                    .HasColumnName("nombre");
-
-                entity.HasOne(d => d.IdvertienteNavigation)
-                    .WithMany(p => p.CatSubvertientes)
-                    .HasForeignKey(d => d.Idvertiente)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_cat_subvertiente_cat_vertiente");
-            });
-
             modelBuilder.Entity<CatTipoAdjudicacion>(entity =>
             {
                 entity.ToTable("cat_tipoAdjudicacion");
@@ -1377,68 +1035,9 @@ namespace SmartBoard.Data.Models.SmartBoard
                     .HasColumnName("nombre");
             });
 
-            modelBuilder.Entity<CatTipoprograma>(entity =>
-            {
-                entity.ToTable("cat_tipoprograma");
-
-                entity.Property(e => e.Id).HasColumnName("id");
-
-                entity.Property(e => e.Activo).HasColumnName("activo");
-
-                entity.Property(e => e.Clasifica)
-                    .HasMaxLength(15)
-                    .IsUnicode(false)
-                    .HasColumnName("clasifica");
-
-                entity.Property(e => e.Descripcion)
-                    .HasMaxLength(250)
-                    .IsUnicode(false)
-                    .HasColumnName("descripcion");
-
-                entity.Property(e => e.Nombre)
-                    .IsRequired()
-                    .HasMaxLength(250)
-                    .IsUnicode(false)
-                    .HasColumnName("nombre");
-            });
-
             modelBuilder.Entity<CatUnidadmedidum>(entity =>
             {
                 entity.ToTable("cat_unidadmedida");
-
-                entity.Property(e => e.Id).HasColumnName("id");
-
-                entity.Property(e => e.Activo).HasColumnName("activo");
-
-                entity.Property(e => e.Nombre)
-                    .IsRequired()
-                    .HasMaxLength(255)
-                    .HasColumnName("nombre");
-            });
-
-            modelBuilder.Entity<CatVertiente>(entity =>
-            {
-                entity.ToTable("cat_vertiente");
-
-                entity.Property(e => e.Id).HasColumnName("id");
-
-                entity.Property(e => e.Activo).HasColumnName("activo");
-
-                entity.Property(e => e.Clave)
-                    .IsRequired()
-                    .HasMaxLength(10)
-                    .IsUnicode(false)
-                    .HasColumnName("clave");
-
-                entity.Property(e => e.Nombre)
-                    .IsRequired()
-                    .HasMaxLength(255)
-                    .HasColumnName("nombre");
-            });
-
-            modelBuilder.Entity<CatZona>(entity =>
-            {
-                entity.ToTable("cat_zona");
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
@@ -1530,112 +1129,6 @@ namespace SmartBoard.Data.Models.SmartBoard
                     .HasColumnName("column9");
             });
 
-            modelBuilder.Entity<ExcelPoa>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.Property(e => e.Actividad)
-                    .HasMaxLength(255)
-                    .HasColumnName("actividad");
-
-                entity.Property(e => e.Area)
-                    .HasMaxLength(255)
-                    .HasColumnName("area");
-
-                entity.Property(e => e.Cant).HasColumnName("CANT");
-
-                entity.Property(e => e.Fafef).HasColumnName("FAFEF");
-
-                entity.Property(e => e.FechaInicion)
-                    .HasMaxLength(255)
-                    .HasColumnName("fecha_inicion");
-
-                entity.Property(e => e.FechaTermino)
-                    .HasMaxLength(255)
-                    .HasColumnName("fecha_termino");
-
-                entity.Property(e => e.FechaValidacion)
-                    .HasMaxLength(255)
-                    .HasColumnName("fecha_validacion");
-
-                entity.Property(e => e.Fise).HasColumnName("FISE");
-
-                entity.Property(e => e.Indicadores)
-                    .HasMaxLength(255)
-                    .HasColumnName("INDICADORES");
-
-                entity.Property(e => e.Lineaaccion)
-                    .HasMaxLength(255)
-                    .HasColumnName("lineaaccion");
-
-                entity.Property(e => e.No).HasColumnName("no");
-
-                entity.Property(e => e.Nombre)
-                    .HasMaxLength(255)
-                    .HasColumnName("nombre");
-
-                entity.Property(e => e.Objetivo)
-                    .HasMaxLength(255)
-                    .HasColumnName("objetivo");
-
-                entity.Property(e => e.Umd)
-                    .HasMaxLength(255)
-                    .HasColumnName("umd");
-
-                entity.Property(e => e._2030)
-                    .HasMaxLength(255)
-                    .HasColumnName("2030");
-            });
-
-            modelBuilder.Entity<StgChecklistAdquiFull>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToTable("stg_checklist_adqui_full");
-
-                entity.Property(e => e.Categoria).HasMaxLength(255);
-
-                entity.Property(e => e.EsTitulo).HasColumnName("Es titulo");
-
-                entity.Property(e => e.Nombre).HasMaxLength(255);
-
-                entity.Property(e => e.Norma).HasMaxLength(255);
-
-                entity.Property(e => e.Nota).HasMaxLength(255);
-
-                entity.Property(e => e.Titulo).HasMaxLength(255);
-            });
-
-            modelBuilder.Entity<StgChecklistFull>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToTable("stg_checklist_full");
-
-                entity.Property(e => e.Nombre).HasMaxLength(255);
-
-                entity.Property(e => e.Norma).HasMaxLength(255);
-
-                entity.Property(e => e.Nota).HasMaxLength(255);
-
-                entity.Property(e => e.Titulo).HasMaxLength(255);
-            });
-
-            modelBuilder.Entity<StgClasificador>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToTable("stg_clasificador");
-
-                entity.Property(e => e.Final).HasMaxLength(255);
-
-                entity.Property(e => e.Inicio).HasMaxLength(255);
-
-                entity.Property(e => e.Mitad).HasMaxLength(255);
-
-                entity.Property(e => e.Nombre).HasMaxLength(255);
-            });
-
             modelBuilder.Entity<StgProg>(entity =>
             {
                 entity.HasNoKey();
@@ -1653,29 +1146,6 @@ namespace SmartBoard.Data.Models.SmartBoard
                 entity.Property(e => e.Rubros).HasMaxLength(255);
 
                 entity.Property(e => e.Subprograma).HasMaxLength(255);
-            });
-
-            modelBuilder.Entity<TblLocalidadinformacion>(entity =>
-            {
-                entity.ToTable("tbl_localidadinformacion");
-
-                entity.Property(e => e.Id).HasColumnName("id");
-
-                entity.Property(e => e.Idlocalidad).HasColumnName("idlocalidad");
-
-                entity.Property(e => e.Mrg).HasMaxLength(50);
-
-                entity.Property(e => e.Pobn15MyCpmraIpta).HasColumnName("Pobn15MyCPmraIpta");
-
-                entity.Property(e => e.Pobn15oMyAanlf).HasColumnName("Pobn15oMyAAnlf");
-
-                entity.Property(e => e.PpobPisoTierra).HasColumnName("PPobPisoTierra");
-
-                entity.HasOne(d => d.IdlocalidadNavigation)
-                    .WithMany(p => p.TblLocalidadinformacions)
-                    .HasForeignKey(d => d.Idlocalidad)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_tbl_localidadinformacion_cat_localidad");
             });
 
             modelBuilder.Entity<TblObra>(entity =>
@@ -1807,19 +1277,13 @@ namespace SmartBoard.Data.Models.SmartBoard
 
                 entity.Property(e => e.Idlineaacion).HasColumnName("idlineaacion");
 
-                entity.Property(e => e.Idlocalidad).HasColumnName("idlocalidad");
-
                 entity.Property(e => e.IdmodalidadEjecicion).HasColumnName("idmodalidadEjecicion");
 
                 entity.Property(e => e.Idmunicipio).HasColumnName("idmunicipio");
 
                 entity.Property(e => e.IdnormativaAplicable).HasColumnName("idnormativaAplicable");
 
-                entity.Property(e => e.Idpoadetalle).HasColumnName("idpoadetalle");
-
                 entity.Property(e => e.Idprogsog).HasColumnName("idprogsog");
-
-                entity.Property(e => e.Idsubvertiente).HasColumnName("idsubvertiente");
 
                 entity.Property(e => e.IdtipoAdjudicacion).HasColumnName("idtipoAdjudicacion");
 
@@ -1830,8 +1294,6 @@ namespace SmartBoard.Data.Models.SmartBoard
                     .HasDefaultValueSql("((1))");
 
                 entity.Property(e => e.Idunidadmedida).HasColumnName("idunidadmedida");
-
-                entity.Property(e => e.Idvertiente).HasColumnName("idvertiente");
 
                 entity.Property(e => e.Idzap).HasColumnName("idzap");
 
@@ -1966,11 +1428,6 @@ namespace SmartBoard.Data.Models.SmartBoard
                     .HasForeignKey(d => d.Idlineaacion)
                     .HasConstraintName("FK_tbl_obra_cat_lineaaccion");
 
-                entity.HasOne(d => d.IdlocalidadNavigation)
-                    .WithMany(p => p.TblObras)
-                    .HasForeignKey(d => d.Idlocalidad)
-                    .HasConstraintName("FK_tbl_obra_cat_localidad");
-
                 entity.HasOne(d => d.IdmodalidadEjecicionNavigation)
                     .WithMany(p => p.TblObras)
                     .HasForeignKey(d => d.IdmodalidadEjecicion)
@@ -1986,20 +1443,10 @@ namespace SmartBoard.Data.Models.SmartBoard
                     .HasForeignKey(d => d.IdnormativaAplicable)
                     .HasConstraintName("FK_tbl_obra_cat_normativaAplicable");
 
-                entity.HasOne(d => d.IdpoadetalleNavigation)
-                    .WithMany(p => p.TblObras)
-                    .HasForeignKey(d => d.Idpoadetalle)
-                    .HasConstraintName("FK_tbl_obra_tbl_programaoperativodetalle");
-
                 entity.HasOne(d => d.IdprogsogNavigation)
                     .WithMany(p => p.TblObras)
                     .HasForeignKey(d => d.Idprogsog)
                     .HasConstraintName("FK_tbl_obra_cat_progsoc");
-
-                entity.HasOne(d => d.IdsubvertienteNavigation)
-                    .WithMany(p => p.TblObras)
-                    .HasForeignKey(d => d.Idsubvertiente)
-                    .HasConstraintName("FK_tbl_obra_cat_subvertiente");
 
                 entity.HasOne(d => d.IdtipoAdjudicacionNavigation)
                     .WithMany(p => p.TblObras)
@@ -2021,11 +1468,6 @@ namespace SmartBoard.Data.Models.SmartBoard
                     .WithMany(p => p.TblObras)
                     .HasForeignKey(d => d.Idunidadmedida)
                     .HasConstraintName("FK_tbl_obra_cat_unidadmedida");
-
-                entity.HasOne(d => d.IdvertienteNavigation)
-                    .WithMany(p => p.TblObras)
-                    .HasForeignKey(d => d.Idvertiente)
-                    .HasConstraintName("FK_tbl_obra_cat_vertiente");
 
                 entity.HasOne(d => d.IdzapNavigation)
                     .WithMany(p => p.TblObras)
@@ -2647,657 +2089,6 @@ namespace SmartBoard.Data.Models.SmartBoard
                     .HasForeignKey(d => d.IdTblobra)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_tbl_obradocumentoproceso_tbl_obra");
-            });
-
-            modelBuilder.Entity<TblPoa>(entity =>
-            {
-                entity.ToTable("tbl_poa");
-
-                entity.Property(e => e.Id).HasColumnName("id");
-
-                entity.Property(e => e.Activo).HasColumnName("activo");
-
-                entity.Property(e => e.Alineacionped)
-                    .IsUnicode(false)
-                    .HasColumnName("alineacionped");
-
-                entity.Property(e => e.Comentarios)
-                    .HasMaxLength(250)
-                    .IsUnicode(false)
-                    .HasColumnName("comentarios");
-
-                entity.Property(e => e.Fechaactualizacion)
-                    .HasColumnType("datetime")
-                    .HasColumnName("fechaactualizacion");
-
-                entity.Property(e => e.Fechaelabora)
-                    .HasColumnType("date")
-                    .HasColumnName("fechaelabora");
-
-                entity.Property(e => e.Fecharegistro)
-                    .HasColumnType("datetime")
-                    .HasColumnName("fecharegistro");
-
-                entity.Property(e => e.Iddependencia).HasColumnName("iddependencia");
-
-                entity.Property(e => e.Ideje).HasColumnName("ideje");
-
-                entity.Property(e => e.Idestrategia).HasColumnName("idestrategia");
-
-                entity.Property(e => e.Idlineaaccion).HasColumnName("idlineaaccion");
-
-                entity.Property(e => e.Idobjetivo).HasColumnName("idobjetivo");
-
-                entity.Property(e => e.Idtipoprograma).HasColumnName("idtipoprograma");
-
-                entity.Property(e => e.Nombre)
-                    .IsRequired()
-                    .HasMaxLength(250)
-                    .IsUnicode(false)
-                    .HasColumnName("nombre");
-
-                entity.Property(e => e.Year).HasColumnName("year");
-
-                entity.HasOne(d => d.IddependenciaNavigation)
-                    .WithMany(p => p.TblPoas)
-                    .HasForeignKey(d => d.Iddependencia)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_tbl_poa_cat_dependencia");
-
-                entity.HasOne(d => d.IdejeNavigation)
-                    .WithMany(p => p.TblPoas)
-                    .HasForeignKey(d => d.Ideje)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_tbl_poa_cat_eje");
-
-                entity.HasOne(d => d.IdestrategiaNavigation)
-                    .WithMany(p => p.TblPoas)
-                    .HasForeignKey(d => d.Idestrategia)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_tbl_poa_cat_estrategia");
-
-                entity.HasOne(d => d.IdlineaaccionNavigation)
-                    .WithMany(p => p.TblPoas)
-                    .HasForeignKey(d => d.Idlineaaccion)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_tbl_poa_cat_lineaaccion");
-
-                entity.HasOne(d => d.IdobjetivoNavigation)
-                    .WithMany(p => p.TblPoas)
-                    .HasForeignKey(d => d.Idobjetivo)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_tbl_poa_cat_objetivo");
-
-                entity.HasOne(d => d.IdtipoprogramaNavigation)
-                    .WithMany(p => p.TblPoas)
-                    .HasForeignKey(d => d.Idtipoprograma)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_tbl_programaoperativo_cat_tipoprograma");
-            });
-
-            modelBuilder.Entity<TblPoadetalle>(entity =>
-            {
-                entity.ToTable("tbl_poadetalle");
-
-                entity.Property(e => e.Id).HasColumnName("id");
-
-                entity.Property(e => e.Actividades)
-                    .IsRequired()
-                    .HasMaxLength(500)
-                    .IsUnicode(false)
-                    .HasColumnName("actividades");
-
-                entity.Property(e => e.Activo).HasColumnName("activo");
-
-                entity.Property(e => e.Fechaactividad)
-                    .HasColumnType("datetime")
-                    .HasColumnName("fechaactividad");
-
-                entity.Property(e => e.Fechainicio)
-                    .HasColumnType("datetime")
-                    .HasColumnName("fechainicio");
-
-                entity.Property(e => e.Fecharegistro)
-                    .HasColumnType("datetime")
-                    .HasColumnName("fecharegistro");
-
-                entity.Property(e => e.Fechatermino)
-                    .HasColumnType("datetime")
-                    .HasColumnName("fechatermino");
-
-                entity.Property(e => e.IdProgramaoperativo).HasColumnName("id_programaoperativo");
-
-                entity.Property(e => e.Iddependencia).HasColumnName("iddependencia");
-
-                entity.Property(e => e.Nombre)
-                    .IsRequired()
-                    .IsUnicode(false)
-                    .HasColumnName("nombre");
-
-                entity.Property(e => e.Objetivo)
-                    .IsRequired()
-                    .HasMaxLength(500)
-                    .IsUnicode(false)
-                    .HasColumnName("objetivo");
-
-                entity.Property(e => e.Year).HasColumnName("year");
-
-                entity.HasOne(d => d.IdProgramaoperativoNavigation)
-                    .WithMany(p => p.TblPoadetalles)
-                    .HasForeignKey(d => d.IdProgramaoperativo)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_tbl_programaoperativodetalle_tbl_programaoperativo");
-
-                entity.HasOne(d => d.IddependenciaNavigation)
-                    .WithMany(p => p.TblPoadetalles)
-                    .HasForeignKey(d => d.Iddependencia)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_tbl_programaoperativodetalle_cat_dependencia");
-            });
-
-            modelBuilder.Entity<TblPoadetalleArea>(entity =>
-            {
-                entity.ToTable("tbl_poadetalleAREA");
-
-                entity.Property(e => e.Id).HasColumnName("id");
-
-                entity.Property(e => e.Activo).HasColumnName("activo");
-
-                entity.Property(e => e.Comentarios)
-                    .IsRequired()
-                    .HasMaxLength(250)
-                    .IsUnicode(false)
-                    .HasColumnName("comentarios");
-
-                entity.Property(e => e.Fecha)
-                    .HasColumnType("datetime")
-                    .HasColumnName("fecha");
-
-                entity.Property(e => e.Idarea).HasColumnName("idarea");
-
-                entity.Property(e => e.Idpoadetalle).HasColumnName("idpoadetalle");
-
-                entity.HasOne(d => d.IdareaNavigation)
-                    .WithMany(p => p.TblPoadetalleAreas)
-                    .HasForeignKey(d => d.Idarea)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_tbl_poadetalleAREA_cat_area");
-
-                entity.HasOne(d => d.IdpoadetalleNavigation)
-                    .WithMany(p => p.TblPoadetalleAreas)
-                    .HasForeignKey(d => d.Idpoadetalle)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_tbl_poadetalleAREA_tbl_poadetalle");
-            });
-
-            modelBuilder.Entity<TblPoadetalleOd>(entity =>
-            {
-                entity.ToTable("tbl_poadetalleODS");
-
-                entity.Property(e => e.Id).HasColumnName("id");
-
-                entity.Property(e => e.Activo).HasColumnName("activo");
-
-                entity.Property(e => e.Comentarios)
-                    .IsRequired()
-                    .HasMaxLength(250)
-                    .IsUnicode(false)
-                    .HasColumnName("comentarios");
-
-                entity.Property(e => e.Fecha)
-                    .HasColumnType("datetime")
-                    .HasColumnName("fecha");
-
-                entity.Property(e => e.Idodsindicador).HasColumnName("idodsindicador");
-
-                entity.Property(e => e.Idodsmeta).HasColumnName("idodsmeta");
-
-                entity.Property(e => e.Idodsobjetivo).HasColumnName("idodsobjetivo");
-
-                entity.Property(e => e.Idpoadetalle).HasColumnName("idpoadetalle");
-
-                entity.HasOne(d => d.IdodsindicadorNavigation)
-                    .WithMany(p => p.TblPoadetalleOds)
-                    .HasForeignKey(d => d.Idodsindicador)
-                    .HasConstraintName("FK_tbl_poadetalleODS_cat_ods_indicador");
-
-                entity.HasOne(d => d.IdodsmetaNavigation)
-                    .WithMany(p => p.TblPoadetalleOds)
-                    .HasForeignKey(d => d.Idodsmeta)
-                    .HasConstraintName("FK_tbl_poadetalleODS_cat_ods_meta");
-
-                entity.HasOne(d => d.IdodsobjetivoNavigation)
-                    .WithMany(p => p.TblPoadetalleOds)
-                    .HasForeignKey(d => d.Idodsobjetivo)
-                    .HasConstraintName("FK_tbl_poadetalleODS_cat_ods_objetivo");
-
-                entity.HasOne(d => d.IdpoadetalleNavigation)
-                    .WithMany(p => p.TblPoadetalleOds)
-                    .HasForeignKey(d => d.Idpoadetalle)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_tbl_poadetalleODS_tbl_programaoperativodetalle");
-            });
-
-            modelBuilder.Entity<TblPoadetallePed>(entity =>
-            {
-                entity.ToTable("tbl_poadetallePED");
-
-                entity.Property(e => e.Id).HasColumnName("id");
-
-                entity.Property(e => e.Activo).HasColumnName("activo");
-
-                entity.Property(e => e.Comentarios)
-                    .HasMaxLength(250)
-                    .IsUnicode(false)
-                    .HasColumnName("comentarios");
-
-                entity.Property(e => e.Fecha)
-                    .HasColumnType("datetime")
-                    .HasColumnName("fecha");
-
-                entity.Property(e => e.Ideje).HasColumnName("ideje");
-
-                entity.Property(e => e.Idestrategia).HasColumnName("idestrategia");
-
-                entity.Property(e => e.Idlineaaccion).HasColumnName("idlineaaccion");
-
-                entity.Property(e => e.Idobjetivo).HasColumnName("idobjetivo");
-
-                entity.Property(e => e.Idpoadetalle).HasColumnName("idpoadetalle");
-
-                entity.HasOne(d => d.IdejeNavigation)
-                    .WithMany(p => p.TblPoadetallePeds)
-                    .HasForeignKey(d => d.Ideje)
-                    .HasConstraintName("FK_tbl_poadetallePED_cat_eje");
-
-                entity.HasOne(d => d.IdestrategiaNavigation)
-                    .WithMany(p => p.TblPoadetallePeds)
-                    .HasForeignKey(d => d.Idestrategia)
-                    .HasConstraintName("FK_tbl_poadetallePED_cat_estrategia");
-
-                entity.HasOne(d => d.IdlineaaccionNavigation)
-                    .WithMany(p => p.TblPoadetallePeds)
-                    .HasForeignKey(d => d.Idlineaaccion)
-                    .HasConstraintName("FK_tbl_poadetallePED_cat_lineaaccion");
-
-                entity.HasOne(d => d.IdobjetivoNavigation)
-                    .WithMany(p => p.TblPoadetallePeds)
-                    .HasForeignKey(d => d.Idobjetivo)
-                    .HasConstraintName("FK_tbl_poadetallePED_cat_objetivo");
-
-                entity.HasOne(d => d.IdpoadetalleNavigation)
-                    .WithMany(p => p.TblPoadetallePeds)
-                    .HasForeignKey(d => d.Idpoadetalle)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_tbl_poadetallePED_tbl_poadetalle");
-            });
-
-            modelBuilder.Entity<TblPoadetalleinversion>(entity =>
-            {
-                entity.ToTable("tbl_poadetalleinversion");
-
-                entity.Property(e => e.Id).HasColumnName("id");
-
-                entity.Property(e => e.Activo).HasColumnName("activo");
-
-                entity.Property(e => e.Comentarios)
-                    .HasMaxLength(250)
-                    .IsUnicode(false)
-                    .HasColumnName("comentarios");
-
-                entity.Property(e => e.Fecha)
-                    .HasColumnType("datetime")
-                    .HasColumnName("fecha");
-
-                entity.Property(e => e.Idorigenrecurso).HasColumnName("idorigenrecurso");
-
-                entity.Property(e => e.Idpoadetalle).HasColumnName("idpoadetalle");
-
-                entity.Property(e => e.Monto)
-                    .HasColumnType("money")
-                    .HasColumnName("monto");
-
-                entity.HasOne(d => d.IdorigenrecursoNavigation)
-                    .WithMany(p => p.TblPoadetalleinversions)
-                    .HasForeignKey(d => d.Idorigenrecurso)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_tbl_poadetalleinversion_cat_origenrecurso");
-
-                entity.HasOne(d => d.IdpoadetalleNavigation)
-                    .WithMany(p => p.TblPoadetalleinversions)
-                    .HasForeignKey(d => d.Idpoadetalle)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_tbl_poadetalleinversion_tbl_programaoperativodetalle");
-            });
-
-            modelBuilder.Entity<VistaObra>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToView("vistaObras");
-
-                entity.Property(e => e.Activo).HasColumnName("activo");
-
-                entity.Property(e => e.AvanceFinanciero)
-                    .HasColumnType("money")
-                    .HasColumnName("avanceFinanciero");
-
-                entity.Property(e => e.BeneficiarioDomicilio)
-                    .HasMaxLength(500)
-                    .IsUnicode(false)
-                    .HasColumnName("beneficiario_domicilio");
-
-                entity.Property(e => e.BeneficiarioNombre)
-                    .HasMaxLength(500)
-                    .IsUnicode(false)
-                    .HasColumnName("beneficiario_nombre");
-
-                entity.Property(e => e.CantidadBeneficioHombre).HasColumnName("cantidadBeneficioHombre");
-
-                entity.Property(e => e.CantidadBeneficioMujer).HasColumnName("cantidadBeneficioMujer");
-
-                entity.Property(e => e.CantidadUnidadmedida).HasColumnName("cantidad_unidadmedida");
-
-                entity.Property(e => e.Capaseg).HasColumnName("CAPASEG");
-
-                entity.Property(e => e.Casillas).HasColumnName("casillas");
-
-                entity.Property(e => e.Categoria)
-                    .IsRequired()
-                    .HasMaxLength(9)
-                    .IsUnicode(false)
-                    .HasColumnName("categoria");
-
-                entity.Property(e => e.Cicaeg).HasColumnName("CICAEG");
-
-                entity.Property(e => e.Clave)
-                    .HasMaxLength(50)
-                    .IsUnicode(false)
-                    .HasColumnName("clave");
-
-                entity.Property(e => e.Cobagua).HasColumnName("cobagua");
-
-                entity.Property(e => e.Cobdren).HasColumnName("cobdren");
-
-                entity.Property(e => e.Cobelect).HasColumnName("cobelect");
-
-                entity.Property(e => e.Coordenadax)
-                    .HasMaxLength(255)
-                    .HasColumnName("coordenadax");
-
-                entity.Property(e => e.Coordenaday)
-                    .HasMaxLength(255)
-                    .HasColumnName("coordenaday");
-
-                entity.Property(e => e.Delega).HasColumnName("delega");
-
-                entity.Property(e => e.Descripcion).HasColumnName("descripcion");
-
-                entity.Property(e => e.Ejecutor)
-                    .IsRequired()
-                    .HasMaxLength(8)
-                    .IsUnicode(false)
-                    .HasColumnName("ejecutor");
-
-                entity.Property(e => e.Expediente)
-                    .HasMaxLength(250)
-                    .IsUnicode(false)
-                    .HasColumnName("expediente");
-
-                entity.Property(e => e.Expr10).HasMaxLength(255);
-
-                entity.Property(e => e.Expr12)
-                    .HasMaxLength(10)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Expr14).HasMaxLength(255);
-
-                entity.Property(e => e.Expr15)
-                    .HasMaxLength(10)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Expr2).HasMaxLength(255);
-
-                entity.Property(e => e.Expr20)
-                    .HasMaxLength(250)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Expr23).HasMaxLength(255);
-
-                entity.Property(e => e.Expr26).HasMaxLength(255);
-
-                entity.Property(e => e.Expr3).HasColumnType("money");
-
-                entity.Property(e => e.Expr6)
-                    .HasMaxLength(250)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Expr7).HasColumnType("datetime");
-
-                entity.Property(e => e.Expr8)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Fechainicio)
-                    .HasColumnType("datetime")
-                    .HasColumnName("fechainicio");
-
-                entity.Property(e => e.Fecharegistro)
-                    .HasColumnType("datetime")
-                    .HasColumnName("fecharegistro");
-
-                entity.Property(e => e.Fechatermino)
-                    .HasColumnType("datetime")
-                    .HasColumnName("fechatermino");
-
-                entity.Property(e => e.Fuentefinanciamiento)
-                    .HasMaxLength(250)
-                    .HasColumnName("fuentefinanciamiento");
-
-                entity.Property(e => e.Gdeshum)
-                    .HasMaxLength(255)
-                    .IsUnicode(false)
-                    .HasColumnName("gdeshum");
-
-                entity.Property(e => e.Georeferenciado).HasColumnName("georeferenciado");
-
-                entity.Property(e => e.Grado95)
-                    .HasMaxLength(10)
-                    .HasColumnName("grado95");
-
-                entity.Property(e => e.Id).HasColumnName("id");
-
-                entity.Property(e => e.Idcategoria).HasColumnName("idcategoria");
-
-                entity.Property(e => e.Iddependencia).HasColumnName("iddependencia");
-
-                entity.Property(e => e.IddistrictoFederal).HasColumnName("iddistrictoFederal");
-
-                entity.Property(e => e.IddistritoLocal).HasColumnName("iddistritoLocal");
-
-                entity.Property(e => e.Ideje).HasColumnName("ideje");
-
-                entity.Property(e => e.Idejecutor).HasColumnName("idejecutor");
-
-                entity.Property(e => e.Idestadoobra).HasColumnName("idestadoobra");
-
-                entity.Property(e => e.Idestadorevision).HasColumnName("idestadorevision");
-
-                entity.Property(e => e.Idgdo).HasColumnName("idgdo");
-
-                entity.Property(e => e.Idlocalidad).HasColumnName("idlocalidad");
-
-                entity.Property(e => e.Idmunicipio).HasColumnName("idmunicipio");
-
-                entity.Property(e => e.Idpoadetalle).HasColumnName("idpoadetalle");
-
-                entity.Property(e => e.Idprogsog).HasColumnName("idprogsog");
-
-                entity.Property(e => e.Idregion).HasColumnName("idregion");
-
-                entity.Property(e => e.Idsubvertiente).HasColumnName("idsubvertiente");
-
-                entity.Property(e => e.Idtipomunicipio).HasColumnName("idtipomunicipio");
-
-                entity.Property(e => e.Idunidadmedida).HasColumnName("idunidadmedida");
-
-                entity.Property(e => e.Idvertiente).HasColumnName("idvertiente");
-
-                entity.Property(e => e.Idzona).HasColumnName("idzona");
-
-                entity.Property(e => e.Igife).HasColumnName("IGIFE");
-
-                entity.Property(e => e.Imagenobra)
-                    .HasMaxLength(8000)
-                    .IsUnicode(false)
-                    .HasColumnName("imagenobra");
-
-                entity.Property(e => e.Inaguracion).HasColumnName("inaguracion");
-
-                entity.Property(e => e.Indice).HasColumnName("indice");
-
-                entity.Property(e => e.Indice95).HasColumnName("indice95");
-
-                entity.Property(e => e.Inversion)
-                    .HasColumnType("money")
-                    .HasColumnName("inversion");
-
-                entity.Property(e => e.InversionBeneficiario)
-                    .HasColumnType("money")
-                    .HasColumnName("inversionBeneficiario");
-
-                entity.Property(e => e.InversionEstatal)
-                    .HasColumnType("money")
-                    .HasColumnName("inversionEstatal");
-
-                entity.Property(e => e.InversionFederal)
-                    .HasColumnType("money")
-                    .HasColumnName("inversionFederal");
-
-                entity.Property(e => e.InversionMunicipal)
-                    .HasColumnType("money")
-                    .HasColumnName("inversionMunicipal");
-
-                entity.Property(e => e.Latitud)
-                    .HasMaxLength(255)
-                    .IsUnicode(false)
-                    .HasColumnName("latitud");
-
-                entity.Property(e => e.Listan).HasColumnName("listan");
-
-                entity.Property(e => e.Localidades)
-                    .IsRequired()
-                    .HasMaxLength(9)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Longitud)
-                    .HasMaxLength(255)
-                    .IsUnicode(false)
-                    .HasColumnName("longitud");
-
-                entity.Property(e => e.Lugest).HasColumnName("lugest");
-
-                entity.Property(e => e.Lugnal).HasColumnName("lugnal");
-
-                entity.Property(e => e.Municipio)
-                    .HasMaxLength(255)
-                    .HasColumnName("municipio");
-
-                entity.Property(e => e.Municipios)
-                    .IsRequired()
-                    .HasMaxLength(9)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Munis).HasColumnName("munis");
-
-                entity.Property(e => e.Nombre)
-                    .HasMaxLength(250)
-                    .IsUnicode(false)
-                    .HasColumnName("nombre");
-
-                entity.Property(e => e.Nombreobra).HasColumnName("nombreobra");
-
-                entity.Property(e => e.Numeroobra).HasColumnName("numeroobra");
-
-                entity.Property(e => e.Numeroobraexterno)
-                    .HasMaxLength(250)
-                    .IsUnicode(false)
-                    .HasColumnName("numeroobraexterno");
-
-                entity.Property(e => e.NumeroreferenciaCiceco).HasColumnName("numeroreferenciaCICECO");
-
-                entity.Property(e => e.Obras)
-                    .IsRequired()
-                    .HasMaxLength(5)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Observaciones).HasColumnName("observaciones");
-
-                entity.Property(e => e.Observacionesrevision).HasColumnName("observacionesrevision");
-
-                entity.Property(e => e.Partido)
-                    .HasMaxLength(250)
-                    .IsUnicode(false)
-                    .HasColumnName("partido");
-
-                entity.Property(e => e.PeriodoInforme).HasColumnName("periodo_informe");
-
-                entity.Property(e => e.PobTot).HasColumnName("pobTot");
-
-                entity.Property(e => e.Pobhom).HasColumnName("pobhom");
-
-                entity.Property(e => e.Pobmun).HasColumnName("pobmun");
-
-                entity.Property(e => e.Pobtot95).HasColumnName("pobtot95");
-
-                entity.Property(e => e.Pobtotiind).HasColumnName("pobtotiind");
-
-                entity.Property(e => e.Porcentajeavance)
-                    .HasColumnType("money")
-                    .HasColumnName("porcentajeavance");
-
-                entity.Property(e => e.Posibleconflicto).HasColumnName("posibleconflicto");
-
-                entity.Property(e => e.Posine).HasColumnName("posine");
-
-                entity.Property(e => e.Presidente)
-                    .HasMaxLength(250)
-                    .IsUnicode(false)
-                    .HasColumnName("presidente");
-
-                entity.Property(e => e.Region)
-                    .HasMaxLength(255)
-                    .HasColumnName("region");
-
-                entity.Property(e => e.Sduop).HasColumnName("SDUOP");
-
-                entity.Property(e => e.Secciones).HasColumnName("secciones");
-
-                entity.Property(e => e.Sindrenaje).HasColumnName("sindrenaje");
-
-                entity.Property(e => e.SubVertiente)
-                    .IsRequired()
-                    .HasMaxLength(12)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.TotalObras).HasColumnName("totalObras");
-
-                entity.Property(e => e.Totpiso).HasColumnName("totpiso");
-
-                entity.Property(e => e.Totviv).HasColumnName("totviv");
-
-                entity.Property(e => e.Unidadmedida)
-                    .IsRequired()
-                    .HasMaxLength(12)
-                    .IsUnicode(false)
-                    .HasColumnName("unidadmedida");
-
-                entity.Property(e => e.Vertiente)
-                    .IsRequired()
-                    .HasMaxLength(9)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Year).HasColumnName("year");
             });
 
             OnModelCreatingPartial(modelBuilder);

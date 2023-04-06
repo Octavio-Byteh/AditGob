@@ -8,10 +8,7 @@ namespace SmartBoard.Data.Models.SmartBoard
         public CatEje()
         {
             CatEstrategia = new HashSet<CatEstrategium>();
-            CatObjetivos = new HashSet<CatObjetivo>();
             TblObras = new HashSet<TblObra>();
-            TblPoadetallePeds = new HashSet<TblPoadetallePed>();
-            TblPoas = new HashSet<TblPoa>();
         }
 
         public int Id { get; set; }
@@ -22,9 +19,6 @@ namespace SmartBoard.Data.Models.SmartBoard
         public string Clave { get; set; }
 
         public virtual ICollection<CatEstrategium> CatEstrategia { get; set; }
-        public virtual ICollection<CatObjetivo> CatObjetivos { get; set; }
         public virtual ICollection<TblObra> TblObras { get; set; }
-        public virtual ICollection<TblPoadetallePed> TblPoadetallePeds { get; set; }
-        public virtual ICollection<TblPoa> TblPoas { get; set; }
     }
 }

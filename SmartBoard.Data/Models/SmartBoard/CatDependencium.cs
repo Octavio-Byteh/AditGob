@@ -8,8 +8,6 @@ namespace SmartBoard.Data.Models.SmartBoard
         public CatDependencium()
         {
             TblObras = new HashSet<TblObra>();
-            TblPoadetalles = new HashSet<TblPoadetalle>();
-            TblPoas = new HashSet<TblPoa>();
         }
 
         public int Id { get; set; }
@@ -19,7 +17,5 @@ namespace SmartBoard.Data.Models.SmartBoard
         public string Titular { get; set; }
 
         public virtual ICollection<TblObra> TblObras { get; set; }
-        public virtual ICollection<TblPoadetalle> TblPoadetalles { get; set; }
-        public virtual ICollection<TblPoa> TblPoas { get; set; }
     }
 }
