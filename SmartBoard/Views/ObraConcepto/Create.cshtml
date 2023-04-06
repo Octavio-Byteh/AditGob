@@ -15,7 +15,7 @@
 
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create" class="needs-validation" novalidate>
+        <form asp-action="Create" class="needs-validation was-validated" novalidate id="myform">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="IdTblobra" value="@idObra" />
             <input type="hidden" asp-for="Idtipoconcepto" value="@tipo" />
@@ -73,6 +73,7 @@
 
 
 @section ScriptsBlock {
+    <partial name="_ValidationScriptsPartial" />
     <script type="text/javascript">
         (function () {
 
@@ -93,5 +94,64 @@
             }, false);
         })();
 
+    </script>
+
+    <script>
+        $(function () {
+
+            $("#Clave").change(function(){
+
+                var _clave = $("#Clave").val();
+                var _IdTblobra = $("#IdTblobra").val();
+                var _Idtipoconcepto = $("#Idtipoconcepto").val();
+
+                $("#Clave").rules("add", {
+                    required: true,
+                    remote: {
+                        url: "ObraConcepto/VerificaClave?clave=" + _clave + "&IdTblobra=" + _IdTblobra + "&Idtipoconcepto=" + _Idtipoconcepto,
+                        type: "post",
+                        data: {
+                            clave: function () {
+                                return $("#Clave").val();
+                            },
+                            IdTblobra: function () {
+                                return $("#IdTblobra").val();
+                            },
+                            Idtipoconcepto: function () {
+                                return $("#Idtipoconcepto").val();
+                            }
+                        }
+                    },
+                        messages: { min: 'El valor minimo es ' }
+                    });
+
+                //$("#myform").validate({
+                //    rules: {
+                //        Clave: {
+                //            required: true,
+                //            remote: {
+                //                url: "ObraConceptoController/VerificaClave",
+                //                type: "post",
+                //                data: {
+                //                    clave: function () {
+                //                        return $("#clave").val();
+                //                    },
+                //                    IdTblobra: function () {
+                //                        return $("#IdTblobra").val();
+                //                    },
+                //                    Idtipoconcepto: function () {
+                //                        return $("#Idtipoconcepto").val();
+                //                    }
+                //                }
+                //            }
+                //        }
+                //    }
+                //});
+
+            })
+
+            
+
+             });
     </script>
 }

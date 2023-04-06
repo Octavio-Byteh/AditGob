@@ -16,7 +16,7 @@
 
 <div class="row">
     <div class="col-md-6">
-        <form class="needs-validation" novalidate asp-action="Create">
+        <form class="needs-validation was-validated" novalidate asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="IdTblobra" value="@idObra" />
             <input type="hidden" asp-for="IdFactura" value="@idObra" />
@@ -29,25 +29,58 @@
             <input asp-for="IdFactura" class="form-control" />
             <span asp-validation-for="IdFactura" class="text-danger"></span>
         </div>*@
+         <div class="form-group">
+            <label asp-for="IdRecurso" class="control-label">Recurso</label>
+                <select asp-for="IdRecurso" class="form-control" require  asp-items="ViewBag.IdRecurso" aria-label="Selecciona un recurso">
+                    <option disabled selected>  -- selecciona una recuros --</option>
+
+                </select>
+                <div class="invalid-feedback">
+                    Campo requerido
+                </div>
+        </div>
+
+         <div class="form-group">
+                <label asp-for="ImportePorEjercer" class="control-label">Importe Por Ejercer</label>
+                <input asp-for="ImportePorEjercer" required class="form-control" readonly pattern="^\d*(\.\d{0,2})?$" />
+                <span asp-validation-for="ImportePorEjercer" class="text-danger"></span>
+                <div class="invalid-feedback">
+                    Campo requerido
+                </div>
+            </div>
+
+
             <div class="form-group">
                 <label asp-for="Numero" class="control-label">Número</label>
                 <input asp-for="Numero" required class="form-control" />
                 <span asp-validation-for="Numero" class="text-danger"></span>
+                <div class="invalid-feedback">
+                    Campo requerido
+                </div>
             </div>
             <div class="form-group">
                 <label asp-for="NumFactura" class="control-label">Número Factura</label>
                 <input asp-for="NumFactura" required class="form-control" />
                 <span asp-validation-for="NumFactura" class="text-danger"></span>
+                <div class="invalid-feedback">
+                    Campo requerido
+                </div>
             </div>
             <div class="form-group">
                 <label asp-for="FechaFactura" class="control-label">Fecha Factura</label>
                 <input asp-for="FechaFactura" required type="date" data-date-format="DD/MM/YYY" class="form-control" />
                 <span asp-validation-for="FechaFactura" class="text-danger"></span>
+                 <div class="invalid-feedback">
+                    Campo requerido
+                </div>
             </div>
             <div class="form-group">
                 <label asp-for="FechaEstimacion" class="control-label">Fecha Estimación</label>
                 <input asp-for="FechaEstimacion" required type="date" data-date-format="DD/MM/YYY" class="form-control" />
                 <span asp-validation-for="FechaEstimacion" class="text-danger"></span>
+                <div class="invalid-feedback">
+                    Campo requerido
+                </div>
             </div>
 
             <div class="form-group form-check">
@@ -61,21 +94,33 @@
                 <label asp-for="MontoPagarSinIva" class="control-label">Monto a Pagar Sin Iva</label>
                 <input asp-for="MontoPagarSinIva" required class="form-control" pattern="^\d*(\.\d{0,2})?$"  />
                 <span asp-validation-for="MontoPagarSinIva" class="text-danger"></span>
+                <div class="invalid-feedback">
+                    Campo requerido
+                </div>
             </div>
             <div class="form-group">
                 <label asp-for="AmortizadoSinIva" class="control-label"> Amortizado Sin Iva</label>
                 <input asp-for="AmortizadoSinIva" required readonly class="form-control" />
                 <span asp-validation-for="AmortizadoSinIva" class="text-danger"></span>
+                 <div class="invalid-feedback">
+                    Campo requerido
+                </div>
             </div>
             <div class="form-group">
                 <label asp-for="Subtotal" class="control-label">Subtotal</label>
                 <input asp-for="Subtotal" required readonly class="form-control" />
                 <span asp-validation-for="Subtotal" class="text-danger"></span>
+                <div class="invalid-feedback">
+                    Campo requerido
+                </div>
             </div>
             <div class="form-group">
                 <label asp-for="SubtotalConIva" class="control-label">Subtotal Con Iva</label>
                 <input asp-for="SubtotalConIva" readonly required class="form-control" />
                 <span asp-validation-for="SubtotalConIva" class="text-danger"></span>
+                <div class="invalid-feedback">
+                    Campo requerido
+                </div>
             </div>
 
 
@@ -94,44 +139,78 @@
                 <label asp-for="Retencion" class="control-label">Retención</label>
                 <input asp-for="Retencion" required class="form-control" pattern="^\d*(\.\d{0,2})?$" value="0"/>
                 <span asp-validation-for="Retencion" class="text-danger"></span>
+                 <div class="invalid-feedback">
+                    Campo requerido
+                </div>
             </div>
             <div class="form-group">
                 <label asp-for="Devolucion" class="control-label">Devolución</label>
                 <input asp-for="Devolucion" required class="form-control" pattern="^\d*(\.\d{0,2})?$" value="0"  />
                 <span asp-validation-for="Devolucion" class="text-danger"></span>
+                <div class="invalid-feedback">
+                    Campo requerido
+                </div>
             </div>
 
             <div class="form-group">
                 <label asp-for="MontoNetoPagar" class="control-label">Monto Neto a Pagar</label>
                 <input asp-for="MontoNetoPagar" required readonly class="form-control" />
                 <span asp-validation-for="MontoNetoPagar" class="text-danger"></span>
+                <div class="invalid-feedback">
+                    Campo requerido
+                </div>
             </div>
 
+            <div id="idalerta" class="alert alert-danger" role="alert">
+                <strong>Información !</strong>
+                El monto a pagar supera el monto por ejercer del Recurso Seleccionado
+                <div>
+
+                Recurso:  <b id="nombre_recurso"></b>
+                <br />
+                Importe Por Ejercer:  <b id="importe_recurso"></b>
+                </div>
+            </div>
 
             <div class="form-group">
                 <label asp-for="AvenceFisicoProgramado" class="control-label"> Avance Fisico Programado %</label>
                 <input asp-for="AvenceFisicoProgramado" required class="form-control" pattern="^\d*(\.\d{0,2})?$" />
                 <span asp-validation-for="AvenceFisicoProgramado" class="text-danger"></span>
+                <div class="invalid-feedback">
+                    Campo requerido
+                </div>
             </div>
             <div class="form-group">
                 <label asp-for="AvanceFisicoReal" class="control-label"> Avance Fisico Real % </label>
                 <input asp-for="AvanceFisicoReal" required class="form-control" pattern="^\d*(\.\d{0,2})?$" />
                 <span asp-validation-for="AvanceFisicoReal" class="text-danger"></span>
+                <div class="invalid-feedback">
+                    Campo requerido
+                </div>
             </div>
             <div class="form-group">
                 <label asp-for="AvanceFinancieron" class="control-label">Avance Financiero %</label>
                 <input asp-for="AvanceFinancieron" required class="form-control" pattern="^\d*(\.\d{0,2})?$" />
                 <span asp-validation-for="AvanceFinancieron" class="text-danger"></span>
+                 <div class="invalid-feedback">
+                    Campo requerido
+                </div>
             </div>
             <div class="form-group">
                 <label asp-for="FechaPago" class="control-label"> Fecha de Pago</label>
                 <input asp-for="FechaPago" required type="date" data-date-format="DD/MM/YYY" class="form-control" />
                 <span asp-validation-for="FechaPago" class="text-danger"></span>
+                <div class="invalid-feedback">
+                    Campo requerido
+                </div>
             </div>
             <div class="form-group">
                 <label asp-for="Pagado" class="control-label">Pagado</label>
                 <input asp-for="Pagado" required class="form-control" pattern="^\d*(\.\d{0,2})?$" />
                 <span asp-validation-for="Pagado" class="text-danger"></span>
+                <div class="invalid-feedback">
+                    Campo requerido
+                </div>
             </div>
             @*<div class="form-group form-check">
             <label class="form-check-label">
@@ -161,7 +240,7 @@
 @section ScriptsBlock {
     <script type="text/javascript">
         (function () {
-
+            $("#idalerta").hide();
             'use strict';
             window.addEventListener('load', function () {
                 // Fetch all the forms we want to apply custom Bootstrap validation styles to
@@ -182,17 +261,52 @@
     <script>
         $(function () {
 
-            function calcula() {
+            $("#IdRecurso").change(function () {
+                var IdRecurso = $("#IdRecurso option:selected").val();
+                var url = '@Url.Action("FetchPorEjercerRecurso", "ObraEstimacion")?id=' + IdRecurso;
+                $("#nombre_recurso").text($("#IdRecurso option:selected").text());
+                $("#importe_recurso").text(0);
+                
+                $.getJSON(url, null, function (data) {
+                    //Requiered Remove
+                    $("#ImportePorEjercer").val(data);
+                    $("#importe_recurso").text(data);
+                    //alert(data)
 
+                    //$("#MontoNetoPagar").removeClass('is-valid');
+                    //$("#MontoNetoPagar").addClass('is-invalid');
+                    //$("#MontoNetoPagar").prop('min', data);
+
+                    //$("#MontoNetoPagar").rules("add", {
+                    //    min: data,
+                    //    messages: { min: 'El valor minimo es ' + data }
+                    //});
+                    //$('#MontoNetoPagar').valid();
+
+                });
+
+            });
+
+            function calcula() {
+                $("#idalerta").hide();
                 var monto = 0.0;
+                var ImportePorEjercer = 0.0;
 
                 if ($("#MontoPagarSinIva").val() == null) {
                     alert("null");
                     $("#MontoPagarSinIva").val(0);                    
-                } 
+                }
+
+                if ($("#ImportePorEjercer").val() == null || $("#ImportePorEjercer").val() == 0) {
+                    $("#idalerta").show();
+                    $("#ImportePorEjercer").val(0);
+                }
+
+                ImportePorEjercer = parseFloat($("#ImportePorEjercer").val());
                 monto = parseFloat($("#MontoPagarSinIva").val());
                 
                 var montoAmortiza = (monto * 0.30).toFixed(2);
+                var AplicamontoAmortiza = montoAmortiza;
                
                 var subTotal = (monto - montoAmortiza).toFixed(2);
                 var subTotalConIva = (subTotal * 1.16).toFixed(2);
@@ -211,7 +325,17 @@
                 var Devolucion = parseFloat($("#Devolucion").val());
 
 
-                $("#AmortizadoSinIva").val(montoAmortiza);
+                if ($("#AplicaAnticipo").prop("checked") == true) {
+                    $("#AmortizadoSinIva").val(montoAmortiza);
+                     AplicamontoAmortiza = montoAmortiza;
+                }  
+                else
+                {
+                    $("#AmortizadoSinIva").val(0);
+                     AplicamontoAmortiza = 0;
+                }
+                
+
                 $("#Subtotal").val(subTotal);
                 $("#SubtotalConIva").val(subTotalConIva);
 
@@ -221,9 +345,24 @@
                 $("#CincoMillarSinIva").val(cincoMillar);
 
                 var montoPagar = parseFloat(subTotalConIva) - parseFloat(cincoMillar) - parseFloat(Retencion) + parseFloat(Devolucion);
+                montoPagar = parseFloat(montoPagar) + parseFloat(AplicamontoAmortiza);
+
                 $("#MontoNetoPagar").val(montoPagar);
+                if(ImportePorEjercer < montoPagar){
+                    $("#idalerta").show();
+                }
 
             }
+
+            $("#AplicaAnticipo").change(function (){
+                //if ($("#AplicaAnticipo").prop("checked") == true) {
+                //    $("#AmortizadoSinIva").val(montoAmortiza);
+                //}
+                //else {
+                //    $("#AmortizadoSinIva").val(0);
+                //}
+                calcula();
+            })
 
             $("#MontoPagarSinIva").change(function () {
 
@@ -244,6 +383,12 @@
             });
 
             $('#Devolucion').change(function () {
+                calcula();
+                //$("#MontoPagarSinIva").change();
+     
+            });
+
+            $('#ImportePorEjercer').change(function () {
                 calcula();
                 //$("#MontoPagarSinIva").change();
      

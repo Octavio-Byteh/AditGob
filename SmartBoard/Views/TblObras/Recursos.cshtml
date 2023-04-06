@@ -5,26 +5,16 @@
 @{
     Layout = null;
     bool PermiteAgregar = false;
-}
-
-@{
-    //if (Model.recursos != null)
-    //{
-    //    if (Model.recursos.Count() > 0)
-    //    {
-    //        PermiteAgregar = false;
-    //    }
-    //    else
-    //    {
-    //        PermiteAgregar = true;
-    //    }
-    //}
-    //else
-    //{
-    //    PermiteAgregar = true;
-    //}
+    string classNames = "classAlertaEjercido";
+   
     PermiteAgregar = true;
 }
+<style>
+    .classAlertaEjercido {
+        color: red !important;
+        font-weight: bold !important;
+    }
+</style>
 
 @if (PermiteAgregar == true)
 {
@@ -62,13 +52,19 @@
             <tbody>
                 @foreach (var item in Model.recursos)
                 {
-                    <tr>
+                    classNames = "";
+                    if (item.Autorizados < item.ImporteContratado || item.ImportePorEjercer < 0)
+                    {
+                        classNames = "classAlertaEjercido";
+                    }
+
+                    <tr class="@classNames">
                         <td>@item.Recurso</td>
                         <td>@item.Ejercicio</td>
                         <td>@item.Programa</td>
                         <td>@item.Subprograma</td>
-                        <td>@item.Autorizados</td>
-
+                        
+                        <td>@Html.DisplayFor(modelItem => item.Autorizados)</td>
                         <td>@Html.DisplayFor(modelItem => item.ImporteContratado)</td>
                         <td>@Html.DisplayFor(modelItem => item.ImporteModificado)</td>
                         <td>@Html.DisplayFor(modelItem => item.ImporteEjercido)</td>
@@ -80,7 +76,8 @@
             </tbody>
             <tfoot>
                 <tr style="font-weight:bold">
-                    <td colspan="5">Total</td>
+                    <td colspan="4">Total</td>
+                    <td>@Model.recursos.Sum(a => a.Autorizados).ToString("C2")</td>
                     <td>@Model.recursos.Sum(a => a.ImporteContratado).ToString("C2")</td>
                     <td>@Model.recursos.Sum(a => a.ImporteModificado).ToString("C2")</td>
                     <td>@Model.recursos.Sum(a => a.ImporteEjercido).ToString("C2")</td>

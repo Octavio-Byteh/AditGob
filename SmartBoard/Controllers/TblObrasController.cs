@@ -593,7 +593,7 @@ namespace SmartBoard.Controllers
 
                                     }
 
-                                    // Buscamos por curp Para poner los curp activos
+                                    // Buscamos por clave
                                     var lista = _context.TblObraconceptos.Where(
                                         a => 
                                         a.IdTblobra == IdObra && 
@@ -1425,7 +1425,7 @@ namespace SmartBoard.Controllers
                         Id = b.Id,
                         IdTblobra = b.IdTblobra,
                         Activo = b.Activo,
-                        Autorizados = b.Autorizados,
+                        Autorizados = b.Autorizados ?? 0,
                         IdEjercicio = b.IdEjercicio,
                         Ejercicio = b.IdEjercicioNavigation.Nombre,
                         IdPrograma = b.IdPrograma,
@@ -1926,7 +1926,7 @@ namespace SmartBoard.Controllers
                         Id = b.Id,
                         IdTblobra = b.IdTblobra,
                         Activo = b.Activo,
-                        Autorizados = b.Autorizados,
+                        Autorizados = b.Autorizados ?? 0,
                         IdEjercicio = b.IdEjercicio,
                         Ejercicio = b.IdEjercicioNavigation.Nombre,
                         IdPrograma = b.IdPrograma,

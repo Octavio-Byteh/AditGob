@@ -5,6 +5,11 @@ namespace SmartBoard.Data.Models.SmartBoard
 {
     public partial class TblObraRecurso
     {
+        public TblObraRecurso()
+        {
+            TblObraEstimacions = new HashSet<TblObraEstimacion>();
+        }
+
         public int Id { get; set; }
         public int IdTblobra { get; set; }
         public int? IdTiporecurso { get; set; }
@@ -16,7 +21,7 @@ namespace SmartBoard.Data.Models.SmartBoard
         public int? IdPrograma { get; set; }
         public int? IdSubprograma { get; set; }
         public int? IdClasificacion { get; set; }
-        public string Autorizados { get; set; }
+        public decimal? Autorizados { get; set; }
         public decimal ImporteContratado { get; set; }
         public decimal ImporteModificado { get; set; }
         public decimal ImporteEjercido { get; set; }
@@ -43,5 +48,6 @@ namespace SmartBoard.Data.Models.SmartBoard
         public virtual CatSubprograma IdSubprogramaNavigation { get; set; }
         public virtual TblObra IdTblobraNavigation { get; set; }
         public virtual CatTipoRecurso IdTiporecursoNavigation { get; set; }
+        public virtual ICollection<TblObraEstimacion> TblObraEstimacions { get; set; }
     }
 }

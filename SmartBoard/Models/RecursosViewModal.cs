@@ -22,7 +22,10 @@ namespace SmartBoard.Models
         public string Programa { get; set; }
         public int? IdSubprograma { get; set; }
         public string Subprograma { get; set; }
-        public string Autorizados { get; set; }
+
+        [Display(Name = "Importe Autorizado")]
+        [DataType(DataType.Currency)]
+        public decimal Autorizados { get; set; }
 
         [Display(Name = "Importe Contratado")]
         [DataType(DataType.Currency)]
@@ -179,6 +182,11 @@ namespace SmartBoard.Models
 
         [DataType(DataType.Date)]
         public DateTime Registro { get; set; }
+
+
+        public int? IdRecurso { get; set; }
+        public decimal? ImportePorEjercer { get; set; }
+
 
     }
 
