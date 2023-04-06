@@ -30,6 +30,7 @@ builder.Services.Configure<CookiePolicyOptions>(options =>
     options.MinimumSameSitePolicy = SameSiteMode.None;
 });
 
+
 builder.Services.AddMvc(o =>
 {
     var policy = new AuthorizationPolicyBuilder()
@@ -105,5 +106,4 @@ app.UseEndpoints(endpoints =>
 
 app.Run();
 // esto es una prueba del push de git
-// 2-3
-//Cambios
+// 2
