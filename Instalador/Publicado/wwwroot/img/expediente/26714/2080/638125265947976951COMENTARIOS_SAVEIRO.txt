@@ -1,0 +1,53 @@
+
+Descripcion de AUDI, descrive de forma extendida el vehiculo.
+NADIND  Actual con Bug, no manda la baja a NADIN 4.
+NADIN se envia informacion a las 11 por el RVS de Lunes a Sabado.
+Hay diferentes tipos de archivos.
+
+Productivo se llama 
+REP_DWH_BI_NSO --> NADIN
+
+Base de datos
+Back End -> BINSOBE
+Front End -> BINSOFE
+
+Miguel --> (222) 710 93 30
+
+
+BOE --> CMC --> DWH Sales
+
+Universo -- >DWH Ventas Invoice
+
+
+Tiene una estructura de 3 secciones. de cada Worklet
+Tiene sun Back End y Front End.
+Paso 2 backend a calculos
+Paso 3 frontend
+
+
+Saveiro
+ELt Processs
+Vehiculo, Invoice y stock.
+
+
+V -> VW -> Volkswagen
+
+Tablas de Modelos y l Marca. -> lkp_Brand_Models.
+Reportes Principales menudeo VW.
+
+En general cada los flujos tiene 3 rutinas:1: Leer el archivo de la fuente y cargarlo en BACK-END2: Realiza Operación y Acumulado, y registro en BACK-END 
+3: Realiza Carga de datos limpios en FRONT-END.
+
+
+*****************
+
+D4M  M365
+tedi
+Technical Support - Nexgen
+
+new email -  paul.badillo@d4m-int.com
+renovar password.
+
+Onboarding of company devices
+
+
