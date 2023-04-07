@@ -28,30 +28,45 @@
                 <label asp-for="Clave" class="control-label"></label>
                 <input asp-for="Clave" class="form-control" required />
                 <span asp-validation-for="Clave" class="text-danger"></span>
+                <div class="invalid-feedback">
+                    Campo requerido
+                </div>
             </div>
 
             <div class="form-group">
                 <label asp-for="Concepto" class="control-label"></label>
                 <input asp-for="Concepto" class="form-control" required />
                 <span asp-validation-for="Concepto" class="text-danger"></span>
+                <div class="invalid-feedback">
+                    Campo requerido
+                </div>
             </div>
 
             <div class="form-group">
                 <label asp-for="Unidad" class="control-label"></label>
                 <input asp-for="Unidad" class="form-control" required />
                 <span asp-validation-for="Unidad" class="text-danger"></span>
+                <div class="invalid-feedback">
+                    Campo requerido
+                </div>
             </div>
 
             <div class="form-group">
-                <label asp-for="PrecioUnitario" class="control-label">Precio Unitorio</label>
+                <label asp-for="PrecioUnitario" class="control-label">Precio Unitario</label>
                 <input asp-for="PrecioUnitario" class="form-control" required pattern="^\d*(\.\d{0,2})?$" />
                 <span asp-validation-for="PrecioUnitario" class="text-danger"></span>
+                <div class="invalid-feedback">
+                    Campo requerido
+                </div>
             </div>
 
             <div class="form-group">
                 <label asp-for="Cantidad" class="control-label"></label>
                 <input asp-for="Cantidad" class="form-control" required pattern="^[0-9]*$" />
                 <span asp-validation-for="Cantidad" class="text-danger"></span>
+                <div class="invalid-feedback">
+                    Campo requerido
+                </div>
             </div>
             @* <div class="form-group">
             <label asp-for="Importe" class="control-label"></label>
@@ -108,7 +123,7 @@
                 $("#Clave").rules("add", {
                     required: true,
                     remote: {
-                        url: "ObraConcepto/VerificaClave?clave=" + _clave + "&IdTblobra=" + _IdTblobra + "&Idtipoconcepto=" + _Idtipoconcepto,
+                        url: "ObraConcepto/VerificaClave?clave=" + _clave + "&IdTblobra=" + _IdTblobra + "&tipo=" + @tipo,
                         type: "post",
                         data: {
                             clave: function () {
@@ -117,8 +132,8 @@
                             IdTblobra: function () {
                                 return $("#IdTblobra").val();
                             },
-                            Idtipoconcepto: function () {
-                                return $("#Idtipoconcepto").val();
+                            tipo: function () {
+                                return @tipo;
                             }
                         }
                     },

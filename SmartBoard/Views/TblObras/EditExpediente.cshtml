@@ -242,7 +242,7 @@
                                                 </div>
 
                                                 <div class="col-md-3 mb-3">
-                                                    <label asp-for="Expediente" class="control-label">No. adjudicacion</label>
+                                                    <label asp-for="Expediente" class="control-label">No. adjudicación</label>
                                                     <input asp-for="Expediente" class="form-control clsObra" placeholder="Requerido*" required />
                                                     <span asp-validation-for="Expediente" class="text-danger"></span>
 
@@ -395,7 +395,7 @@
                                                     </span>
 
                                                     <label class="control-label"> Avance</label>
-                                                    <input asp-for="Porcentajeavance" disabled class="form-control clsObra"  pattern="^\d*(\.\d{0,2})?$" /> % Fisico
+                                                    <input asp-for="Porcentajeavance" disabled class="form-control clsObra"  pattern="^\d*(\.\d{0,2})?$" /> % Físico
                                                     <span asp-validation-for="Porcentajeavance" class="text-danger"></span>
                                                     <input asp-for="AvanceFinanciero" disabled class="form-control clsObra"  pattern="^\d*(\.\d{0,2})?$" /> % Financiero
                                                     <span asp-validation-for="AvanceFinanciero" class="text-danger"></span>
@@ -434,7 +434,7 @@
                                                 <div class="col-md-2 mb-2">
                                                     <span class="fa-2x d-inline l-h-n">
                                                     </span>
-                                                    <label asp-for="Idcontratacion" class="control-label"></label>
+                                                    <label asp-for="Idcontratacion" class="control-label">Contratación</label>
                                                     <select asp-for="Idcontratacion" class="custom-select clsObra select2" required asp-items="ViewBag.Idcontratacion"></select>
                                                 </div>
                                             }
@@ -478,7 +478,7 @@
                                                 @if (idtipo == 1)
                                                 {
                                                      <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#js_change_pill_justified-4">Estimaciones/Facturas/Pagos</a></li>
-                                                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#js_change_pill_justified-5">Catalogos</a></li>
+                                                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#js_change_pill_justified-5">Catálogos</a></li>
                                                     <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#js_change_pill_justified-6">Finiquito</a></li>
                                                 }
                                                 else
@@ -898,9 +898,11 @@
 
                         $("#bandera_id_" + id).removeClass("dot_red");
                         $("#bandera_id_" + id).addClass("dot_yellow");
+                        
+                        $("#band_titulo_id_" + id).text("En revisión");
 
                         $('#divdocumento_' + id).load('@Url.Action("getArchivos", "TblObras")?iddoc=' + id);
-
+                        
                         //location.reload(false)
                     } else {
                         alert('No se pudo cargar el documento ...');
