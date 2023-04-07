@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -17,6 +18,23 @@ namespace SmartBoard.Controllers
         {
             _context = context;
         }
+
+        [AllowAnonymous]
+        [AcceptVerbs("GET", "POST")]
+        public IActionResult VerificaClave(string clave, int IdTblobra, int tipo)
+        {
+            var catalogo = _context.TblObraconceptos.Where(a => a.IdTblobra == IdTblobra && a.Idtipoconcepto == tipo && a.Clave.Trim().ToUpper() == clave.Trim().ToUpper()).FirstOrDefault();
+            if (catalogo != null)
+            {
+                return Json($"Clave  {clave} ya existe.");
+            }
+            else
+            {
+                return Json(true);
+            }
+           
+        }
+
 
         // GET: ObraConcepto
         public async Task<IActionResult> Index()

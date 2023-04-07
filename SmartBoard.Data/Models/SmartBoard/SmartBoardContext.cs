@@ -1555,7 +1555,13 @@ namespace SmartBoard.Data.Models.SmartBoard
 
                 entity.Property(e => e.IdFactura).HasColumnName("id_factura");
 
+                entity.Property(e => e.IdRecurso).HasColumnName("id_recurso");
+
                 entity.Property(e => e.IdTblobra).HasColumnName("id_tblobra");
+
+                entity.Property(e => e.ImportePorEjercer)
+                    .HasColumnType("money")
+                    .HasColumnName("importePorEjercer");
 
                 entity.Property(e => e.MontoNetoPagar)
                     .HasColumnType("money")
@@ -1616,6 +1622,11 @@ namespace SmartBoard.Data.Models.SmartBoard
                 entity.Property(e => e.SubtotalConIva)
                     .HasColumnType("money")
                     .HasColumnName("subtotal_con_iva");
+
+                entity.HasOne(d => d.IdRecursoNavigation)
+                    .WithMany(p => p.TblObraEstimacions)
+                    .HasForeignKey(d => d.IdRecurso)
+                    .HasConstraintName("FK_tbl_obraEstimacion_tbl_obraRecursos");
 
                 entity.HasOne(d => d.IdTblobraNavigation)
                     .WithMany(p => p.TblObraEstimacions)
@@ -1716,8 +1727,7 @@ namespace SmartBoard.Data.Models.SmartBoard
                 entity.Property(e => e.Activo).HasColumnName("activo");
 
                 entity.Property(e => e.Autorizados)
-                    .HasMaxLength(250)
-                    .IsUnicode(false)
+                    .HasColumnType("money")
                     .HasColumnName("autorizados");
 
                 entity.Property(e => e.IdClasificacion).HasColumnName("id_clasificacion");
