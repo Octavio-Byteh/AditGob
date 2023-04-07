@@ -85,13 +85,15 @@
 
             <div class="form-group form-check">
                 <label class="form-check-label">
-                    <input class="form-check-input" asp-for="AplicaAnticipo" /> @Html.DisplayNameFor(model => model.AplicaAnticipo)
+                    <input class="form-check-input" asp-for="AplicaAnticipo" /> 
+                    Aplica Anticipo
+                    @*@Html.DisplayNameFor(model => model.AplicaAnticipo)*@
                 </label>
                 <span asp-validation-for="AplicaAnticipo" class="text-danger"></span>
             </div>
 
             <div class="form-group">
-                <label asp-for="MontoPagarSinIva" class="control-label">Monto a Pagar Sin Iva</label>
+                <label asp-for="MontoPagarSinIva" class="control-label">Monto a Pagar Sin IVA</label>
                 <input asp-for="MontoPagarSinIva" required class="form-control" pattern="^\d*(\.\d{0,2})?$"  />
                 <span asp-validation-for="MontoPagarSinIva" class="text-danger"></span>
                 <div class="invalid-feedback">
@@ -99,7 +101,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <label asp-for="AmortizadoSinIva" class="control-label"> Amortizado Sin Iva</label>
+                <label asp-for="AmortizadoSinIva" class="control-label"> Amortizado Sin IVA</label>
                 <input asp-for="AmortizadoSinIva" required readonly class="form-control" />
                 <span asp-validation-for="AmortizadoSinIva" class="text-danger"></span>
                  <div class="invalid-feedback">
@@ -107,7 +109,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <label asp-for="Subtotal" class="control-label">Subtotal</label>
+                <label asp-for="Subtotal" class="control-label">Sub total</label>
                 <input asp-for="Subtotal" required readonly class="form-control" />
                 <span asp-validation-for="Subtotal" class="text-danger"></span>
                 <div class="invalid-feedback">
@@ -115,7 +117,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <label asp-for="SubtotalConIva" class="control-label">Subtotal Con Iva</label>
+                <label asp-for="SubtotalConIva" class="control-label">Sub total Con Iva</label>
                 <input asp-for="SubtotalConIva" readonly required class="form-control" />
                 <span asp-validation-for="SubtotalConIva" class="text-danger"></span>
                 <div class="invalid-feedback">
@@ -131,7 +133,9 @@
             </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Aplica5millar" /> @Html.DisplayNameFor(model => model.Aplica5millar)
+                    <input class="form-check-input" asp-for="Aplica5millar" />
+                    Aplica 5 al millar
+                    @*@Html.DisplayNameFor(model => model.Aplica5millar)*@
                 </label>
             </div>
 
@@ -162,7 +166,7 @@
             </div>
 
             <div id="idalerta" class="alert alert-danger" role="alert">
-                <strong>Información !</strong>
+                <strong>Información!</strong>
                 El monto a pagar supera el monto por ejercer del Recurso Seleccionado
                 <div>
 
@@ -173,7 +177,7 @@
             </div>
 
             <div class="form-group">
-                <label asp-for="AvenceFisicoProgramado" class="control-label"> Avance Fisico Programado %</label>
+                <label asp-for="AvenceFisicoProgramado" class="control-label"> Avance Físico Programado %</label>
                 <input asp-for="AvenceFisicoProgramado" required class="form-control" pattern="^\d*(\.\d{0,2})?$" />
                 <span asp-validation-for="AvenceFisicoProgramado" class="text-danger"></span>
                 <div class="invalid-feedback">
@@ -181,7 +185,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <label asp-for="AvanceFisicoReal" class="control-label"> Avance Fisico Real % </label>
+                <label asp-for="AvanceFisicoReal" class="control-label"> Avance Físico Real % </label>
                 <input asp-for="AvanceFisicoReal" required class="form-control" pattern="^\d*(\.\d{0,2})?$" />
                 <span asp-validation-for="AvanceFisicoReal" class="text-danger"></span>
                 <div class="invalid-feedback">
