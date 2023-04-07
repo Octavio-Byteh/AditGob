@@ -74,4 +74,8 @@
     <ProjectReference Include="..\SmartBoard.Data\SmartBoard.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="NewFolder\" />
+  </ItemGroup>
+
 </Project>
