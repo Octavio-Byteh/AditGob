@@ -67,7 +67,7 @@
                                         <th>Documento</th>
                                         <th>Acciones</th>
                                         <th style="text-align:right;">Aprobado</th>
-                                        <th>Estatus</th>
+                                        <th>Estado de Documentación</th>
                                         <th>Observaciones</th>
                                     </tr>
                                 </thead>
@@ -171,8 +171,27 @@
                                             <td>
 
                                                 @*<input type="hidden" asp-for="@doc.estatus" />*@
-                                                <span id="bandera_id_@doc.id" class="dot dot_@doc.estatus"></span>
+                                                <span id="bandera_id_@doc.id" class="dot dot_@doc.estatus"> </span>
+                                                <span id="band_titulo_id_@doc.id">
 
+                                               
+                                                @if(doc.estatus.Contains("red"))
+                                                {
+                                                    <text> Falta subir archivo </text>
+                                                }
+                                                else if (doc.estatus.Contains("yellow"))
+                                                {
+                                                    <text> En revisión </text>
+                                                }
+                                                else if (doc.estatus.Contains("green"))
+                                                {
+                                                    <text> Aceptado </text>
+                                                }
+                                                else
+                                                {
+                                                    <text> Capturado </text> 
+                                                }
+                                                </span>
                                             </td>
                                             <td>
                                                 <div>

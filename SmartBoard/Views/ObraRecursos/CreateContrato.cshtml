@@ -19,7 +19,7 @@
 
 <div class="row">
     <div class="col-md-6">
-        <form class="needs-validation" novalidate asp-action="CreateContrato">
+        <form class="needs-validation was-validated" novalidate asp-action="CreateContrato">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="IdTblobra" value="@idObra" />
 
@@ -36,76 +36,118 @@
             <div class="form-group">
                 <label asp-for="IdTiporecurso" class="control-label">Tipo Recurso</label>
                 <select asp-for="IdTiporecurso" required class="form-control" asp-items="ViewBag.IdTiporecurso"></select>
+                <div class="invalid-feedback">
+                    Campo requerido
+                </div>
             </div>
             <div class="form-group">
                 <label asp-for="IdRecurso" class="control-label">Recurso</label>
                 <select asp-for="IdRecurso" required class="form-control" asp-items="ViewBag.IdRecurso"></select>
+                <div class="invalid-feedback">
+                    Campo requerido
+                </div>
             </div>
 
 
             <div class="form-group">
                 <label asp-for="IdRamo" class="control-label">Ramo</label>
                 <select asp-for="IdRamo" class="form-control" asp-items="ViewBag.IdRamo"></select>
+                <div class="invalid-feedback">
+                    Campo requerido
+                </div>
             </div>
 
             <div class="form-group">
                 <label asp-for="IdRubro" class="control-label">Rubro</label>
                 <select asp-for="IdRubro" required class="form-control" asp-items="ViewBag.IdRubro"></select>
+                <div class="invalid-feedback">
+                    Campo requerido
+                </div>
             </div>
 
             <div class="form-group">
                 <label asp-for="IdFondo" class="control-label">Fondo</label>
                 <select asp-for="IdFondo" required class="form-control" asp-items="ViewBag.IdFondo"></select>
+                <div class="invalid-feedback">
+                    Campo requerido
+                </div>
             </div>
 
 
             <div class="form-group">
                 <label asp-for="IdPrograma" class="control-label">Programa</label>
                 <select asp-for="IdPrograma" required class="form-control" asp-items="ViewBag.IdPrograma"></select>
+                <div class="invalid-feedback">
+                    Campo requerido
+                </div>
             </div>
             <div class="form-group">
                 <label asp-for="IdSubprograma" class="control-label">Sub Programa</label>
                 <select asp-for="IdSubprograma" required class="form-control" asp-items="ViewBag.IdSubprograma"></select>
+                <div class="invalid-feedback">
+                    Campo requerido
+                </div>
             </div>
 
             <div class="form-group">
                 <label asp-for="IdClasificacion" class="control-label">Clasificación</label>
                 <select asp-for="IdClasificacion" class="form-control" asp-items="ViewBag.IdClasificacion"></select>
+                <div class="invalid-feedback">
+                    Campo requerido
+                </div>
             </div> 
             
             <hr />
             <div class="form-group">
                 <label asp-for="IdClasificadorN1" class="control-label">Clasificador Nivel 1</label>
                 <select asp-for="IdClasificadorN1" class="form-control" asp-items="ViewBag.IdClasificadorN1"></select>
+                <div class="invalid-feedback">
+                    Campo requerido
+                </div>
             </div>
 
              <div class="form-group">
                 <label asp-for="IdClasificadorN2" class="control-label">Clasificador Nivel 2</label>
                 <select asp-for="IdClasificadorN2" class="form-control" asp-items="ViewBag.IdClasificadorN2"></select>
+                <div class="invalid-feedback">
+                    Campo requerido
+                </div>
             </div>
 
             <div class="form-group">
                 <label asp-for="IdClasificadorN3" class="control-label">Clasificador Nivel 3</label>
                 <select asp-for="IdClasificadorN3" class="form-control" asp-items="ViewBag.IdClasificadorN3"></select>
+                <div class="invalid-feedback">
+                    Campo requerido
+                </div>
             </div>
             <hr />
 
             <div class="form-group">
                 <label asp-for="Autorizados" class="control-label">Autorizados</label>
-                <input asp-for="Autorizados" required class="form-control" />
+                <input asp-for="Autorizados" required class="form-control" pattern="^\d*(\.\d{0,2})?$" />
                 <span asp-validation-for="Autorizados" class="text-danger"></span>
+                <div class="invalid-feedback">
+                    Campo requerido
+                </div>
             </div>
             @if(abierto == true)
             {
                  <div class="form-group">
-                <label asp-for="ImporteContratadoMinimo" class="control-label">Importe Contratado Minimo</label>
+                <label asp-for="ImporteContratadoMinimo" class="control-label">Importe Contratado Mínimo</label>
                     <input asp-for="ImporteContratadoMinimo" required class="form-control" />
                     <span asp-validation-for="ImporteContratadoMinimo" class="text-danger"></span>
+                    <div class="invalid-feedback">
+                    Campo requerido
+                </div>
             </div>
              <div class="form-group">
-                <label asp-for="ImporteContratadoMaximo" class="control-label">Importe Contratado Maximo</label>
+                <label asp-for="ImporteContratadoMaximo" class="control-label">Importe Contratado Máximo</label>
                 <input asp-for="ImporteContratadoMaximo" required class="form-control" />
                     <span asp-validation-for="ImporteContratadoMaximo" class="text-danger"></span>
+                    <div class="invalid-feedback">
+                    Campo requerido
+                </div>
             </div>
             }
             else
@@ -114,6 +156,9 @@
                 <label asp-for="ImporteContratado" class="control-label">Importe Contratado</label>
                 <input asp-for="ImporteContratado" required class="form-control" pattern="^\d*(\.\d{0,2})?$" />
                 <span asp-validation-for="ImporteContratado" class="text-danger"></span>
+                <div class="invalid-feedback">
+                    Campo requerido
+                </div>
             </div>
             }
            
@@ -121,16 +166,25 @@
                 <label asp-for="ImporteModificado" class="control-label">Importe Modificado</label>
                 <input asp-for="ImporteModificado" required class="form-control" pattern="^\d*(\.\d{0,2})?$" />
                 <span asp-validation-for="ImporteModificado" class="text-danger"></span>
+                <div class="invalid-feedback">
+                    Campo requerido
+                </div>
             </div>
             <div class="form-group">
                 <label asp-for="ImporteEjercido" class="control-label">Importe Ejercido</label>
-                <input asp-for="ImporteEjercido" required class="form-control" pattern="^\d*(\.\d{0,2})?$" />
+                <input asp-for="ImporteEjercido" required class="form-control" value="0" pattern="^\d*(\.\d{0,2})?$" />
                 <span asp-validation-for="ImporteEjercido" class="text-danger"></span>
+                <div class="invalid-feedback">
+                    Campo requerido
+                </div>
             </div>
             <div class="form-group">
                 <label asp-for="ImportePorEjercer" class="control-label">Importe Por Ejercer</label>
-                <input asp-for="ImportePorEjercer" required class="form-control" readonly pattern="^\d*(\.\d{0,2})?$" />
+                <input asp-for="ImportePorEjercer" required class="form-control" value="0" readonly pattern="^\d*(\.\d{0,2})?$" />
                 <span asp-validation-for="ImportePorEjercer" class="text-danger"></span>
+                <div class="invalid-feedback">
+                    Campo requerido
+                </div>
             </div>
           
             <div class="form-group">
@@ -194,10 +248,12 @@
                 ejercido = $("#ImporteEjercido").val();
 
                 var porEjercer = parseFloat(contratado) + parseFloat(modificado) - parseFloat(ejercido);
-                $("#ImportePorEjercer").val(porEjercer);
+                $("#ImportePorEjercer").val(0);
             }
 
-
+            $("#Autorizados").blur(function () {
+                calcula();
+            });
             $("#ImporteContratado").blur(function () {
                 calcula();
             });
