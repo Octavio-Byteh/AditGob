@@ -361,8 +361,5 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
-/Instalador/Publicado/SmartBoard.Data.dll
-/Instalador/Publicado/SmartBoard.dll
-/Instalador/Instalador.csproj
-/.gitignore
-/SmartBoard/appsettings.json
+/Instalador/Publicado/wwwroot/img/expediente
+/SmartBoard/wwwroot/img/expediente
