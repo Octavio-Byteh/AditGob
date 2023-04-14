@@ -1717,7 +1717,8 @@ namespace SmartBoard.Controllers
                     Region = _context.CatMunicipios.Where(a => a.Id == Obra.Idmunicipio).FirstOrDefault().Region,
                     Fecharegistro = DateTime.Now,
                     Year = success ? numberYear : DateTime.Now.Year,
-
+                    
+                    
 
                 };
 
@@ -1750,6 +1751,11 @@ namespace SmartBoard.Controllers
                 expediente.IdtipoObra = Obra.IdtipoObra;
                 expediente.ProveedorAdjudicado = Obra.ProveedorAdjudicado;
                 expediente.EntidadRequiriente = Obra.EntidadRequiriente;
+
+                expediente.Contrato = Obra.Contrato;
+                expediente.FechaContrataInicio = Obra.FechaContrataInicio;
+                expediente.FechaContrataFinal = Obra.FechaContrataFinal;
+                expediente.FechaContrataModificada = Obra.FechaContrataModificada;
 
 
                 expediente.TblObrachecklists = listaPlantillas;
@@ -1847,6 +1853,12 @@ namespace SmartBoard.Controllers
                     IdtipoObra = a.IdtipoObra,
                     ProveedorAdjudicado = a.ProveedorAdjudicado,
                     EntidadRequiriente = a.EntidadRequiriente,
+
+                    Contrato = a.Contrato,
+                    FechaContrataModificada = a.FechaContrataModificada,
+                    FechaContrataFinal = a.FechaContrataFinal,
+                    FechaContrataInicio = a.FechaContrataInicio,
+                    
 
 
                     checklist = a.TblObrachecklists.Select(b => new ExpedientePlantillaViewModel()
@@ -2208,7 +2220,12 @@ namespace SmartBoard.Controllers
                     expediente.InversionFederal = Obra.InversionFederal;
                     expediente.InversionMunicipal = Obra.InversionMunicipal;
                     expediente.InversionBeneficiario = Obra.InversionBeneficiario;
-                    
+
+                    expediente.Contrato = Obra.Contrato;
+                    expediente.FechaContrataInicio = Obra.FechaContrataInicio;
+                    expediente.FechaContrataModificada = Obra.FechaContrataModificada;
+                    expediente.FechaContrataFinal = Obra.FechaContrataFinal;
+
 
                     expediente.TblObrachecklists = checklist;
                     expediente.TblObradocumentoprocesos = documentos;

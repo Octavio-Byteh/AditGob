@@ -166,6 +166,31 @@
 
                                             </div>
                                         }
+
+                                         <div class="form-row form-group">
+                                            <div class="col-md-3 mb-3">
+                                                <label asp-for="Contrato" class="control-label"></label>
+                                                <input asp-for="Contrato" class="form-control clsObra" placeholder="Requerido*" required />
+                                                <span asp-validation-for="Contrato" class="text-danger"></span>
+                                            </div>
+
+                                             <div class="col-md-3 mb-3">
+                                                <label asp-for="FechaContrataInicio" class="control-label"></label>
+                                                <input asp-for="FechaContrataInicio" class="form-control clsObra" placeholder="Requerido*" required />
+                                                <span asp-validation-for="FechaContrataInicio" class="text-danger"></span>
+                                            </div>
+                                             <div class="col-md-3 mb-3">
+                                                <label asp-for="FechaContrataModificada" class="control-label"></label>
+                                                <input asp-for="FechaContrataModificada" class="form-control clsObra" placeholder="Requerido*" required />
+                                                <span asp-validation-for="FechaContrataModificada" class="text-danger"></span>
+                                            </div>
+                                             <div class="col-md-3 mb-3">
+                                                <label asp-for="FechaContrataFinal" class="control-label"></label>
+                                                <input asp-for="FechaContrataFinal" class="form-control clsObra" placeholder="Requerido*" required />
+                                                <span asp-validation-for="FechaContrataFinal" class="text-danger"></span>
+                                            </div>
+                                         </div>
+
                                       
                                         @if(idtipo == 1){
                                         <div class="form-row form-group">
