@@ -80,6 +80,10 @@ namespace SmartBoard.Data.Models.SmartBoard
         public int IdtipoObra { get; set; }
         public string ProveedorAdjudicado { get; set; }
         public string EntidadRequiriente { get; set; }
+        public string Contrato { get; set; }
+        public DateTime? FechaContrataInicio { get; set; }
+        public DateTime? FechaContrataModificada { get; set; }
+        public DateTime? FechaContrataFinal { get; set; }
 
         public virtual CatCategorium IdcategoriaNavigation { get; set; }
         public virtual CatContratacion IdcontratacionNavigation { get; set; }

@@ -389,6 +389,22 @@ namespace SmartBoard.Models
         public string Expediente { get; set; }
         //public decimal AvanceFinanciero { get; set; }
 
+
+        [Display(Name = "Contrato")]
+        public string Contrato { get; set; }
+
+        [Display(Name = "Fecha Contrato Inicio")]
+        [DataType(DataType.Date)]
+        public DateTime? FechaContrataInicio { get; set; }
+
+        [Display(Name = "Fecha Contrato Modificada")]
+        [DataType(DataType.Date)]
+        public DateTime? FechaContrataModificada { get; set; }
+
+        [Display(Name = "Fecha Contrato Final")]
+        [DataType(DataType.Date)]
+        public DateTime? FechaContrataFinal { get; set; }
+
         public List<ExpedientePlantillaViewModel>? checklist { get; set; }
         public List<ExpedienteDocumentoViewModel>? documentoproceso { get; set; }
 
@@ -454,6 +470,22 @@ namespace SmartBoard.Models
         public string Expediente { get; set; }
         //public decimal AvanceFinanciero { get; set; }
 
+
+
+        [Display(Name = "Contrato")]
+        public string Contrato { get; set; }
+
+        [Display(Name = "Fecha Contrato Inicio")]
+        [DataType(DataType.Date)]
+        public DateTime? FechaContrataInicio { get; set; }
+
+        [Display(Name = "Fecha Contrato Modificada")]
+        [DataType(DataType.Date)]
+        public DateTime? FechaContrataModificada { get; set; }
+
+        [Display(Name = "Fecha Contrato Final")]
+        [DataType(DataType.Date)]
+        public DateTime? FechaContrataFinal { get; set; }
 
         public List<ExpedientePlantillaViewModel>? checklist { get; set; }
         public List<ExpedienteDocumentoViewModel>? documentoproceso { get; set; }
