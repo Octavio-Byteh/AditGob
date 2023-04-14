@@ -18,19 +18,20 @@
 
 <div class="row">
     <div class="col-md-4">
-        <form class="needs-validation" novalidate asp-action="Create">
+        <form class="needs-validation was-validated" novalidate asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="IdTblobra" value="@idObra" />
+            <input type="hidden" asp-for="IdFactura" value="0" />
 
            @* <div class="form-group">
                 <label asp-for="IdTblobra" class="control-label"></label>
                 <select asp-for="IdTblobra" class ="form-control" asp-items="ViewBag.IdTblobra"></select>
             </div>*@
-            <div class="form-group">
+            @*<div class="form-group">
                 <label asp-for="IdFactura" class="control-label">Id Factura</label>
                 <input asp-for="IdFactura" required class="form-control" />
                 <span asp-validation-for="IdFactura" class="text-danger"></span>
-            </div>
+            </div>*@
             <div class="form-group">
                 <label asp-for="Numero" class="control-label"></label>
                 <input asp-for="Numero" required class="form-control" />
