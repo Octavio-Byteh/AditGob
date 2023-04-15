@@ -1,12 +1,36 @@
 @{
     var pageName = ViewData["PageName"]?.ToString().ToLower();
-}
+}<style>
+     .nav-menu {
+         background: #c10037 !important;
+         color: white !important;
+
+    }
+
+     .fal {
+         color: white !important;
+     }
+
+     li {
+         color: white !important;
+     }
+
+      a {
+         color: white !important;
+     }
+
+     li >a >span {
+         color: white !important;
+     }
+    
+</style>
+
 <ul id="js-nav-menu" class="nav-menu">
 
 
 
     <li class="@(pageName.Contains("registro_obra") ? "active open" : "")">
-        <a href="TblObras/CreateExpediente?IdtipoObra=1" title="Obras" data-filter-tags="Obras">
+        <a  href="TblObras/CreateExpediente?IdtipoObra=1" title="Obras" data-filter-tags="Obras">
             <i class="fal fa-chart-pie"></i>
             <span class="nav-link-text">Obras</span>
 
