@@ -23,10 +23,19 @@
         <link id="mytheme" rel="stylesheet" media="screen, print" href="~/css/themes/cust-theme-13.css">
             }
     <style>
+        .panel {
+            background: white !important;
+        }
+
+        .control-label {
+            color: #5e5f63 !importan;
+            font-size: 12px;
+            font-weight: bold;
+        }
 
         .clsObra {
-            /*border-color: #E5E5E5 !important;*/
-            border-color: #000000 !important;
+            /border-color: #E5E5E5 !important;
+            / border-color: #000000 !important;
         }
     </style>
 
@@ -169,7 +178,7 @@
 
                                          <div class="form-row form-group">
                                             <div class="col-md-3 mb-3">
-                                                <label asp-for="Contrato" class="control-label"></label>
+                                                <label asp-for="Contrato" class="control-label">Objeto de contrato</label>
                                                 <input asp-for="Contrato" class="form-control clsObra" placeholder="Requerido*" required />
                                                 <span asp-validation-for="Contrato" class="text-danger"></span>
                                             </div>
