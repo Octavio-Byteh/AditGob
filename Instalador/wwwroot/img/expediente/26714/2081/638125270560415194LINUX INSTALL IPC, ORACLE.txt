@@ -1,0 +1,377 @@
+user oracle
+passwd P@$$_2020_DBAr3d.
+
+**************Windows Oracle ********************
+
+orcl
+password :  devpc123456_2020
+
+**************Windows Oracle ********************
+
+
+
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+192.168.100.212        r3ddm linux.r3ddm.ddns.net
+
+
+
+
+# Oracle Settings
+TMP=/tmp; export TMP
+TMPDIR=$TMP; export TMPDIR
+
+ORACLE_HOSTNAME=linux.r3ddm.ddns.net; export ORACLE_HOSTNAME
+ORACLE_UNQNAME=DB11G; export ORACLE_UNQNAME
+ORACLE_BASE=/u01/app/oracle; export ORACLE_BASE
+ORACLE_HOME=$ORACLE_BASE/product/11.2.0.4/db_1; export ORACLE_HOME
+ORACLE_SID=DB11G; export ORACLE_SID
+ORACLE_TERM=xterm; export ORACLE_TERM
+PATH=/usr/sbin:$PATH; export PATH
+PATH=$ORACLE_HOME/bin:$PATH; export PATH
+
+LD_LIBRARY_PATH=$ORACLE_HOME/lib:/lib:/usr/lib; export LD_LIBRARY_PATH
+CLASSPATH=$ORACLE_HOME/JRE:$ORACLE_HOME/jlib:$ORACLE_HOME/rdbms/jlib; export CLASSPATH
+
+
+
+[oracle@linux database]$ The following configuration scripts need to be executed as the "root" user.
+ #!/bin/sh
+ #Root scripts to run
+
+/u01/app/oraInventory/orainstRoot.sh
+/u01/app/oracle/product/11.2.0.4/db_1/root.sh
+To execute the configuration scripts:
+         1. Open a terminal window
+         2. Log in as "root"
+         3. Run the scripts
+         4. Return to this window and hit "Enter" key to continue
+
+Successfully Setup Software.
+
+
+
+
+db_name='DB11G'
+memory_target=1G
+processes = 150
+audit_file_dest='$ORACLE_BASE/admin/DB11G/adump'
+audit_trail ='db'
+db_block_size=8192
+db_domain=''
+db_recovery_file_dest='$ORACLE_BASE/flash_recovery_area'
+db_recovery_file_dest_size=2G
+diagnostic_dest='<ORACLE_BASE>'
+dispatchers='(PROTOCOL=TCP) (SERVICE=DB11GXDB)'
+open_cursors=300
+remote_login_passwordfile='EXCLUSIVE'
+undo_tablespace='UNDOTBS1'
+
+
+
+/u01/app/oracle/product/11.2.0.4/db_1/dbs/ora_control1, 
+/u01/app/oracle/product/11.2.0.4/db_1/dbs/ora_control2
+
+create database DB11G
+logfile group 1 ('/u01/app/oracle/admin/DB11G/redolog/log1/redo1.log') size 50M,
+            group 2 ('/u01/app/oracle/admin/DB11G/redolog/log2/redo2.log') size 50M,
+            group 3 ('/u01/app/oracle/admin/DB11G/redolog/log3/redo3.log') size 100M
+character set WE8ISO8859P1
+national character set utf8
+datafile '/u01/app/oracle/admin/DB11G/data/DB11G_sys0.dbf' size 300M autoextend off extent management local
+sysaux datafile '/u01/app/oracle/admin/DB11G/data/sysaux.dbf' size 100M autoextend off
+undo tablespace undotbs0 datafile '/u01/app/oracle/admin/DB11G/data/DB11G_und0.dbf' size 50M
+default temporary tablespace temp tempfile '/u01/app/oracle/admin/DB11G/data/DB11G_tmp0.dbf' size 60M;
+
+
+
+https://easyoradba.com/2018/07/05/install-oracle-database-12cr2-silent-mode-on-cent-os-7-oracle-linux-7/
+
+
+[oracle@linux db_1]$ bin/dbca -silent -createDatabase -responseFile dbca.rsp
+Copying database files
+1% complete
+2% complete
+4% complete
+37% complete
+Creating and starting Oracle instance
+40% complete
+45% complete
+50% complete
+55% complete
+56% complete
+60% complete
+62% complete
+Completing Database Creation
+66% complete
+70% complete
+73% complete
+85% complete
+96% complete
+100% complete
+Look at the log file "/u01/app/oracle/cfgtoollogs/dbca/DB11G/DB11G.log" for further details.
+
+
+** ********************************* IPC   ***********************************************************
+
+
+https://dbaall.blogspot.com/2018/05/informatica-1020-installation-guide-on.html
+https://datacadamia.com/dit/powercenter/installation_901
+
+
+
+create tablespace infra_tbs datafile '/u01/app/oradata/infra_tbs.dbf' size 2g autoextend on;
+
+create user user_rep identified by user_rep default tablespace infra_tbs temporary tablespace temp quota unlimited on infra_tbs;
+
+User created.
+
+SQL> grant connect,resource, CREATE SEQUENCE,CREATE SESSION,CREATE SYNONYM,CREATE TABLE,CREATE VIEW to user_rep;
+
+create user user_dom identified by user_dom default tablespace infra_tbs temporary tablespace temp quota unlimited on infra_tbs;
+
+User created.
+
+SQL> grant connect,resource, CREATE SEQUENCE,CREATE SESSION,CREATE SYNONYM,CREATE TABLE,CREATE VIEW, SELECT ANY DICTIONARY to user_dom;
+
+
+*********************************
+create User Account Linux
+user: powercenter
+pass: Badillo2020
+
+**************************************************** Informatica 10.2
+/powercenter/10.2/
+
+/powercenter/10.2//Oracle_America_Inc-OEM-V102-Prod_0115939_157980.key
+
+/home/powercenter
+
+
+************************************************ installing PowerCenter
+linux.r3ddm.ddns.net
+
+Clave de Cifrado  de Dominio
+
+pass: r3dDOM_2020
+
+Dominio:
+Nombre: domain_test
+HostName: linux.r3ddm.ddns.net
+Nodo: oel7
+port: 6005
+
+
+
+User: Administrator
+Pass: R3d@Adm1n**2020
+
+
+
+Installation Status: SUCCESS
+
+The Informatica 10.2.0 installation is complete.
+
+The system services are disabled by default after the installation is complete.
+You must configure the services and then enable them in the Informatica Administrator tool.
+
+For more information, see the debug log file:
+/home/powercenter/Informatica_10.2.0_Services_2020_09_08_14_24_56.log
+
+Installation Type :New Installation
+
+
+Informatica Administrator Home Page:
+http://linux.r3ddm.ddns.net:6008
+
+Product Name:  Informatica 10.2.0
+
+
+
+user:
+
+powercenter
+# Oracle Settings
+TMP=/tmp; export TMP
+TMPDIR=$TMP; export TMPDIR
+
+ORACLE_HOSTNAME=linux.r3ddm.ddns.net; export ORACLE_HOSTNAME
+ORACLE_UNQNAME=DB11G; export ORACLE_UNQNAME
+ORACLE_BASE=/u01/app/oracle; export ORACLE_BASE
+ORACLE_HOME=$ORACLE_BASE/product/11.2.0.4/db_1; export ORACLE_HOME
+ORACLE_SID=DB11G; export ORACLE_SID
+ORACLE_TERM=xterm; export ORACLE_TERM
+PATH=/usr/sbin:$PATH; export PATH
+PATH=$ORACLE_HOME/bin:$PATH; export PATH
+
+INFA_HOME=/home/powercenter; export INFA_HOME
+INFA_DOMAINS_FILE=$INFA_HOME/domains.infa; export INFA_DOMAINS_FILE
+NLS_LANG=american_america.UTF8; export NLS_LANG
+TNS_ADMIN=$ORACLE_HOME/network/admin; export TNS_ADMIN
+
+LD_LIBRARY_PATH=$ORACLE_HOME/lib:/lib:/usr/lib; export LD_LIBRARY_PATH
+CLASSPATH=$ORACLE_HOME/JRE:$ORACLE_HOME/jlib:$ORACLE_HOME/rdbms/jlib; export CLASSPATH
+
+
+
+
+
+oracle
+
+****************************************
+Volver a cargar lo link s
+$ORACLE_HOME/bin/relink all
+
+
+***********************************
+
+# Oracle Settings
+TMP=/tmp; export TMP
+TMPDIR=$TMP; export TMPDIR
+
+ORACLE_HOSTNAME=linux.r3ddm.ddns.net; export ORACLE_HOSTNAME
+ORACLE_UNQNAME=DB11G; export ORACLE_UNQNAME
+ORACLE_BASE=/u01/app/oracle; export ORACLE_BASE
+ORACLE_HOME=$ORACLE_BASE/product/11.2.0.4/db_1; export ORACLE_HOME
+ORACLE_SID=DB11G; export ORACLE_SID
+ORACLE_TERM=xterm; export ORACLE_TERM
+PATH=/usr/sbin:$PATH; export PATH
+PATH=$ORACLE_HOME/bin:$PATH; export PATH
+
+INFA_HOME=/home/powercenter; export INFA_HOME
+INFA_DOMAINS_FILE=$INFA_HOME/domains.infa; export INFA_DOMAINS_FILE
+NLS_LANG=american_america.UTF8; export NLS_LANG
+TNS_ADMIN=$ORACLE_HOME/network/admin; export TNS_ADMIN
+
+LD_LIBRARY_PATH=$ORACLE_HOME/lib:/lib:/usr/lib:$ORACLE_HOME/network/lib:$ORACLE_HOME/jdbc/lib:/usr/lib64:/lib64:/usr/local/lib64:$INFA_HOME/server/bin:$INFA_HOME/server/tomcat/bin; export LD_LIBRARY_PATH
+CLASSPATH=$ORACLE_HOME/JRE:$ORACLE_HOME/jlib:$ORACLE_HOME/rdbms/jlib; export CLASSPATH
+
+
+***************************** tns Correcto
+https://blog.unixpad.com/2020/02/13/error-en-oracle-tns-12533-tnsillegal-address-parameters/
+
+db11g.world=
+        (DESCRIPTION = 
+                (ADDRESS = (PROTOCOL = TCP) (HOST = 192.168.100.212) (PORT = 1521))
+                (CONNECT_DATA = 
+                        (SERVER = DEDICATED)
+                        (SERVICE_NAME = DB11G)
+        )
+)
+
+
+
+******************************************ORACLE BD
+
+ CREATE USER rep_dwh_vice IDENTIFIED BY "Dwbildmx2bidev";
+ CREATE USER dwbivice IDENTIFIED BY "Dwbildmx2bidev";
+
+
+GRANT DBA TO dwbivice;
+GRANT DBA TO rep_dwh_vice;
+
+
+CREATE USER rep_dwh_vice IDENTIFIED BY "Dwbildmx2bidev";
+ CREATE USER dwvice IDENTIFIED BY "Dwbildmx2bidev";
+
+
+GRANT DBA TO dwvice;
+GRANT DBA TO rep_dwh_vice;
+
+
+*** To DMS
+CREATE USER REP_DWH_DMS IDENTIFIED BY "Dwbildmx2bidev";
+GRANT DBA TO REP_DWH_DMS;
+
+
+
+
+ alter session set "_ORACLE_SCRIPT"=true;
+ CREATE USER rep_dwh_binsolo2019 IDENTIFIED BY "Dwbildmx2bidev";
+ GRANT DBA TO rep_dwh_binsolo2019;
+
+
+
+
+
+************************************++  wildfly 16 Final
+
+https://vitux.com/install-and-configure-wildfly-jboss-on-ubuntu/
+Administrador Consola
+
+
+user : admin2020
+pass:  $@dM1#_Bit2020.
+
+
+
+
+
+********************************** httpd
+https://linuxconfig.org/how-to-setup-ssl-tls-with-apache-httpd-on-red-hat
+https://www.digitalocean.com/community/tutorials/how-to-install-the-apache-web-server-on-centos-7-es
+
+
+
+
+sqlplus dwvice/Dwbildmx2bidev@ORCL
+
+ sqlplus "dwvice/Dwbildmx2bidev@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(Host=192.168.100.215)(Port=1521))(CONNECT_DATA=(SID=orcl)))"
+
+
+connect addr/addr@//192.168.100.221:1521/vw
+
+
+https://dba.stackexchange.com/questions/13075/how-to-use-sqlplus-to-connect-to-an-oracle-database-located-on-another-host-with
+https://kb.informatica.com/solution/19/Pages/123616.aspx
+https://docs.informatica.com/data-integration/data-services/10-1-1-hotfix-2/installation-and-configuration-guide/connecting-to-databases-from-unix/connecting-to-an-odbc-data-source.html
+
+
+Progress OpenEdge Wire Protocol=DataDirect 7.1 Progress OpenEdge Wire Protocol
+
+[ODBC]
+IANAAppCodePage=4
+InstallDir=/home/powercenter
+Trace=0
+TraceFile=odbctrace.out
+TraceDll=/home/powercenter/ODBC7.1/lib/DWtrc27.so
+
+
+
+alter session set "_ORACLE_SCRIPT"=true;
+CREATE USER dwbivice IDENTIFIED BY "demo123";
+GRANT DBA TO dwbivice;
+
+
+IDENTIFIED BY "Dwbildmx2bidev";
+
+CONNECT rep_dwh_vice/Dwbildmx2bidev as sysdba
+
+
+***************************Para el ETL
+
+cp /vtp/FileManager/FC75Porsche.xlsx /etl/data/dwhvice/input/
+
+/etl/data/dwhvice/scripts/excelconverterapp /etl/data/dwhvice/input/FC75Porsche.xlsx /etl/data/dwhvice/output/fact_budget_sales.txt
+
+
+
+**************************** Para Conectar con SQL Plus Oracle sys +++++++++++++++++++++++++++++++
+
+
+
+
+**************************ACESSO LMCD INVDATA
+
+
+
+alter session set "_ORACLE_SCRIPT"=true;
+CREATE USER PRD_LMCD IDENTIFIED BY "demo123";
+GRANT DBA TO PRD_LMCD;
+
+
+<user-name>lmcdprd</user-name>
+                        <password>Dwbildmx2bidev!</password>
+						
+						//192.168.100.221:1521/vw
+						//192.168.100.215:1521/orcl
+
