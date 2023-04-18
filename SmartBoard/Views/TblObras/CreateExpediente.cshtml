@@ -166,7 +166,15 @@
 
                                             </div>
                                         }
-
+                                          @if (idtipo == 2){
+                                            <div class="form-row form-group">
+                                                <div class="col-md-4 mb-4">
+                                                    <label asp-for="Contrato" class="control-label"></label>
+                                                    <input asp-for="Contrato" class="form-control clsObra" placeholder="Requerido*" required />
+                                                    <span asp-validation-for="Contrato" class="text-danger"></span>
+                                                </div>
+                                                </div>
+                                          }
                                        @* 
                                         
                                             <div class="form-row form-group">
@@ -222,9 +230,7 @@
                                                 <label asp-for="EoRealFin" class="control-label"></label>
                                                 <input asp-for="EoRealFin" class="form-control clsObra" />
                                             </div>
-                                            @if (idtipo == 1)
-                                            {
-                                                
+                                            
                                          
                                             <div class="col-md-2 mb-2">
                                                 <span class="fa-2x d-inline l-h-n">
@@ -252,19 +258,7 @@
                                                 <label asp-for="Idlineaaccion" class="control-label"></label>
                                                 <select asp-for="Idlineaaccion" class="custom-select clsObra select2" required asp-items="ViewBag.Idlineaaccion" aria-label="Select eje"> Selecciona Linea de Accion</select>
                                                 </div>
-                                            }
-                                            else
-                                            {
-                                                <div class="col-md-6 mb-6">
-                                                    <span class="fa-2x d-inline l-h-n">
-
-                                                    </span>
-                                                
-                                                    <label asp-for="Contrato" class="control-label"></label>
-                                                    <input asp-for="Contrato" class="form-control clsObra" placeholder="Requerido*" required />
-                                                
-                                                </div>
-                                            }
+                                           
                                         </div>
                                         
                                        
