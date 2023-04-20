@@ -4,7 +4,7 @@
     ViewData["PageName"] = "registro_obra";
     ViewData["Title"] = "Create";
     int idObra = ((int)ViewData["miIdObra"]);
-    
+
 }
 
 <h1>Crear Pago</h1>
@@ -12,7 +12,7 @@
 
 
 <div>
-    <a asp-action="EditExpediente" asp-controller="TblObras" asp-route-id="@idObra">Regresar a expediente</a>
+    <a asp-action="EditExpediente" asp-controller="TblObras" asp-route-id="@idObra">Regresar a la obra</a>
 </div>
 
 
@@ -23,14 +23,14 @@
             <input type="hidden" asp-for="IdTblobra" value="@idObra" />
             <input type="hidden" asp-for="IdFactura" value="0" />
 
-           @* <div class="form-group">
-                <label asp-for="IdTblobra" class="control-label"></label>
-                <select asp-for="IdTblobra" class ="form-control" asp-items="ViewBag.IdTblobra"></select>
+            @* <div class="form-group">
+            <label asp-for="IdTblobra" class="control-label"></label>
+            <select asp-for="IdTblobra" class ="form-control" asp-items="ViewBag.IdTblobra"></select>
             </div>*@
             @*<div class="form-group">
-                <label asp-for="IdFactura" class="control-label">Id Factura</label>
-                <input asp-for="IdFactura" required class="form-control" />
-                <span asp-validation-for="IdFactura" class="text-danger"></span>
+            <label asp-for="IdFactura" class="control-label">Id Factura</label>
+            <input asp-for="IdFactura" required class="form-control" />
+            <span asp-validation-for="IdFactura" class="text-danger"></span>
             </div>*@
             <div class="form-group">
                 <label asp-for="Numero" class="control-label"></label>
@@ -38,7 +38,7 @@
                 <span asp-validation-for="Numero" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="NumFactura"  class="control-label">Numero Factura</label>
+                <label asp-for="NumFactura" class="control-label">Numero Factura</label>
                 <input asp-for="NumFactura" required class="form-control" />
                 <span asp-validation-for="NumFactura" class="text-danger"></span>
             </div>
@@ -72,35 +72,35 @@
                 <input asp-for="FechaPago" required type="date" data-date-format="DD/MM/YYY" class="form-control" />
                 <span asp-validation-for="FechaPago" class="text-danger"></span>
             </div>
-           @* <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Activo" /> @Html.DisplayNameFor(model => model.Activo)
-                </label>
+            @* <div class="form-group form-check">
+            <label class="form-check-label">
+            <input class="form-check-input" asp-for="Activo" /> @Html.DisplayNameFor(model => model.Activo)
+            </label>
             </div>*@
-           @* <div class="form-group">
-                <label asp-for="Registro" class="control-label"></label>
-                <input asp-for="Registro" class="form-control" />
-                <span asp-validation-for="Registro" class="text-danger"></span>
+            @* <div class="form-group">
+            <label asp-for="Registro" class="control-label"></label>
+            <input asp-for="Registro" class="form-control" />
+            <span asp-validation-for="Registro" class="text-danger"></span>
             </div>*@
             @*<div class="form-group">
-                <label asp-for="RutaArchivoFactura" class="control-label"></label>
-                <input asp-for="RutaArchivoFactura" class="form-control" />
-                <span asp-validation-for="RutaArchivoFactura" class="text-danger"></span>
+            <label asp-for="RutaArchivoFactura" class="control-label"></label>
+            <input asp-for="RutaArchivoFactura" class="form-control" />
+            <span asp-validation-for="RutaArchivoFactura" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="RutaArchivoEvidencia" class="control-label"></label>
-                <input asp-for="RutaArchivoEvidencia" class="form-control" />
-                <span asp-validation-for="RutaArchivoEvidencia" class="text-danger"></span>
+            <label asp-for="RutaArchivoEvidencia" class="control-label"></label>
+            <input asp-for="RutaArchivoEvidencia" class="form-control" />
+            <span asp-validation-for="RutaArchivoEvidencia" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="NombreArchivoFactura" class="control-label"></label>
-                <input asp-for="NombreArchivoFactura" class="form-control" />
-                <span asp-validation-for="NombreArchivoFactura" class="text-danger"></span>
+            <label asp-for="NombreArchivoFactura" class="control-label"></label>
+            <input asp-for="NombreArchivoFactura" class="form-control" />
+            <span asp-validation-for="NombreArchivoFactura" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="NombreArchivoEvidencia" class="control-label"></label>
-                <input asp-for="NombreArchivoEvidencia" class="form-control" />
-                <span asp-validation-for="NombreArchivoEvidencia" class="text-danger"></span>
+            <label asp-for="NombreArchivoEvidencia" class="control-label"></label>
+            <input asp-for="NombreArchivoEvidencia" class="form-control" />
+            <span asp-validation-for="NombreArchivoEvidencia" class="text-danger"></span>
             </div>*@
             <div class="form-group">
                 <input type="submit" value="Guardar" class="btn btn-primary" />
