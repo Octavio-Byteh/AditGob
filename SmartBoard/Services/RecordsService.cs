@@ -30,13 +30,14 @@ namespace SmartBoard.Services
                     Municipio = a.IdmunicipioNavigation.Municipio, // a.MunicipioNavigation.Municipio1,
                     //NumeroDeObra = a.Numeroobraexterno,
                     NumeroDeObra = a.Expediente,
-                    NombreDeLaObra = a.Nombreobra,
+                    NombreDeLaObra = IdtipoObra == 1 ? a.Nombreobra : a.Contrato,
                     Descripcion = a.Descripcion,
                     Inversion = (a.Inversion.HasValue ? a.Inversion.Value.ToString("c2") : "0.0"),
                     InversionMunicipal = (a.InversionMunicipal.HasValue ? a.InversionMunicipal.Value.ToString("c2") : "0"),
                     strcoordenadax = a.Coordenadax,
                     strcoordenaday = a.Coordenaday,
                     idestatusobra = (a.Idestadoobra.HasValue ? a.Idestadoobra.Value : 2)
+
                 }).ToList();
 
             double numberX, numbreY;
