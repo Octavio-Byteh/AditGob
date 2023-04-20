@@ -390,7 +390,7 @@ namespace SmartBoard.Models
         //public decimal AvanceFinanciero { get; set; }
 
 
-        [Display(Name = "Objeto de contrato")]
+        [Display(Name = "Contrato")]
         public string Contrato { get; set; }
 
         [Display(Name = "Fecha Contrato Inicio")]
@@ -472,7 +472,7 @@ namespace SmartBoard.Models
 
 
 
-        [Display(Name = "Objeto de contrato")]
+        [Display(Name = "Contrato")]
         public string Contrato { get; set; }
 
         [Display(Name = "Fecha Contrato Inicio")]
