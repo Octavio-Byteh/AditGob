@@ -310,9 +310,17 @@
                 monto = parseFloat($("#MontoPagarSinIva").val());
                 
                 var montoAmortiza = (monto * 0.30).toFixed(2);
-                var AplicamontoAmortiza = montoAmortiza;
-               
-                var subTotal = (monto - montoAmortiza).toFixed(2);
+                if ($("#AplicaAnticipo").prop("checked") == true) {
+                    $("#AmortizadoSinIva").val(montoAmortiza);
+                    AplicamontoAmortiza = montoAmortiza;
+                }
+                else {
+                    $("#AmortizadoSinIva").val(0);
+                    AplicamontoAmortiza = 0;
+                }
+                //var AplicamontoAmortiza = montoAmortiza;
+
+                var subTotal = (monto - AplicamontoAmortiza).toFixed(2);
                 var subTotalConIva = (subTotal * 1.16).toFixed(2);
                 var cincoMillar = 0.0;
 
@@ -329,15 +337,15 @@
                 var Devolucion = parseFloat($("#Devolucion").val());
 
 
-                if ($("#AplicaAnticipo").prop("checked") == true) {
-                    $("#AmortizadoSinIva").val(montoAmortiza);
-                     AplicamontoAmortiza = montoAmortiza;
-                }  
-                else
-                {
-                    $("#AmortizadoSinIva").val(0);
-                     AplicamontoAmortiza = 0;
-                }
+                ////if ($("#AplicaAnticipo").prop("checked") == true) {
+                ////    $("#AmortizadoSinIva").val(montoAmortiza);
+                ////     AplicamontoAmortiza = montoAmortiza;
+                ////}  
+                ////else
+                ////{
+                ////    $("#AmortizadoSinIva").val(0);
+                ////     AplicamontoAmortiza = 0;
+                ////}
                 
 
                 $("#Subtotal").val(subTotal);
