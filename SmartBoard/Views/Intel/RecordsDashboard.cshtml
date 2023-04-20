@@ -4,7 +4,7 @@
 
     ViewData["Title"] = "Tablero de " + titulo;
     //ViewData["PageName"] = "intel_records_dashboard";
-    ViewData["PageName"] = "dashboard_"+titulo;
+    ViewData["PageName"] = "dashboard_" + titulo;
     ViewData["Category1"] = titulo;
     ViewData["Heading"] = "<i class='subheader-icon fal fa-chart-area'></i> Tablero de <span class='fw-300'>" + titulo + "</span>";
 
@@ -22,13 +22,13 @@
 @section HeadBlock {
 
     <link rel="stylesheet" media="screen, print" href="~/css/datagrid/datatables/datatables.bundle.css">
-      @if (idtipo != 1)
-            {
+        @if (idtipo != 1)
+        {
         <link id="mytheme" rel="stylesheet" media="screen, print" href="~/css/themes/cust-theme-13.css">
-            }
+        }
 
     <style>
-        .tdc{
+        .tdc {
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -128,7 +128,7 @@
                     Listado de <span class="fw-300"><i>@titulo</i></span>
                 </h2>
                 <a href="TblObras/Index?IdtipoObra=@idtipo" class="btn btn-warning" style="font-weight:400; color:white; margin-right: 1px;"> Resumen </a>
-               
+
             </div>
             <div class="panel-container show">
                 <div class="panel-content">
@@ -266,7 +266,7 @@
             </div>
         </div>
     </div>
-    
+
 
     <div class="col-sm-12">
 
@@ -278,12 +278,11 @@
             </div>
             <div class="panel-container show">
                 <div class="panel-content">
-                   
+
                     <div class="row h-50">
                         <div class="col-sm-12" id="DivDetalleObraMapa">
                             <div>
                                 <div id="dvMap" class="row fixed" style="width: 98%;  height: 500px;">
-
                                 </div>
 
 
@@ -295,7 +294,7 @@
             </div>
         </div>
     </div>
-    
+
 </div>
 
 
@@ -310,9 +309,9 @@
         var puntos = '';
         var puntosfinal = [];
         let markers = [{ 'title': '', 'lat': '16.897564379807672', 'lng': '-99.97349078830298', 'id': '11', 'status': '1', 'description': 'No. obra:67727' }, { 'title': '', 'lat': '19.1848852', 'lng': '-98.2347203', 'id': '25694', 'status': '0', 'description': 'No. obra:28004' }];
-        function SubirArchivoFotos( noObra, idObra) {
-             var id = idObra;
-            var fileUpload = $("#files_"+id).get(0);
+        function SubirArchivoFotos(noObra, idObra) {
+            var id = idObra;
+            var fileUpload = $("#files_" + id).get(0);
             var files = fileUpload.files;
             var fileData = new FormData();
 
@@ -328,7 +327,7 @@
 
 
             $.ajax({
-                url: '@Url.Action("UploadFilesFotos", "TblObras")?id='+id, //URL to upload files
+                url: '@Url.Action("UploadFilesFotos", "TblObras")?id=' + id, //URL to upload files
                 type: "POST", //as we will be posting files and other method POST is used
                 processData: false, //remember to set processData and ContentType to false, otherwise you may get an error
                 contentType: false,
@@ -426,16 +425,16 @@
                     data.forEach((object, index) => {
 
 
-                            var objecto = new Object();
-                            objecto.title = object.Descripcion;
-                            objecto.lat = object.coordenadax;
-                            objecto.lng = object.coordenaday;
-                            objecto.id = object.id;
-                            objecto.status = object.idestatusobra;
-                            objecto.description = object.Descripcion;
+                        var objecto = new Object();
+                        objecto.title = object.Descripcion;
+                        objecto.lat = object.coordenadax;
+                        objecto.lng = object.coordenaday;
+                        objecto.id = object.id;
+                        objecto.status = object.idestatusobra;
+                        objecto.description = object.Descripcion;
 
 
-                            puntosfinal.push(objecto);
+                        puntosfinal.push(objecto);
 
 
                     });
@@ -456,14 +455,14 @@
                 $('#dt-basic-obras').dataTable({
                     data: data,
                     columns: [
-                       
+
                         {
                             'data': 'id', render: function (data, type, full, meta) {
                                 return '<div class="divcontenedor">' + data + '</div>'
                             }
                         },
                         {
-                            'data': function (row, type,set) {
+                            'data': function (row, type, set) {
                                 return '<button class="btn btn-default divbutton tdc"  onClick="showDetail(' + row.id + '); showBotonera(' + row.id + '); CargarMarkers(' + row.coordenadax + ',' + row.coordenaday + ',' + row.Descripcion + ',' + row.Descripcion + ',' + row.idestatusobra + '); return false;">' + row.numeroDeObra + '</button>'
                             }
                         },
@@ -514,14 +513,14 @@
                         "<'row'<'col-sm-12'tr>>" +
                         "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
                     buttons: [
-                        
+
                         {
                             extend: 'csvHtml5',
                             text: 'CSV',
                             titleAttr: 'Generate CSV',
                             className: 'btn-outline-default'
                         },
-                        
+
                         {
                             extend: 'print',
                             text: '<i class="@(Settings.Theme.IconPrefix) fa-print"></i>',
@@ -550,27 +549,27 @@
     <script src="~/js/statistics/flot/flot.bundle.js"></script>
     <script src="~/js/statistics/easypiechart/easypiechart.bundle.js"></script>
     <script src="~/js/datagrid/datatables/datatables.bundle.js"></script>
-      @*<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTYZxBuaaCVa5ExcFcCZAZA2uGmhjno0o"></script>*@
-      <script type="text/javascript" src=@urlmaps></script>
+    @*<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTYZxBuaaCVa5ExcFcCZAZA2uGmhjno0o"></script>*@
+    <script type="text/javascript" src=@urlmaps></script>
 
 
-<script>
-		/* defined datas */
+    <script>
+        /* defined datas */
         function showDetail(id) {
             console.log(id);
-   
+
             $('#DivDetalleObra').load('@Url.Action("DetalleObraByExpediente", "Obras")?id=' + id + '&year=@year')
 
             var chartDocs = window.chart = $('#update-chart-docs .js-easy-pie-chart').data('easyPieChart');
             chartDocs.update(Math.random() * 200 - 100);
         }
 
-          function showBotonera(id) {
+        function showBotonera(id) {
             console.log(id);
-              $('#DivDetalleObraBotonera').load('@Url.Action("DetalleObraByExpedienteBotonera", "Obras")?id=' + id + '&year=@year')
+            $('#DivDetalleObraBotonera').load('@Url.Action("DetalleObraByExpedienteBotonera", "Obras")?id=' + id + '&year=@year')
         }
 
-		$(document).ready(function () {
+        $(document).ready(function () {
 
             /* update chart */
             var chart = window.chart = $('#update-chart .js-easy-pie-chart').data('easyPieChart');
@@ -580,22 +579,22 @@
                 chartDocs.update(Math.random() * 200 - 100);
             });
 
-    
-
-         $('.carousel').carousel({
-             interval: 5000
-         })
 
 
+            $('.carousel').carousel({
+                interval: 5000
+            })
 
-		});
-</script>
+
+
+        });
+    </script>
 
 
     <script type="text/javascript">
 
 
-    let markersGeneral = "";
+        let markersGeneral = "";
 
         let map;
         var mapOptions;
@@ -609,14 +608,14 @@
         map = new google.maps.Map(document.getElementById("dvMap"), mapOptions);
 
 
-    let map2;
-    let markersMap = [];
-    let markersMap2 = [];
+        let map2;
+        let markersMap = [];
+        let markersMap2 = [];
 
-    var poligono = [];
+        var poligono = [];
 
- 
-        
+
+
         //var srcEstado = 'http://drive.google.com/uc?id=1bA8ScMR8jZ_Ep0iX0WvmKJ4S-oMX889R';
         var srcEstado = 'https://drive.google.com/uc?export=download&id=15ivWjzxhfyXi4tH6M9XluM5aM2voB6Gk';
 
@@ -630,45 +629,45 @@
 
 
 
-    var kmlLayer;
+        var kmlLayer;
 
 
-    var kmlLayerEstado;
-    var kmlLayerAcapulco;
-    var kmlLayerCostaChica;
-    var kmlLayerCentro;
-    //var kmlLayerRegionMontana1;
-    var kmlLayerCostaGrande;
-    var kmlLayerMontana;
-    var kmlLayerNorte;
-    var kmlLayerTierraCaliente;
-    //var kmlLayerRegionGuerrero;
+        var kmlLayerEstado;
+        var kmlLayerAcapulco;
+        var kmlLayerCostaChica;
+        var kmlLayerCentro;
+        //var kmlLayerRegionMontana1;
+        var kmlLayerCostaGrande;
+        var kmlLayerMontana;
+        var kmlLayerNorte;
+        var kmlLayerTierraCaliente;
+        //var kmlLayerRegionGuerrero;
 
 
 
-        function addLayer(srcLayer,layerkml) {
-         layerkml = new google.maps.KmlLayer(srcLayer, {
-            suppressInfoWindows: true,
-            preserveViewport: false,
-            map: map
-        });
+        function addLayer(srcLayer, layerkml) {
+            layerkml = new google.maps.KmlLayer(srcLayer, {
+                suppressInfoWindows: true,
+                preserveViewport: false,
+                map: map
+            });
 
-        layerkml.addListener('click', function (event) {
-            map.setCenter(event.latLng);
-            map.setZoom(8)
-        });
+            layerkml.addListener('click', function (event) {
+                map.setCenter(event.latLng);
+                map.setZoom(8)
+            });
 
-           kmlLayerEstado = new google.maps.KmlLayer(srcLayer, {
-            suppressInfoWindows: true,
-            preserveViewport: false,
-            map: map
-        });
+            kmlLayerEstado = new google.maps.KmlLayer(srcLayer, {
+                suppressInfoWindows: true,
+                preserveViewport: false,
+                map: map
+            });
 
-        kmlLayerEstado.addListener('click', function (event) {
-            map.setCenter(event.latLng);
-            map.setZoom(8)
-        });
-    }
+            kmlLayerEstado.addListener('click', function (event) {
+                map.setCenter(event.latLng);
+                map.setZoom(8)
+            });
+        }
 
         function addLayerEstado() {
 
@@ -713,7 +712,7 @@
             });
         }
 
-         function addLayerCentro() {
+        function addLayerCentro() {
 
             kmlLayerCentro = new google.maps.KmlLayer(srcCentro, {
                 suppressInfoWindows: true,
@@ -727,142 +726,142 @@
             });
         }
 
-         function addLayerCostaGrande() {
+        function addLayerCostaGrande() {
 
-                kmlLayerCostaGrande = new google.maps.KmlLayer(srcCostaGrande, {
-                    suppressInfoWindows: true,
-                    preserveViewport: false,
-                    map: map
-                });
+            kmlLayerCostaGrande = new google.maps.KmlLayer(srcCostaGrande, {
+                suppressInfoWindows: true,
+                preserveViewport: false,
+                map: map
+            });
 
-                kmlLayerCostaGrande.addListener('click', function (event) {
-                    map.setCenter(event.latLng);
-                    map.setZoom(7)
-                });
-    }
+            kmlLayerCostaGrande.addListener('click', function (event) {
+                map.setCenter(event.latLng);
+                map.setZoom(7)
+            });
+        }
 
-         function addLayerMontana() {
+        function addLayerMontana() {
 
-                kmlLayerMontana = new google.maps.KmlLayer(srcMontana, {
-                    suppressInfoWindows: true,
-                    preserveViewport: false,
-                    map: map
-                });
+            kmlLayerMontana = new google.maps.KmlLayer(srcMontana, {
+                suppressInfoWindows: true,
+                preserveViewport: false,
+                map: map
+            });
 
-                kmlLayerMontana.addListener('click', function (event) {
-                    map.setCenter(event.latLng);
-                    map.setZoom(7)
-                });
-    }
-
-
-
-     function addLayerNorte() {
-
-                    kmlLayerNorte = new google.maps.KmlLayer(srcNorte, {
-                        suppressInfoWindows: true,
-                        preserveViewport: false,
-                        map: map
-                    });
-
-                    kmlLayerNorte.addListener('click', function (event) {
-                        map.setCenter(event.latLng);
-                        map.setZoom(8)
-                    });
-    }
-
-     function addLayerTierraCaliente() {
-
-                    kmlLayerTierraCaliente = new google.maps.KmlLayer(srcTierraCaliente, {
-                        suppressInfoWindows: true,
-                        preserveViewport: false,
-                        map: map
-                    });
-
-                    kmlLayerTierraCaliente.addListener('click', function (event) {
-                        map.setCenter(event.latLng);
-                        map.setZoom(8)
-                    });
-                }
-
-    function ClearLayer() {
-        //kmlLayer.setMap(null);
-
-        kmlLayerEstado.setMap(null);
-        kmlLayerAcapulco.setMap(null);
-        kmlLayerCostaChica.setMap(null);
-        kmlLayerCentro.setMap(null);
-        //kmlLayerRegionMontana1.setMap(null);
-        kmlLayerCostaGrande.setMap(null);
-        kmlLayerMontana.setMap(null);
-        kmlLayerNorte.setMap(null);
-        kmlLayerTierraCaliente.setMap(null);
-        //kmlLayerRegionGuerrero.setMap(null);
-    }
-
-
-    // Removes the markers from the map, but keeps them in the array.
-    function clearMarkers() {
-        setMapOnAll(null);
-           //setMapOnAll2(null);
-    }
-
-
-     function clearMarkersByRegion() {
-        setMapOnAll(null);
-    }
-
-
-    // Shows any markers currently in the array.
-    function showMarkers() {
-      setMapOnAll(map);
-    }
+            kmlLayerMontana.addListener('click', function (event) {
+                map.setCenter(event.latLng);
+                map.setZoom(7)
+            });
+        }
 
 
 
+        function addLayerNorte() {
+
+            kmlLayerNorte = new google.maps.KmlLayer(srcNorte, {
+                suppressInfoWindows: true,
+                preserveViewport: false,
+                map: map
+            });
+
+            kmlLayerNorte.addListener('click', function (event) {
+                map.setCenter(event.latLng);
+                map.setZoom(8)
+            });
+        }
+
+        function addLayerTierraCaliente() {
+
+            kmlLayerTierraCaliente = new google.maps.KmlLayer(srcTierraCaliente, {
+                suppressInfoWindows: true,
+                preserveViewport: false,
+                map: map
+            });
+
+            kmlLayerTierraCaliente.addListener('click', function (event) {
+                map.setCenter(event.latLng);
+                map.setZoom(8)
+            });
+        }
+
+        function ClearLayer() {
+            //kmlLayer.setMap(null);
+
+            kmlLayerEstado.setMap(null);
+            kmlLayerAcapulco.setMap(null);
+            kmlLayerCostaChica.setMap(null);
+            kmlLayerCentro.setMap(null);
+            //kmlLayerRegionMontana1.setMap(null);
+            kmlLayerCostaGrande.setMap(null);
+            kmlLayerMontana.setMap(null);
+            kmlLayerNorte.setMap(null);
+            kmlLayerTierraCaliente.setMap(null);
+            //kmlLayerRegionGuerrero.setMap(null);
+        }
 
 
-    // Sets the map on all markers in the array.
-    function setMapOnAll(map) {
+        // Removes the markers from the map, but keeps them in the array.
+        function clearMarkers() {
+            setMapOnAll(null);
+            //setMapOnAll2(null);
+        }
 
-        for (let i = 0; i < markersMap.length; i++) {
-            //alert(markersMap[i]);
+
+        function clearMarkersByRegion() {
+            setMapOnAll(null);
+        }
+
+
+        // Shows any markers currently in the array.
+        function showMarkers() {
+            setMapOnAll(map);
+        }
+
+
+
+
+
+        // Sets the map on all markers in the array.
+        function setMapOnAll(map) {
+
+            for (let i = 0; i < markersMap.length; i++) {
+                //alert(markersMap[i]);
 
                 markersMap[i].setMap(map);
 
+            }
         }
-    }
 
-    // Sets the map on all markers in the array.
-    //function setMapOnAll2(map2) {
+        // Sets the map on all markers in the array.
+        //function setMapOnAll2(map2) {
 
-    //    for (let i = 0; i < markersMap2.length; i++) {
-    //        //alert(markersMap[i]);
+        //    for (let i = 0; i < markersMap2.length; i++) {
+        //        //alert(markersMap[i]);
 
-    //            markersMap2[i].setMap(map2);
+        //            markersMap2[i].setMap(map2);
 
-    //    }
-    //}
-
-    function CargarMarkersIGIFE(dependencia) {
-
-        //if (dependencia == 'SDUOP') {
-        //    markersGeneral = markers2;
-        //} else if (dependencia == 'CAPASEG') {
-        //    markersGeneral = markers3;
-        //} else if (dependencia == 'CICAEG') {
-        //    markersGeneral = markers4;
-        //} else if (dependencia == 'IGIFE') {
-        //    markersGeneral = markers5;
-        //} else {
-        //    markersGeneral = markers;
+        //    }
         //}
 
+        function CargarMarkersIGIFE(dependencia) {
+
+            //if (dependencia == 'SDUOP') {
+            //    markersGeneral = markers2;
+            //} else if (dependencia == 'CAPASEG') {
+            //    markersGeneral = markers3;
+            //} else if (dependencia == 'CICAEG') {
+            //    markersGeneral = markers4;
+            //} else if (dependencia == 'IGIFE') {
+            //    markersGeneral = markers5;
+            //} else {
+            //    markersGeneral = markers;
+            //}
 
 
-        markersGeneral = markers;
 
-        setMapOnAll(null);
+            markersGeneral = markers;
+
+            setMapOnAll(null);
 
 
 
@@ -872,19 +871,19 @@
 
                 var data = markersGeneral[i]
                 var label = "A";
-                var urlicon  = "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
+                var urlicon = "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
 
                 if (data.status == 0) {
                     label = "A";
                 } else if (data.status == 1) {
                     label = "T";
-                    urlicon  = "http://maps.google.com/mapfiles/ms/icons/green-dot.png"
+                    urlicon = "http://maps.google.com/mapfiles/ms/icons/green-dot.png"
                 } else if (data.status == 2) {
                     label = "P";
-                    urlicon  = "http://maps.google.com/mapfiles/ms/icons/yellow-dot.png"
+                    urlicon = "http://maps.google.com/mapfiles/ms/icons/yellow-dot.png"
                 } else if (data.status == 3 || data.status == 4) {
                     label = "N";
-                    urlicon  = "http://maps.google.com/mapfiles/ms/icons/red-dot.png"
+                    urlicon = "http://maps.google.com/mapfiles/ms/icons/red-dot.png"
                 }
 
 
@@ -895,7 +894,7 @@
                     map: map,
                     title: data.title,
 
-                    icon: {url: urlicon}
+                    icon: { url: urlicon }
                 });
 
 
@@ -926,14 +925,14 @@
                 markersMap.push(marker);
                 //map.setCenter(myLatlng);
 
+            }
+
+
+
         }
 
 
-
-    }
-
-
-        function CargarMarkers(mlat,mlng,mtitle,mdesc,midestatus) {
+        function CargarMarkers(mlat, mlng, mtitle, mdesc, midestatus) {
 
 
             puntosfinal = [];
@@ -1029,133 +1028,133 @@
 
 
 
-    //alert(markers);
+        //alert(markers);
 
-   window.onload = function () {
+        window.onload = function () {
 
 
 
-        //center: new google.maps.LatLng(markers[0].lat, markers[0].lng),
+            //center: new google.maps.LatLng(markers[0].lat, markers[0].lng),
 
-        var mapOptions;
-        //= {
-        //        center: new google.maps.LatLng(16.775, -93.7417),
-        //        zoom: 7,
+            var mapOptions;
+            //= {
+            //        center: new google.maps.LatLng(16.775, -93.7417),
+            //        zoom: 7,
 
-        //    };
-            @if(mapTheme == "black")
-            {
-                <text>
-                mapOptions = {
-                center: new google.maps.LatLng(16.775, -93.7417),
-                zoom: 7,
-                styles: [
-                      { elementType: "geometry", stylers: [{ color: "#242f3e" }] },
-                      { elementType: "labels.text.stroke", stylers: [{ color: "#242f3e" }] },
-                      { elementType: "labels.text.fill", stylers: [{ color: "#746855" }] },
-                      {
-                        featureType: "administrative.locality",
-                        elementType: "labels.text.fill",
-                        stylers: [{ color: "#d59563" }],
-                      },
-                      {
-                        featureType: "poi",
-                        elementType: "labels.text.fill",
-                        stylers: [{ color: "#d59563" }],
-                      },
-                      {
-                        featureType: "poi.park",
-                        elementType: "geometry",
-                        stylers: [{ color: "#263c3f" }],
-                      },
-                      {
-                        featureType: "poi.park",
-                        elementType: "labels.text.fill",
-                        stylers: [{ color: "#6b9a76" }],
-                      },
-                      {
-                        featureType: "road",
-                        elementType: "geometry",
-                        stylers: [{ color: "#38414e" }],
-                      },
-                      {
-                        featureType: "road",
-                        elementType: "geometry.stroke",
-                        stylers: [{ color: "#212a37" }],
-                      },
-                      {
-                        featureType: "road",
-                        elementType: "labels.text.fill",
-                        stylers: [{ color: "#9ca5b3" }],
-                      },
-                      {
-                        featureType: "road.highway",
-                        elementType: "geometry",
-                        stylers: [{ color: "#746855" }],
-                      },
-                      {
-                        featureType: "road.highway",
-                        elementType: "geometry.stroke",
-                        stylers: [{ color: "#1f2835" }],
-                      },
-                      {
-                        featureType: "road.highway",
-                        elementType: "labels.text.fill",
-                        stylers: [{ color: "#f3d19c" }],
-                      },
-                      {
-                        featureType: "transit",
-                        elementType: "geometry",
-                        stylers: [{ color: "#2f3948" }],
-                      },
-                      {
-                        featureType: "transit.station",
-                        elementType: "labels.text.fill",
-                        stylers: [{ color: "#d59563" }],
-                      },
-                      {
-                        featureType: "water",
-                        elementType: "geometry",
-                        stylers: [{ color: "#17263c" }],
-                      },
-                      {
-                        featureType: "water",
-                        elementType: "labels.text.fill",
-                        stylers: [{ color: "#515c6d" }],
-                      },
-                      {
-                        featureType: "water",
-                        elementType: "labels.text.stroke",
-                        stylers: [{ color: "#17263c" }],
-                      },
-                    ]
+            //    };
+        @if (mapTheme == "black")
+        {
+            <text>
+                    mapOptions = {
+                    center: new google.maps.LatLng(16.775, -93.7417),
+                        zoom: 7,
+                            styles: [
+                                { elementType: "geometry", stylers: [{ color: "#242f3e" }] },
+                                { elementType: "labels.text.stroke", stylers: [{ color: "#242f3e" }] },
+                                { elementType: "labels.text.fill", stylers: [{ color: "#746855" }] },
+                                {
+                                    featureType: "administrative.locality",
+                                    elementType: "labels.text.fill",
+                                    stylers: [{ color: "#d59563" }],
+                                },
+                                {
+                                    featureType: "poi",
+                                    elementType: "labels.text.fill",
+                                    stylers: [{ color: "#d59563" }],
+                                },
+                                {
+                                    featureType: "poi.park",
+                                    elementType: "geometry",
+                                    stylers: [{ color: "#263c3f" }],
+                                },
+                                {
+                                    featureType: "poi.park",
+                                    elementType: "labels.text.fill",
+                                    stylers: [{ color: "#6b9a76" }],
+                                },
+                                {
+                                    featureType: "road",
+                                    elementType: "geometry",
+                                    stylers: [{ color: "#38414e" }],
+                                },
+                                {
+                                    featureType: "road",
+                                    elementType: "geometry.stroke",
+                                    stylers: [{ color: "#212a37" }],
+                                },
+                                {
+                                    featureType: "road",
+                                    elementType: "labels.text.fill",
+                                    stylers: [{ color: "#9ca5b3" }],
+                                },
+                                {
+                                    featureType: "road.highway",
+                                    elementType: "geometry",
+                                    stylers: [{ color: "#746855" }],
+                                },
+                                {
+                                    featureType: "road.highway",
+                                    elementType: "geometry.stroke",
+                                    stylers: [{ color: "#1f2835" }],
+                                },
+                                {
+                                    featureType: "road.highway",
+                                    elementType: "labels.text.fill",
+                                    stylers: [{ color: "#f3d19c" }],
+                                },
+                                {
+                                    featureType: "transit",
+                                    elementType: "geometry",
+                                    stylers: [{ color: "#2f3948" }],
+                                },
+                                {
+                                    featureType: "transit.station",
+                                    elementType: "labels.text.fill",
+                                    stylers: [{ color: "#d59563" }],
+                                },
+                                {
+                                    featureType: "water",
+                                    elementType: "geometry",
+                                    stylers: [{ color: "#17263c" }],
+                                },
+                                {
+                                    featureType: "water",
+                                    elementType: "labels.text.fill",
+                                    stylers: [{ color: "#515c6d" }],
+                                },
+                                {
+                                    featureType: "water",
+                                    elementType: "labels.text.stroke",
+                                    stylers: [{ color: "#17263c" }],
+                                },
+                            ]
                 };
-                </text>
-            }
-            else
-            {
-                <text>
-                mapOptions = {
-                center: new google.maps.LatLng(16.775, -93.7417),
-                zoom: 7,
+            </text>
+        }
+        else
+        {
+            <text>
+                    mapOptions = {
+                    center: new google.maps.LatLng(16.775, -93.7417),
+                        zoom: 7,
 
-                };
-                </text>
+                            };
+            </text>
 
-            }
+        }
 
 
-            var infoWindow = new google.maps.InfoWindow();
+                    var infoWindow = new google.maps.InfoWindow();
             map = new google.maps.Map(document.getElementById("dvMap"), mapOptions);
 
-        addLayerEstado();
-        //addLayerAcapulco();
-        //addLayerCostaChica();
-        //addLayerCentro();
-        //addLayerCostaGrande();
-        //addLayerMontana();
-        //addLayerNorte();
-        //addLayerTierraCaliente();
+            addLayerEstado();
+            //addLayerAcapulco();
+            //addLayerCostaChica();
+            //addLayerCentro();
+            //addLayerCostaGrande();
+            //addLayerMontana();
+            //addLayerNorte();
+            //addLayerTierraCaliente();
 
 
 
@@ -1166,19 +1165,19 @@
 
                 var data = markers[i]
                 var label = "A";
-                var urlicon  = "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
+                var urlicon = "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
 
                 if (data.status == 0) {
                     label = "A";
                 } else if (data.status == 1) {
                     label = "T";
-                    urlicon  = "http://maps.google.com/mapfiles/ms/icons/green-dot.png"
+                    urlicon = "http://maps.google.com/mapfiles/ms/icons/green-dot.png"
                 } else if (data.status == 2) {
                     label = "P";
-                    urlicon  = "http://maps.google.com/mapfiles/ms/icons/yellow-dot.png"
+                    urlicon = "http://maps.google.com/mapfiles/ms/icons/yellow-dot.png"
                 } else if (data.status == 3 || data.status == 4) {
                     label = "N";
-                    urlicon  = "http://maps.google.com/mapfiles/ms/icons/red-dot.png"
+                    urlicon = "http://maps.google.com/mapfiles/ms/icons/red-dot.png"
                 }
 
 
@@ -1189,10 +1188,10 @@
                     map: map,
                     title: data.title,
 
-                    icon: {url: urlicon}
+                    icon: { url: urlicon }
                 });
 
-//                poligono.push(myLatlng);
+                //                poligono.push(myLatlng);
 
                 (function (marker, data) {
 
@@ -1212,13 +1211,13 @@
                     });
                 })(marker, data);
 
-                    markersMap.push(marker);
+                markersMap.push(marker);
+
+            }
+
+
 
         }
-
-
-
-    }
 
 
     </script>

@@ -11,11 +11,12 @@ namespace SmartBoard.Services
     {
         public readonly SmartBoardContext _context;
 
-        public RecordsService(SmartBoardContext ctx) {
+        public RecordsService(SmartBoardContext ctx)
+        {
             _context = ctx;
         }
 
-        public List<ObrasViewModel> getObrasbyYear(int year,int IdtipoObra)
+        public List<ObrasViewModel> getObrasbyYear(int year, int IdtipoObra)
         {
             var listaObras = _context.TblObras
                 .Where(a => a.IdtipoObra == IdtipoObra)
@@ -29,17 +30,18 @@ namespace SmartBoard.Services
                     Municipio = a.IdmunicipioNavigation.Municipio, // a.MunicipioNavigation.Municipio1,
                     //NumeroDeObra = a.Numeroobraexterno,
                     NumeroDeObra = a.Expediente,
-                    NombreDeLaObra = a.Nombreobra,
+                    NombreDeLaObra = IdtipoObra == 1 ? a.Nombreobra : a.Contrato,
                     Descripcion = a.Descripcion,
                     Inversion = (a.Inversion.HasValue ? a.Inversion.Value.ToString("c2") : "0.0"),
                     InversionMunicipal = (a.InversionMunicipal.HasValue ? a.InversionMunicipal.Value.ToString("c2") : "0"),
                     strcoordenadax = a.Coordenadax,
                     strcoordenaday = a.Coordenaday,
                     idestatusobra = (a.Idestadoobra.HasValue ? a.Idestadoobra.Value : 2)
+
                 }).ToList();
 
             double numberX, numbreY;
-            listaObras.ForEach(a=> {
+            listaObras.ForEach(a => {
                 numberX = 16.897564379807672;
                 numbreY = -99.97349078830298;
                 if (string.IsNullOrWhiteSpace(a.strcoordenaday))
@@ -71,22 +73,22 @@ namespace SmartBoard.Services
 
             });
 
-            return listaObras.OrderByDescending(a=>a.id).ToList();
+            return listaObras.OrderByDescending(a => a.id).ToList();
         }
 
 
         public string GetMarkers(int year)
         {
             var obras = _context.TblObras
-                .Select(a=> new { 
-                Coordenaday = a.Coordenaday, 
-                Coordenadax = a.Coordenadax,
-                Id = a.Id, 
-                Year = a.Year, 
-                //Descripcion = a.Descripcion,
-                Region = a.Region,
+                .Select(a => new {
+                    Coordenaday = a.Coordenaday,
+                    Coordenadax = a.Coordenadax,
+                    Id = a.Id,
+                    Year = a.Year,
+                    //Descripcion = a.Descripcion,
+                    Region = a.Region,
                     Idestadoobra = a.Idestadoobra,
-                    Numeroobraexterno=a.Numeroobraexterno
+                    Numeroobraexterno = a.Numeroobraexterno
                 })
                 .Where(a => a.Year == year).ToList();
             string markers = "";
@@ -180,7 +182,7 @@ namespace SmartBoard.Services
                     markers += string.Format("'lat': '{0}',", numberX);
                     markers += string.Format("'lng': '{0}',", numbreY);
                     markers += string.Format("'id': '{0}',", item.Id);
-               
+
                     markers += string.Format("'status': '{0}',", item.Idestadoobra ?? 0);
 
                     markers += string.Format("'description': '{0}'",
@@ -223,7 +225,7 @@ namespace SmartBoard.Services
 
         public List<ObrasViewModel> getObrasbyYearToPivot(int year)
         {
-            var listaObras = 
+            var listaObras =
                 _context.TblObras
                 //.Where(a => a.Year == year)
                 //.OrderByDescending(a => a.Id)
@@ -275,7 +277,7 @@ namespace SmartBoard.Services
         {
             int data = 0;
 
-            data = _context.TblObras.Where(a => a.IdtipoObra == IdtipoObra && (a.Idestadoobra == 3 || a.Idestadoobra == 4) ).Count();
+            data = _context.TblObras.Where(a => a.IdtipoObra == IdtipoObra && (a.Idestadoobra == 3 || a.Idestadoobra == 4)).Count();
 
             return data;
         }
@@ -284,7 +286,7 @@ namespace SmartBoard.Services
         {
             int data = 0;
 
-            data = _context.TblObras.Where(a => a.IdtipoObra == IdtipoObra  ).Count();
+            data = _context.TblObras.Where(a => a.IdtipoObra == IdtipoObra).Count();
 
             return data;
         }
@@ -293,12 +295,12 @@ namespace SmartBoard.Services
         {
             int data = 0;
 
-            data = _context.TblObras.Where(a => a.IdtipoObra == IdtipoObra && a.Idestadoobra == 2 ).Count();
+            data = _context.TblObras.Where(a => a.IdtipoObra == IdtipoObra && a.Idestadoobra == 2).Count();
 
             return data;
         }
 
-        public int otieneTerminadas(int year,int IdtipoObra)
+        public int otieneTerminadas(int year, int IdtipoObra)
         {
             int data = 0;
 
