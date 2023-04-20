@@ -30,7 +30,6 @@ builder.Services.Configure<CookiePolicyOptions>(options =>
     options.MinimumSameSitePolicy = SameSiteMode.None;
 });
 
-
 builder.Services.AddMvc(o =>
 {
     var policy = new AuthorizationPolicyBuilder()
