@@ -1,18 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.OleDb;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json.Linq;
 using SmartBoard.Data.Models.SmartBoard;
 using SmartBoard.Models;
 using SmartBoard.Services;
+using System.Data;
+using System.Data.OleDb;
 
 namespace SmartBoard.Controllers
 {
@@ -1808,6 +1801,7 @@ namespace SmartBoard.Controllers
                 new ExpedienteViewModalDetalle()
                 {
                     Id = a.Id,
+
                     Coordenadas = string.Concat(a.Coordenadax, ",", a.Coordenaday),
 
                     folio = a.Numeroobraexterno,
@@ -2024,7 +2018,10 @@ namespace SmartBoard.Controllers
 
             if (tblObra == null)
             {
+                
                 return NotFound();
+
+
             }
 
             List<ObrasImagenesMetadata> listaImagenes = new ImagesService().GetImagenesByNoObra(id);
