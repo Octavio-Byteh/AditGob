@@ -15,8 +15,8 @@ namespace SmartBoard.Models
         public decimal? totalInversionMunicipal { get; set; }
 
         public int? Year { get; set; }
-
-        public string Region { get; set; }
+        
+                    public string Region { get; set; }
         public string Municipio { get; set; }
         public string NumeroDeObra { get; set; }
         public string NombreDeLaObra { get; set; }
@@ -109,7 +109,7 @@ namespace SmartBoard.Models
 
     public partial class TblPoadetalleViewModal
     {
-
+       
         public int Id { get; set; }
         public int IdProgramaoperativo { get; set; }
 
@@ -150,7 +150,7 @@ namespace SmartBoard.Models
     }
     public class PoaViewModal
     {
-
+      
         public int Id { get; set; }
 
         [Required(ErrorMessage = "El Tipo de programa es campo obligatorio")]
@@ -200,7 +200,7 @@ namespace SmartBoard.Models
 
 
         public List<TblPoadetalleViewModal> PoaDetalle { get; set; }
-
+        
 
     }
 
@@ -218,7 +218,7 @@ namespace SmartBoard.Models
         public string NombreTipoAdjudicacion { get; set; }
         public string NombreContratacion { get; set; }
         public string NombreTipoContrato { get; set; }
-
+        
         public string NombreGradoMarginal { get; set; }
     }
 
@@ -245,7 +245,7 @@ namespace SmartBoard.Models
         [Display(Name = "Contratacion")]
         public int? Idcontratacion { get; set; }
 
-
+        
         [Display(Name = "Adjudicación")]
         public int? IdtipoAdjudicacion { get; set; }
 
@@ -260,7 +260,7 @@ namespace SmartBoard.Models
         public int? Idgradomarginal { get; set; }
 
         public string Localidad { get; set; }
-
+       
 
         //[Required(ErrorMessage = "Entidad Ejecutora es campo obligatorio")]
         [Display(Name = "Entidad Ejecutora")]
@@ -292,7 +292,7 @@ namespace SmartBoard.Models
         //[Required(ErrorMessage = "Estrategia es campo obligatorio")]
         [Display(Name = "Estrategia")]
         public int? Idestrategia { get; set; }
-
+           
         //[Required(ErrorMessage = "Línea de Acción es campo obligatorio")]
         [Display(Name = "Línea de Acción")]
         public int? Idlineaaccion { get; set; }
@@ -300,19 +300,19 @@ namespace SmartBoard.Models
         [Display(Name = "Programado Inicio")]
         [DataType(DataType.Date)]
         public DateTime? EoPrograInicio { get; set; }
-
+        
         [Display(Name = "Programado Fin")]
         [DataType(DataType.Date)]
         public DateTime? EoPrograFin { get; set; }
-
+        
         [Display(Name = "Re Programado Inicio")]
         [DataType(DataType.Date)]
         public DateTime? EoReprograInicio { get; set; }
-
+        
         [Display(Name = "Re Programado Fin")]
         [DataType(DataType.Date)]
         public DateTime? EoReprograFin { get; set; }
-
+        
         [Display(Name = "Real Inicio")]
         [DataType(DataType.Date)]
         public DateTime? EoRealInicio { get; set; }
@@ -327,7 +327,7 @@ namespace SmartBoard.Models
 
         [Display(Name = "Proveedor Adjudicado")]
         public string ProveedorAdjudicado { get; set; }
-
+        
         [Display(Name = "Entidad Requiriente")]
         public string EntidadRequiriente { get; set; }
 
@@ -339,9 +339,9 @@ namespace SmartBoard.Models
         public int? IdEjercicio { get; set; }
 
         public int Id { get; set; }
-
+     
         public int? Idpoadetalle { get; set; }
-
+   
 
         [Required(ErrorMessage = "Región es campo obligatorio")]
         [Display(Name = "Región")]
@@ -390,7 +390,7 @@ namespace SmartBoard.Models
         //public decimal AvanceFinanciero { get; set; }
 
 
-        [Display(Name = "Objeto de contrato")]
+        [Display(Name = "Contrato")]
         public string Contrato { get; set; }
 
         [Display(Name = "Fecha Contrato Inicio")]
@@ -423,7 +423,7 @@ namespace SmartBoard.Models
         public int Id { get; set; }
 
         public int? Idpoadetalle { get; set; }
-
+      
         [Required(ErrorMessage = "Región es campo obligatorio")]
         [Display(Name = "Región")]
         public int? Idregion { get; set; }
@@ -438,7 +438,7 @@ namespace SmartBoard.Models
         [Display(Name = "Programa")]
         public int? Idprogsoc { get; set; }
 
-
+        
         [Display(Name = "Vertiente")]
         public int? Idvertiente { get; set; }
 
@@ -472,7 +472,7 @@ namespace SmartBoard.Models
 
 
 
-        [Display(Name = "Objeto de contrato")]
+        [Display(Name = "Contrato")]
         public string Contrato { get; set; }
 
         [Display(Name = "Fecha Contrato Inicio")]

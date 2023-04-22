@@ -45,8 +45,13 @@ namespace SmartBoard.Controllers
         }
 
         // GET: ObraPagos/Create
-        public IActionResult Create(int IdTblobra)
+        public IActionResult Create(int? IdTblobra)
         {
+            if (IdTblobra == null)
+            {
+                return NotFound();
+            }
+
             ViewData["IdTblobra"] = new SelectList(_context.TblObras, "Id", "Id", IdTblobra);
             ViewData["miIdObra"] = IdTblobra;
             return View();

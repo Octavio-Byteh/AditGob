@@ -1,11 +1,18 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.OleDb;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json.Linq;
 using SmartBoard.Data.Models.SmartBoard;
 using SmartBoard.Models;
 using SmartBoard.Services;
-using System.Data;
-using System.Data.OleDb;
 
 namespace SmartBoard.Controllers
 {
@@ -24,7 +31,7 @@ namespace SmartBoard.Controllers
 
         #region Archivos
 
-
+        
         public ActionResult MostrarFile(int IdDocObra, int IdDoc, int idObra, string fileName)
         {
             //Build the File Path.
@@ -32,7 +39,7 @@ namespace SmartBoard.Controllers
                       Directory.GetCurrentDirectory(),
                       "wwwroot", "img", "expediente", IdDocObra.ToString(), IdDoc.ToString());
 
-
+           
 
             //var docObra = _context.TblObradocumentoprocesos.Where(a => a.IdTblobra == idObra && a.Id == IdDoc).FirstOrDefault();
             //if (docObra != null)
@@ -134,14 +141,14 @@ namespace SmartBoard.Controllers
             return File(bytes, "application/octet-stream", fileName);
         }
 
-        public FileResult DownloadFileEstimacion(int IdDocObra, int IdDoc, int idObra, string fileName, bool factura)
+        public FileResult DownloadFileEstimacion(int IdDocObra, int IdDoc, int idObra, string fileName,bool factura)
         {
             //Build the File Path.
             var pathUpload = Path.Combine(
                       Directory.GetCurrentDirectory(),
                       "wwwroot", "img", "expediente", IdDocObra.ToString(), "estimacion", IdDoc.ToString(), (factura ? "factura" : "evidencia"));
 
-
+           
 
             var mypath = pathUpload;
 
@@ -181,7 +188,7 @@ namespace SmartBoard.Controllers
 
 
         [HttpPost]
-        public ActionResult BorrarArchivoFactura(int id, string file)
+        public ActionResult BorrarArchivoFactura(int id,string file)
         {
             var docsObra =
                             _context
@@ -192,7 +199,7 @@ namespace SmartBoard.Controllers
             {
                 docsObra.RutaArchivoFactura = "";
                 docsObra.NombreArchivoFactura = "";
-
+               
                 _context.Update(docsObra);
                 _context.SaveChangesAsync();
 
@@ -210,7 +217,7 @@ namespace SmartBoard.Controllers
                 catch (Exception)
                 {
                     return Json("0");
-                }
+                }              
 
                 return Json("1");
             }
@@ -258,7 +265,7 @@ namespace SmartBoard.Controllers
 
 
         [HttpPost]
-        public ActionResult BorrarArchivoName(int id, string file)
+        public ActionResult BorrarArchivoName(int id,string file)
         {
             var docsObra =
                             _context
@@ -291,7 +298,7 @@ namespace SmartBoard.Controllers
 
                     return Json("0");
                 }
-
+               
 
                 return Json("1");
             }
@@ -300,7 +307,7 @@ namespace SmartBoard.Controllers
 
 
         [HttpPost]
-        public ActionResult ObservacionArchivo(int id, string observacion)
+        public ActionResult ObservacionArchivo(int id,string observacion)
         {
             var docsObra =
                             _context
@@ -311,7 +318,7 @@ namespace SmartBoard.Controllers
             {
                 docsObra.Observaciones = observacion;
                 docsObra.Estatus = "red";
-
+                
                 _context.Update(docsObra);
                 _context.SaveChangesAsync();
 
@@ -321,7 +328,7 @@ namespace SmartBoard.Controllers
         }
 
 
-        [HttpPost]
+         [HttpPost]
         public ActionResult guardarAprobacion(int id)
         {
             var docsObra =
@@ -581,16 +588,15 @@ namespace SmartBoard.Controllers
                                         //_precio = (decimal)row[3]; //(row.Field<decimal>(3));
                                         //_cantidad = (int)row[4];  //(row.Field<decimal>(4));
                                         //_importe = (decimal)row[5];  //(row.Field<decimal>(5));
-                                    }
-                                    catch (Exception ex)
+                                    } catch(Exception ex)
                                     {
 
                                     }
 
                                     // Buscamos por clave
                                     var lista = _context.TblObraconceptos.Where(
-                                        a =>
-                                        a.IdTblobra == IdObra &&
+                                        a => 
+                                        a.IdTblobra == IdObra && 
                                         a.Idtipoconcepto == IdTipo &&
                                         a.Clave.Trim().Equals(_clave)
                                         ).ToList();
@@ -640,7 +646,7 @@ namespace SmartBoard.Controllers
                                             PrecioUnitario = _precio,
                                             Cantidad = _cantidad,
                                             Importe = _importe,
-                                            Activo = true,
+                                            Activo   = true,
                                             Fecha = DateTime.Now,
 
                                         };
@@ -701,7 +707,7 @@ namespace SmartBoard.Controllers
 
                 var pathUpload = Path.Combine(
                       Directory.GetCurrentDirectory(),
-                      "wwwroot", "img", "expediente", IdDocObra.ToString(), "estimacion", IdDoc.ToString(), "factura");
+                      "wwwroot", "img", "expediente", IdDocObra.ToString(),"estimacion", IdDoc.ToString(), "factura");
 
                 if (!Directory.Exists(pathUpload))
                 {
@@ -954,8 +960,8 @@ namespace SmartBoard.Controllers
 
 
         }
-
-
+        
+        
         #endregion
 
         #region Jsons
@@ -1025,17 +1031,17 @@ namespace SmartBoard.Controllers
 
         public JsonResult FetchGradoMarginacion()
         {
-            return Json(new SelectList(_context.CatGradomarginals.Where(a => a.Activo == true), "Id", "Nombre"));
+            return Json(new SelectList(_context.CatGradomarginals.Where(a => a.Activo==true), "Id", "Nombre"));
         }
-
+        
         public JsonResult FetchNormativaAplicable()
         {
-            return Json(new SelectList(_context.CatNormativaAplicables.Where(a => a.Activo == true), "Id", "Nombre"));
-        }
-
+            return Json(new SelectList(_context.CatNormativaAplicables.Where(a => a.Activo==true), "Id", "Nombre"));
+        } 
+        
         public JsonResult FetchModalidadEjecucion()
         {
-            return Json(new SelectList(_context.CatModalidadEjecucions.Where(a => a.Activo == true), "Id", "Nombre"));
+            return Json(new SelectList(_context.CatModalidadEjecucions.Where(a => a.Activo==true), "Id", "Nombre"));
         }
 
         public JsonResult FetchAdjudicacionByNormativa(int idnormativa, int idtipoobra)
@@ -1050,11 +1056,11 @@ namespace SmartBoard.Controllers
             }
             else if (idnormativa == 0)
             {
-                return Json(new SelectList(_context.CatTipoAdjudicacions.Where(a => a.Idtipoobra == idtipoobra && a.Activo == true && a.Id == 0), "Id", "Nombre"));
+                return Json(new SelectList(_context.CatTipoAdjudicacions.Where(a => a.Idtipoobra == idtipoobra &&  a.Activo == true && a.Id == 0), "Id", "Nombre"));
             }
             else
             {
-                return Json(new SelectList(_context.CatTipoAdjudicacions.Where(a => a.Idtipoobra == idtipoobra && a.Activo == true), "Id", "Nombre"));
+                return Json(new SelectList(_context.CatTipoAdjudicacions.Where(a => a.Idtipoobra == idtipoobra &&  a.Activo == true), "Id", "Nombre"));
             }
             //return Json(new SelectList(_context.CatLocalidads.Where(a => a.Idmunicipio == idnormativa), "Id", "Clave"));
         }
@@ -1180,13 +1186,13 @@ namespace SmartBoard.Controllers
                         path = item.path
                     });
                 }
-
+                
             }
 
 
             return View(lista2);
         }
-        public async Task<IActionResult> getArchivosEVFactura(int iddoc)
+          public async Task<IActionResult> getArchivosEVFactura(int iddoc)
         {
             var lista = await _context.TblObraEstimacions
                 .Where(a => a.Id == iddoc)
@@ -1201,7 +1207,7 @@ namespace SmartBoard.Controllers
                 {
                     var listFiles =
                     (
-                     new ImagesService().GetEstimacionesDocs(item.idObra, item.id, true)
+                     new ImagesService().GetEstimacionesDocs(item.idObra, item.id,true)
                     );
                     foreach (var itemFile in listFiles)
                     {
@@ -1224,13 +1230,13 @@ namespace SmartBoard.Controllers
                         path = item.path
                     });
                 }
-
+                
             }
 
 
             return View(lista2);
         }
-        public async Task<IActionResult> getArchivosEvidencia(int iddoc)
+           public async Task<IActionResult> getArchivosEvidencia(int iddoc)
         {
             var lista = await _context.TblObraEstimacions
                 .Where(a => a.Id == iddoc)
@@ -1245,7 +1251,7 @@ namespace SmartBoard.Controllers
                 {
                     var listFiles =
                     (
-                     new ImagesService().GetEstimacionesDocs(item.idObra, item.id, false)
+                     new ImagesService().GetEstimacionesDocs(item.idObra, item.id,false)
                     );
                     foreach (var itemFile in listFiles)
                     {
@@ -1268,20 +1274,20 @@ namespace SmartBoard.Controllers
                         path = item.path
                     });
                 }
-
+                
             }
 
 
             return View(lista2);
         }
 
-
+       
 
         public List<ExpedienteViewModalDetalle> getObras()
         {
             List<ExpedienteViewModalDetalle> lista = new List<ExpedienteViewModalDetalle>();
 
-
+           
             lista = _context.TblObras
                 .Select(a =>
                 new ExpedienteViewModalDetalle()
@@ -1291,18 +1297,18 @@ namespace SmartBoard.Controllers
 
                     folio = a.Numeroobraexterno,
                     year = a.Year,
-                    NombreZap = a.IdzapNavigation.Nombre,
-                    NombreMunicipio = a.IdmunicipioNavigation.Municipio,
-                    NombreModalidadEjecucion = a.IdmodalidadEjecicionNavigation.Nombre,
-                    NombreTipoAdjudicacion = a.IdtipoAdjudicacionNavigation.Nombre,
-                    NombreContratacion = a.IdcontratacionNavigation.Nombre,
-                    NombreTipoContrato = a.IdtipoContratoNavigation.Nombre,
+                         NombreZap = a.IdzapNavigation.Nombre ,
+         NombreMunicipio = a.IdmunicipioNavigation.Municipio ,
+         NombreModalidadEjecucion = a.IdmodalidadEjecicionNavigation.Nombre,
+         NombreTipoAdjudicacion = a.IdtipoAdjudicacionNavigation.Nombre,
+         NombreContratacion = a.IdcontratacionNavigation.Nombre ,
+         NombreTipoContrato =  a.IdtipoContratoNavigation.Nombre,
 
-                    NombreGradoMarginal = a.IdgradomarginalNavigation.Nombre,
+         NombreGradoMarginal = a.IdgradomarginalNavigation.Nombre ,
 
-                    Idmunicipio = a.Idmunicipio ?? 0,
+        Idmunicipio = a.Idmunicipio ?? 0,
                     Idregion = a.IdmunicipioNavigation.Idregion,
-                    Region = a.IdmunicipioNavigation.Region,
+                    Region = a.IdmunicipioNavigation.Region, 
                     Coordenadax = a.Coordenadax,
                     Coordenaday = a.Coordenaday,
                     Nombreobra = a.Nombreobra,
@@ -1495,7 +1501,7 @@ namespace SmartBoard.Controllers
                         Unidad = b.Unidad
                     }).ToList()
 
-                })
+                })                
                 .ToList();
 
             return lista;
@@ -1505,7 +1511,7 @@ namespace SmartBoard.Controllers
         public IActionResult Index(int IdtipoObra)
         {
             ViewData["MyIdtipoObra"] = IdtipoObra;
-            var smartBoardContext = getObras().Where(a => a.IdtipoObra == IdtipoObra);
+            var smartBoardContext = getObras().Where(a => a.IdtipoObra == IdtipoObra) ;
             return View(smartBoardContext.ToList());
         }
 
@@ -1559,7 +1565,7 @@ namespace SmartBoard.Controllers
             ViewData["Idgradomarginal"] = grados(null);
             ViewData["Idzap"] = zap(null);
             ViewData["IdnormativaAplicable"] = normativa(null);
-            ViewData["IdmodalidadEjecicion"] = modelidadejecucion((IdtipoObra == 2 ? 1 : null));
+            ViewData["IdmodalidadEjecicion"] = modelidadejecucion((IdtipoObra == 2 ? 1 :null));
             ViewData["Idcontratacion"] = contratacion(null);
             ViewData["IdtipoAdjudicacion"] = adjudicacion(null);
             ViewData["IdtipoContrato"] = tipoContrato(null, IdtipoObra.Value);
@@ -1576,7 +1582,7 @@ namespace SmartBoard.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateExpediente(ExpedienteViewModal Obra)
         {
-
+            
             if (ModelState.IsValid)
             {
 
@@ -1628,7 +1634,7 @@ namespace SmartBoard.Controllers
                 var listaPlantillas =
                     _context
                     .CatChecklists
-                    .Where(a =>
+                    .Where(a => 
                     a.Idtipoobra == Obra.IdtipoObra &&
                     a.IdcategoriachecklistNavigation.Nombre.Contains(categoriaCheck) &&
                     a.IdtipochecklistNavigation.Nombre.ToUpper().Contains(tipo)
@@ -1687,7 +1693,7 @@ namespace SmartBoard.Controllers
                         //Numero = 
 
                     }).OrderBy(a => a.Numero).ToList();
-
+                
                 int numberYear;
                 string StringYear = _context.CatEjercicios.Where(a => a.Id == Obra.IdEjercicio).FirstOrDefault().Nombre;
 
@@ -1695,7 +1701,7 @@ namespace SmartBoard.Controllers
 
                 TblObra expediente = new TblObra()
                 {
-
+                    
                     Numeroobra = int.Parse(DateTime.Now.Ticks.ToString().Substring(1, 5)),
                     Numeroobraexterno = Obra.folio,
                     Nombreobra = Obra.Nombreobra,
@@ -1711,8 +1717,8 @@ namespace SmartBoard.Controllers
                     Region = _context.CatMunicipios.Where(a => a.Id == Obra.Idmunicipio).FirstOrDefault().Region,
                     Fecharegistro = DateTime.Now,
                     Year = success ? numberYear : DateTime.Now.Year,
-
-
+                    
+                    
 
                 };
 
@@ -1764,8 +1770,8 @@ namespace SmartBoard.Controllers
 
             ViewData["MyIdtipoObra"] = Obra.IdtipoObra;
 
-            ViewData["Ideje"] = new SelectList(_context.CatEjes, "Id", "Nombre", Obra.Ideje);
-            ViewData["Idestrategia"] = new SelectList(_context.CatEstrategia, "Id", "Nombre", Obra.Idestrategia);
+            ViewData["Ideje"] = new SelectList(_context.CatEjes, "Id", "Nombre",Obra.Ideje);
+            ViewData["Idestrategia"] = new SelectList(_context.CatEstrategia, "Id", "Nombre",Obra.Idestrategia);
             ViewData["Idlineaaccion"] = new SelectList(_context.CatLineaaccions, "Id", "Nombre", Obra.Idlineaaccion);
 
             ViewData["Idregion"] = new SelectList(_context.CatRegions, "Id", "Nombre", Obra.Idregion);
@@ -1779,7 +1785,7 @@ namespace SmartBoard.Controllers
             ViewData["IdmodalidadEjecicion"] = modelidadejecucion((Obra.IdtipoObra == 2 ? 1 : Obra.IdmodalidadEjecicion));
             ViewData["Idcontratacion"] = contratacion(Obra.Idcontratacion);
             ViewData["IdtipoAdjudicacion"] = adjudicacion(Obra.IdtipoAdjudicacion);
-            ViewData["IdtipoContrato"] = tipoContrato(Obra.IdtipoContrato, Obra.IdtipoObra);
+            ViewData["IdtipoContrato"] = tipoContrato(Obra.IdtipoContrato,Obra.IdtipoObra);
 
             ViewData["IdEjercicio"] = new SelectList(_context.CatEjercicios, "Id", "Nombre", Obra.IdEjercicio);
 
@@ -1794,16 +1800,15 @@ namespace SmartBoard.Controllers
                 return NotFound();
             }
 
-
+           
 
             var tblObra = await _context.TblObras
                 .Select(a =>
                 new ExpedienteViewModalDetalle()
                 {
                     Id = a.Id,
-
                     Coordenadas = string.Concat(a.Coordenadax, ",", a.Coordenaday),
-
+                    
                     folio = a.Numeroobraexterno,
                     year = a.Year,
                     //Idvertiente = a.Idvertiente,
@@ -1836,12 +1841,12 @@ namespace SmartBoard.Controllers
                     Porcentajeavance = a.Porcentajeavance,
                     AvanceFinanciero = a.AvanceFinanciero,
                     Localidad = a.Localidad,
-                    Ideje = a.Ideje,
+                    Ideje =a.Ideje,
                     Idestrategia = a.Idestrategia,
                     Idlineaaccion = a.Idlineaacion,
                     EoPrograInicio = a.EoPrograInicio,
                     EoRealFin = a.EoPrograFin,
-                    EoPrograFin = a.EoPrograFin,
+                    EoPrograFin= a.EoPrograFin,
                     EoRealInicio = a.EoRealInicio,
                     EoReprograFin = a.EoReprograFin,
                     EoReprograInicio = a.EoReprograInicio,
@@ -1853,7 +1858,7 @@ namespace SmartBoard.Controllers
                     FechaContrataModificada = a.FechaContrataModificada,
                     FechaContrataFinal = a.FechaContrataFinal,
                     FechaContrataInicio = a.FechaContrataInicio,
-
+                    
 
 
                     checklist = a.TblObrachecklists.Select(b => new ExpedientePlantillaViewModel()
@@ -1906,7 +1911,7 @@ namespace SmartBoard.Controllers
                         ArchivoPermite = b.ArchivoPermite ?? false,
                         Secuencia = b.Secuencia ?? 1,
                         HexColor = b.HexColor,
-
+                        
 
                     }).OrderBy(c => c.Numero).ToList(),
                     pagos = a.TblObraPagos.Select(b => new PagosViewModal()
@@ -1921,16 +1926,15 @@ namespace SmartBoard.Controllers
                         NombreArchivoEvidencia = b.NombreArchivoEvidencia,
                         NombreArchivoFactura = b.NombreArchivoFactura,
                         Numero = b.Numero,
-                        NumFactura = b.NumFactura,
+                        NumFactura= b.NumFactura,
                         OrdenPago = b.OrdenPago,
                         Pago = b.Pago,
                         Registro = b.Registro,
                         RutaArchivoEvidencia = b.RutaArchivoEvidencia,
                         RutaArchivoFactura = b.RutaArchivoFactura,
-                        SolicitudPago = b.SolicitudPago
+                        SolicitudPago = b.SolicitudPago                        
                     }).ToList(),
-                    recursos = a.TblObraRecursos.Select(b => new RecursosViewModal()
-                    {
+                    recursos = a.TblObraRecursos.Select(b => new RecursosViewModal() {
                         Id = b.Id,
                         IdTblobra = b.IdTblobra,
                         Activo = b.Activo,
@@ -2015,13 +2019,10 @@ namespace SmartBoard.Controllers
                 .FirstOrDefaultAsync();
 
 
-
+           
             if (tblObra == null)
             {
-                
                 return NotFound();
-
-
             }
 
             List<ObrasImagenesMetadata> listaImagenes = new ImagesService().GetImagenesByNoObra(id);
@@ -2034,7 +2035,7 @@ namespace SmartBoard.Controllers
             ViewData["Idestrategia"] = new SelectList(_context.CatEstrategia.Where(a => a.Ideje == tblObra.Ideje), "Id", "Nombre", tblObra.Idestrategia);
             ViewData["Idlineaaccion"] = new SelectList(_context.CatLineaaccions.Where(a => a.Idestrategia == tblObra.Idestrategia), "Id", "Nombre", tblObra.Idlineaaccion);
 
-
+            
             ViewData["Idejecutor"] = new SelectList(_context.CatEjecutors, "Id", "Nombre", tblObra.Idejecutor);
             ViewData["Idregion"] = new SelectList(_context.CatRegions, "Id", "Nombre", tblObra.Idregion);
             ViewData["Idmunicipio"] = new SelectList(_context.CatMunicipios, "Id", "Municipio", tblObra.Idmunicipio);
@@ -2045,14 +2046,14 @@ namespace SmartBoard.Controllers
             ViewData["IdmodalidadEjecicion"] = modelidadejecucion(tblObra.IdmodalidadEjecicion);
             ViewData["Idcontratacion"] = contratacion(tblObra.Idcontratacion);
             ViewData["IdtipoAdjudicacion"] = adjudicacion(tblObra.IdtipoAdjudicacion);
-            ViewData["IdtipoContrato"] = tipoContrato(tblObra.IdtipoContrato, tblObra.IdtipoObra);
+            ViewData["IdtipoContrato"] = tipoContrato(tblObra.IdtipoContrato,tblObra.IdtipoObra);
 
             var ejercicio = _context.CatEjercicios.Where(a => a.Nombre.Equals(tblObra.year.ToString())).FirstOrDefault();
             if (ejercicio != null)
             {
                 tblObra.IdEjercicio = ejercicio.Id;
             }
-
+            
 
             ViewData["IdEjercicio"] = new SelectList(_context.CatEjercicios, "Id", "Nombre", tblObra.IdEjercicio);
 
@@ -2136,7 +2137,7 @@ namespace SmartBoard.Controllers
                                         b.Estitulo = chk.Estitulo;
                                         b.Fecharegistro = DateTime.Now;
                                         b.Activo = chk.Activo;
-                                        b.Estatus = !chk.Activo ? "gray" : (!string.IsNullOrWhiteSpace(b.Rutaarchivo) ? "yellow" : "red");
+                                        b.Estatus = !chk.Activo ? "gray" :  (!string.IsNullOrWhiteSpace(b.Rutaarchivo) ? "yellow":"red");
                                     }
                                 });
                             }
@@ -2145,8 +2146,7 @@ namespace SmartBoard.Controllers
 
                     if (Obra.documentoproceso != null)
                     {
-                        if (Obra.documentoproceso.Count > 0)
-                        {
+                        if (Obra.documentoproceso.Count > 0) {
                             foreach (var dp in Obra.documentoproceso)
                             {
                                 documentos.ForEach(b =>
@@ -2163,7 +2163,7 @@ namespace SmartBoard.Controllers
                                 });
                             }
                         }
-
+                        
                     }
 
                     int numberYear;
@@ -2189,7 +2189,7 @@ namespace SmartBoard.Controllers
                     expediente.Ideje = Obra.Ideje;
                     expediente.Idestrategia = Obra.Idestrategia;
                     expediente.Idlineaacion = Obra.Idlineaaccion;
-
+                    
                     expediente.EoPrograInicio = Obra.EoPrograInicio;
                     expediente.EoPrograFin = Obra.EoPrograFin;
                     expediente.EoReprograInicio = Obra.EoReprograInicio;
@@ -2257,7 +2257,7 @@ namespace SmartBoard.Controllers
             ViewData["Idlineaaccion"] = new SelectList(_context.CatLineaaccions.Where(a => a.Idestrategia == Obra.Idestrategia), "Id", "Nombre", Obra.Idlineaaccion);
 
             ViewData["Idregion"] = new SelectList(_context.CatRegions, "Id", "Nombre", Obra.Idregion);
-            ViewData["Idejecutor"] = new SelectList(_context.CatEjecutors, "Id", "Nombre", Obra.Idejecutor);
+            ViewData["Idejecutor"] = new SelectList(_context.CatEjecutors, "Id", "Nombre",Obra.Idejecutor);
             ViewData["Idmunicipio"] = new SelectList(_context.CatMunicipios, "Id", "Municipio", Obra.Idmunicipio);
 
             ViewData["Idgradomarginal"] = grados(Obra.Idgradomarginal);
@@ -2284,8 +2284,8 @@ namespace SmartBoard.Controllers
             return View();
         }
 
-
-
+        
+      
 
         private bool TblObraExists(int id)
         {
