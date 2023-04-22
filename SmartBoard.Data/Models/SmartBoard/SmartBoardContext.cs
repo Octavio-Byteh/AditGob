@@ -1188,11 +1188,6 @@ namespace SmartBoard.Data.Models.SmartBoard
                     .IsUnicode(false)
                     .HasColumnName("contratistaNombre");
 
-                entity.Property(e => e.Contrato)
-                    .HasMaxLength(500)
-                    .IsUnicode(false)
-                    .HasColumnName("contrato");
-
                 entity.Property(e => e.Coordenadax)
                     .HasMaxLength(255)
                     .HasColumnName("coordenadax");
@@ -1241,18 +1236,6 @@ namespace SmartBoard.Data.Models.SmartBoard
                     .HasMaxLength(250)
                     .IsUnicode(false)
                     .HasColumnName("expediente");
-
-                entity.Property(e => e.FechaContrataFinal)
-                    .HasColumnType("datetime")
-                    .HasColumnName("fecha_contrata_final");
-
-                entity.Property(e => e.FechaContrataInicio)
-                    .HasColumnType("datetime")
-                    .HasColumnName("fecha_contrata_inicio");
-
-                entity.Property(e => e.FechaContrataModificada)
-                    .HasColumnType("datetime")
-                    .HasColumnName("fecha_contrata_modificada");
 
                 entity.Property(e => e.Fechainicio)
                     .HasColumnType("datetime")
