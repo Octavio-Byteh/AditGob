@@ -79,11 +79,11 @@
                 </div>*@
         @if (Settings.Features.ChatInterface)
         {
-            <a href="#" class="header-icon" data-toggle="modal" data-target=".js-modal-messenger">
+            @*<a href="#" class="header-icon" data-toggle="modal" data-target=".js-modal-messenger">
                 <i class="@(Settings.Theme.IconPrefix) fa-globe"></i>
                 <span class="badge badge-icon">!</span>
-            </a>}
-        <div>
+            </a>*@}
+        @*<div>
             <a href="#" class="header-icon" data-toggle="dropdown" title="Tienes 11 notificationes">
                 <i class="@(Settings.Theme.IconPrefix) fa-bell"></i>
                 <span class="badge badge-icon">11</span>
@@ -91,11 +91,11 @@
             <div class="dropdown-menu dropdown-menu-animated dropdown-xl">
                 <partial name="_DropdownNotification" />
             </div>
-        </div>
+        </div>*@
         <div>
-            <a href="#" data-toggle="dropdown" title="@(Settings.Theme.Email)" class="header-icon d-flex align-items-center justify-content-center ml-2">
+            @*<a href="#" data-toggle="dropdown" title="@(Settings.Theme.Email)" class="header-icon d-flex align-items-center justify-content-center ml-2">
                 <img src="~/img/demo/avatars/@(Settings.Theme.Avatar)" class="profile-image rounded-circle" alt="@(Settings.Theme.User)">
-            </a>
+            </a>*@
             <div class="dropdown-menu dropdown-menu-animated dropdown-lg">
                 <partial name="_DropdownMenu" />
             </div>

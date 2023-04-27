@@ -284,9 +284,10 @@ RESULT:
 
 */
 .page-logo, .page-sidebar, .nav-footer, .bg-brand-gradient {
-  background-image: -webkit-gradient(linear, right top, left top, from(rgba(51, 211, 225, 0.18)), to(transparent));
-  background-image: linear-gradient(270deg, rgba(51, 211, 225, 0.18), transparent);
-  background-color: #318c38; }
+    background-image: -webkit-gradient(linear, right top, left top, from(rgba(51, 211, 225, 0.18)), to(transparent));
+    background-image: linear-gradient(270deg, rgba(51, 211, 225, 0.18), transparent);
+    background-color: #542772;
+}
 
 /*
 %shadow-hover {
@@ -352,9 +353,10 @@ RESULT:
 /* html and body base styles */
 html body {
   background-color: #fff; }
-  html body a {
-    color: #55ce5f;
-    background-color: transparent; }
+    html body a {
+        color: #A21A5C;
+        background-color: transparent;
+    }
     html body a:hover {
       color: #69d472; }
 
@@ -433,37 +435,44 @@ html body {
 
 .nav-menu li.active {
   /* arrow that appears next to active/selected items */ }
-  .nav-menu li.active > a {
-    color: white;
-    background-color: rgba(255, 255, 255, 0.04);
-    -webkit-box-shadow: inset 3px 0 0 #55ce5f;
-            box-shadow: inset 3px 0 0 #55ce5f; }
+    .nav-menu li.active > a {
+        color: white;
+      /*  background-color: rgba(255, 255, 255, 0.04);*/
+      background-color:#A21A5C;
+        -webkit-box-shadow: inset 3px 0 0 #A21A5C;
+        box-shadow: inset 3px 0 0 #A21A5C;
+    }
     .nav-menu li.active > a:hover > [class*='fa-'],
     .nav-menu li.active > a:hover > .ni {
-      color: #96c099; }
+        color: #fff;
+    }
   .nav-menu li.active > ul {
     display: block; }
   .nav-menu li.active:not(.open) > a:before {
-    color: #24b3a4; }
+    color: #fff; }
 
 .nav-menu li a {
-  color: #a4dfa9; }
+  color: #fff; }
   .nav-menu li a .dl-ref.label {
     color: rgba(255, 255, 255, 0.7); }
   .nav-menu li a > [class*='fa-'],
   .nav-menu li a > .ni {
-    color: #59c562; }
+    color: #fff; }
   .nav-menu li a.collapsed .nav-menu-btn-sub-collapse {
     -webkit-transform: rotate(180deg);
     transform: rotate(180deg); }
-  .nav-menu li a:hover {
-    color: white;
-    background-color: rgba(0, 0, 0, 0.1); }
+    .nav-menu li a:hover {
+        color: white;
+        /*  background-color: rgba(0, 0, 0, 0.1); */
+        background-color: #A21A5C;
+    }
     .nav-menu li a:hover .badge {
       color: #fff; }
     .nav-menu li a:hover > [class*='fa-'],
     .nav-menu li a:hover > .ni {
-      color: #96c099; }
+        color: #fff;
+        
+    }
     .nav-menu li a:hover > .badge {
       -webkit-box-shadow: 0 0 0 1px rgba(59, 170, 69, 0.8);
               box-shadow: 0 0 0 1px rgba(59, 170, 69, 0.8);
@@ -474,21 +483,23 @@ html body {
       color: #fff; }
 
 .nav-menu li b.collapse-sign {
-  color: #69d472; }
+  color: #fff; }
 
 .nav-menu li > ul {
   background-color: rgba(0, 0, 0, 0.1); }
   .nav-menu li > ul li a {
-    color: #92d997; }
+    color: #fff !important; }
     .nav-menu li > ul li a > [class*='fa-'],
     .nav-menu li > ul li a > .ni {
-      color: #59c562; }
+      color: #fff !important; }
     .nav-menu li > ul li a > .badge {
       color: #fff;
       background-color: #c139fd; }
     .nav-menu li > ul li a:hover {
-      color: white;
-      background-color: rgba(0, 0, 0, 0.1); }
+        color: white;
+        /* background-color: rgba(0, 0, 0, 0.1);*/
+        background-color: #A21A5C;
+    }
       .nav-menu li > ul li a:hover > .nav-link-text > [class*='fa-'],
       .nav-menu li > ul li a:hover > .nav-link-text > .ni {
         color: #96c099; }
@@ -1361,9 +1372,9 @@ code {
 .mod-nav-link:not(.nav-function-top):not(.nav-function-minify):not(.mod-hide-nav-icons) ul.nav-menu:not(.nav-menu-compact) > li > ul {
   /* addressing all second, third children */ }
   .mod-nav-link:not(.nav-function-top):not(.nav-function-minify):not(.mod-hide-nav-icons) ul.nav-menu:not(.nav-menu-compact) > li > ul:before {
-    border-left: 1px solid #369b3f; }
+    border-left: 1px solid #fff; }
   .mod-nav-link:not(.nav-function-top):not(.nav-function-minify):not(.mod-hide-nav-icons) ul.nav-menu:not(.nav-menu-compact) > li > ul > li a:after {
-    background-color: #59c562; }
+    background-color: #fff; }
 
 .bg-primary-50 {
   background-color: #b8ebbc;
@@ -2997,7 +3008,8 @@ table.dataTable tbody > tr > .selected {
   border-top-color: #21e2f3; }
 
 body:not(.mod-pace-custom) .pace .pace-progress {
-  background: #55ce5f; }
+    background: #542772;
+}
 
 .mod-pace-custom .pace {
   background: #fff; }
