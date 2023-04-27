@@ -32,7 +32,7 @@
                     Agregar Recursos / Contratos
                 </label>
             </a>
-            <h1 center> @(contratoAbierto ==  true ? "Contrato Abierto" : "Contrato") </h1>
+            <h1 center> @(contratoAbierto ==  true ? "Recursos Abiertos" : "Recursos") </h1>
         </div>
     </div>
 
@@ -80,7 +80,7 @@
                     {
                             <td> @item.ClasificadorN1 <br> @item.ClasificadorN2 <br> @item.ClasificadorN3 </td>
                     }
-                        <td>@item.Autorizados</td>
+                        <td>@item.Autorizados.ToString("C2")</td>
                         @if (contratoAbierto == true)
                         {
 
