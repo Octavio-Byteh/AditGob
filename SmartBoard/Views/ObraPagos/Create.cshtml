@@ -49,12 +49,14 @@
             </div>
             <div class="form-group">
                 <label asp-for="SolicitudPago" class="control-label">Solicitud Pago</label>
-                <input asp-for="SolicitudPago" required class="form-control" />
+                @*<input asp-for="SolicitudPago" required class="form-control" />*@
+                <input type="button" value="Subir" class="btn btn-primary" />
                 <span asp-validation-for="SolicitudPago" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="OrdenPago" class="control-label">Orden Pago</label>
-                <input asp-for="OrdenPago" required class="form-control" />
+               @* <input asp-for="OrdenPago" required class="form-control" />*@
+                <input type="button" value="Subir" class="btn btn-primary" />
                 <span asp-validation-for="OrdenPago" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -64,7 +66,8 @@
             </div>
             <div class="form-group">
                 <label asp-for="Pago" class="control-label"></label>
-                <input asp-for="Pago" required class="form-control" />
+               @* <input asp-for="Pago" required class="form-control" />*@
+                <input type="button" value="Subir" class="btn btn-primary" />
                 <span asp-validation-for="Pago" class="text-danger"></span>
             </div>
             <div class="form-group">
