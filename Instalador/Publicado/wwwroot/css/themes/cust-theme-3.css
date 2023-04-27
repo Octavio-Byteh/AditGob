@@ -284,9 +284,10 @@ RESULT:
 
 */
 .page-logo, .page-sidebar, .nav-footer, .bg-brand-gradient {
-  background-image: -webkit-gradient(linear, right top, left top, from(rgba(51, 148, 225, 0.18)), to(transparent));
-  background-image: linear-gradient(270deg, rgba(51, 148, 225, 0.18), transparent);
-  background-color: #2b4c81; }
+    background-image: -webkit-gradient(linear, right top, left top, from(rgba(51, 148, 225, 0.18)), to(transparent));
+    background-image: linear-gradient(270deg, rgba(51, 148, 225, 0.18), transparent);
+    background-color: #542772;
+}
 
 /*
 %shadow-hover {
@@ -352,9 +353,10 @@ RESULT:
 /* html and body base styles */
 html body {
   background-color: #fff; }
-  html body a {
-    color: #4679cc;
-    background-color: transparent; }
+    html body a {
+        color: #A21A5C;
+        background-color: transparent;
+    }
     html body a:hover {
       color: #5a87d2; }
 
@@ -433,37 +435,39 @@ html body {
 
 .nav-menu li.active {
   /* arrow that appears next to active/selected items */ }
-  .nav-menu li.active > a {
-    color: white;
-    background-color: rgba(255, 255, 255, 0.04);
-    -webkit-box-shadow: inset 3px 0 0 #4679cc;
-            box-shadow: inset 3px 0 0 #4679cc; }
+    .nav-menu li.active > a {
+        color: white;
+        background-color: #A21A5C !important;
+        -webkit-box-shadow: inset 3px 0 0 #A21A5C !important;
+        box-shadow: inset 3px 0 0 #A21A5C !important;
+    }
     .nav-menu li.active > a:hover > [class*='fa-'],
     .nav-menu li.active > a:hover > .ni {
-      color: #8a9dbb; }
+      color: #fff; }
   .nav-menu li.active > ul {
     display: block; }
   .nav-menu li.active:not(.open) > a:before {
     color: #24b3a4; }
 
 .nav-menu li a {
-  color: #97b1dc; }
+  color:#fff ; }
   .nav-menu li a .dl-ref.label {
     color: rgba(255, 255, 255, 0.7); }
   .nav-menu li a > [class*='fa-'],
   .nav-menu li a > .ni {
-    color: #4a78c2; }
+    color: #fff; }
   .nav-menu li a.collapsed .nav-menu-btn-sub-collapse {
     -webkit-transform: rotate(180deg);
     transform: rotate(180deg); }
-  .nav-menu li a:hover {
-    color: white;
-    background-color: rgba(0, 0, 0, 0.1); }
+    .nav-menu li a:hover {
+        color: white;
+        background-color: #A21A5C;
+    }
     .nav-menu li a:hover .badge {
       color: #fff; }
     .nav-menu li a:hover > [class*='fa-'],
     .nav-menu li a:hover > .ni {
-      color: #8a9dbb; }
+      color: #fff !important; }
     .nav-menu li a:hover > .badge {
       -webkit-box-shadow: 0 0 0 1px rgba(53, 94, 159, 0.8);
               box-shadow: 0 0 0 1px rgba(53, 94, 159, 0.8);
@@ -474,21 +478,22 @@ html body {
       color: #fff; }
 
 .nav-menu li b.collapse-sign {
-  color: #5a87d2; }
+  color: #fff; }
 
 .nav-menu li > ul {
   background-color: rgba(0, 0, 0, 0.1); }
   .nav-menu li > ul li a {
-    color: #84a3d6; }
+    color: #fff !important; }
     .nav-menu li > ul li a > [class*='fa-'],
     .nav-menu li > ul li a > .ni {
-      color: #4a78c2; }
+      color: #fff !important; }
     .nav-menu li > ul li a > .badge {
       color: #fff;
       background-color: #fd3995; }
     .nav-menu li > ul li a:hover {
-      color: white;
-      background-color: rgba(0, 0, 0, 0.1); }
+        color: white;
+        background-color: #A21A5C;
+    }
       .nav-menu li > ul li a:hover > .nav-link-text > [class*='fa-'],
       .nav-menu li > ul li a:hover > .nav-link-text > .ni {
         color: #8a9dbb; }
@@ -645,7 +650,11 @@ html body {
         color: #8a9dbb; } }
 
 .page-content-wrapper {
-  background-color: #edf2f9; }
+    background-image: url(https://transparencia.tlaxcala.gob.mx/templates/rt_reiko/images/backgrounds/body/img-01.svg);
+    background-position:center;
+    background-repeat:no-repeat;
+    background-size:cover
+}
 
 .subheader-icon {
   color: #8a9dbb; }
@@ -1361,9 +1370,9 @@ code {
 .mod-nav-link:not(.nav-function-top):not(.nav-function-minify):not(.mod-hide-nav-icons) ul.nav-menu:not(.nav-menu-compact) > li > ul {
   /* addressing all second, third children */ }
   .mod-nav-link:not(.nav-function-top):not(.nav-function-minify):not(.mod-hide-nav-icons) ul.nav-menu:not(.nav-menu-compact) > li > ul:before {
-    border-left: 1px solid #305590; }
+    border-left: 1px solid #fff; }
   .mod-nav-link:not(.nav-function-top):not(.nav-function-minify):not(.mod-hide-nav-icons) ul.nav-menu:not(.nav-menu-compact) > li > ul > li a:after {
-    background-color: #4a78c2; }
+    background-color: #fff; }
 
 .bg-primary-50 {
   background-color: #aac1e8;
