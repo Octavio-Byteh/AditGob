@@ -355,9 +355,10 @@ RESULT:
 
 */
 .page-logo, .page-sidebar, .nav-footer, .bg-brand-gradient {
-  background-image: -webkit-gradient(linear, left top, right top, from(rgba(51, 148, 225, 0.18)), to(transparent));
-  background-image: linear-gradient(-270deg, rgba(51, 148, 225, 0.18), transparent);
-  background-color: #584475; }
+   /* background-image: -webkit-gradient(linear, left top, right top, from(rgba(51, 148, 225, 0.18)), to(transparent));
+    background-image: linear-gradient(-270deg, rgba(51, 148, 225, 0.18), transparent);*/
+    background-color: #542772;
+}
 
 /*
 %shadow-hover {
