@@ -57,7 +57,7 @@ namespace SmartBoard.Controllers
             }
             
 
-            return Json(new SelectList(lista, "Id", "Clave", "Nombre"));
+            return Json(new SelectList(lista, "Id","Nombre")); /*"Clave",*/
         }
 
 
