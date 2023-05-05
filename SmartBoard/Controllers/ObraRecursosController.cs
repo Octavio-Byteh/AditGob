@@ -57,7 +57,7 @@ namespace SmartBoard.Controllers
             }
             
 
-            return Json(new SelectList(lista, "Id","Nombre")); /*"Clave",*/
+            return Json(new SelectList(lista, "Id", "Nombre")); /*"Clave",*/
         }
 
 
@@ -345,7 +345,7 @@ namespace SmartBoard.Controllers
                 .ToList();
 
 
-            return Json(new SelectList(listaFinal.Where(a => a.idclasificacion != null).Select(a => new { Id = a.idclasificacion, Nombre = a.clasificacion }).Distinct(), "Id", "Nombre"));
+            return Json(new SelectList(listaFinal.Where(a => a.idclasificacion != null).Select(a => new { Id = a.idclasificacion, Nombre = a.clasificacion }).Distinct(), "Id",  "Nombre"));
         }
 
 
