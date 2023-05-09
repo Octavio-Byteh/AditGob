@@ -1,0 +1,808 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = SmartBoard
+build_property.RootNamespace = SmartBoard
+build_property.ProjectDir = C:\Users\Horusvivo\Videos\AditGOB_Puebla\AditGob\SmartBoard\
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = true
+build_property.MSBuildProjectDirectory = C:\Users\Horusvivo\Videos\AditGOB_Puebla\AditGob\SmartBoard
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Pages/HelloWorld.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSGVsbG9Xb3JsZC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Pages/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Areas/Authorization/Pages/Roles.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQXV0aG9yaXphdGlvblxQYWdlc1xSb2xlcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Areas/Authorization/Pages/Users.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQXV0aG9yaXphdGlvblxQYWdlc1xVc2Vycy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Areas/Authorization/Pages/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQXV0aG9yaXphdGlvblxQYWdlc1xfVmlld0ltcG9ydHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Areas/Authorization/Pages/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQXV0aG9yaXphdGlvblxQYWdlc1xfVmlld1N0YXJ0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Areas/Identity/Pages/Account/ForgotPassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxGb3Jnb3RQYXNzd29yZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Areas/Identity/Pages/Account/ForgotPasswordConfirmation.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxGb3Jnb3RQYXNzd29yZENvbmZpcm1hdGlvbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Areas/Identity/Pages/Account/Lockout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxMb2Nrb3V0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Areas/Identity/Pages/Account/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Areas/Identity/Pages/Account/Logout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxMb2dvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Areas/Identity/Pages/Account/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Areas/Identity/Pages/Account/ResetPassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxSZXNldFBhc3N3b3JkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Areas/Identity/Pages/Account/ResetPasswordConfirmation.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxSZXNldFBhc3N3b3JkQ29uZmlybWF0aW9uLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Areas/Identity/Pages/Account/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxfVmlld0ltcG9ydHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Areas/Identity/Pages/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX0xheW91dC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Areas/Identity/Pages/_Logo.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX0xvZ28uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Areas/Identity/Pages/_PageFooter.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1BhZ2VGb290ZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Areas/Identity/Pages/_PageHeader.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1BhZ2VIZWFkZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Areas/Identity/Pages/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Areas/Identity/Pages/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/CatEjes/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0RWplc1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/CatEjes/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0RWplc1xEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/CatEjes/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0RWplc1xEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/CatEjes/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0RWplc1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/CatEjes/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0RWplc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/CatEstrategias/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0RXN0cmF0ZWdpYXNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/CatEstrategias/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0RXN0cmF0ZWdpYXNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/CatEstrategias/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0RXN0cmF0ZWdpYXNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/CatEstrategias/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0RXN0cmF0ZWdpYXNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/CatEstrategias/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0RXN0cmF0ZWdpYXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/CatFondos/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0Rm9uZG9zXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/CatFondos/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0Rm9uZG9zXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/CatFondos/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0Rm9uZG9zXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/CatFondos/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0Rm9uZG9zXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/CatFondos/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0Rm9uZG9zXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/CatLineaaccions/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0TGluZWFhY2Npb25zXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/CatLineaaccions/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0TGluZWFhY2Npb25zXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/CatLineaaccions/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0TGluZWFhY2Npb25zXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/CatLineaaccions/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0TGluZWFhY2Npb25zXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/CatLineaaccions/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0TGluZWFhY2Npb25zXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/CatProgramas/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0UHJvZ3JhbWFzXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/CatProgramas/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0UHJvZ3JhbWFzXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/CatProgramas/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0UHJvZ3JhbWFzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/CatProgramas/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0UHJvZ3JhbWFzXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/CatProgramas/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0UHJvZ3JhbWFzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/CatRamos/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0UmFtb3NcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/CatRamos/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0UmFtb3NcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/CatRamos/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0UmFtb3NcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/CatRamos/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0UmFtb3NcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/CatRamos/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0UmFtb3NcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/CatRubros/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0UnVicm9zXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/CatRubros/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0UnVicm9zXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/CatRubros/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0UnVicm9zXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/CatRubros/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0UnVicm9zXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/CatRubros/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0UnVicm9zXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/CatSubprogramas/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0U3VicHJvZ3JhbWFzXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/CatSubprogramas/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0U3VicHJvZ3JhbWFzXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/CatSubprogramas/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0U3VicHJvZ3JhbWFzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/CatSubprogramas/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0U3VicHJvZ3JhbWFzXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/CatSubprogramas/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0U3VicHJvZ3JhbWFzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/Contratacion/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udHJhdGFjaW9uXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/Contratacion/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udHJhdGFjaW9uXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/Contratacion/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udHJhdGFjaW9uXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/Contratacion/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udHJhdGFjaW9uXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/Contratacion/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udHJhdGFjaW9uXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/Gradomarginal/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR3JhZG9tYXJnaW5hbFxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/Gradomarginal/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR3JhZG9tYXJnaW5hbFxEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/Gradomarginal/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR3JhZG9tYXJnaW5hbFxEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/Gradomarginal/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR3JhZG9tYXJnaW5hbFxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/Gradomarginal/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcR3JhZG9tYXJnaW5hbFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/Icons/FontawesomeBrand.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSWNvbnNcRm9udGF3ZXNvbWVCcmFuZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/Icons/FontawesomeDuotone.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSWNvbnNcRm9udGF3ZXNvbWVEdW90b25lLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/Icons/FontawesomeLight.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSWNvbnNcRm9udGF3ZXNvbWVMaWdodC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/Icons/FontawesomeRegular.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSWNvbnNcRm9udGF3ZXNvbWVSZWd1bGFyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/Icons/FontawesomeSolid.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSWNvbnNcRm9udGF3ZXNvbWVTb2xpZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/Icons/NextgenBase.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSWNvbnNcTmV4dGdlbkJhc2UuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/Icons/NextgenGeneral.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSWNvbnNcTmV4dGdlbkdlbmVyYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/Icons/StackGenerate.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSWNvbnNcU3RhY2tHZW5lcmF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/Icons/StackShowcase.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSWNvbnNcU3RhY2tTaG93Y2FzZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/Icons/WebfontsFaq.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSWNvbnNcV2ViZm9udHNGYXEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/Intel/AnalyticsDashboard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW50ZWxcQW5hbHl0aWNzRGFzaGJvYXJkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/Intel/BIDashboard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW50ZWxcQklEYXNoYm9hcmQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/Intel/BIPivot.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW50ZWxcQklQaXZvdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/Intel/Introduction.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW50ZWxcSW50cm9kdWN0aW9uLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/Intel/MarketingDashboard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW50ZWxcTWFya2V0aW5nRGFzaGJvYXJkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/Intel/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW50ZWxcUHJpdmFjeS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/Intel/RecordsAdmon.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW50ZWxcUmVjb3Jkc0FkbW9uLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/Intel/RecordsDashboard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW50ZWxcUmVjb3Jkc0Rhc2hib2FyZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/Intel/_tablero.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW50ZWxcX3RhYmxlcm8uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/ModalidadEjecucion/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW9kYWxpZGFkRWplY3VjaW9uXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/ModalidadEjecucion/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW9kYWxpZGFkRWplY3VjaW9uXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/ModalidadEjecucion/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW9kYWxpZGFkRWplY3VjaW9uXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/ModalidadEjecucion/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW9kYWxpZGFkRWplY3VjaW9uXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/ModalidadEjecucion/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW9kYWxpZGFkRWplY3VjaW9uXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/NormativaAplicable/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTm9ybWF0aXZhQXBsaWNhYmxlXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/NormativaAplicable/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTm9ybWF0aXZhQXBsaWNhYmxlXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/NormativaAplicable/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTm9ybWF0aXZhQXBsaWNhYmxlXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/NormativaAplicable/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTm9ybWF0aXZhQXBsaWNhYmxlXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/NormativaAplicable/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTm9ybWF0aXZhQXBsaWNhYmxlXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/ObraConcepto/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT2JyYUNvbmNlcHRvXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/ObraConcepto/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT2JyYUNvbmNlcHRvXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/ObraConcepto/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT2JyYUNvbmNlcHRvXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/ObraConcepto/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT2JyYUNvbmNlcHRvXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/ObraConcepto/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT2JyYUNvbmNlcHRvXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/ObraEstimacion/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT2JyYUVzdGltYWNpb25cQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/ObraEstimacion/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT2JyYUVzdGltYWNpb25cRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/ObraEstimacion/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT2JyYUVzdGltYWNpb25cRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/ObraEstimacion/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT2JyYUVzdGltYWNpb25cRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/ObraEstimacion/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT2JyYUVzdGltYWNpb25cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/ObraPagos/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT2JyYVBhZ29zXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/ObraPagos/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT2JyYVBhZ29zXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/ObraPagos/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT2JyYVBhZ29zXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/ObraPagos/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT2JyYVBhZ29zXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/ObraPagos/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT2JyYVBhZ29zXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/ObraRecursos/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT2JyYVJlY3Vyc29zXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/ObraRecursos/CreateContrato.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT2JyYVJlY3Vyc29zXENyZWF0ZUNvbnRyYXRvLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/ObraRecursos/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT2JyYVJlY3Vyc29zXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/ObraRecursos/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT2JyYVJlY3Vyc29zXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/ObraRecursos/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT2JyYVJlY3Vyc29zXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/ObraRecursos/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT2JyYVJlY3Vyc29zXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/Obras/DetalleObraByExpediente.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT2JyYXNcRGV0YWxsZU9icmFCeUV4cGVkaWVudGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/Obras/DetalleObraByExpedienteBotonera.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT2JyYXNcRGV0YWxsZU9icmFCeUV4cGVkaWVudGVCb3RvbmVyYS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/Obras/DetalleObraByNoObra.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT2JyYXNcRGV0YWxsZU9icmFCeU5vT2JyYS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/Obras/DetalleObraByNoObraBotonera.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT2JyYXNcRGV0YWxsZU9icmFCeU5vT2JyYUJvdG9uZXJhLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/Shared/Components/Navigation/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcTmF2aWdhdGlvblxEZWZhdWx0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/Shared/_ColorProfileReference.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Db2xvclByb2ZpbGVSZWZlcmVuY2UuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/Shared/_Compose.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Db21wb3NlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/Shared/_ComposeLayout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Db21wb3NlTGF5b3V0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/Shared/_Contact.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Db250YWN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/Shared/_CookieConsentPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Db29raWVDb25zZW50UGFydGlhbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/Shared/_CopyrightHeader.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Db3B5cmlnaHRIZWFkZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/Shared/_DropdownApp.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Ecm9wZG93bkFwcC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/Shared/_DropdownMenu.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Ecm9wZG93bk1lbnUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/Shared/_DropdownNotification.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Ecm9wZG93bk5vdGlmaWNhdGlvbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/Shared/_Favicon.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9GYXZpY29uLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/Shared/_GoogleAnalytics.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Hb29nbGVBbmFseXRpY3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/Shared/_Head.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9IZWFkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/Shared/_LeftPanel.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MZWZ0UGFuZWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/Shared/_LeftPanelMenu.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MZWZ0UGFuZWxNZW51LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/Shared/_Logo.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dvLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/Shared/_Menu.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9NZW51LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/Shared/_NavFilter.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9OYXZGaWx0ZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/Shared/_NavFilterMsg.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9OYXZGaWx0ZXJNc2cuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/Shared/_NavFooter.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9OYXZGb290ZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/Shared/_NavInfoCard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9OYXZJbmZvQ2FyZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/Shared/_PageBreadcrumb.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9QYWdlQnJlYWRjcnVtYi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/Shared/_PageContentOverlay.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9QYWdlQ29udGVudE92ZXJsYXkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/Shared/_PageFooter.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9QYWdlRm9vdGVyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/Shared/_PageHeader.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9QYWdlSGVhZGVyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/Shared/_PageHeading.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9QYWdlSGVhZGluZy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/Shared/_PageSettings.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9QYWdlU2V0dGluZ3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/Shared/_ScriptsBasePlugins.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9TY3JpcHRzQmFzZVBsdWdpbnMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/Shared/_ScriptsLoadingSaving.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9TY3JpcHRzTG9hZGluZ1NhdmluZy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/Shared/_ShortcutMenu.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9TaG9ydGN1dE1lbnUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/Shared/_ShortcutMessenger.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9TaG9ydGN1dE1lc3Nlbmdlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/Shared/_ShortcutModal.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9TaG9ydGN1dE1vZGFsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/Shared/_Signature.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9TaWduYXR1cmUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/Shared/_TabMsgr.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9UYWJNc2dyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/Shared/_TabSettings.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9UYWJTZXR0aW5ncy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/TblObras/CheckList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGJsT2JyYXNcQ2hlY2tMaXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/TblObras/Contrato.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGJsT2JyYXNcQ29udHJhdG8uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/TblObras/CreateExpediente.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGJsT2JyYXNcQ3JlYXRlRXhwZWRpZW50ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/TblObras/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGJsT2JyYXNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/TblObras/Documentos.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGJsT2JyYXNcRG9jdW1lbnRvcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/TblObras/DocumentosAdmon.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGJsT2JyYXNcRG9jdW1lbnRvc0FkbW9uLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/TblObras/DocumentosCatalogos.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGJsT2JyYXNcRG9jdW1lbnRvc0NhdGFsb2dvcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/TblObras/DocumentosConceptos.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGJsT2JyYXNcRG9jdW1lbnRvc0NvbmNlcHRvcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/TblObras/DocumentosFacturas.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGJsT2JyYXNcRG9jdW1lbnRvc0ZhY3R1cmFzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/TblObras/DocumentosFiniquito.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGJsT2JyYXNcRG9jdW1lbnRvc0ZpbmlxdWl0by5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/TblObras/DocumentosFotos.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGJsT2JyYXNcRG9jdW1lbnRvc0ZvdG9zLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/TblObras/DocumentosPagos.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGJsT2JyYXNcRG9jdW1lbnRvc1BhZ29zLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/TblObras/DocumentosPlanea.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGJsT2JyYXNcRG9jdW1lbnRvc1BsYW5lYS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/TblObras/DocumentosProceso.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGJsT2JyYXNcRG9jdW1lbnRvc1Byb2Nlc28uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/TblObras/EditExpediente.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGJsT2JyYXNcRWRpdEV4cGVkaWVudGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/TblObras/getArchivos.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGJsT2JyYXNcZ2V0QXJjaGl2b3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/TblObras/getArchivosEVFactura.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGJsT2JyYXNcZ2V0QXJjaGl2b3NFVkZhY3R1cmEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/TblObras/getArchivosEvidencia.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGJsT2JyYXNcZ2V0QXJjaGl2b3NFdmlkZW5jaWEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/TblObras/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGJsT2JyYXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/TblObras/ObraCreatePartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGJsT2JyYXNcT2JyYUNyZWF0ZVBhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/TblObras/Recursos.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGJsT2JyYXNcUmVjdXJzb3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/TipoAdjudicacion/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGlwb0FkanVkaWNhY2lvblxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/TipoAdjudicacion/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGlwb0FkanVkaWNhY2lvblxEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/TipoAdjudicacion/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGlwb0FkanVkaWNhY2lvblxEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/TipoAdjudicacion/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGlwb0FkanVkaWNhY2lvblxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/TipoAdjudicacion/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGlwb0FkanVkaWNhY2lvblxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/TipoDeContrato/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGlwb0RlQ29udHJhdG9cQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/TipoDeContrato/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGlwb0RlQ29udHJhdG9cRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/TipoDeContrato/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGlwb0RlQ29udHJhdG9cRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/TipoDeContrato/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGlwb0RlQ29udHJhdG9cRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/TipoDeContrato/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGlwb0RlQ29udHJhdG9cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Horusvivo/Videos/AditGOB_Puebla/AditGob/SmartBoard/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-k86gookjxf
